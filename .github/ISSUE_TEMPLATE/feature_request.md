@@ -1,20 +1,17 @@
 ---
-name: Feature request
-about: Suggest an idea for this project
-title: ''
-labels: ''
+name: 機能提案
+about: 追加してみたい機能の提案用
+title: 'request_○○'
+labels: 'request'
 assignees: ''
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+## 提案内容 
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+## 目的 
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+## タスク 
+- [ ] 
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+## その他 
