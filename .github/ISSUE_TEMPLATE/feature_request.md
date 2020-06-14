@@ -1,8 +1,8 @@
 ---
 name: 機能提案
 about: 追加してみたい機能の提案用
-title: 'enhancement_○○'
-labels: 'enhancement'
+title: '機能提案_○○'
+labels: '1.機能提案'
 assignees: ''
 
 ---

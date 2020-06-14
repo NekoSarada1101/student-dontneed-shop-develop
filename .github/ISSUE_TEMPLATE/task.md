@@ -1,8 +1,8 @@
 ---
 name: タスク
 about: タスクの内容を記す
-title: 'task_○○'
-labels: 'task'
+title: 'タスク_○○'
+labels: '1.タスク'
 assignees: ''
 
 ---

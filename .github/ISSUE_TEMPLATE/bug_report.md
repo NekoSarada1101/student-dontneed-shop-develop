@@ -1,8 +1,8 @@
 ---
 name: バグレポート
 about: バグ発見時の報告用
-title: 'bug_○○'
-labels: 'bug'
+title: 'バグ_○○'
+labels: '1.バグ'
 assignees: ''
 
 ---
