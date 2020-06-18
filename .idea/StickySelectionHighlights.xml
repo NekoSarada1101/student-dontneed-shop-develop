@@ -3,6 +3,41 @@
   <component name="StickySelectionHighlights">
     <option name="editorHighlights">
       <map>
+        <entry key="/Dummy.txt">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/bootstrap.jsp">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/script.jsp">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/user/member_header.jsp">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/user/member_top.jsp">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/user/member_top.jsp.html">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/shop/model/bean/MemberBeans.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/shop/model/dao/DaoBase.java">
           <value>
             <PaintGroupHighlightMap />
@@ -34,6 +69,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/shop/model/service/UserService.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/shop/servlet/user/MemberTopServlet.java">
           <value>
             <PaintGroupHighlightMap />
           </value>
