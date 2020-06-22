@@ -1,9 +1,12 @@
 package shop.model.bean;
 
+import java.awt.image.BufferedImage;
+
 public class ProductBeans {
     private int productId = 0;
     private String productName = null;
     private int price = 0;
+    private BufferedImage image = null;
     private String productExplanation = null;
     private boolean isSold = false;
     private int genreCode = 0;
@@ -33,6 +36,14 @@ public class ProductBeans {
         this.price = price;
     }
 
+    public void getImage() {
+        this.image = image;
+    }
+
+    public BufferedImage setImage(BufferedImage image) {
+        return image;
+    }
+
     public String getProductExplanation() {
         return productExplanation;
     }
@@ -41,11 +52,11 @@ public class ProductBeans {
         this.productExplanation = productExplanation;
     }
 
-    public boolean isSold() {
+    public boolean setIsSold() {
         return isSold;
     }
 
-    public void setSold(boolean isSold) {
+    public void setIsSold(boolean isSold) {
         this.isSold = isSold;
     }
 
