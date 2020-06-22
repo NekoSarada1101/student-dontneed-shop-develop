@@ -1,5 +1,6 @@
 package shop.model.service;
 
+import shop.model.bean.ProductBeans;
 import shop.model.dao.ProductDao;
 
 import java.util.List;
@@ -11,5 +12,9 @@ public class ProductService extends CommonService {
 
     public List<Map<String, Object>> fetchGenreInfo() {
         return productDao.fetchGenreInfo();
+    }
+
+    public List<ProductBeans> fetchAdminProductList(String adminMail){
+        return productDao.fetchAdminProductList(adminMail);
     }
 }
