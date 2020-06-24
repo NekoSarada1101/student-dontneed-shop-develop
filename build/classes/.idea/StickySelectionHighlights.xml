@@ -118,14 +118,11 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
-<<<<<<< Updated upstream
-=======
         <entry key="$PROJECT_DIR$/src/shop/servlet/GetImageListServlet.java">
           <value>
             <PaintGroupHighlightMap />
           </value>
         </entry>
->>>>>>> Stashed changes
         <entry key="$PROJECT_DIR$/src/shop/servlet/GetImageServlet.java">
           <value>
             <PaintGroupHighlightMap />
@@ -141,8 +138,6 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
-<<<<<<< Updated upstream
-=======
         <entry key="$PROJECT_DIR$/src/shop/servlet/admin/ProductInsertCompleteServlet.java">
           <value>
             <PaintGroupHighlightMap />
@@ -153,7 +148,6 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
->>>>>>> Stashed changes
         <entry key="$PROJECT_DIR$/src/shop/servlet/user/MemberTopServlet.java">
           <value>
             <PaintGroupHighlightMap />
