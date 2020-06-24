@@ -3,6 +3,9 @@ package shop.model.service;
 import shop.model.bean.ProductBeans;
 import shop.model.dao.ProductDao;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +21,17 @@ public class ProductService extends CommonService {
         return productDao.fetchGenreInfo();
     }
 
-    public List<ProductBeans> fetchAdminProductList(String adminMail){
+    public List<ProductBeans> fetchAdminProductList(String adminMail) {
         return productDao.fetchAdminProductList(adminMail);
+    }
+
+    public byte[] convertInputStreamToByteArray(InputStream inputStream) throws IOException {
+        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+        int nRead;
+        byte[] data = new byte[16777215];
+        while ((nRead = inputStream.read(data, 0, data.length)) != -1) {
+            buffer.write(data, 0, nRead);
+        }
+        return buffer.toByteArray();
     }
 }

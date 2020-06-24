@@ -2,7 +2,10 @@
 package shop.model.dao;
 
 import shop.model.bean.ProductBeans;
+import shop.model.service.ProductService;
+
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -82,6 +85,8 @@ public class ProductDao extends DaoBase {
             stmt.setString(1, adminMail);
             rs = stmt.executeQuery();
 
+            ProductService productService = new ProductService();
+
             productList = new ArrayList<>();
 
             while (rs.next()) {
@@ -89,7 +94,7 @@ public class ProductDao extends DaoBase {
                 productBeans.setProductId(rs.getInt("product_id"));
                 productBeans.setProductName(rs.getString("product_name"));
                 productBeans.setPrice(rs.getInt("price"));
-                //TODO 画像取得処理
+                productBeans.setImage(productService.convertInputStreamToByteArray(rs.getBinaryStream("image")));
                 productBeans.setProductExplanation(rs.getString("product_explanation"));
                 productBeans.setIsSold(rs.getBoolean("is_sold"));
                 productBeans.setGenreCode(rs.getInt("genre_code"));
@@ -98,7 +103,7 @@ public class ProductDao extends DaoBase {
                 productList.add(productBeans);
             }
 
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             e.printStackTrace();
         } finally {
             try {
