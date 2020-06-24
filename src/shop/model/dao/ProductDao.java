@@ -1,6 +1,8 @@
 
 package shop.model.dao;
 
+import shop.model.bean.ProductBeans;
+import java.io.ByteArrayInputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,9 +11,34 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import shop.model.bean.ProductBeans;
-
 public class ProductDao extends DaoBase {
+
+    public boolean insertProduct(ProductBeans productBeans) {
+        PreparedStatement stmt = null;
+        int insertLine = 0;
+
+        try {
+            this.connect();
+            stmt = con.prepareStatement("INSERT INTO product (product_name, price, image, product_explanation, genre_code ,admin_mail) VALUES (?,?,?,?,?,?)");
+            stmt.setString(1, productBeans.getProductName());
+            stmt.setInt(2, productBeans.getPrice());
+            stmt.setBinaryStream(3, new ByteArrayInputStream(productBeans.getImage()));
+            stmt.setString(4, productBeans.getProductExplanation());
+            stmt.setInt(5, productBeans.getGenreCode());
+            stmt.setString(6, productBeans.getAdminMail());
+            insertLine = stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                this.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return insertLine != 0;
+    }
 
     public List<Map<String, Object>> fetchGenreInfo() {
         PreparedStatement stmt = null;
