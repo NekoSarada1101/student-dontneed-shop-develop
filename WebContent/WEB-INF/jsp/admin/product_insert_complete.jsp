@@ -16,5 +16,6 @@
     <button type="submit" class="btn btn-primary">トップへ戻る</button>
 </form>
 
+<%@include file="/WEB-INF/jsp/script.jsp" %>
 </body>
 </html>

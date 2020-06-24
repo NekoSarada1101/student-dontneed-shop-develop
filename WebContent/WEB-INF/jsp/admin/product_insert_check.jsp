@@ -61,5 +61,7 @@
         <button type="submit" class="btn btn-outline-dark">戻る</button>
     </form>
 </div>
+
+<%@include file="/WEB-INF/jsp/script.jsp" %>
 </body>
 </html>
