@@ -52,7 +52,7 @@ public class ProductBeans {
         this.productExplanation = productExplanation;
     }
 
-    public boolean setIsSold() {
+    public boolean getIsSold() {
         return isSold;
     }
 
