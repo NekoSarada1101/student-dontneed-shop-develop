@@ -1,8 +1,12 @@
 package shop.model.bean;
 
+<<<<<<< HEAD
 import java.awt.image.BufferedImage;
+=======
+import java.io.Serializable;
+>>>>>>> 3552b86... fix:serializableを追加
 
-public class ProductBeans {
+public class ProductBeans implements Serializable{
     private int productId = 0;
     private String productName = null;
     private int price = 0;

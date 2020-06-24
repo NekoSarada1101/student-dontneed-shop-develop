@@ -1,8 +1,8 @@
 package shop.model.bean;
 
-import java.lang.annotation.Repeatable;
+import java.io.Serializable;
 
-public class AdminBeans {
+public class AdminBeans implements Serializable {
     private String adminMail = null;
     private String adminName = null;
     private String adminPassword = null;
