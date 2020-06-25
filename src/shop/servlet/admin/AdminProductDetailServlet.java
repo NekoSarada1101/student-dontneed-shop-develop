@@ -16,12 +16,27 @@ public class AdminProductDetailServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int index = Integer.parseInt(request.getParameter("index"));
-
         HttpSession session = request.getSession();
+
+        int index = 0;
+        try {
+            index = Integer.parseInt(request.getParameter("index"));
+        }catch (NumberFormatException e){
+            index = (int) session.getAttribute("index");
+        }
+
         List<ProductBeans> productList = (List<ProductBeans>) session.getAttribute("productList");
 
-        ProductBeans productBeans = productList.get(index);
+        ProductBeans productBeans = new ProductBeans();
+        productBeans.setProductId(productList.get(index).getProductId());
+        productBeans.setProductName(productList.get(index).getProductName());
+        productBeans.setPrice(productList.get(index).getPrice());
+        productBeans.setImage(productList.get(index).getImage());
+        productBeans.setProductExplanation(productList.get(index).getProductExplanation());
+        productBeans.setIsSold(productList.get(index).getIsSold());
+        productBeans.setGenreCode(productList.get(index).getGenreCode());
+
+        session.setAttribute("index", index);
         session.setAttribute("productBeans", productBeans);
 
         request.getRequestDispatcher("WEB-INF/jsp/admin/admin_product_detail.jsp").forward(request, response);
