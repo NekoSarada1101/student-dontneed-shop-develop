@@ -43,6 +43,34 @@ public class ProductDao extends DaoBase {
         return insertLine != 0;
     }
 
+
+    public boolean updateProduct(ProductBeans productBeans) {
+        PreparedStatement stmt = null;
+        int updateLine = 0;
+
+        try {
+            this.connect();
+            stmt = con.prepareStatement("UPDATE product SET product_name = ?, price = ?, image = ?, product_explanation = ?, genre_code = ? WHERE product_id = ?");
+            stmt.setString(1, productBeans.getProductName());
+            stmt.setInt(2, productBeans.getPrice());
+            stmt.setBinaryStream(3, new ByteArrayInputStream(productBeans.getImage()));
+            stmt.setString(4, productBeans.getProductExplanation());
+            stmt.setInt(5, productBeans.getGenreCode());
+            stmt.setInt(6, productBeans.getProductId());
+            updateLine = stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                this.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return updateLine != 0;
+    }
+
     public List<Map<String, Object>> fetchGenreInfo() {
         PreparedStatement stmt = null;
         ResultSet rs = null;
