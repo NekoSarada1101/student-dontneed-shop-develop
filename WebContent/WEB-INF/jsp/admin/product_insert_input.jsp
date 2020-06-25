@@ -37,9 +37,9 @@
         </div>
         <div class="form-group">
             <label for="image">画像</label>
-            <input type="file" class="form-control" id="image" name="image">
+            <input type="file" class="form-control" id="image" name="image" onchange="previewImage(this);" accept="image/*">
             <p>Preview:<br>
-                <img id="preview" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="max-width:200px;">
+                <img id="preview" src="getImage" style="max-width:200px;">
             </p>
         </div>
         <div class="form-group">
@@ -66,8 +66,7 @@
 </div>
 
 <script>
-    function previewImage(obj)
-    {
+    function previewImage(obj) {
         var fileReader = new FileReader();
         fileReader.onload = (function() {
             document.getElementById('preview').src = fileReader.result;

@@ -37,7 +37,10 @@
         </div>
         <div class="form-group">
             <label for="image">画像</label>
-            <input type="file" class="form-control" id="image" name="image">
+            <input type="file" class="form-control" id="image" name="image" onchange="previewImage(this);" accept="image/*">
+            <p>Preview:<br>
+                <img id="preview" src="getImage" style="max-width:200px;">
+            </p>
         </div>
         <div class="form-group">
             <label for="productExplanation">商品説明</label>
@@ -61,5 +64,16 @@
         <button type="submit" class="btn btn-outline-dark">戻る</button>
     </form>
 </div>
+
+<script>
+    function previewImage(obj) {
+        var fileReader = new FileReader();
+        fileReader.onload = (function() {
+            document.getElementById('preview').src = fileReader.result;
+        });
+        fileReader.readAsDataURL(obj.files[0]);
+    }
+</script>
+<%@include file="/WEB-INF/jsp/script.jsp" %>
 </body>
 </html>
