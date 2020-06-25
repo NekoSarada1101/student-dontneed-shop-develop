@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>商品詳細</title>
+    <title>管理者トップ</title>
     <%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
 </head>
 
@@ -34,11 +34,11 @@
     </p>
 </div>
 
-<form action="productUpdateInput" method="get">
+<form action="productUpdate" method="get">
     <button type="submit" class="btn btn-primary">変更する</button>
 </form>
 
-<form action="productDeleteCheck" method="get">
+<form action="productDelete" method="get">
     <button type="submit" class="btn btn-danger">販売済みにする</button>
 </form>
 
