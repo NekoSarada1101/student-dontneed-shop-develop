@@ -17,6 +17,10 @@ public class ProductService extends CommonService {
         return productDao.insertProduct(productBeans);
     }
 
+    public boolean updateProduct(ProductBeans productBeans) {
+        return productDao.updateProduct(productBeans);
+    }
+
     public List<Map<String, Object>> fetchGenreInfo() {
         return productDao.fetchGenreInfo();
     }
