@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>管理者トップ</title>
+    <title>商品詳細</title>
     <%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
 </head>
 

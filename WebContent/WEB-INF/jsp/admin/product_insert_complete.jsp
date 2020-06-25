@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>商品情報登録確認</title>
+    <title>商品情報登録完了</title>
     <%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
 </head>
 
