@@ -28,7 +28,7 @@
 </div>
 
 <%
-    int i  = 0;
+    int i = 0;
     for (ProductBeans productBeans : productList) {
 %>
 <div class="card col-3">
@@ -47,8 +47,23 @@
                 }
             %>
         </p>
-        <p class="card-text text-danger"><%=productBeans.getPrice()%></p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <p class="card-text text-danger">
+            <%=productBeans.getPrice()%>
+        </p>
+
+        <p class="card-text text-danger">
+            <% if (productBeans.getIsSold()) { %>
+            <span class="text-danger">販売済み</span>
+            <% } else {%>
+            <span class="text-success">在庫あり</span>
+            <% } %>
+        </p>
+
+
+        <form action="adminProductDetail" method="post">
+            <input type="hidden" value="<%=i%>" name="index">
+            <button type="submit" class="btn btn-primary">商品詳細表示</button>
+        </form>
     </div>
 </div>
 <%
