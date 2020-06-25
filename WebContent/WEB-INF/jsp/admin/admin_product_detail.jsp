@@ -34,11 +34,11 @@
     </p>
 </div>
 
-<form action="productUpdate" method="get">
+<form action="productUpdateInput" method="get">
     <button type="submit" class="btn btn-primary">変更する</button>
 </form>
 
-<form action="productDelete" method="get">
+<form action="productDeleteCheck" method="get">
     <button type="submit" class="btn btn-danger">販売済みにする</button>
 </form>
 
