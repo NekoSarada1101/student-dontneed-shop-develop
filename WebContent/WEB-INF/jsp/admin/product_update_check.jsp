@@ -25,11 +25,15 @@
         <tbody>
         <tr>
             <th scope="row">商品名</th>
-            <td><%=productBeans.getProductName()%></td>
+            <td>
+                <%=productBeans.getProductName()%>
+            </td>
         </tr>
         <tr>
             <th scope="row">価格</th>
-            <td><%=productBeans.getPrice()%></td>
+            <td>
+                <%=productBeans.getPrice()%>
+            </td>
         </tr>
         <tr>
             <th scope="row">画像</th>
@@ -37,7 +41,9 @@
         </tr>
         <tr>
             <th scope="row">商品説明</th>
-            <td><%=productBeans.getProductExplanation()%></td>
+            <td>
+                <%=productBeans.getProductExplanation()%>
+            </td>
         </tr>
         <tr>
             <th scope="row">ジャンル</th>

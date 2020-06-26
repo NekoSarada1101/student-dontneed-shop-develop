@@ -37,7 +37,8 @@
 <div class="card col-3">
     <img src="getImageList?index=<%=i%>" class="card-img-top" alt="...">
     <div class="card-body">
-        <h5 class="card-title"><%=productBeans.getProductName()%>
+        <h5 class="card-title">
+            <%=productBeans.getProductName()%>
         </h5>
         <p class="card-text">
             <%
@@ -61,7 +62,6 @@
             <span class="text-success">在庫あり</span>
             <% } %>
         </p>
-
 
         <form action="adminProductDetail" method="post">
             <input type="hidden" value="<%=i%>" name="index">

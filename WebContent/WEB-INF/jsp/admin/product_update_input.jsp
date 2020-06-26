@@ -33,14 +33,16 @@
         </div>
         <div class="form-group">
             <label for="image">画像</label>
-            <input type="file" class="form-control" id="image" name="image" onchange="previewImage(this);" accept="image/*">
+            <input type="file" class="form-control" id="image" name="image" onchange="previewImage(this);"
+                   accept="image/*">
             <p>Preview:<br>
                 <img id="preview" src="getImage" style="max-width:200px;">
             </p>
         </div>
         <div class="form-group">
             <label for="productExplanation">商品説明</label>
-            <input type="text" value="<%=productBeans.getProductExplanation()%>" class="form-control" id="productExplanation" name="productExplanation">
+            <input type="text" value="<%=productBeans.getProductExplanation()%>" class="form-control"
+                   id="productExplanation" name="productExplanation">
         </div>
         <div class="form-group">
             <labal for="genre">ジャンル</labal>
@@ -64,12 +66,13 @@
 <script>
     function previewImage(obj) {
         var fileReader = new FileReader();
-        fileReader.onload = (function() {
+        fileReader.onload = (function () {
             document.getElementById('preview').src = fileReader.result;
         });
         fileReader.readAsDataURL(obj.files[0]);
     }
 </script>
+
 <%@include file="/WEB-INF/jsp/script.jsp" %>
 </body>
 </html>
