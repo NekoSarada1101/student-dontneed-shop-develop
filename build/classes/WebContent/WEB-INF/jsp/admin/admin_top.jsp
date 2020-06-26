@@ -1,10 +1,13 @@
 <%@ page import="shop.model.bean.ProductBeans" %>
+<%@ page import="shop.model.service.ProductService" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     List<ProductBeans> productList = (List<ProductBeans>) session.getAttribute("productList");
-    List<Map<String, Object>> genreInfoList = (List<Map<String, Object>>) session.getAttribute("genreInfoList");
+
+    ProductService productService = new ProductService();
+    List<Map<String, Object>> genreInfoList = productService.fetchGenreInfo();
 %>
 <!DOCTYPE html>
 <html>
@@ -34,7 +37,8 @@
 <div class="card col-3">
     <img src="getImageList?index=<%=i%>" class="card-img-top" alt="...">
     <div class="card-body">
-        <h5 class="card-title"><%=productBeans.getProductName()%>
+        <h5 class="card-title">
+            <%=productBeans.getProductName()%>
         </h5>
         <p class="card-text">
             <%
@@ -58,7 +62,6 @@
             <span class="text-success">在庫あり</span>
             <% } %>
         </p>
-
 
         <form action="adminProductDetail" method="post">
             <input type="hidden" value="<%=i%>" name="index">
