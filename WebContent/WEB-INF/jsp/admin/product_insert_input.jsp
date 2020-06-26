@@ -1,10 +1,12 @@
-<%@ page import="shop.model.bean.MemberBeans" %>
+<%@ page import="shop.model.bean.ProductBeans" %>
+<%@ page import="shop.model.service.ProductService" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
-<%@ page import="shop.model.bean.ProductBeans" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
-    List<Map<String, Object>> genreInfoList = (List<Map<String, Object>>) session.getAttribute("genreInfoList");
+    ProductService productService = new ProductService();
+    List<Map<String, Object>> genreInfoList = productService.fetchGenreInfo();
+
     ProductBeans productBeans = (ProductBeans) session.getAttribute("productBeans");
     if (productBeans == null) {
         productBeans = new ProductBeans();

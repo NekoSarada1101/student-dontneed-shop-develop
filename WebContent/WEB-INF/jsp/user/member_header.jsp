@@ -2,10 +2,13 @@
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.List" %>
 <%@ page import="shop.model.bean.MemberBeans" %>
+<%@ page import="shop.model.service.ProductService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
-    List<Map<String, Object>> genreInfoList = (List<Map<String, Object>>) session.getAttribute("genreInfoList");
     String memberName = ((MemberBeans) session.getAttribute("member")).getMemberName();
+
+    ProductService productService = new ProductService();
+    List<Map<String, Object>> genreInfoList = productService.fetchGenreInfo();
 %>
 <!DOCTYPE html>
 <html>

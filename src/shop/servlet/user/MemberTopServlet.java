@@ -23,7 +23,6 @@ public class MemberTopServlet extends HttpServlet {
         List<Map<String, Object>> genreInfoList = productService.fetchGenreInfo();
 
         HttpSession session = request.getSession();
-        session.setAttribute("genreInfoList", genreInfoList);
 
         //test//
         MemberBeans memberBeans = new MemberBeans();
