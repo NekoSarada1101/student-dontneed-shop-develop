@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 @WebServlet("/adminTop")
 public class AdminTopServlet extends HttpServlet {
@@ -24,8 +23,6 @@ public class AdminTopServlet extends HttpServlet {
         //String adminMail = ((AdminBeans) session.getAttribute("admin")).getAdminMail();
         List<ProductBeans> productList = productService.fetchAdminProductList("ryouta@gmail.com");
 
-        List<Map<String, Object>> genreInfoList = productService.fetchGenreInfo();
-
         //test//
         AdminBeans adminBeans = new AdminBeans();
         adminBeans.setAdminName("原田");
@@ -35,8 +32,6 @@ public class AdminTopServlet extends HttpServlet {
         session.removeAttribute("productBeans");
         session.removeAttribute("productList");
         session.setAttribute("productList", productList);
-
-        session.setAttribute("genreInfoList", genreInfoList);
 
         request.getRequestDispatcher("WEB-INF/jsp/admin/admin_top.jsp").forward(request, response);
     }

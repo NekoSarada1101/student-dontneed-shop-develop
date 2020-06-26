@@ -1,10 +1,13 @@
 <%@ page import="shop.model.bean.ProductBeans" %>
+<%@ page import="shop.model.service.ProductService" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     ProductBeans productBeans = (ProductBeans) session.getAttribute("productBeans");
-    List<Map<String, Object>> genreInfoList = (List<Map<String, Object>>) session.getAttribute("genreInfoList");
+
+    ProductService productService = new ProductService();
+    List<Map<String, Object>> genreInfoList = productService.fetchGenreInfo();
 %>
 <!DOCTYPE html>
 <html>
@@ -22,11 +25,15 @@
         <tbody>
         <tr>
             <th scope="row">商品名</th>
-            <td><%=productBeans.getProductName()%></td>
+            <td>
+                <%=productBeans.getProductName()%>
+            </td>
         </tr>
         <tr>
             <th scope="row">価格</th>
-            <td><%=productBeans.getPrice()%></td>
+            <td>
+                <%=productBeans.getPrice()%>
+            </td>
         </tr>
         <tr>
             <th scope="row">画像</th>
@@ -34,7 +41,9 @@
         </tr>
         <tr>
             <th scope="row">商品説明</th>
-            <td><%=productBeans.getProductExplanation()%></td>
+            <td>
+                <%=productBeans.getProductExplanation()%>
+            </td>
         </tr>
         <tr>
             <th scope="row">ジャンル</th>
