@@ -1,4 +1,60 @@
 package shop.model.dao;
 
+import shop.model.bean.ProductBeans;
+import shop.model.service.ProductService;
+
+import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class PurchaseDao extends DaoBase {
+
+    public List<Map<String, Object>> fetchSalesInfo(String adminMail) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Map<String, Object>> salesList = null;
+
+        try {
+            this.connect();
+            stmt = con.prepareStatement("SELECT p.*, pd.purchase_date FROM purchase_details as pd LEFT OUTER JOIN product as p ON pd.product_id = p.product_id WHERE p.admin_mail = ?");
+            stmt.setString(1, adminMail);
+            rs = stmt.executeQuery();
+
+            ProductService productService = new ProductService();
+            salesList = new ArrayList<>();
+
+            while (rs.next()) {
+                Map<String, Object> salesMap = new HashMap<>();
+
+                ProductBeans productBeans = new ProductBeans();
+                productBeans.setProductId(rs.getInt("product_id"));
+                productBeans.setProductName(rs.getString("product_name"));
+                productBeans.setPrice(rs.getInt("price"));
+                productBeans.setImage(productService.convertInputStreamToByteArray(rs.getBinaryStream("image")));
+                productBeans.setProductExplanation(rs.getString("product_explanation"));
+                productBeans.setIsSold(rs.getBoolean("is_sold"));
+                productBeans.setGenreCode(rs.getInt("genre_code"));
+                productBeans.setAdminMail(rs.getString("admin_mail"));
+
+                salesMap.put("productBeans", productBeans);
+                salesMap.put("purchaseDate", rs.getString("purchase_date"));
+
+                salesList.add(salesMap);
+            }
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                this.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return salesList;
+    }
 }
