@@ -3,11 +3,6 @@
   <component name="StickySelectionHighlights">
     <option name="editorHighlights">
       <map>
-        <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/admin/admin_footer.jsp">
-          <value>
-            <PaintGroupHighlightMap />
-          </value>
-        </entry>
         <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/admin/admin_header.jsp">
           <value>
             <PaintGroupHighlightMap />
@@ -54,11 +49,6 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/user/member_header.jsp">
-          <value>
-            <PaintGroupHighlightMap />
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/WebContent/css/common.css">
           <value>
             <PaintGroupHighlightMap />
           </value>
