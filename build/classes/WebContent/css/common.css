@@ -1,0 +1,29 @@
+html {
+	font-family: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo, メイリオ,
+		Osaka, 'MS PGothic', arial, helvetica, sans-serif;
+}
+
+.btn-warning {
+	background-color: orange;
+}
+
+.container-fluid {
+	padding: 0;
+}
+
+.card-header {
+	position: relative;
+}
+
+img {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: auto;
+	width: auto;
+	max-width: 100%;
+	max-height: 100%;
+	margin: auto;
+}
