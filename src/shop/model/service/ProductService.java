@@ -9,7 +9,11 @@ import java.util.Map;
 import shop.model.bean.ProductBeans;
 import shop.model.dao.ProductDao;
 
+
 public class ProductService extends CommonService {
+	
+	public static void main(String[] args) {
+		// TODO 自動生成されたメソッド・スタブ
 
     private ProductDao productDao = new ProductDao();
 
@@ -42,4 +46,9 @@ public class ProductService extends CommonService {
         }
         return buffer.toByteArray();
     }
+	public List<ProductBeans> fetchSearchProductList(int genreCode,String sortColumn,String sortOrder,String searchWord) throws ServletException, IOException {
+		ProductDao productDao = new ProductDao();
+		List<ProductBeans> productList = productDao.fetchSearchProductList(genreCode, sortColumn, sortOrder, searchWord);
+		return productList;
+	}
 }

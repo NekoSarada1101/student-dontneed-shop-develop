@@ -18,14 +18,14 @@ public class ProductDao extends DaoBase {
 	ProductBeans productBeans = null;
 
 
-	public List<ProductBeans> fetchSearchProductList(String genreCode,String sortColumn,String sortOrder,String searchWord){
+	public List<ProductBeans> fetchSearchProductList(int genreCode,String sortColumn,String sortOrder,String searchWord){
 		List<ProductBeans> list = new ArrayList<ProductBeans>();
 
 		try {
 			super.DbOpen();
 			String sql = "SELECT * FROM product WHERE genre_code = ? AND is_sold = false AND  product_name LIKE '% ? %' AND product_explanation LIKE '% ? % ORDER BY ? ?";
 			stmt = con.prepareStatement(sql);
-        	stmt.setString(1,genreCode);
+        	stmt.setInt(1,genreCode);
         	stmt.setString(2,searchWord);
         	stmt.setString(3,searchWord);
         	stmt.setString(4,sortColumn);

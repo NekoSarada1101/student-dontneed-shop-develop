@@ -26,7 +26,7 @@ public class DaoBase {
 			//指定するデータベースへ接続(引数:URL/利用ユーザ/パスワード)
 			//WindowsはMySqlのタイムゾーンの違いでタイム指定が必要
 			con = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/diary1901301?characterEncoding=UTF-8&serverTimezone=JST","root","root");
+					"jdbc:mysql://localhost:3306/student_dontneed_shop?characterEncoding=UTF-8&serverTimezone=JST","root","root");
 
 
 		}catch(ClassNotFoundException e){
