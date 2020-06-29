@@ -23,12 +23,6 @@ public class AdminTopServlet extends HttpServlet {
         String adminMail = ((AdminBeans) session.getAttribute("adminBeans")).getAdminMail();
         List<ProductBeans> productList = productService.fetchAdminProductList(adminMail);
 
-        //test//
-        AdminBeans adminBeans = new AdminBeans();
-        adminBeans.setAdminName("原田");
-        session.setAttribute("admin", adminBeans);
-        //test//
-
         session.removeAttribute("productBeans");
         session.removeAttribute("productList");
         session.setAttribute("productList", productList);
