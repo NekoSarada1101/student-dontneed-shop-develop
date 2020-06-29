@@ -1,5 +1,6 @@
 
 package shop.servlet.admin;
+
 import shop.model.bean.AdminBeans;
 import shop.model.service.UserService;
 
@@ -37,12 +38,12 @@ public class AdminLoginServlet extends HttpServlet {
             //取得に失敗した場合
             path = "WEB-INF/jsp/admin/admin_login.jsp";
             request.setAttribute("error_message", "正しい学籍番号とパスワードを入力してください");
+            response.sendRedirect("adminLogin");
 
         } else {
             //取得した場合
             session.setAttribute("adminBeans", adminBeans);
-            path = "WEB-INF/jsp/admin/admin_top.jsp";
+            response.sendRedirect("adminTop");
         }
-        request.getRequestDispatcher(path).forward(request, response);
     }
 }
