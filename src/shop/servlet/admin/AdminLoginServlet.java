@@ -1,65 +1,48 @@
+
 package shop.servlet.admin;
+import shop.model.bean.AdminBeans;
+import shop.model.service.UserService;
 
-import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
-import shop.model.bean.AdminBeans;
-import shop.model.service.UserService;
 
-/**
- * Servlet implementation class LoginServlet
- */
-@WebServlet("/adminlogin")
+@WebServlet("/adminLogin")
 public class AdminLoginServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AdminLoginServlet() {
-        super();
-        // TODO Auto-generated constructor stub
+    private UserService userService = new UserService();
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("WEB-INF/jsp/admin/admin_login.jsp").forward(request, response);
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher =
-				request.getRequestDispatcher("WEB-INF/jsp/admin_login.jsp");
-		dispatcher.forward(request,response);
-	}
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String adminMail = request.getParameter("adminMail");
+        String adminPassword = request.getParameter("adminPassword");
 
-		//DAOのインスタンス作成
-		shop.model.service.UserService userService = new UserService();
-		String adminMail = request.getParameter("adminMail");
-		String adminPassword = request.getParameter("adminPassword");
-		AdminBeans adminBeans = userService.fetchAdminLogin(adminMail,adminPassword);
+        AdminBeans adminBeans = userService.fetchAdminLogin(adminMail, adminPassword);
 
-		//推移先
-		String path = "";
-		HttpSession session = request.getSession();
-		if(adminBeans == null) {
-			//取得に失敗した場合
-			path = "WEB-INF/jsp/admin_login.jsp";
-			request.setAttribute("msg","正しい学籍番号かパスワードを入力してください");
+        //遷移先
+        String path = "";
+        HttpSession session = request.getSession();
+        if (adminBeans == null) {
+            //取得に失敗した場合
+            path = "WEB-INF/jsp/admin/admin_login.jsp";
+            request.setAttribute("error_message", "正しい学籍番号とパスワードを入力してください");
 
-		}else {
-			//取得した場合
-			session.setAttribute("adminLoginInfo", adminBeans);
-			path = "WEB-INF/jsp/admin_top.jsp";
-		}
-		request.getRequestDispatcher(path).forward(request, response);
-
-	}
-
+        } else {
+            //取得した場合
+            session.setAttribute("adminBeans", adminBeans);
+            path = "WEB-INF/jsp/admin/admin_top.jsp";
+        }
+        request.getRequestDispatcher(path).forward(request, response);
+    }
 }
