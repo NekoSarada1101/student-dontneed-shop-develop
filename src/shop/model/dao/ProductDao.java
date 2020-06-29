@@ -206,3 +206,50 @@ public class ProductDao extends DaoBase {
         return productList;
     }
 }
+
+	public List<ProductBeans> fetchSearchProductList(int genreCode,String sortColumn,String sortOrder,String searchWord){
+		 PreparedStatement stmt = null;
+		 ResultSet rs = null;
+		List<ProductBeans> list = new ArrayList<ProductBeans>();
+
+		try {
+			this.connect();
+			String sql = "SELECT * FROM product WHERE genre_code = ? AND is_sold = false AND  product_name LIKE '% ? %' AND product_explanation LIKE '% ? % ORDER BY ? ?";
+			stmt = con.prepareStatement(sql);
+        	stmt.setInt(1,genreCode);
+        	stmt.setString(2,searchWord);
+        	stmt.setString(3,searchWord);
+        	stmt.setString(4,sortColumn);
+        	stmt.setString(5,sortOrder);
+
+        	rs = stmt.executeQuery();
+
+        	ProductService productService = new ProductService();
+
+
+        	while(rs.next()) {
+        		ProductBeans productBeans = new ProductBeans();
+        		productBeans.setProductId(rs.getInt("productId"));
+        		productBeans.setProductName(rs.getString("productName"));
+        		productBeans.setPrice(rs.getInt("price"));
+        		productBeans.setImage(productService.convertInputStreamToByteArray(rs.getBinaryStream("image")));
+        		productBeans.setProductExplanation(rs.getString("product_explanation"));
+        		productBeans.setGenreCode(rs.getInt("genre_code"));
+        		list.add(productBeans);
+        	}
+        	stmt.close();
+
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+
+			try {
+				this.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+}
+}
