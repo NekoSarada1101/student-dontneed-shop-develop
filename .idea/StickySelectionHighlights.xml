@@ -13,6 +13,11 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/admin/admin_login.jsp">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/admin/admin_product_detail.jsp">
           <value>
             <PaintGroupHighlightMap />
@@ -68,7 +73,17 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/shop/model/dao/UserDao.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/shop/model/service/ProductService.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/shop/servlet/admin/AdminLoginServlet.java">
           <value>
             <PaintGroupHighlightMap />
           </value>
@@ -109,11 +124,6 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/shop/servlet/user/MemberTopServlet.java">
-          <value>
-            <PaintGroupHighlightMap />
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/src/shop/servlet/admin/AdminLoginServlet.java">
           <value>
             <PaintGroupHighlightMap />
           </value>
