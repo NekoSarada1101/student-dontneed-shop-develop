@@ -5,17 +5,9 @@ import shop.model.dao.UserDao;
 
 public class UserService extends CommonService {
 
-	public AdminBeans fetchAdminLogin(String adminMail,String adminPassword) {
+    private UserDao userDao = new UserDao();
 
-		//戻り値を初期化
-		AdminBeans adminBeans = null;
-		shop.model.dao.UserDao userDao = new UserDao();
-
-		adminBeans = new AdminBeans();
-
-		adminBeans = userDao.fetchAdminLogin(adminMail,adminPassword);
-
-		return adminBeans;
-	}
-
+    public AdminBeans fetchAdminLogin(String adminMail, String adminPassword) {
+        return userDao.fetchAdminLogin(adminMail, adminPassword);
+    }
 }
