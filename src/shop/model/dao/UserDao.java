@@ -1,10 +1,11 @@
+
 package shop.model.dao;
+
+import shop.model.bean.AdminBeans;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import shop.model.bean.AdminBeans;
 
 public class UserDao extends DaoBase {
     public AdminBeans fetchAdminLogin(String adminMail, String password) {
@@ -27,8 +28,8 @@ public class UserDao extends DaoBase {
 
             //beanへ格納(検索失敗ならrs.nextでcatchへ飛ぶ)
             adminBeans = new AdminBeans();
-            adminBeans.setAdminMail(rs.getString("adminMail"));
-            adminBeans.setAdminPassword(rs.getString("adminPassword"));
+            adminBeans.setAdminMail(rs.getString("admin_mail"));
+            adminBeans.setAdminPassword(rs.getString("admin_password"));
 
         } catch (SQLException e) {
             e.printStackTrace();
