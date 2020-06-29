@@ -1,6 +1,11 @@
 
 package shop.model.dao;
 
+import shop.model.bean.ProductBeans;
+import shop.model.service.ProductService;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,9 +14,62 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import shop.model.bean.ProductBeans;
-
 public class ProductDao extends DaoBase {
+
+    public boolean insertProduct(ProductBeans productBeans) {
+        PreparedStatement stmt = null;
+        int insertLine = 0;
+
+        try {
+            this.connect();
+            stmt = con.prepareStatement("INSERT INTO product (product_name, price, image, product_explanation, genre_code ,admin_mail) VALUES (?,?,?,?,?,?)");
+            stmt.setString(1, productBeans.getProductName());
+            stmt.setInt(2, productBeans.getPrice());
+            stmt.setBinaryStream(3, new ByteArrayInputStream(productBeans.getImage()));
+            stmt.setString(4, productBeans.getProductExplanation());
+            stmt.setInt(5, productBeans.getGenreCode());
+            stmt.setString(6, productBeans.getAdminMail());
+            insertLine = stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                this.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return insertLine != 0;
+    }
+
+
+    public boolean updateProduct(ProductBeans productBeans) {
+        PreparedStatement stmt = null;
+        int updateLine = 0;
+
+        try {
+            this.connect();
+            stmt = con.prepareStatement("UPDATE product SET product_name = ?, price = ?, image = ?, product_explanation = ?, genre_code = ? WHERE product_id = ?");
+            stmt.setString(1, productBeans.getProductName());
+            stmt.setInt(2, productBeans.getPrice());
+            stmt.setBinaryStream(3, new ByteArrayInputStream(productBeans.getImage()));
+            stmt.setString(4, productBeans.getProductExplanation());
+            stmt.setInt(5, productBeans.getGenreCode());
+            stmt.setInt(6, productBeans.getProductId());
+            updateLine = stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                this.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return updateLine != 0;
+    }
 
     public List<Map<String, Object>> fetchGenreInfo() {
         PreparedStatement stmt = null;
@@ -55,6 +113,8 @@ public class ProductDao extends DaoBase {
             stmt.setString(1, adminMail);
             rs = stmt.executeQuery();
 
+            ProductService productService = new ProductService();
+
             productList = new ArrayList<>();
 
             while (rs.next()) {
@@ -62,7 +122,7 @@ public class ProductDao extends DaoBase {
                 productBeans.setProductId(rs.getInt("product_id"));
                 productBeans.setProductName(rs.getString("product_name"));
                 productBeans.setPrice(rs.getInt("price"));
-                //TODO 画像取得処理
+                productBeans.setImage(productService.convertInputStreamToByteArray(rs.getBinaryStream("image")));
                 productBeans.setProductExplanation(rs.getString("product_explanation"));
                 productBeans.setIsSold(rs.getBoolean("is_sold"));
                 productBeans.setGenreCode(rs.getInt("genre_code"));
@@ -71,7 +131,7 @@ public class ProductDao extends DaoBase {
                 productList.add(productBeans);
             }
 
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             e.printStackTrace();
         } finally {
             try {

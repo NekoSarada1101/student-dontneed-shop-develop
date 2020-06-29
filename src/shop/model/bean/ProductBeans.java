@@ -1,12 +1,13 @@
 package shop.model.bean;
 
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 
-public class ProductBeans {
+public class ProductBeans implements Serializable{
     private int productId = 0;
     private String productName = null;
     private int price = 0;
-    private BufferedImage image = null;
+    private byte[] image = null;
     private String productExplanation = null;
     private boolean isSold = false;
     private int genreCode = 0;
@@ -36,12 +37,12 @@ public class ProductBeans {
         this.price = price;
     }
 
-    public void getImage() {
-        this.image = image;
+    public byte[] getImage() {
+        return image;
     }
 
-    public BufferedImage setImage(BufferedImage image) {
-        return image;
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     public String getProductExplanation() {
@@ -52,7 +53,7 @@ public class ProductBeans {
         this.productExplanation = productExplanation;
     }
 
-    public boolean setIsSold() {
+    public boolean getIsSold() {
         return isSold;
     }
 
