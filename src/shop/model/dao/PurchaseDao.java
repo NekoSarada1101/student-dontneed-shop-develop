@@ -57,4 +57,42 @@ public class PurchaseDao extends DaoBase {
         }
         return salesList;
     }
+
+    public List<Map<String, Object>> fetchPurchaseHistory(String memberMail) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Map<String, Object>> purchaseList = null;
+
+        try {
+            this.connect();
+            stmt = con.prepareStatement("SELECT * FROM purchase_details p LEFT OUTER JOIN product pd ON p.product_id = pd.product_id WHERE p.member_mail = ?");
+            stmt.setString(1,memberMail);
+            rs = stmt.executeQuery();
+
+            ProductService productService = new ProductService();
+            purchaseList = new ArrayList<>();
+
+            while (rs.next()) {
+                Map<String, Object> purchaseMap = new HashMap<>();
+
+                ProductBeans productBeans = new ProductBeans();
+                productBeans.setProductId(rs.getInt("product_id"));
+                productBeans.setProductName(rs.getString("product_name"));
+                productBeans.setPrice(rs.getInt("price"));
+                productBeans.setImage(productService.convertInputStreamToByteArray(rs.getBinaryStream("image")));
+                productBeans.setProductExplanation(rs.getString("product_explanation"));
+                productBeans.setIsSold(rs.getBoolean("is_sold"));
+                productBeans.setGenreCode(rs.getInt("genre_code"));
+                productBeans.setAdminMail(rs.getString("admin_mail"));
+
+                purchaseMap.put("productBeans", productBeans);
+                purchaseMap.put("purchaseDate", rs.getString("purchase_date"));
+
+                purchaseList.add(purchaseMap);
+            }
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
+        return purchaseList;
+    }
 }
