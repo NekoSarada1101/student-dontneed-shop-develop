@@ -5,3 +5,5 @@
 <script src="https://kit.fontawesome.com/d5a46da349.js" crossorigin="anonymous"></script>
 <!-- Bootstrap core CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<%-- Google Fonts --%>
+<link href="https://fonts.googleapis.com/css2?family=Galindo&display=swap" rel="stylesheet">

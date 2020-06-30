@@ -22,9 +22,7 @@
 <body>
 <header class="sticky-top">
     <nav class="nav navbar-expand-lg bg-success px-1 px-md-2 px-lg-4">
-        <strong class="mr-3" style="width: 160px">
-            <a href="memberTop" class="navbar-brand text-white">Student<br>Don`t need Shop</a>
-        </strong>
+        <a href="memberTop" class="navbar-brand text-white mr-3" style="width: 160px">KIK</a>
 
         <p class="text-left text-white my-auto" style="width: 180px">
             ようこそ！
@@ -38,7 +36,7 @@
                 メニュー
             </button>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <form action="memberDetail" method="post" class="dropdown-item">
+                <form action="memberDetail" method="get" class="dropdown-item">
                     <button type="submit" class="btn btn-link text-dark">
                         <span><i class="fas fa-user"></i> 会員詳細</span>
                     </button>
@@ -66,7 +64,8 @@
             </div>
         </div>
 
-        <form action="productSearchAndDisplay" method="post" class="form-inline form-group my-md-auto mb-1 ml-lg-3 w-100">
+        <form action="productSearchAndDisplay" method="post"
+              class="form-inline form-group my-md-auto mb-1 ml-lg-3 w-100">
             <select class="custom-select form-control col-2 col-md-1" id="genre">
                 <option value="0">すべて</option>
                 <% for (Map<String, Object> genreInfoMap : genreInfoList) { %>
