@@ -3,7 +3,7 @@ html {
   Osaka, 'MS PGothic', arial, helvetica, sans-serif;
 }
 
-.btn-warning{
+.btn-warning {
   background-color: orange;
 }
 
@@ -17,7 +17,8 @@ html {
 .btn-warning.disabled:hover, .btn-warning[disabled]:hover, fieldset[disabled] .btn-warning:hover,
 .btn-warning.disabled:focus, .btn-warning[disabled]:focus, fieldset[disabled] .btn-warning:focus,
 .btn-warning.disabled.focus, .btn-warning[disabled].focus, fieldset[disabled] .btn-warning.focus {
-  background: darkorange; //ボタンの上にポインタを持ってきたり、クリックしたりした時の背景色
+  background: darkorange;
+/ / ボタンの上にポインタを持ってきたり、クリックしたりした時の背景色
 }
 
 .btn-dark {
@@ -34,7 +35,8 @@ html {
 .btn-dark.disabled:hover, .btn-dark[disabled]:hover, fieldset[disabled] .btn-dark:hover,
 .btn-dark.disabled:focus, .btn-dark[disabled]:focus, fieldset[disabled] .btn-dark:focus,
 .btn-dark.disabled.focus, .btn-dark[disabled].focus, fieldset[disabled] .btn-dark.focus {
-  background: dimgrey; //ボタンの上にポインタを持ってきたり、クリックしたりした時の背景色
+  background: dimgrey;
+/ / ボタンの上にポインタを持ってきたり、クリックしたりした時の背景色
 }
 
 .container-fluid {
