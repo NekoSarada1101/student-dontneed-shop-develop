@@ -21,52 +21,52 @@
     <table border="1">
         <tr>
             <th>メールアドレス</th>
-            <td><input type="text" value= <%=memberBeans.getMemberMail() %> ></td>
+            <td><input type="text" value= <%=memberBeans.getMemberMail() %> name="memberMail" ></td>
         </tr>
 
         <tr>
             <th>名前</th>
-            <td><input type="text" value= <%=memberBeans.getMemberName() %>></td>
+            <td><input type="text" value= <%=memberBeans.getMemberName() %>name="memberName"></td>
         </tr>
 
         <tr>
             <th>パスワード</th>
-            <td><input type="text" value= <%=memberBeans.getMemberPassword() %>></td>
+            <td><input type="text" value= <%=memberBeans.getMemberPassword() %>name="memberPassword"></td>
         </tr>
 
         <tr>
             <th>住所</th>
-            <td><input type="text" value= <%=memberBeans.getAddress() %>></td>
+            <td><input type="text" value= <%=memberBeans.getAddress() %>name="address"></td>
         </tr>
 
         <tr>
             <th>郵便番号</th>
-            <td><input type="text" value= <%=memberBeans.getPostalCode() %>></td>
+            <td><input type="text" value= <%=memberBeans.getPostalCode() %>name="postalCode"></td>
         </tr>
 
         <tr>
             <th>電話番号</th>
-            <td><input type="text" value= <%=memberBeans.getTell() %>></td>
+            <td><input type="text" value= <%=memberBeans.getTell() %>name="tell"></td>
         </tr>
 
         <tr>
             <th>クレジット番号</th>
-            <td><input type="text" value= <%=memberBeans.getCreditCard() %>></td>
+            <td><input type="text" value= <%=memberBeans.getCreditCard() %>name="creditCard"></td>
         </tr>
 
         <tr>
             <th>有効期限</th>
-            <td><input type="text" value= <%=memberBeans.getExpirationDate() %>></td>
+            <td><input type="text" value= <%=memberBeans.getExpirationDate() %>name="expirationDate"></td>
         </tr>
 
         <tr>
             <th>セキュリティコード</th>
-            <td><input type="text" value= <%=memberBeans.getSecurityCard() %>></td>
+            <td><input type="text" value= <%=memberBeans.getSecurityCard() %>name="securityCard"></td>
         </tr>
 
         <tr>
             <th>名義者名</th>
-            <td><input type="text" value= <%=memberBeans.getHolder() %>></td>
+            <td><input type="text" value= <%=memberBeans.getHolder() %>name="holder"></td>
         </tr>
 
 

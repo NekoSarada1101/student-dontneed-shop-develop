@@ -21,9 +21,10 @@ public class MemberUpdateCompleteServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		MemberBeans memberBeans = new MemberBeans();
+		MemberBeans memberLoginInfo = new MemberBeans();
 
 		memberBeans = (MemberBeans) session.getAttribute("memberBeans");
-		memberLoginInfo = (MemberLoginInfo) session.getAttribute("memberLoginInfo");
+		memberLoginInfo = (MemberBeans) session.getAttribute("memberLoginInfo");
 
 		String errorMessage = "";
 
