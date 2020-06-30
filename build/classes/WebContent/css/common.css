@@ -1,29 +1,73 @@
 html {
-	font-family: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo, メイリオ,
-		Osaka, 'MS PGothic', arial, helvetica, sans-serif;
+  font-family: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo, メイリオ,
+  Osaka, 'MS PGothic', arial, helvetica, sans-serif;
 }
 
 .btn-warning {
-	background-color: orange;
+  background-color: orange;
+}
+
+.btn-warning:hover, .btn-warning:focus,
+.btn-warning:active, .btn-warning:active:focus, .btn-warning:active:hover, .btn-warning:active.focus,
+.btn-warning.active, .btn-warning.active:focus, .btn-warning.active:hover, .btn-warning.active.focus,
+.open > .dropdown-toggle.btn-warning,
+.open > .dropdown-toggle.btn-warning:hover,
+.open > .dropdown-toggle.btn-warning:focus,
+.open > .dropdown-toggle.btn-warning.focus,
+.btn-warning.disabled:hover, .btn-warning[disabled]:hover, fieldset[disabled] .btn-warning:hover,
+.btn-warning.disabled:focus, .btn-warning[disabled]:focus, fieldset[disabled] .btn-warning:focus,
+.btn-warning.disabled.focus, .btn-warning[disabled].focus, fieldset[disabled] .btn-warning.focus {
+  background: darkorange;
+/ / ボタンの上にポインタを持ってきたり、クリックしたりした時の背景色
+}
+
+.btn-dark {
+  background-color: gray;
+}
+
+.btn-dark:hover, .btn-dark:focus,
+.btn-dark:active, .btn-dark:active:focus, .btn-dark:active:hover, .btn-dark:active.focus,
+.btn-dark.active, .btn-dark.active:focus, .btn-dark.active:hover, .btn-dark.active.focus,
+.open > .dropdown-toggle.btn-dark,
+.open > .dropdown-toggle.btn-dark:hover,
+.open > .dropdown-toggle.btn-dark:focus,
+.open > .dropdown-toggle.btn-dark.focus,
+.btn-dark.disabled:hover, .btn-dark[disabled]:hover, fieldset[disabled] .btn-dark:hover,
+.btn-dark.disabled:focus, .btn-dark[disabled]:focus, fieldset[disabled] .btn-dark:focus,
+.btn-dark.disabled.focus, .btn-dark[disabled].focus, fieldset[disabled] .btn-dark.focus {
+  background: dimgrey;
+/ / ボタンの上にポインタを持ってきたり、クリックしたりした時の背景色
 }
 
 .container-fluid {
-	padding: 0;
+  padding: 0;
 }
 
 .card-header {
-	position: relative;
+  position: relative;
+}
+
+.table-image {
+  position: relative;
 }
 
 img {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	height: auto;
-	width: auto;
-	max-width: 100%;
-	max-height: 100%;
-	margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: auto;
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+}
+
+table {
+  word-break: break-all;
+}
+
+.table td, .table th {
+  vertical-align: middle;
 }

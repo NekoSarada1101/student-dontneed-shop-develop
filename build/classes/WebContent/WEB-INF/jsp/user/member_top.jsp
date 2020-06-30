@@ -10,6 +10,8 @@
 <body>
 <%@include file="/WEB-INF/jsp/user/member_header.jsp" %>
 
+<%@include file="/WEB-INF/jsp/user/member_footer.jsp"%>
+
 <%@include file="/WEB-INF/jsp/script.jsp" %>
 
 </body>

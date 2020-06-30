@@ -3,6 +3,11 @@
   <component name="StickySelectionHighlights">
     <option name="editorHighlights">
       <map>
+        <entry key="$APPLICATION_CONFIG_DIR$/consoles/db/404a5b04-2868-4e5c-b4e0-1633ace458de/console_1.sql">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/admin/admin_footer.jsp">
           <value>
             <PaintGroupHighlightMap />
@@ -63,6 +68,11 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/user/purchase_history.jsp">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/WebContent/css/common.css">
           <value>
             <PaintGroupHighlightMap />
@@ -73,12 +83,27 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/shop/model/dao/PurchaseDao.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/shop/model/dao/UserDao.java">
           <value>
             <PaintGroupHighlightMap />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/shop/model/service/ProductService.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/shop/model/service/PurchaseService.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/shop/servlet/GetImageListServlet.java">
           <value>
             <PaintGroupHighlightMap />
           </value>
@@ -124,6 +149,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/shop/servlet/user/MemberTopServlet.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/shop/servlet/user/PurchaseHistoryServlet.java">
           <value>
             <PaintGroupHighlightMap />
           </value>
