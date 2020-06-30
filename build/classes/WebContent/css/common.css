@@ -71,3 +71,9 @@ table {
 .table td, .table th {
   vertical-align: middle;
 }
+
+.navbar-brand {
+  font-family: 'Galindo', cursive;
+  font-size: 40px;
+  padding: 0;
+}
