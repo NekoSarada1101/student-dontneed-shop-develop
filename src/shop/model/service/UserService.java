@@ -9,9 +9,20 @@ public class UserService extends CommonService {
 
     private UserDao userDao = new UserDao();
 
+<<<<<<< master
     public boolean checkMemberMailExists(String memberMail) {
         return userDao.checkMemberMailExists(memberMail);
     }
+=======
+	public boolean updateMember(MemberBeans membeerBeans){
+
+		UserDao userDao = new UserDao();
+
+		boolean couldupdate = userDao.updateMember(membeerBeans);
+
+		return couldupdate;
+	}
+>>>>>>> create:会員情報変更機能 #9
 
     public boolean insertMember(MemberBeans membeerBeans) {
         return userDao.insertMember(membeerBeans);
@@ -24,4 +35,5 @@ public class UserService extends CommonService {
     public boolean deleteMember(MemberBeans memberBeans) {
         return userDao.deleteMember(memberBeans);
     }
+}
 }

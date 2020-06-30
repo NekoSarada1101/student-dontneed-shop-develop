@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserDao extends DaoBase {
-
     public boolean checkMemberMailExists(String memberMail) {
         PreparedStatement stmt = null;
         ResultSet         rs   = null;
@@ -119,4 +118,58 @@ public class UserDao extends DaoBase {
         }
         return deleteLine != 0;
     }
+public boolean updateMember(MemberBeans membeerBeans){
+
+	DaoBase daoBase = new DaoBase();
+
+	daoBase.connect();
+
+	boolean check = false;
+
+	//変数定義
+    PreparedStatement ps = null;
+
+    try {
+    //SQL文を定義する
+    String sql = "UPDATE member SET member_mail = ?, member_password = ?, member_name = ?,  address = ?, postal_code = ?, credit_card = ?, tell = ?, expiration_date = ?,security_code = ?, holder = ? WHERE member_mail  = ?";
+
+
+        //実行するSQL文とパラメータを指定する
+
+			ps = con.prepareStatement(sql);
+
+        ps.setString(1, membeerBeans.getMemberMail());
+        ps.setString(2, membeerBeans.getMemberPassword());
+        ps.setString(3, membeerBeans.getMemberName());
+        ps.setString(4, membeerBeans.getAddress());
+        ps.setInt(5, membeerBeans.getPostalCode());
+        ps.setInt(6, membeerBeans.getCreditCard());
+        ps.setInt(7, membeerBeans.getTell());
+        ps.setString(8, membeerBeans.getExpirationDate());
+        ps.setInt(9, membeerBeans.getSecurityCard());
+        ps.setString(10, membeerBeans.getHolder());
+        ps.setString(11, membeerBeans.getMemberMail());
+
+
+        //INSERT文を実行する
+        int i = ps.executeUpdate();
+
+        if(i != 0) {
+    		check = true;
+    	}else {
+    		check = false;
+    	}
+
+    } catch (SQLException e) {
+		// TODO 自動生成された catch ブロック
+		e.printStackTrace();
+	}
+
+
+
+
+	daoBase.close();
+	return check;
+}
+
 }
