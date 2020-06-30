@@ -38,7 +38,7 @@
                 メニュー
             </button>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <form action="memberDetail" method="post" class="dropdown-item">
+                <form action="memberDetail" method="get" class="dropdown-item">
                     <button type="submit" class="btn btn-link text-dark">
                         <span><i class="fas fa-user"></i> 会員詳細</span>
                     </button>
