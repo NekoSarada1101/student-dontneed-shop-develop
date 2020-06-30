@@ -66,7 +66,7 @@
         <button type="submit" class="btn btn-primary">登録する</button>
     </form>
 
-    <form action="productInsertInput" method="get">
+    <form action="productInsertInput" method="post">
         <button type="submit" class="btn btn-outline-dark">戻る</button>
     </form>
 </div>
