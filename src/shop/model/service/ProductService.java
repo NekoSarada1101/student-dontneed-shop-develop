@@ -1,13 +1,13 @@
 package shop.model.service;
 
-import shop.model.bean.ProductBeans;
-import shop.model.dao.ProductDao;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
+
+import shop.model.bean.ProductBeans;
+import shop.model.dao.ProductDao;
 
 public class ProductService extends CommonService {
 
@@ -18,6 +18,10 @@ public class ProductService extends CommonService {
     }
 
     public boolean updateProduct(ProductBeans productBeans) {
+        return productDao.updateProduct(productBeans);
+    }
+
+    public boolean deleteProduct(ProductBeans productBeans) {
         return productDao.updateProduct(productBeans);
     }
 
