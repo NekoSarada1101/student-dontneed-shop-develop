@@ -27,7 +27,8 @@ public class MemberTopServlet extends HttpServlet {
         //test//
         MemberBeans memberBeans = new MemberBeans();
         memberBeans.setMemberName("原田遼汰");
-        session.setAttribute("member", memberBeans);
+        memberBeans.setMemberMail("ryouta@gmail.com");
+        session.setAttribute("memberLoginInfo", memberBeans);
         //test//
 
         //TODO fetchSearchProductListメソッドを呼び出し

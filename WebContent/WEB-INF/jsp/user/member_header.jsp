@@ -5,7 +5,7 @@
 <%@ page import="shop.model.service.ProductService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
-    String memberName = ((MemberBeans) session.getAttribute("member")).getMemberName();
+    String memberName = ((MemberBeans) session.getAttribute("memberLoginInfo")).getMemberName();
 
     ProductService productService = new ProductService();
     List<Map<String, Object>> genreInfoList = productService.fetchGenreInfo();
@@ -43,7 +43,7 @@
                         <span><i class="fas fa-user"></i> 会員詳細</span>
                     </button>
                 </form>
-                <form action="purchaseHistory" method="post" class="dropdown-item">
+                <form action="purchaseHistory" method="get" class="dropdown-item">
                     <button type="submit" class="btn btn-link text-dark">
                         <span><i class="fas fa-history"></i> 購入履歴</span>
                     </button>
