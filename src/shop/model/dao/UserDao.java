@@ -124,7 +124,10 @@ public class UserDao extends DaoBase {
             //beanへ格納(検索失敗ならrs.nextでcatchへ飛ぶ)
             adminBeans = new AdminBeans();
             adminBeans.setAdminMail(rs.getString("admin_mail"));
+            adminBeans.setAdminName(rs.getString("admin_name"));
             adminBeans.setAdminPassword(rs.getString("admin_password"));
+            adminBeans.setPostalCode(rs.getInt("postal_code"));
+            adminBeans.setAddress(rs.getString("address"));
 
         } catch (SQLException e) {
             e.printStackTrace();
