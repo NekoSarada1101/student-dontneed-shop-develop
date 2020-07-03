@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>会員大会完了画面</title>
+<title>会員退会完了画面</title>
+<%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
 </head>
 <body>
 	<%@include file="/WEB-INF/jsp/user/member_header.jsp" %>

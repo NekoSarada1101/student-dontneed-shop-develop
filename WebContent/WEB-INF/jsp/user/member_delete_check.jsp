@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>会員削除確認画面</title>
+<title>退会確認画面</title>
 <%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
 </head>
 <body>
@@ -16,7 +16,7 @@
         	<button type="submit" class="btn btn-danger">退会する</button>
     	</form>
 
-    	<form action="productInsertInput" method="get">
+    	<form action="memberDetail" method="get">
         	<button type="submit" class="btn btn-outline-dark">戻る</button>
     	</form>
 	</div>
