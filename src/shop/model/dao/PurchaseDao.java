@@ -94,6 +94,30 @@ public class PurchaseDao extends DaoBase {
         return cartList;
     }
 
+    public boolean deleteCart(String memberMail, int productId) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        int deleteLine = 0;
+
+        try {
+            this.connect();
+            stmt = con.prepareStatement("DELETE FROM cart WHERE member_mail = ? AND product_id = ?");
+            stmt.setString(1, memberMail);
+            stmt.setInt(2, productId);
+            deleteLine = stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                this.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return deleteLine != 0;
+    }
+
     public List<Map<String, Object>> fetchSalesInfo(String adminMail) {
         PreparedStatement stmt = null;
         ResultSet rs = null;

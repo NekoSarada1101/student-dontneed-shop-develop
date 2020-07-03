@@ -18,6 +18,10 @@ public class PurchaseService extends CommonService {
         return purchaseDao.fetchCartList(memberMail);
     }
 
+    public boolean deleteCart(String memberMail, int productId) {
+        return purchaseDao.deleteCart(memberMail, productId);
+    }
+
     public List<Map<String, Object>> fetchSalesInfo(String adminMail) {
         return purchaseDao.fetchSalesInfo(adminMail);
     }
