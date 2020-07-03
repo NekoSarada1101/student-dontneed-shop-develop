@@ -3,11 +3,6 @@
   <component name="StickySelectionHighlights">
     <option name="editorHighlights">
       <map>
-        <entry key="$APPLICATION_CONFIG_DIR$/consoles/db/404a5b04-2868-4e5c-b4e0-1633ace458de/console.sql">
-          <value>
-            <PaintGroupHighlightMap />
-          </value>
-        </entry>
         <entry key="$APPLICATION_CONFIG_DIR$/consoles/db/404a5b04-2868-4e5c-b4e0-1633ace458de/console_1.sql">
           <value>
             <PaintGroupHighlightMap />
@@ -73,30 +68,12 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/user/cart_display.jsp">
-          <value>
-            <PaintGroupHighlightMap />
-          </value>
-        </entry>
         <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/user/member_detail.jsp">
           <value>
             <PaintGroupHighlightMap />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/user/member_header.jsp">
-          <value>
-            <PaintGroupHighlightMap />
-          </value>
-        </entry>
-<<<<<<< master
-        <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/user/member_top.jsp">
-          <value>
-            <PaintGroupHighlightMap />
-          </value>
-        </entry>
-=======
->>>>>>> update:設定ファイル
-        <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/user/purchase_check.jsp">
           <value>
             <PaintGroupHighlightMap />
           </value>
@@ -191,22 +168,12 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/src/shop/servlet/user/CartDisplayServlet.java">
-          <value>
-            <PaintGroupHighlightMap />
-          </value>
-        </entry>
         <entry key="$PROJECT_DIR$/src/shop/servlet/user/MemberDetailServlet.java">
           <value>
             <PaintGroupHighlightMap />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/shop/servlet/user/MemberTopServlet.java">
-          <value>
-            <PaintGroupHighlightMap />
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/src/shop/servlet/user/PurchaseCheckServlet.java">
           <value>
             <PaintGroupHighlightMap />
           </value>

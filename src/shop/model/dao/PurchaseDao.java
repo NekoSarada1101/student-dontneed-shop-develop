@@ -170,7 +170,7 @@ public class PurchaseDao extends DaoBase {
         try {
             this.connect();
             stmt = con.prepareStatement("SELECT * FROM purchase_details p LEFT OUTER JOIN product pd ON p.product_id = pd.product_id WHERE p.member_mail = ?");
-            stmt.setString(1,memberMail);
+            stmt.setString(1, memberMail);
             rs = stmt.executeQuery();
 
             ProductService productService = new ProductService();

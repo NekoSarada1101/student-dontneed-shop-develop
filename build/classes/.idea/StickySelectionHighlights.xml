@@ -88,11 +88,14 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+<<<<<<< master
         <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/user/member_top.jsp">
           <value>
             <PaintGroupHighlightMap />
           </value>
         </entry>
+=======
+>>>>>>> update:設定ファイル
         <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/user/purchase_check.jsp">
           <value>
             <PaintGroupHighlightMap />
