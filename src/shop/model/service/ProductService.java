@@ -10,6 +10,15 @@ import shop.model.bean.ProductBeans;
 import shop.model.dao.ProductDao;
 
 
+import shop.model.bean.ProductBeans;
+import shop.model.dao.ProductDao;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+import java.util.Map;
+
 public class ProductService extends CommonService {
 	
 	public static void main(String[] args) {
