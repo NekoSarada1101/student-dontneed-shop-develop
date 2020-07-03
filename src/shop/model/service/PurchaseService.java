@@ -1,5 +1,6 @@
 package shop.model.service;
 
+import shop.model.bean.ProductBeans;
 import shop.model.dao.PurchaseDao;
 
 import java.util.List;
@@ -8,6 +9,10 @@ import java.util.Map;
 public class PurchaseService extends CommonService {
 
     PurchaseDao purchaseDao = new PurchaseDao();
+
+    public Map<String, List<ProductBeans>> checkExistsStock(List<ProductBeans> cartList) {
+        return purchaseDao.checkExistsStock(cartList);
+    }
 
     public List<ProductBeans> fetchCartList(String memberMail) {
         return purchaseDao.fetchCartList(memberMail);
