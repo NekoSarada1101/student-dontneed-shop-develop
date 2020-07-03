@@ -147,7 +147,8 @@ public class ProductDao extends DaoBase {
 	public List<ProductBeans> fetchSearchProductList(int genreCode,String sortColumn,String sortOrder,String searchWord){
 		 PreparedStatement stmt = null;
 		 ResultSet rs = null;
-		List<ProductBeans> list = new ArrayList<ProductBeans>();
+		 List<ProductBeans> list = null;
+		 list = new ArrayList<ProductBeans>();
 
 		try {
 			this.connect();

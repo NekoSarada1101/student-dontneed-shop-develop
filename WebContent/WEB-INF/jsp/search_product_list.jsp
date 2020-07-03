@@ -11,8 +11,8 @@ List<ProductBeans>productList = (List<ProductBeans>)session.getAttribute("produc
 <head>
 <meta charset="UTF-8">
 <title>商品検索結果</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+ <%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
+ <%@include file="/css/common.css" %>
 </head>
 
 
@@ -26,7 +26,7 @@ for(ProductBeans bean:productList){
 		  <img src="..." class="card-img-top" alt="カードの画像">
 		  <div class="card-body">
 		    <h5 class="card-title"><%=bean.getproductName %></h5>
-		    <h5 class="card-title"><%=bean.get %></h5>
+		    <h5 class="card-title"><%=bean.get %>ジャンル</h5>
 		    <h5 class="card-title"><%=bean.getprice %></h5>
 		    <p class="card-text"><%=bean.getproductExeplanation%></p>
 		    <a href="#" class="btn btn-primary">商品詳細表示</a>
