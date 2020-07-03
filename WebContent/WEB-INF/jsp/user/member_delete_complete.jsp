@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>会員退会完了画面</title>
+<title>退会完了画面</title>
 <%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
 </head>
 <body>
