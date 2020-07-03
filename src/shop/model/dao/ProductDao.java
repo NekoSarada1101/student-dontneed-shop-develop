@@ -1,9 +1,6 @@
 
 package shop.model.dao;
 
-import shop.model.bean.ProductBeans;
-import shop.model.service.ProductService;
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.sql.PreparedStatement;
@@ -13,6 +10,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import shop.model.bean.ProductBeans;
+import shop.model.service.ProductService;
 
 public class ProductDao extends DaoBase {
 
@@ -69,6 +69,28 @@ public class ProductDao extends DaoBase {
             }
         }
         return updateLine != 0;
+    }
+
+    public boolean deleteProduct(ProductBeans productBeans) {
+        PreparedStatement stmt = null;
+        int deleteLine = 0;
+
+        try {
+            this.connect();
+            stmt = con.prepareStatement("UPDATE product SET is_sold = true WHERE product_id = ?");
+            stmt.setInt(1, productBeans.getProductId());
+            deleteLine = stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                this.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return deleteLine != 0;
     }
 
     public List<Map<String, Object>> fetchGenreInfo() {

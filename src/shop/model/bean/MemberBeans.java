@@ -13,6 +13,7 @@ public class MemberBeans implements Serializable {
     private int creditCard = 0;
     private String expirationDate = null;
     private String holder = null;
+    private int securityCode = 0;
 
     public String getMemberMail() {
         return memberMail;
@@ -86,4 +87,11 @@ public class MemberBeans implements Serializable {
         this.holder = holder;
     }
 
+    public int getSecurityCode() {
+        return securityCode;
+    }
+
+    public void setSecurityCode(int securityCode) {
+        this.securityCode = securityCode;
+    }
 }
