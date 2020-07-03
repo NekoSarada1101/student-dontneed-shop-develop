@@ -1,5 +1,8 @@
 package shop.model.dao;
 
+import shop.model.bean.ProductBeans;
+import shop.model.service.ProductService;
+
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,9 +11,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import shop.model.bean.ProductBeans;
-import shop.model.service.ProductService;
 
 public class PurchaseDao extends DaoBase {
 
@@ -98,7 +98,6 @@ public class PurchaseDao extends DaoBase {
         return salesList;
     }
 
-<<<<<<< Updated upstream
     public List<Map<String, Object>> fetchPurchaseHistory(String memberMail) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -135,28 +134,5 @@ public class PurchaseDao extends DaoBase {
             e.printStackTrace();
         }
         return purchaseList;
-=======
-    public boolean insertCart(String memberMail,int productId) throws IOException {
-    	PreparedStatement stmt = null;
-        ResultSet rs = null;
-
-        try {
-        	this.connect();
-        	stmt =  con.prepareStatement("INSERT INTO cart  (mamber_mail, product_id) VALUES (?, ?)");
-        	stmt.setString(1,memberMail);
-        	stmt.setInt(2,productId);
-        	rs = stmt.executeQuery();
-        }catch(SQLException e) {
-        	e.printStackTrace();
-        	return false;
-        }finally {
-        	try {
-        		this.close();
-        	}catch(Exception e) {
-        		e.printStackTrace();
-        	}
-        }
-        return true;
->>>>>>> Stashed changes
     }
 }
