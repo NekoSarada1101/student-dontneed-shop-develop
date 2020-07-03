@@ -1,9 +1,10 @@
 package shop.model.service;
 
-import shop.model.dao.PurchaseDao;
-
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+
+import shop.model.dao.PurchaseDao;
 
 public class PurchaseService extends CommonService {
 
@@ -17,7 +18,12 @@ public class PurchaseService extends CommonService {
         return purchaseDao.fetchSalesInfo(adminMail);
     }
 
+
     public List<Map<String, Object>> fetchPurchaseHistory(String memberMail) {
         return purchaseDao.fetchPurchaseHistory(memberMail);
+    }
+
+    public boolean insertCart(String memberMail,int productId) throws IOException {
+    	return purchaseDao.insertCart(memberMail, productId);
     }
 }
