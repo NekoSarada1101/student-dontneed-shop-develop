@@ -46,7 +46,7 @@
                         <span><i class="fas fa-history"></i> 購入履歴</span>
                     </button>
                 </form>
-                <form action="cartDisplay" method="post" class="dropdown-item">
+                <form action="cartDisplay" method="get" class="dropdown-item">
                     <button type="submit" class="btn btn-link text-dark">
                         <span><i class="fas fa-shopping-cart"></i> カート閲覧</span>
                     </button>
