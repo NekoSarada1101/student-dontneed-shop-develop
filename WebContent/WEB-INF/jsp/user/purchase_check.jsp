@@ -17,11 +17,11 @@
 
 <div>
     <div class="row mt-5">
-        <form action="productInsertInput" method="get" class="col-6">
+        <form action="cartDisplay" method="get" class="col-6">
             <button type="submit" class="btn btn-outline-dark btn-block btn-lg ml-auto col-12 col-md-8">戻る</button>
         </form>
 
-        <form action="salesCheck" method="post" class="col-6">
+        <form action="purchaseCheck" method="post" class="col-6">
             <button type="submit" class="btn btn-primary btn-block btn-lg mr-auto col-12 col-md-8">購入</button>
         </form>
     </div>
