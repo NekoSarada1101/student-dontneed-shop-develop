@@ -38,7 +38,7 @@
             for (ProductBeans productBeans : productList) {
         %>
         <div class="card col-6 col-md-4 col-lg-2 p-0" id="card">
-            <div class="card-header" id="card-header<%=i%>">
+            <div class="card-header square-image" id="square-image<%=i%>">
                 <img src="getImageList?index=<%=i%>" alt="...">
             </div>
             <div class="card-body">
@@ -57,8 +57,8 @@
                     %>
                 </p>
                 <span class="card-text text-danger mb-3">
-                <%=productBeans.getPrice()%>円
-            </span>
+                    <%=productBeans.getPrice()%>円
+                </span>
                 <br>
                 <% if (productBeans.getIsSold()) { %>
                 <span class="text-danger">販売済み</span>
@@ -85,17 +85,17 @@
 <%@include file="/WEB-INF/jsp/admin/admin_footer.jsp" %>
 
 <script>
-    window.onload = cardResizeFunc;
-    window.addEventListener("resize", cardResizeFunc);
+    window.onload = imageResizeFunc;
+    window.addEventListener("resize", imageResizeFunc);
 
-    function cardResizeFunc() {
-        var width = document.getElementById('card-header0').offsetWidth;
+    function imageResizeFunc() {
+        var width = document.getElementById('square-image0').offsetWidth;
         console.log(width)
-        var cardHeader = document.querySelectorAll(".card-header");
-        console.log(cardHeader.length);
+        var imageList = document.querySelectorAll(".square-image");
+        console.log(imageList.length);
         width = String(width) + "px";
-        for (var i = 0; i < cardHeader.length; i++) {
-            document.getElementById("card-header" + i).style.height = width;
+        for (var i = 0; i < imageList.length; i++) {
+            document.getElementById("square-image" + i).style.height = width;
         }
     }
 </script>
