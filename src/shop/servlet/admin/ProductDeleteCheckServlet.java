@@ -22,25 +22,18 @@ public class ProductDeleteCheckServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	HttpSession session = request.getSession();
 
-        int index = 0;
-        try {
-            index = Integer.parseInt(request.getParameter("index"));
-        }catch (NumberFormatException e){
-            index = (int) session.getAttribute("index");
-        }
-
     	List<ProductBeans> productList = (List<ProductBeans>) session.getAttribute("productList");
+    	int productListIndex = (int) session.getAttribute("productListIndex");
 
         ProductBeans productBeans = new ProductBeans();
-        productBeans.setProductId(productList.get(index).getProductId());
-        productBeans.setProductName(productList.get(index).getProductName());
-        productBeans.setPrice(productList.get(index).getPrice());
-        productBeans.setImage(productList.get(index).getImage());
-        productBeans.setProductExplanation(productList.get(index).getProductExplanation());
-        productBeans.setIsSold(productList.get(index).getIsSold());
-        productBeans.setGenreCode(productList.get(index).getGenreCode());
+        productBeans.setProductId(productList.get(productListIndex).getProductId());
+        productBeans.setProductName(productList.get(productListIndex).getProductName());
+        productBeans.setPrice(productList.get(productListIndex).getPrice());
+        productBeans.setImage(productList.get(productListIndex).getImage());
+        productBeans.setProductExplanation(productList.get(productListIndex).getProductExplanation());
+        productBeans.setIsSold(productList.get(productListIndex).getIsSold());
+        productBeans.setGenreCode(productList.get(productListIndex).getGenreCode());
 
-        session.setAttribute("index", index);
         session.setAttribute("productBeans", productBeans);
 
         request.getRequestDispatcher("WEB-INF/jsp/admin/product_delete_check.jsp").forward(request, response);

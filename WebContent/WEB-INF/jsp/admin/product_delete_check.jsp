@@ -63,7 +63,7 @@
     </table>
 
     <form action="productDeleteComplete" method="post">
-        <button type="submit" class="btn btn-primary">削除する</button>
+        <button type="submit" class="btn btn-primary">購入済みに変更する</button>
     </form>
 
     <form action="productTop" method="get">
