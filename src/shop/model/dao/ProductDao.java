@@ -147,8 +147,8 @@ public class ProductDao extends DaoBase {
 	public List<ProductBeans> fetchSearchProductList(int genreCode,String sortColumn,String sortOrder,String searchWord){
 		 PreparedStatement stmt = null;
 		 ResultSet rs = null;
-		 List<ProductBeans> list = null;
-		 list = new ArrayList<ProductBeans>();
+		 List<ProductBeans> productList = null;
+
 
 		try {
 			this.connect();
@@ -163,7 +163,7 @@ public class ProductDao extends DaoBase {
         	rs = stmt.executeQuery();
 
         	ProductService productService = new ProductService();
-
+            productList = new ArrayList<ProductBeans>();
 
         	while(rs.next()) {
         		ProductBeans productBeans = new ProductBeans();
@@ -173,9 +173,9 @@ public class ProductDao extends DaoBase {
         		productBeans.setImage(productService.convertInputStreamToByteArray(rs.getBinaryStream("image")));
         		productBeans.setProductExplanation(rs.getString("product_explanation"));
         		productBeans.setGenreCode(rs.getInt("genre_code"));
-        		list.add(productBeans);
+        		productList.add(productBeans);
         	}
-        	stmt.close();
+
 
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -187,7 +187,7 @@ public class ProductDao extends DaoBase {
 				e.printStackTrace();
 			}
 		}
-		return list;
+		return productList;
 	}
 
     public boolean insertProduct(ProductBeans productBeans) {

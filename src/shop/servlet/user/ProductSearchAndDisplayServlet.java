@@ -24,7 +24,8 @@ public class ProductSearchAndDisplayServlet extends HttpServlet{
 		ProductService productService = new ProductService();
 		HttpSession session = request.getSession();
 
-		//int genreCode = request.getParameter("searchGenre");
+		//String genre = request.getParameter("searchGenre");
+		//int genreCode = Integer.parseInt(genre);
 		//String sortColumn  = request.getParameter("sortColumn");
 		//String sortOrder   = request.getParameter("sortOrder");
 		//String searchWord  = request.getParameter("searchWord");
