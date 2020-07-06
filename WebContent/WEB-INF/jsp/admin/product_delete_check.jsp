@@ -13,7 +13,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>商品情報登録確認</title>
+    <title>商品情報削除確認</title>
     <%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
 </head>
 
@@ -62,11 +62,11 @@
         </tbody>
     </table>
 
-    <form action="productInsertComplete" method="post">
-        <button type="submit" class="btn btn-primary">登録する</button>
+    <form action="productDeleteComplete" method="post">
+        <button type="submit" class="btn btn-primary">購入済みに変更する</button>
     </form>
 
-    <form action="productInsertInput" method="get">
+    <form action="productTop" method="get">
         <button type="submit" class="btn btn-outline-dark">戻る</button>
     </form>
 </div>

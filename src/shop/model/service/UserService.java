@@ -3,7 +3,7 @@ package shop.model.service;
 <<<<<<< HEAD
 =======
 import shop.model.bean.AdminBeans;
->>>>>>> master
+import shop.model.bean.MemberBeans;
 import shop.model.dao.UserDao;
 
 public class UserService extends CommonService {
@@ -40,5 +40,8 @@ public class UserService extends CommonService {
     public AdminBeans fetchAdminLogin(String adminMail, String adminPassword) {
         return userDao.fetchAdminLogin(adminMail, adminPassword);
     }
->>>>>>> master
+
+    public boolean deleteProduct(MemberBeans memberBeans) {
+        return userDao.deleteProduct(memberBeans);
+    }
 }
