@@ -30,12 +30,12 @@
         <div class="col-7"></div>
         <table class="table table-hover col-11 col-md-8 mx-auto">
             <thead>
-            <tr>
-                <th scope="col">画像</th>
-                <th scope="col">商品名</th>
-                <th scope="col">価格</th>
-                <th scope="col">購入日</th>
-                <th scope="col"></th>
+            <tr class="row">
+                <th scope="col" class="col-2 col-lg-1">画像</th>
+                <th scope="col" class="col-2 col-lg-3">商品名</th>
+                <th scope="col" class="col-2">価格</th>
+                <th scope="col" class="col-3">購入日</th>
+                <th scope="col" class="col-3"></th>
             </tr>
             </thead>
 
@@ -45,22 +45,22 @@
                 for (Map<String, Object> purchaseMap : purchaseList) {
                     ProductBeans productBeans = (ProductBeans) purchaseMap.get("productBeans");
             %>
-            <tr>
-                <td scope="row" id="table-image<%=i%>" class="table-image">
+            <tr class="row">
+                <td scope="row" id="square-image<%=i%>" class="square-image col-2 col-lg-1">
                     <img src="getImageList?index=<%=i%>" alt="">
                 </td>
-                <td>
+                <td class="col-2 col-lg-3">
                     <strong>
                         <%=productBeans.getProductName()%>
                     </strong>
                 </td>
-                <td>
+                <td class="col-2">
                     <%=productBeans.getPrice() + "円"%>
                 </td>
-                <td>
+                <td class="col-3">
                     <%=purchaseMap.get("purchaseDate")%>
                 </td>
-                <td>
+                <td class="col-3 text-center">
                     <form action="productDetail" method="post">
                         <button type="submit" class="btn btn-primary">詳細表示</button>
                     </form>
@@ -82,13 +82,13 @@
     window.addEventListener("resize", imageResizeFunc);
 
     function imageResizeFunc() {
-        var width = document.getElementById('table-image0').offsetWidth;
+        var width = document.getElementById('square-image0').offsetWidth;
         console.log(width)
-        var tableImage = document.querySelectorAll(".table-image");
-        console.log(tableImage.length);
+        var imageList = document.querySelectorAll(".square-image");
+        console.log(imageList.length);
         width = String(width) + "px";
-        for (var i = 0; i < tableImage.length; i++) {
-            document.getElementById("table-image" + i).style.height = width;
+        for (var i = 0; i < imageList.length; i++) {
+            document.getElementById("square-image" + i).style.height = width;
         }
     }
 </script>

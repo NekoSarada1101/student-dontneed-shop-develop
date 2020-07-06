@@ -5,10 +5,7 @@
 <%@ page import="shop.model.service.PurchaseService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
-    String memberMail = ((MemberBeans) session.getAttribute("memberLoginInfo")).getMemberMail();
-
-    PurchaseService purchaseService = new PurchaseService();
-    List<ProductBeans> cartList = purchaseService.fetchCartList(memberMail);
+    List<ProductBeans> cartList = (List<ProductBeans>) session.getAttribute("cartList");
 %>
 <!DOCTYPE html>
 <html>
