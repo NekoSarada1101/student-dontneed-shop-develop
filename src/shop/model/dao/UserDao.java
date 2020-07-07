@@ -1,12 +1,12 @@
 
 package shop.model.dao;
 
+import shop.model.bean.AdminBeans;
+import shop.model.bean.MemberBeans;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import shop.model.bean.AdminBeans;
-import shop.model.bean.MemberBeans;
 
 public class UserDao extends DaoBase {
     public AdminBeans fetchAdminLogin(String adminMail, String password) {
@@ -47,13 +47,15 @@ public class UserDao extends DaoBase {
         return adminBeans;
     }
 
-    public boolean deleteProduct(MemberBeans memberBeans) {
+    public boolean deleteMember(MemberBeans memberBeans) {
         PreparedStatement stmt = null;
         int deleteLine = 0;
 
         try {
             this.connect();
-            stmt = con.prepareStatement("DELETE FROM member WHERE member_mail = ?;");
+
+            String sql = "DELETE FROM member WHERE member_mail = ?";
+            stmt = con.prepareStatement(sql);
             stmt.setString(1, memberBeans.getMemberMail());
             deleteLine = stmt.executeUpdate();
 
