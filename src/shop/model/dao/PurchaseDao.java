@@ -1,3 +1,4 @@
+
 package shop.model.dao;
 
 import shop.model.bean.ProductBeans;
@@ -13,6 +14,120 @@ import java.util.List;
 import java.util.Map;
 
 public class PurchaseDao extends DaoBase {
+
+    public Map<String, List<ProductBeans>> checkExistsStock(String memberMail) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<ProductBeans> purchaseList = null;
+        List<ProductBeans> deleteList = null;
+        Map<String, List<ProductBeans>> purchaseMap = null;
+
+        try {
+            this.connect();
+            stmt = con.prepareStatement("SELECT * FROM cart c LEFT OUTER JOIN product p ON c.product_id = p.product_id WHERE c.member_mail = ?");
+            stmt.setString(1,memberMail);
+            rs = stmt.executeQuery();
+
+            ProductService productService = new ProductService();
+            purchaseList = new ArrayList<>();
+            deleteList = new ArrayList<>();
+            purchaseMap = new HashMap<>();
+
+            while (rs.next()) {
+                ProductBeans productBeans = new ProductBeans();
+                productBeans.setProductId(rs.getInt("p.product_id"));
+                productBeans.setProductName(rs.getString("product_name"));
+                productBeans.setPrice(rs.getInt("price"));
+                productBeans.setImage(productService.convertInputStreamToByteArray(rs.getBinaryStream("image")));
+                productBeans.setProductExplanation(rs.getString("product_explanation"));
+                productBeans.setIsSold(rs.getBoolean("is_sold"));
+                productBeans.setGenreCode(rs.getInt("genre_code"));
+                productBeans.setAdminMail(rs.getString("admin_mail"));
+
+                if (productBeans.getIsSold()) { //購入済みなら
+                    deleteList.add(productBeans);
+                } else {  //購入されてないなら
+                    purchaseList.add(productBeans);
+                }
+            }
+            purchaseMap.put("purchaseList", purchaseList);
+            purchaseMap.put("deleteList", deleteList);
+
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                this.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return purchaseMap;
+    }
+
+    public List<ProductBeans> fetchCartList(String memberMail) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<ProductBeans> cartList = null;
+
+        try {
+            this.connect();
+            stmt = con.prepareStatement("SELECT * FROM cart c LEFT OUTER JOIN product p ON c.product_id = p.product_id WHERE c.member_mail = ?");
+            stmt.setString(1, memberMail);
+            rs = stmt.executeQuery();
+
+            ProductService productService = new ProductService();
+            cartList = new ArrayList<>();
+
+            while (rs.next()) {
+                ProductBeans productBeans = new ProductBeans();
+                productBeans.setProductId(rs.getInt("p.product_id"));
+                productBeans.setProductName(rs.getString("product_name"));
+                productBeans.setPrice(rs.getInt("price"));
+                productBeans.setImage(productService.convertInputStreamToByteArray(rs.getBinaryStream("image")));
+                productBeans.setProductExplanation(rs.getString("product_explanation"));
+                productBeans.setIsSold(rs.getBoolean("is_sold"));
+                productBeans.setGenreCode(rs.getInt("genre_code"));
+                productBeans.setAdminMail(rs.getString("admin_mail"));
+
+                cartList.add(productBeans);
+            }
+
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                this.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return cartList;
+    }
+
+    public boolean deleteCart(String memberMail, int productId) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        int deleteLine = 0;
+
+        try {
+            this.connect();
+            stmt = con.prepareStatement("DELETE FROM cart WHERE member_mail = ? AND product_id = ?");
+            stmt.setString(1, memberMail);
+            stmt.setInt(2, productId);
+            deleteLine = stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                this.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return deleteLine != 0;
+    }
 
     public List<Map<String, Object>> fetchSalesInfo(String adminMail) {
         PreparedStatement stmt = null;
@@ -66,7 +181,7 @@ public class PurchaseDao extends DaoBase {
         try {
             this.connect();
             stmt = con.prepareStatement("SELECT * FROM purchase_details p LEFT OUTER JOIN product pd ON p.product_id = pd.product_id WHERE p.member_mail = ?");
-            stmt.setString(1,memberMail);
+            stmt.setString(1, memberMail);
             rs = stmt.executeQuery();
 
             ProductService productService = new ProductService();

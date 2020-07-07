@@ -1,6 +1,7 @@
 ##############################################################################################################
 ### https://raw.github.com/github/gitignore/583f11eddde230f6df9f1cece498be98c3a90773/Global/Eclipse.gitignore
 
+.classpath
 .metadata
 bin/
 tmp/

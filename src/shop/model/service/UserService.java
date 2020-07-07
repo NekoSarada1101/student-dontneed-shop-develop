@@ -1,6 +1,8 @@
+
 package shop.model.service;
 
 import shop.model.bean.AdminBeans;
+import shop.model.bean.MemberBeans;
 import shop.model.dao.UserDao;
 
 public class UserService extends CommonService {
@@ -9,5 +11,9 @@ public class UserService extends CommonService {
 
     public AdminBeans fetchAdminLogin(String adminMail, String adminPassword) {
         return userDao.fetchAdminLogin(adminMail, adminPassword);
+    }
+
+    public boolean deleteMember(MemberBeans memberBeans) {
+        return userDao.deleteMember(memberBeans);
     }
 }

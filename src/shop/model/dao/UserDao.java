@@ -2,6 +2,7 @@
 package shop.model.dao;
 
 import shop.model.bean.AdminBeans;
+import shop.model.bean.MemberBeans;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -44,5 +45,29 @@ public class UserDao extends DaoBase {
             }
         }
         return adminBeans;
+    }
+
+    public boolean deleteMember(MemberBeans memberBeans) {
+        PreparedStatement stmt = null;
+        int deleteLine = 0;
+
+        try {
+            this.connect();
+
+            String sql = "DELETE FROM member WHERE member_mail = ?";
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, memberBeans.getMemberMail());
+            deleteLine = stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                this.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return deleteLine != 0;
     }
 }
