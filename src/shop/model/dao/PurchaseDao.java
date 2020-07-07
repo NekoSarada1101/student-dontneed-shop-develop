@@ -1,6 +1,9 @@
 
 package shop.model.dao;
 
+import shop.model.bean.ProductBeans;
+import shop.model.service.ProductService;
+
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,9 +12,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import shop.model.bean.ProductBeans;
-import shop.model.service.ProductService;
 
 public class PurchaseDao extends DaoBase {
 
@@ -25,7 +25,7 @@ public class PurchaseDao extends DaoBase {
         try {
             this.connect();
             stmt = con.prepareStatement("SELECT * FROM cart c LEFT OUTER JOIN product p ON c.product_id = p.product_id WHERE c.member_mail = ?");
-            stmt.setString(1,memberMail);
+            stmt.setString(1, memberMail);
             rs = stmt.executeQuery();
 
             ProductService productService = new ProductService();
@@ -210,30 +210,28 @@ public class PurchaseDao extends DaoBase {
         }
         return purchaseList;
     }
-    public boolean insertCart(String memberMail,int productId) throws IOException {
-    	PreparedStatement stmt = null;
+
+    public boolean insertCart(String memberMail, int productId) {
+        PreparedStatement stmt = null;
         int insertLine = 0;
 
         try {
-        	stmt =  con.prepareStatement("INSERT INTO cart  (mamber_mail, product_id) VALUES (?, ?)");
-        	this.connect();
-        	stmt.setString(1,memberMail);
-        	stmt.setInt(2,productId);
-        	insertLine = stmt.executeUpdate();
-        }catch(SQLException e) {
-        	e.printStackTrace();
+            this.connect();
+            stmt = con.prepareStatement("INSERT INTO cart (member_mail, product_id) VALUES (?, ?)");
+            stmt.setString(1, memberMail);
+            stmt.setInt(2, productId);
+            insertLine = stmt.executeUpdate();
 
-        }finally {
-        	try {
-        		this.close();
-        	}catch(Exception e) {
-        		e.printStackTrace();
-        	}
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            try {
+                this.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        if(insertLine >= 1) {
-        	return true;
-        }else{
-        	return false;
-        };
+        return insertLine != 0;
     }
 }
