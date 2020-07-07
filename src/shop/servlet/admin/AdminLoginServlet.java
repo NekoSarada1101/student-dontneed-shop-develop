@@ -1,7 +1,8 @@
 
 package shop.servlet.admin;
 
-import java.io.IOException;
+import shop.model.bean.AdminBeans;
+import shop.model.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,9 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import shop.model.bean.AdminBeans;
-import shop.model.service.UserService;
+import java.io.IOException;
 
 
 @WebServlet("/adminLogin")
@@ -35,8 +34,7 @@ public class AdminLoginServlet extends HttpServlet {
         HttpSession session = request.getSession();
         if (adminBeans == null) { //取得に失敗した場合
             request.setAttribute("errorMessage", "メールアドレスまたはパスワードが間違っています");
-            response.sendRedirect("adminLogin");
-
+            request.getRequestDispatcher("WEB-INF/jsp/admin/admin_login.jsp").forward(request, response);
         } else {
             //取得した場合
             session.setAttribute("adminLoginInfo", adminBeans);
