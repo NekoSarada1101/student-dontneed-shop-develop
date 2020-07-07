@@ -24,11 +24,13 @@ public class PurchaseCheckServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         String memberMail = ((MemberBeans) session.getAttribute("memberLoginInfo")).getMemberMail();
+        Map<String, List<ProductBeans>> purchaseMap = purchaseService.checkExistsStock(memberMail);
 
         String errorMessage = "";
 
-        if (purchaseMap.get("deleteList") == null) {
-            for (ProductBeans productBeans : purchaseMap.get("deleteList")) {
+        if (purchaseMap.get("deleteList") != null) {
+            List<ProductBeans> deleteList = purchaseMap.get("deleteList");
+            for (ProductBeans productBeans : deleteList) {
                 purchaseService.deleteCart(memberMail, productBeans.getProductId());
                 errorMessage += productBeans.getProductName() + "\n";
             }
