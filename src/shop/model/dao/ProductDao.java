@@ -1,6 +1,9 @@
 
 package shop.model.dao;
 
+import shop.model.bean.ProductBeans;
+import shop.model.service.ProductService;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.sql.PreparedStatement;
@@ -10,9 +13,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import shop.model.bean.ProductBeans;
-import shop.model.service.ProductService;
 
 public class ProductDao extends DaoBase {
 
@@ -43,7 +43,6 @@ public class ProductDao extends DaoBase {
         return insertLine != 0;
     }
 
-
     public boolean updateProduct(ProductBeans productBeans) {
         PreparedStatement stmt = null;
         int updateLine = 0;
@@ -69,28 +68,6 @@ public class ProductDao extends DaoBase {
             }
         }
         return updateLine != 0;
-    }
-
-    public boolean deleteProduct(ProductBeans productBeans) {
-        PreparedStatement stmt = null;
-        int deleteLine = 0;
-
-        try {
-            this.connect();
-            stmt = con.prepareStatement("UPDATE product SET is_sold = true WHERE product_id = ?");
-            stmt.setInt(1, productBeans.getProductId());
-            deleteLine = stmt.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                this.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return deleteLine != 0;
     }
 
     public List<Map<String, Object>> fetchGenreInfo() {
@@ -156,6 +133,59 @@ public class ProductDao extends DaoBase {
         } catch (SQLException | IOException e) {
             e.printStackTrace();
         } finally {
+            try {
+                this.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return productList;
+    }
+
+    public List<ProductBeans> fetchSearchProductList(int genreCode, String sortColumn, String sortOrder, String searchWord) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<ProductBeans> productList = null;
+
+        try {
+            this.connect();
+            String sql = null;
+            searchWord = "%" + searchWord + "%";
+
+            if (genreCode == 0) { //ジャンルですべてを指定された場合
+                sql = "SELECT * FROM product WHERE is_sold = false AND product_name LIKE ? ORDER BY ? " + sortOrder;
+                stmt = con.prepareStatement(sql);
+                stmt.setString(1, searchWord);
+                stmt.setString(2, sortColumn);
+            } else {
+                sql = "SELECT * FROM product WHERE genre_code = ? AND is_sold = false AND product_name LIKE ? ORDER BY ? " + sortOrder;
+                stmt = con.prepareStatement(sql);
+                stmt.setInt(1, genreCode);
+                stmt.setString(2, searchWord);
+                stmt.setString(3, sortColumn);
+            }
+            rs = stmt.executeQuery();
+
+            ProductService productService = new ProductService();
+            productList = new ArrayList<>();
+
+            while (rs.next()) {
+                ProductBeans productBeans = new ProductBeans();
+                productBeans.setProductId(rs.getInt("product_id"));
+                productBeans.setProductName(rs.getString("product_name"));
+                productBeans.setPrice(rs.getInt("price"));
+                productBeans.setImage(productService.convertInputStreamToByteArray(rs.getBinaryStream("image")));
+                productBeans.setProductExplanation(rs.getString("product_explanation"));
+                productBeans.setIsSold(rs.getBoolean("is_sold"));
+                productBeans.setGenreCode(rs.getInt("genre_code"));
+                productBeans.setAdminMail(rs.getString("admin_mail"));
+                productList.add(productBeans);
+            }
+
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        } finally {
+
             try {
                 this.close();
             } catch (Exception e) {

@@ -1,13 +1,14 @@
+
 package shop.model.service;
+
+import shop.model.bean.ProductBeans;
+import shop.model.dao.ProductDao;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
-
-import shop.model.bean.ProductBeans;
-import shop.model.dao.ProductDao;
 
 public class ProductService extends CommonService {
 
@@ -41,5 +42,9 @@ public class ProductService extends CommonService {
             buffer.write(data, 0, nRead);
         }
         return buffer.toByteArray();
+    }
+
+    public List<ProductBeans> fetchSearchProductList(int genreCode, String sortColumn, String sortOrder, String searchWord) throws IOException {
+        return productDao.fetchSearchProductList(genreCode, sortColumn, sortOrder, searchWord);
     }
 }
