@@ -1,3 +1,4 @@
+
 package shop.model.dao;
 
 import shop.model.bean.ProductBeans;
@@ -14,19 +15,23 @@ import java.util.Map;
 
 public class PurchaseDao extends DaoBase {
 
-    public List<ProductBeans> fetchCartList(String memberMail) {
+    public Map<String, List<ProductBeans>> checkExistsStock(String memberMail) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<ProductBeans> cartList = null;
+        List<ProductBeans> purchaseList = null;
+        List<ProductBeans> deleteList = null;
+        Map<String, List<ProductBeans>> purchaseMap = null;
 
         try {
             this.connect();
             stmt = con.prepareStatement("SELECT * FROM cart c LEFT OUTER JOIN product p ON c.product_id = p.product_id WHERE c.member_mail = ?");
-            stmt.setString(1, memberMail);
+            stmt.setString(1,memberMail);
             rs = stmt.executeQuery();
 
             ProductService productService = new ProductService();
-            cartList = new ArrayList<>();
+            purchaseList = new ArrayList<>();
+            deleteList = new ArrayList<>();
+            purchaseMap = new HashMap<>();
 
             while (rs.next()) {
                 ProductBeans productBeans = new ProductBeans();
@@ -39,8 +44,14 @@ public class PurchaseDao extends DaoBase {
                 productBeans.setGenreCode(rs.getInt("genre_code"));
                 productBeans.setAdminMail(rs.getString("admin_mail"));
 
-                cartList.add(productBeans);
+                if (productBeans.getIsSold()) { //購入済みなら
+                    deleteList.add(productBeans);
+                } else {  //購入されてないなら
+                    purchaseList.add(productBeans);
+                }
             }
+            purchaseMap.put("purchaseList", purchaseList);
+            purchaseMap.put("deleteList", deleteList);
 
         } catch (SQLException | IOException e) {
             e.printStackTrace();
@@ -51,7 +62,7 @@ public class PurchaseDao extends DaoBase {
                 e.printStackTrace();
             }
         }
-        return cartList;
+        return purchaseMap;
     }
 
     public List<ProductBeans> fetchCartList(String memberMail) {

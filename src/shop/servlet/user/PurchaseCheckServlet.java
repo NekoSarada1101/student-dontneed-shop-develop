@@ -22,16 +22,15 @@ public class PurchaseCheckServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        List<ProductBeans> cartList = (List<ProductBeans>) session.getAttribute("cartList");
-
-        Map<String, List<ProductBeans>> purchaseMap = purchaseService.checkExistsStock(cartList);
 
         String memberMail = ((MemberBeans) session.getAttribute("memberLoginInfo")).getMemberMail();
+        Map<String, List<ProductBeans>> purchaseMap = purchaseService.checkExistsStock(memberMail);
 
         String errorMessage = "";
 
-        if (purchaseMap.get("deleteList") == null) {
-            for (ProductBeans productBeans : purchaseMap.get("deleteList")) {
+        if (purchaseMap.get("deleteList") != null) {
+            List<ProductBeans> deleteList = purchaseMap.get("deleteList");
+            for (ProductBeans productBeans : deleteList) {
                 purchaseService.deleteCart(memberMail, productBeans.getProductId());
                 errorMessage += productBeans.getProductName() + "\n";
             }
