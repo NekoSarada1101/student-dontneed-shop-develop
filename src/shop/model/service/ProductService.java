@@ -1,4 +1,8 @@
+
 package shop.model.service;
+
+import shop.model.bean.ProductBeans;
+import shop.model.dao.ProductDao;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -6,13 +10,7 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
-import shop.model.bean.ProductBeans;
-import shop.model.dao.ProductDao;
-
 public class ProductService extends CommonService {
-	
-	public static void main(String[] args) {
-		// TODO 自動生成されたメソッド・スタブ
 
     private ProductDao productDao = new ProductDao();
 
@@ -45,8 +43,8 @@ public class ProductService extends CommonService {
         }
         return buffer.toByteArray();
     }
-	public List<ProductBeans> fetchSearchProductList(int genreCode,String sortColumn,String sortOrder,String searchWord) throws ServletException, IOException {
-		List<ProductBeans> productList = productDao.fetchSearchProductList(genreCode, sortColumn, sortOrder, searchWord);
-		return productList;
-	}
+
+    public List<ProductBeans> fetchSearchProductList(int genreCode, String sortColumn, String sortOrder, String searchWord) throws IOException {
+        return productDao.fetchSearchProductList(genreCode, sortColumn, sortOrder, searchWord);
+    }
 }
