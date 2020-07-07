@@ -30,4 +30,8 @@ public class PurchaseService extends CommonService {
     public List<Map<String, Object>> fetchPurchaseHistory(String memberMail) {
         return purchaseDao.fetchPurchaseHistory(memberMail);
     }
+
+    public boolean insertCart(String memberMail, int productId) {
+        return purchaseDao.insertCart(memberMail, productId);
+    }
 }

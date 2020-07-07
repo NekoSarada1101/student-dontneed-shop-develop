@@ -25,7 +25,7 @@ public class PurchaseDao extends DaoBase {
         try {
             this.connect();
             stmt = con.prepareStatement("SELECT * FROM cart c LEFT OUTER JOIN product p ON c.product_id = p.product_id WHERE c.member_mail = ?");
-            stmt.setString(1,memberMail);
+            stmt.setString(1, memberMail);
             rs = stmt.executeQuery();
 
             ProductService productService = new ProductService();
@@ -209,5 +209,29 @@ public class PurchaseDao extends DaoBase {
             e.printStackTrace();
         }
         return purchaseList;
+    }
+
+    public boolean insertCart(String memberMail, int productId) {
+        PreparedStatement stmt = null;
+        int insertLine = 0;
+
+        try {
+            this.connect();
+            stmt = con.prepareStatement("INSERT INTO cart (member_mail, product_id) VALUES (?, ?)");
+            stmt.setString(1, memberMail);
+            stmt.setInt(2, productId);
+            insertLine = stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            try {
+                this.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return insertLine != 0;
     }
 }

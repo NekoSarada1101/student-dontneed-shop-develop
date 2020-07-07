@@ -27,7 +27,7 @@
     </p>
 </div>
 
-<form action="cartInsert" method="get">
+<form action="cartInsert" method="post">
     <button type="submit" class="btn btn-primary">カートに追加する</button>
 </form>
 
