@@ -24,7 +24,7 @@
 <div class="p-1  p-md-3 p-lg-5">
 
     <div class="row">
-        <form action="adminTop" method="get" class="col-11 col-md-8 mx-auto mb-3 row">
+        <form action="memberTop" method="get" class="col-11 col-md-8 mx-auto mb-3 row">
             <button type="submit" class="btn btn-outline-dark btn-block col-5 mr-auto">トップ画面へ戻る</button>
         </form>
         <div class="col-7"></div>

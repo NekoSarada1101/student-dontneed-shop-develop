@@ -41,7 +41,7 @@ public class UserService extends CommonService {
         return userDao.fetchAdminLogin(adminMail, adminPassword);
     }
 
-    public boolean deleteProduct(MemberBeans memberBeans) {
-        return userDao.deleteProduct(memberBeans);
+    public boolean deleteMember(MemberBeans memberBeans) {
+        return userDao.deleteMember(memberBeans);
     }
 }
