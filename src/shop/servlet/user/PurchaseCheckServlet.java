@@ -1,3 +1,4 @@
+
 package shop.servlet.user;
 
 import shop.model.bean.MemberBeans;
@@ -38,7 +39,7 @@ public class PurchaseCheckServlet extends HttpServlet {
         }
 
         request.setAttribute("errorMessage", errorMessage);
-        session.setAttribute("purchaseList", purchaseMap.get("purchaseList"));
+        session.setAttribute("productList", purchaseMap.get("purchaseList"));
 
         request.getRequestDispatcher("WEB-INF/jsp/user/purchase_check.jsp").forward(request, response);
     }
