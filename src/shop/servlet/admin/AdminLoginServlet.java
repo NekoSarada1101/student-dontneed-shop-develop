@@ -34,8 +34,7 @@ public class AdminLoginServlet extends HttpServlet {
         HttpSession session = request.getSession();
         if (adminBeans == null) { //取得に失敗した場合
             request.setAttribute("errorMessage", "メールアドレスまたはパスワードが間違っています");
-            response.sendRedirect("adminLogin");
-
+            request.getRequestDispatcher("WEB-INF/jsp/admin/admin_login.jsp").forward(request, response);
         } else {
             //取得した場合
             session.setAttribute("adminLoginInfo", adminBeans);

@@ -31,6 +31,7 @@ public class UserDao extends DaoBase {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            return null;
         } finally {
             try {
                 this.close();

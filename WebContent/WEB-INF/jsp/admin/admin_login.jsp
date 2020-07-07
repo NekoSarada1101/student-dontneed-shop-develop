@@ -7,34 +7,41 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>管理者ログイン画面</title>
+    <title>管理者ログイン</title>
     <%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
     <link rel="stylesheet" href="css/common.css">
 </head>
 <body>
-<header class="container-fluid sticky-top">
-    <nav class="navbar navbar-expand-lg bg-success px-1 px-md-2 px-lg-4">
+<header class="sticky-top">
+    <nav class="navbar navbar-expand-lg bg-success px-1 px-md-2 px-lg-3">
         <span href="adminTop" class="navbar-brand text-white mr-3" style="width: 160px">KIK</span>
     </nav>
 </header>
 
-<div class="text-center">
-    <h1 id="h1">管理者ログイン</h1>
-    <form action="adminLogin" method="POST">
-        <input type="text" name="adminMail" class="cp_txt" placeholder="UserID">
-        <input type="password" name="adminPassword" class="cp_txt" placeholder="password">
-        <input type="submit" value="ログイン"><br><br>
-        <input type="reset" value="リセットする" class="cp_txt">
+<div>
+    <h1 class="text-center my-5">管理者ログイン</h1>
+    <form action="adminLogin" method="POST" class="col-10 col-sm-8 col-md-6 col-lg-3 mx-auto">
+        <div class="form-group">
+            <label for="adminMail"><strong>メールアドレス</strong></label>
+            <input type="text" class="form-control" id="adminMail" name="adminMail">
+        </div>
+        <div class="form-group">
+            <label for="adminPassword"><strong>パスワード</strong></label>
+            <input type="password" class="form-control" id="adminPassword" name="adminPassword">
+        </div>
 
+        <%if (errorMessage != null) { %>
+        <div class="alert alert-danger mt-4">
+            <%=errorMessage%>
+        </div>
+        <% } %>
+
+        <button type="submit" class="btn btn-primary btn-block mt-5">ログイン</button>
     </form>
-    <br>
-    <%if (errorMessage != null) { %>
-    <div class="alert alert-danger"><%= errorMessage %>
-    </div>
-    <% } %>
 </div>
 
-<%@include file="/WEB-INF/jsp/script.jsp" %>
+<%@include file="/WEB-INF/jsp/admin/admin_footer.jsp" %>
 
+<%@include file="/WEB-INF/jsp/script.jsp" %>
 </body>
 </html>
