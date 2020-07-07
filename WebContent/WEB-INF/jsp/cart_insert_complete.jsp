@@ -2,9 +2,7 @@
 <%@ page import="shop.model.service.ProductService" %>
 <%@ page import="shop.model.bean.ProductBeans" %>
 <%@ page import="shop.model.bean.MemberBeans" %>
-<%boolean couldInsert =(boolean)request.getAttribute("couldInsert");%>
-<% %>
-<% %>
+
 
 <!DOCTYPE html>
 <html>

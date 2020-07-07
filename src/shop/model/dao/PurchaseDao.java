@@ -212,17 +212,17 @@ public class PurchaseDao extends DaoBase {
     }
     public boolean insertCart(String memberMail,int productId) throws IOException {
     	PreparedStatement stmt = null;
-        ResultSet rs = null;
+        int insertLine = 0;
 
         try {
         	stmt =  con.prepareStatement("INSERT INTO cart  (mamber_mail, product_id) VALUES (?, ?)");
         	this.connect();
         	stmt.setString(1,memberMail);
         	stmt.setInt(2,productId);
-        	rs = stmt.executeQuery();
+        	insertLine = stmt.executeUpdate();
         }catch(SQLException e) {
         	e.printStackTrace();
-        	return false;
+
         }finally {
         	try {
         		this.close();
@@ -230,6 +230,10 @@ public class PurchaseDao extends DaoBase {
         		e.printStackTrace();
         	}
         }
-        return true;
+        if(insertLine >= 1) {
+        	return true;
+        }else{
+        	return false;
+        };
     }
 }
