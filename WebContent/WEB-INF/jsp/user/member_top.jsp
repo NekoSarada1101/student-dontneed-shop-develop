@@ -3,6 +3,9 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%
+    List<ProductBeans> productList = (List<ProductBeans>) session.getAttribute("productList");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +20,6 @@
 <div class="container-fluid">
     <div class="mt-5 px-5 row">
         <%
-            List<ProductBeans> productList = productService.fetchSearchProductList(0, "product_id", "desc", "");
             int i = 0;
             for (ProductBeans productBeans : productList) {
         %>
