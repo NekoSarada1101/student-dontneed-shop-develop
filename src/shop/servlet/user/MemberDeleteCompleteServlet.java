@@ -15,15 +15,15 @@ import shop.model.service.UserService;
 @WebServlet("/memberDeleteComplete")
 public class MemberDeleteCompleteServlet extends HttpServlet {
 
-	UserService userService = new UserService();
+    UserService userService = new UserService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    	HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
         MemberBeans memberBeans = (MemberBeans) session.getAttribute("memberBeans");
 
-        userService.deleteProduct(memberBeans);
+        userService.deleteMember(memberBeans);
 
         request.getRequestDispatcher("WEB-INF/jsp/admin/member_delete_complete.jsp").forward(request, response);
     }
