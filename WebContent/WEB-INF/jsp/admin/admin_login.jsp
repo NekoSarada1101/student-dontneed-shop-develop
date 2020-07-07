@@ -37,4 +37,5 @@
 <%@include file="/WEB-INF/jsp/script.jsp" %>
 
 </body>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin_login.css">
 </html>

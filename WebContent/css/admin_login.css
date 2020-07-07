@@ -1,0 +1,23 @@
+div.cp_txt {
+	text-align: center;
+    height: 10em;
+    position: relative
+}
+
+div.cp_txt h1{
+	margin-top: 150px;
+	margin-bottom: 120px;
+}
+
+div.cp_txt .text{
+	padding: 10px 30% ;
+	margin-bottom: 40px;
+}
+
+div.cp_txt::placeholder{
+	text-align: left;
+}
+
+div.cp_txt .btn{
+	margin-top: 10px;
+}
