@@ -28,6 +28,7 @@ public class ProductSearchAndDisplayServlet extends HttpServlet {
 
         List<ProductBeans> productList = productService.fetchSearchProductList(genreCode, sortColumn, sortOrder, searchWord);
         session.setAttribute("productList", productList);
+
         request.getRequestDispatcher("WEB-INF/jsp/user/search_product_list.jsp").forward(request, response);
     }
 }

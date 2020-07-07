@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 @WebServlet("/memberTop")
 public class MemberTopServlet extends HttpServlet {
@@ -22,8 +21,6 @@ public class MemberTopServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Map<String, Object>> genreInfoList = productService.fetchGenreInfo();
-
         HttpSession session = request.getSession();
 
         //test//

@@ -14,6 +14,10 @@ public class ProductService extends CommonService {
 
     private ProductDao productDao = new ProductDao();
 
+    public List<ProductBeans> fetchSearchProductList(int genreCode, String sortColumn, String sortOrder, String searchWord) throws IOException {
+        return productDao.fetchSearchProductList(genreCode, sortColumn, sortOrder, searchWord);
+    }
+
     public boolean insertProduct(ProductBeans productBeans) {
         return productDao.insertProduct(productBeans);
     }
@@ -34,6 +38,7 @@ public class ProductService extends CommonService {
         return productDao.fetchAdminProductList(adminMail);
     }
 
+    //InputStreamをByte配列にする
     public byte[] convertInputStreamToByteArray(InputStream inputStream) throws IOException {
         ByteArrayOutputStream buffer = new ByteArrayOutputStream();
         int nRead;
@@ -42,9 +47,5 @@ public class ProductService extends CommonService {
             buffer.write(data, 0, nRead);
         }
         return buffer.toByteArray();
-    }
-
-    public List<ProductBeans> fetchSearchProductList(int genreCode, String sortColumn, String sortOrder, String searchWord) throws IOException {
-        return productDao.fetchSearchProductList(genreCode, sortColumn, sortOrder, searchWord);
     }
 }

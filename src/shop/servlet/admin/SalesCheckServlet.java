@@ -1,7 +1,5 @@
 package shop.servlet.admin;
 
-import shop.model.service.PurchaseService;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,8 +9,6 @@ import java.io.IOException;
 
 @WebServlet("/salesCheck")
 public class SalesCheckServlet extends HttpServlet {
-
-    PurchaseService purchaseService = new PurchaseService();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

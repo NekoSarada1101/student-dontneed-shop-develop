@@ -1,7 +1,5 @@
 package shop.servlet.admin;
 
-import shop.model.service.ProductService;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,8 +10,6 @@ import java.io.IOException;
 
 @WebServlet("/productInsertInput")
 public class ProductInsertInputServlet extends HttpServlet {
-
-    private ProductService productService = new ProductService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

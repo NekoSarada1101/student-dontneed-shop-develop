@@ -5,8 +5,8 @@ import java.io.Serializable;
 public class MemberBeans implements Serializable {
 
     private String memberMail = null;
-    private String memberName = null;
     private String memberPassword = null;
+    private String memberName = null;
     private int postalCode = 0;
     private String address = null;
     private int tell = 0;
@@ -23,20 +23,20 @@ public class MemberBeans implements Serializable {
         this.memberMail = memberMail;
     }
 
-    public String getMemberName() {
-        return memberName;
-    }
-
-    public void setMemberName(String memberName) {
-        this.memberName = memberName;
-    }
-
     public String getMemberPassword() {
         return memberPassword;
     }
 
     public void setMemberPassword(String memberPassword) {
         this.memberPassword = memberPassword;
+    }
+
+    public String getMemberName() {
+        return memberName;
+    }
+
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
     }
 
     public int getPostalCode() {

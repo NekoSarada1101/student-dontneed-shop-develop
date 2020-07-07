@@ -1,22 +1,24 @@
 <%@ page import="shop.model.bean.AdminBeans" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<% String msg = (String) request.getAttribute("msg");%>
+<%
+    String errorMessage = (String) request.getAttribute("errorMessage");
+%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>管理者ログイン画面</title>
     <%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
+    <link rel="stylesheet" href="css/common.css">
 </head>
 <body>
-<div class="text-center">
-    <header class="container-fluid sticky-top">
-        <nav class="navbar navbar-expand-lg bg-success px-1 px-sm-3">
-            <a href="adminTop" class="text-white navbar-brand px-0 col-5 col-md-4 col-lg-2"><img src="img/logo.png" alt="logo" class="d-inline-block align-top px-0 col-12"></a>
-            <%--<strong>S</strong>tudent <br> <strong>D</strong>ont't need <br> <strong>S</strong>hop</a>--%>
+<header class="container-fluid sticky-top">
+    <nav class="navbar navbar-expand-lg bg-success px-1 px-md-2 px-lg-4">
+        <span href="adminTop" class="navbar-brand text-white mr-3" style="width: 160px">KIK</span>
+    </nav>
+</header>
 
-        </nav>
-    </header>
+<div class="text-center">
     <h1 id="h1">管理者ログイン</h1>
     <form action="adminLogin" method="POST">
         <input type="text" name="adminMail" class="cp_txt" placeholder="UserID">
@@ -24,11 +26,10 @@
         <input type="submit" value="ログイン"><br><br>
         <input type="reset" value="リセットする" class="cp_txt">
 
-
     </form>
     <br>
-    <%if (msg != null) { %>
-    <div class="alert alert-danger"><%= msg %>
+    <%if (errorMessage != null) { %>
+    <div class="alert alert-danger"><%= errorMessage %>
     </div>
     <% } %>
 </div>

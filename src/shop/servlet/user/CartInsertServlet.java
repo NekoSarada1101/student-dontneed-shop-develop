@@ -23,7 +23,7 @@ public class CartInsertServlet extends HttpServlet {
         String memberMail = ((MemberBeans) session.getAttribute("memberLoginInfo")).getMemberMail();
         int productId = ((ProductBeans) session.getAttribute("productBeans")).getProductId();
 
-        boolean couldInsert = purchaseService.insertCart(memberMail, productId);
+        purchaseService.insertCart(memberMail, productId);
 
         request.getRequestDispatcher("WEB-INF/jsp/user/cart_insert_complete.jsp").forward(request, response);
     }

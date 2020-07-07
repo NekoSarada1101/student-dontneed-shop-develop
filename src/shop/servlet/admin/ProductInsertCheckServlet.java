@@ -1,20 +1,15 @@
 
 package shop.servlet.admin;
 
-import java.io.IOException;
-import java.io.InputStream;
+import shop.model.bean.ProductBeans;
+import shop.model.service.ProductService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
-
-import shop.model.bean.ProductBeans;
-import shop.model.service.ProductService;
+import javax.servlet.http.*;
+import java.io.IOException;
+import java.io.InputStream;
 
 @WebServlet("/productInsertCheck")
 @MultipartConfig(location = "/tmp", maxFileSize = 1048576)
@@ -39,7 +34,7 @@ public class ProductInsertCheckServlet extends HttpServlet {
         productBeans.setGenreCode(genreCode);
 
         HttpSession session = request.getSession();
-        //        productBeans.setAdminMail(((AdminBeans) session.getAttribute("adminBeans")).getAdminMail());
+        //        productBeans.setAdminMail(((AdminLoginInfo) session.getAttribute("adminLoginInfo")).getAdminMail());
         productBeans.setAdminMail("ryouta@gmail.com");
 
         session.setAttribute("productBeans", productBeans);
