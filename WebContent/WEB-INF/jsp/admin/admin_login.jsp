@@ -30,20 +30,18 @@
             <input type="password" class="form-control" id="adminPassword" name="adminPassword">
         </div>
 
+        <%if (errorMessage != null) { %>
+        <div class="alert alert-danger mt-4">
+            <%=errorMessage%>
+        </div>
+        <% } %>
+
         <button type="submit" class="btn btn-primary btn-block mt-5">ログイン</button>
     </form>
 </div>
 
-<%if (errorMessage != null) { %>
-<div class="alert alert-danger">
-    <%=errorMessage%>
-</div>
-<% } %>
-
 <%@include file="/WEB-INF/jsp/admin/admin_footer.jsp" %>
 
-
 <%@include file="/WEB-INF/jsp/script.jsp" %>
-
 </body>
 </html>
