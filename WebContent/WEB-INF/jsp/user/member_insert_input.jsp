@@ -7,8 +7,13 @@
         memberBeans = new MemberBeans();
         memberBeans.setMemberMail("");
         memberBeans.setMemberName("");
+        memberBeans.setPostalCode("");
         memberBeans.setAddress("");
+        memberBeans.setTell("");
+        memberBeans.setCreditCard("");
+        memberBeans.setExpirationDate("");
         memberBeans.setHolder("");
+        memberBeans.setSecurityCode("");
     }
 %>
 <!DOCTYPE html>
@@ -40,7 +45,7 @@
         <tr>
             <th>郵便番号</th>
             <td><input type="number" name="postalCode"
-                       value="<%if (memberBeans.getPostalCode() != 0) %><%=memberBeans.getPostalCode()%>"></td>
+                       value="<%=memberBeans.getPostalCode()%>"></td>
         </tr>
 
         <tr>
@@ -50,20 +55,20 @@
 
         <tr>
             <th>電話番号</th>
-            <td><input type="number" name="tell" value="<%if (memberBeans.getTell() != 0) %><%=memberBeans.getTell()%>">
+            <td><input type="number" name="tell" value="<%=memberBeans.getTell()%>">
             </td>
         </tr>
 
         <tr>
             <th>クレジット番号</th>
             <td><input type="number" name="creditCard"
-                       value="<%if (memberBeans.getCreditCard() != 0) %><%=memberBeans.getCreditCard()%>"></td>
+                       value="<%=memberBeans.getCreditCard()%>"></td>
         </tr>
 
         <tr>
             <th>有効期限</th>
             <td><input type="date" name="expirationDate"
-                       value="<%if (memberBeans.getExpirationDate() != null) %><%=memberBeans.getExpirationDate()%>">
+                       value="<%=memberBeans.getExpirationDate()%>">
             </td>
         </tr>
 
@@ -75,7 +80,7 @@
         <tr>
             <th>セキュリティコード</th>
             <td><input type="number" name="securityCode"
-                       value="<%if (memberBeans.getSecurityCode() != 0) %><%=memberBeans.getSecurityCode()%>"></td>
+                       value="<%=memberBeans.getSecurityCode()%>"></td>
         </tr>
     </table>
 
