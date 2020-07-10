@@ -11,21 +11,22 @@ import java.io.IOException;
 import java.io.InputStream;
 
 @WebServlet("/productUpdateCheck")
-@MultipartConfig(location = "/tmp", maxFileSize = 1048576)
+@MultipartConfig(location = "/tmp")
 public class ProductUpdateCheckServlet extends HttpServlet {
 
     ProductService productService = new ProductService();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String productName = request.getParameter("productName");
-        int price = Integer.parseInt(request.getParameter("price"));
-        Part filePart = request.getPart("image");
-        InputStream inputStream = filePart.getInputStream();
-        String productExplanation = request.getParameter("productExplanation");
-        int genreCode = Integer.parseInt(request.getParameter("genre"));
+        String      productName        = request.getParameter("productName");
+        int         price              = Integer.parseInt(request.getParameter("price"));
+        Part        filePart           = request.getPart("image");
+        InputStream inputStream        = filePart.getInputStream();
+        String      productExplanation = request.getParameter("productExplanation");
+        int         genreCode          = Integer.parseInt(request.getParameter("genre"));
 
         HttpSession session = request.getSession();
+
         ProductBeans productBeans = (ProductBeans) session.getAttribute("productBeans");
         productBeans.setProductName(productName);
         productBeans.setPrice(price);
