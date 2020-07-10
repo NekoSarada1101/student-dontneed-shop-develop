@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>会員情報登録入力</title>
 </head>
 <% MemberBeans memberBeans = (MemberBeans) session.getAttribute("memberBeans");
 
@@ -20,25 +20,25 @@
 
 
 
-<h2>入力フォーム</h2>
-<form action="" method="post">
+<h2>会員情報入力</h2>
+<form action="memberInsertCheck" method="post">
 
 
 
     <table border="1">
         <tr>
             <th>メールアドレス</th>
-            <td><input type="text"  name = "member_mail" ></td>
+            <td><input type="text"  name = "memberMail" ></td>
         </tr>
 
         <tr>
             <th>名前</th>
-            <td><input type="text" name = "member_name"></td>
+            <td><input type="text" name = "memberName"></td>
         </tr>
 
         <tr>
             <th>パスワード</th>
-            <td><input type="text" name = "member_password"></td>
+            <td><input type="text" name = "memberPassword"></td>
         </tr>
 
         <tr>
@@ -48,7 +48,7 @@
 
         <tr>
             <th>郵便番号</th>
-            <td><input type="text" name = "postal_code"></td>
+            <td><input type="text" name = "postalCode"></td>
         </tr>
 
         <tr>
@@ -58,7 +58,7 @@
 
         <tr>
             <th>クレジット番号</th>
-            <td><input type="text" name = "credit_card"></td>
+            <td><input type="text" name = "creditCard"></td>
         </tr>
 
         <tr>
@@ -68,12 +68,12 @@
 
         <tr>
             <th>セキュリティコード</th>
-            <td><input type="text" name = "security_code"></td>
+            <td><input type="text" name = "securityCode"></td>
         </tr>
 
         <tr>
             <th>名義者名</th>
-            <td><input type="text" name = "security_name"></td>
+            <td><input type="text" name = "securityName"></td>
         </tr>
 
 
@@ -83,7 +83,9 @@
 
     </form>
 
-      <a href="/student_dontneed_shop_dev/WebContent/WEB-INF/jsp/member/member_login.jsp">戻る</a><br>
+<form action="memberLogin" method="get">
+      <input type="submit" value="戻る">
+</form>
 
 </body>
 
@@ -96,20 +98,20 @@
 
 
 
-<h2>入力フォーム</h2>
-<form action="" method="post">
+<h2>会員情報入力</h2>
+<form action="memberInsertCheck" method="post">
 
 	<p> <%=errorMessage %> </p>
 
     <table border="1">
         <tr>
             <th>メールアドレス</th>
-            <td><input type="text" value= <%=memberBeans.getMemberMail() %> name = "member_mail" ></td>
+            <td><input type="text" value= <%=memberBeans.getMemberMail() %> name = "memberMail" ></td>
         </tr>
 
         <tr>
             <th>名前</th>
-            <td><input type="text" value= <%=memberBeans.getMemberName() %>name = "member_name"></td>
+            <td><input type="text" value= <%=memberBeans.getMemberName() %>name = "memberName"></td>
         </tr>
 
         <tr>
@@ -124,7 +126,7 @@
 
         <tr>
             <th>郵便番号</th>
-            <td><input type="text" value= <%=memberBeans.getPostalCode() %>name = "postal_code"></td>
+            <td><input type="text" value= <%=memberBeans.getPostalCode() %>name = "postalCode"></td>
         </tr>
 
         <tr>
@@ -134,7 +136,7 @@
 
         <tr>
             <th>クレジット番号</th>
-            <td><input type="text" value= <%=memberBeans.getCreditCard() %>name = "credit_card"></td>
+            <td><input type="text" value= <%=memberBeans.getCreditCard() %>name = "creditCard"></td>
         </tr>
 
         <tr>
@@ -144,12 +146,12 @@
 
         <tr>
             <th>セキュリティコード</th>
-            <td><input type="text" value= <%=memberBeans.getSecurityCode() %>name = "security_code"></td>
+            <td><input type="text" value= <%=memberBeans.getSecurityCode() %>name = "securityCode"></td>
         </tr>
 
         <tr>
             <th>名義者名</th>
-            <td><input type="text" value= <%=memberBeans.getHolder() %>name = "security_name"></td>
+            <td><input type="text" value= <%=memberBeans.getHolder() %>name = "securityName"></td>
         </tr>
 
 
@@ -159,7 +161,9 @@
 
     </form>
 
-      <a href="/student_dontneed_shop_dev/WebContent/WEB-INF/jsp/member/member_login.jsp">戻る</a><br>
+<form action="memberLogin" method="get">
+      <input type="submit" value="戻る">
+</form>
 
 </body>
 
