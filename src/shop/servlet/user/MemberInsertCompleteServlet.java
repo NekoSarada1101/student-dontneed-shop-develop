@@ -22,10 +22,9 @@ public class MemberInsertCompleteServlet extends HttpServlet {
 
         MemberBeans memberBeans = (MemberBeans) session.getAttribute("memberBeans");
 
-
         if (userService.checkMemberMailExists(memberBeans.getMemberMail())) {
             String errorMessage = "そのメールアドレスは既に登録済みです";
-            request.setAttribute(errorMessage, "errorMessage");
+            request.setAttribute("errorMessage", errorMessage);
 
             request.getRequestDispatcher("WEB-INF/jsp/user/member_insert_input.jsp").forward(request, response);
         }
