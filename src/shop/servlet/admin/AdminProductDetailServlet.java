@@ -19,9 +19,9 @@ public class AdminProductDetailServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         int index = 0;
-        try {
+        try { //商品一覧から遷移したら
             index = Integer.parseInt(request.getParameter("index"));
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) { //商品情報変更入力画面から遷移したら
             index = (int) session.getAttribute("index");
         }
 

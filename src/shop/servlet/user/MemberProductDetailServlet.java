@@ -1,4 +1,4 @@
-package shop.servlet.admin;
+package shop.servlet.user;
 
 import shop.model.bean.ProductBeans;
 
@@ -11,14 +11,16 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/productDeleteCheck")
-public class ProductDeleteCheckServlet extends HttpServlet {
+@WebServlet("/memberProductDetail")
+public class MemberProductDetailServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        List<ProductBeans> productList = (List<ProductBeans>) session.getAttribute("productList");
+
         int index = Integer.parseInt(request.getParameter("index"));
+
+        List<ProductBeans> productList = (List<ProductBeans>) session.getAttribute("productList");
 
         ProductBeans productBeans = new ProductBeans();
         productBeans.setProductId(productList.get(index).getProductId());
@@ -31,6 +33,6 @@ public class ProductDeleteCheckServlet extends HttpServlet {
 
         session.setAttribute("productBeans", productBeans);
 
-        request.getRequestDispatcher("WEB-INF/jsp/admin/product_delete_check.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/jsp/user/member_product_detail.jsp").forward(request, response);
     }
 }

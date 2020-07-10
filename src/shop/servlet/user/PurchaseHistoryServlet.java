@@ -27,11 +27,11 @@ public class PurchaseHistoryServlet extends HttpServlet {
 
         List<Map<String, Object>> purchaseHistory = purchaseService.fetchPurchaseHistory(((MemberBeans) session.getAttribute("memberLoginInfo")).getMemberMail());
 
-        List<ProductBeans> prodductList = new ArrayList<ProductBeans>();
+        List<ProductBeans> productList = new ArrayList<>();
         for (Map<String, Object> purchaseMap : purchaseHistory) {
-            prodductList.add((ProductBeans) purchaseMap.get("productBeans"));
+            productList.add((ProductBeans) purchaseMap.get("productBeans"));
         }
-        session.setAttribute("productList", prodductList);
+        session.setAttribute("productList", productList);
 
         request.getRequestDispatcher("WEB-INF/jsp/user/purchase_history.jsp").forward(request, response);
     }

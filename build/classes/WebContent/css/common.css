@@ -43,7 +43,11 @@ html {
   padding: 0;
 }
 
-.square-image {
+.card-header {
+  position: relative;
+}
+
+.table-image {
   position: relative;
 }
 
@@ -62,6 +66,10 @@ img {
 
 table {
   word-break: break-all;
+}
+
+.table td, .table th {
+  vertical-align: middle;
 }
 
 .navbar-brand {

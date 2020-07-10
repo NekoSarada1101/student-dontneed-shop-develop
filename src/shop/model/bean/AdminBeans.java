@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class AdminBeans implements Serializable {
     private String adminMail = null;
-    private String adminName = null;
     private String adminPassword = null;
+    private String adminName = null;
     private int postalCode = 0;
     private String address = null;
 
@@ -17,20 +17,20 @@ public class AdminBeans implements Serializable {
         this.adminMail = adminMail;
     }
 
-    public String getAdminName() {
-        return adminName;
-    }
-
-    public void setAdminName(String adminName) {
-        this.adminName = adminName;
-    }
-
     public String getAdminPassword() {
         return adminPassword;
     }
 
     public void setAdminPassword(String adminPassword) {
         this.adminPassword = adminPassword;
+    }
+
+    public String getAdminName() {
+        return adminName;
+    }
+
+    public void setAdminName(String adminName) {
+        this.adminName = adminName;
     }
 
     public int getPostalCode() {

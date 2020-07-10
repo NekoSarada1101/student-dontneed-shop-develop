@@ -1,4 +1,8 @@
+
 package shop.model.service;
+
+import shop.model.bean.ProductBeans;
+import shop.model.dao.ProductDao;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -6,12 +10,13 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
-import shop.model.bean.ProductBeans;
-import shop.model.dao.ProductDao;
-
 public class ProductService extends CommonService {
 
     private ProductDao productDao = new ProductDao();
+
+    public List<ProductBeans> fetchSearchProductList(int genreCode, String sortColumn, String sortOrder, String searchWord) throws IOException {
+        return productDao.fetchSearchProductList(genreCode, sortColumn, sortOrder, searchWord);
+    }
 
     public boolean insertProduct(ProductBeans productBeans) {
         return productDao.insertProduct(productBeans);
@@ -33,6 +38,7 @@ public class ProductService extends CommonService {
         return productDao.fetchAdminProductList(adminMail);
     }
 
+    //InputStreamをByte配列にする
     public byte[] convertInputStreamToByteArray(InputStream inputStream) throws IOException {
         ByteArrayOutputStream buffer = new ByteArrayOutputStream();
         int nRead;

@@ -6,7 +6,7 @@
 <%@ page import="shop.model.bean.AdminBeans" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
-    String adminName = ((AdminBeans) session.getAttribute("adminLoginInfo")).getAdminName();
+    String adminName = ((AdminBeans) session.getAttribute("adminBeans")).getAdminName();
 %>
 <!DOCTYPE html>
 <html>

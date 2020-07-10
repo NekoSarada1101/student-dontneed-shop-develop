@@ -6,9 +6,10 @@
 </head>
 
 <body>
-<footer class="bg-success">
-    <p>student_dontneed_shop</p>
-</footer>
-
+<div class="mt-5">
+    <footer class="footer bg-success fixed-bottom">
+        <p>student_dontneed_shop</p>
+    </footer>
+</div>
 </body>
 </html>

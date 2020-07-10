@@ -25,24 +25,19 @@ public class AdminLoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         String adminMail = request.getParameter("adminMail");
         String adminPassword = request.getParameter("adminPassword");
 
         AdminBeans adminBeans = userService.fetchAdminLogin(adminMail, adminPassword);
 
         //遷移先
-        String path = "";
         HttpSession session = request.getSession();
-        if (adminBeans == null) {
-            //取得に失敗した場合
-            path = "WEB-INF/jsp/admin/admin_login.jsp";
-            request.setAttribute("error_message", "正しい学籍番号とパスワードを入力してください");
-            response.sendRedirect("adminLogin");
-
+        if (adminBeans == null) { //取得に失敗した場合
+            request.setAttribute("errorMessage", "メールアドレスまたはパスワードが間違っています");
+            request.getRequestDispatcher("WEB-INF/jsp/admin/admin_login.jsp").forward(request, response);
         } else {
             //取得した場合
-            session.setAttribute("adminBeans", adminBeans);
+            session.setAttribute("adminLoginInfo", adminBeans);
             response.sendRedirect("adminTop");
         }
     }

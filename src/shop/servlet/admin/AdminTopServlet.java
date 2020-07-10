@@ -21,7 +21,7 @@ public class AdminTopServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String adminMail = ((AdminBeans) session.getAttribute("adminBeans")).getAdminMail();
+        String adminMail = ((AdminBeans) session.getAttribute("adminLoginInfo")).getAdminMail();
         List<ProductBeans> productList = productService.fetchAdminProductList(adminMail);
 
         session.removeAttribute("productBeans");
