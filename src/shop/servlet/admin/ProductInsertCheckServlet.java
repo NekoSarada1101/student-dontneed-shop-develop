@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 @WebServlet("/productInsertCheck")
-@MultipartConfig(location = "/tmp", maxFileSize = 1048576)
+@MultipartConfig(location = "/tmp")
 public class ProductInsertCheckServlet extends HttpServlet {
 
     ProductService productService = new ProductService();

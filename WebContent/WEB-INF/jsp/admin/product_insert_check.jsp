@@ -20,8 +20,9 @@
 <body>
 <%@include file="/WEB-INF/jsp/admin/admin_header.jsp" %>
 
-<div>
-    <table class="table table-striped">
+<h1 class="text-center">入力内容の確認</h1>
+<div class="row">
+    <table class="table table-striped col-6">
         <tbody>
         <tr>
             <th scope="row">商品名</th>
@@ -37,7 +38,7 @@
         </tr>
         <tr>
             <th scope="row">画像</th>
-            <td><img src="getImage" alt="商品画像"></td>
+            <td><img src="getImage" alt="商品画像" style="width: 400px"></td>
         </tr>
         <tr>
             <th scope="row">商品説明</th>
