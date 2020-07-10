@@ -31,7 +31,7 @@ public class MemberInsertCompleteServlet extends HttpServlet {
         }
 
         userService.insertMember(memberBeans);
-        session.removeAttribute("mamberBeans");
+        session.removeAttribute("memberBeans");
 
         request.getRequestDispatcher("WEB-INF/jsp/user/member_insert_complete.jsp").forward(request, response);
     }
