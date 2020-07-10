@@ -9,11 +9,67 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserDao extends DaoBase {
-    public AdminBeans fetchAdminLogin(String adminMail, String password) {
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        AdminBeans adminBeans = null;
 
+    public boolean checkMemberMailExists(String memberMail) {
+        PreparedStatement stmt = null;
+        ResultSet         rs   = null;
+
+        try {
+            this.connect();
+            stmt = con.prepareStatement("SELECT * FROM member WHERE member_mail = ?");
+            stmt.setString(1, memberMail);
+            rs = stmt.executeQuery();
+            rs.next();
+            rs.getString("member_mail");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return /* isExists = */ false;
+        } finally {
+            try {
+                this.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return /* isExists = */ true;
+    }
+
+    public boolean insertMember(MemberBeans memberBeans) {
+        PreparedStatement stmt       = null;
+        int               insertLine = 0;
+
+        try {
+            this.connect();
+            stmt = con.prepareStatement("INSERT INTO member (member_mail, member_password, member_name, postal_code, address, tell, credit_card, expiration_date, holder, security_code) VALUES (?,?,?,?,?,?,?,?,?,?)");
+            stmt.setString(1, memberBeans.getMemberMail());
+            stmt.setString(2, memberBeans.getMemberPassword());
+            stmt.setString(3, memberBeans.getMemberName());
+            stmt.setInt(4, memberBeans.getPostalCode());
+            stmt.setString(5, memberBeans.getAddress());
+            stmt.setLong(6, memberBeans.getTell());
+            stmt.setLong(7, memberBeans.getCreditCard());
+            stmt.setString(8, memberBeans.getExpirationDate());
+            stmt.setString(9, memberBeans.getHolder());
+            stmt.setInt(10, memberBeans.getSecurityCode());
+            insertLine = stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                this.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return insertLine != 0;
+    }
+
+    public AdminBeans fetchAdminLogin(String adminMail, String password) {
+        PreparedStatement stmt       = null;
+        ResultSet         rs         = null;
+        AdminBeans        adminBeans = null;
         try {
             this.connect();
             stmt = con.prepareStatement("SELECT * FROM admin WHERE admin_mail = ? AND admin_password = ?");
