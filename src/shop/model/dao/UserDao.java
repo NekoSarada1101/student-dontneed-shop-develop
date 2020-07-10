@@ -9,6 +9,32 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserDao extends DaoBase {
+
+    public boolean checkMemberMailExists(String memberMail) {
+        PreparedStatement stmt = null;
+        ResultSet         rs   = null;
+
+        try {
+            this.connect();
+            stmt = con.prepareStatement("SELECT * FROM member WHERE member_mail = ?");
+            stmt.setString(1, memberMail);
+            rs = stmt.executeQuery();
+            rs.next();
+            rs.getString("member_mail");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return /* isExists = */ false;
+        } finally {
+            try {
+                this.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return /* isExists = */ true;
+    }
+
     public AdminBeans fetchAdminLogin(String adminMail, String password) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
