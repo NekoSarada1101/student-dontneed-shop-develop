@@ -1,9 +1,8 @@
 package shop.model.bean;
 
-import java.awt.image.BufferedImage;
 import java.io.Serializable;
 
-public class ProductBeans implements Serializable{
+public class ProductBeans implements Serializable {
     private int productId = 0;
     private String productName = null;
     private int price = 0;

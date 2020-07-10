@@ -1,7 +1,5 @@
 package shop.servlet.user;
 
-import shop.model.service.UserService;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,8 +9,6 @@ import java.io.IOException;
 
 @WebServlet("/memberDetail")
 public class MemberDetailServlet extends HttpServlet {
-
-    private UserService userService = new UserService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

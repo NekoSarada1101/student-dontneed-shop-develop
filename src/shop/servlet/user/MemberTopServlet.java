@@ -1,6 +1,8 @@
+
 package shop.servlet.user;
 
 import shop.model.bean.MemberBeans;
+import shop.model.bean.ProductBeans;
 import shop.model.service.ProductService;
 
 import javax.servlet.ServletException;
@@ -11,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 @WebServlet("/memberTop")
 public class MemberTopServlet extends HttpServlet {
@@ -20,8 +21,6 @@ public class MemberTopServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Map<String, Object>> genreInfoList = productService.fetchGenreInfo();
-
         HttpSession session = request.getSession();
 
         //test//
@@ -31,7 +30,8 @@ public class MemberTopServlet extends HttpServlet {
         session.setAttribute("memberLoginInfo", memberBeans);
         //test//
 
-        //TODO fetchSearchProductListメソッドを呼び出し
+        List<ProductBeans> productList = productService.fetchSearchProductList(0, "product_id", "desc", "");
+        session.setAttribute("productList", productList);
 
         request.getRequestDispatcher("WEB-INF/jsp/user/member_top.jsp").forward(request, response);
     }
