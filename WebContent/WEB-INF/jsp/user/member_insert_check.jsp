@@ -82,7 +82,7 @@
 </table>
 
 <form action="memberInsertComplete" method="get">
-    <input type="submit" value="確認">
+    <input type="submit" value="登録">
 </form>
 
 <form action="memberInsertInput" method="post">

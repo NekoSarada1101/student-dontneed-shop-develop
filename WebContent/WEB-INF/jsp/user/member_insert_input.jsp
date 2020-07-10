@@ -67,6 +67,7 @@
     </table>
 
     <input type="submit" value="確認">
+    <input type="submit" value="登録">
 </form>
 
 <form action="memberLogin" method="get">
