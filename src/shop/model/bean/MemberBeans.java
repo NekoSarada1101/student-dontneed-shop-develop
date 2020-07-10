@@ -9,8 +9,8 @@ public class MemberBeans implements Serializable {
     private String memberName = null;
     private int postalCode = 0;
     private String address = null;
-    private int tell = 0;
-    private int creditCard = 0;
+    private long tell = 0;
+    private long creditCard = 0;
     private String expirationDate = null;
     private String holder = null;
     private int securityCode = 0;
@@ -55,19 +55,19 @@ public class MemberBeans implements Serializable {
         this.address = address;
     }
 
-    public int getTell() {
+    public long getTell() {
         return tell;
     }
 
-    public void setTell(int tell) {
+    public void setTell(long tell) {
         this.tell = tell;
     }
 
-    public int getCreditCard() {
+    public long getCreditCard() {
         return creditCard;
     }
 
-    public void setCreditCard(int creditCard) {
+    public void setCreditCard(long creditCard) {
         this.creditCard = creditCard;
     }
 

@@ -22,8 +22,8 @@ public class MemberInsertCheckServlet extends HttpServlet {
         String memberName     = request.getParameter("memberName");
         int    postalCode     = Integer.parseInt(request.getParameter("postalCode"));
         String address        = request.getParameter("address");
-        int    tell           = Integer.parseInt(request.getParameter("tell"));
-        int    creditCard     = Integer.parseInt(request.getParameter("creditCard"));
+        long    tell           = Long.parseLong(request.getParameter("tell"));
+        long    creditCard     = Long.parseLong(request.getParameter("creditCard"));
         String expirationDate = request.getParameter("expirationDate");
         String holder         = request.getParameter("holder");
         int    securityCode   = Integer.parseInt(request.getParameter("securityCode"));
