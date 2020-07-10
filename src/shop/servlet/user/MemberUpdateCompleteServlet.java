@@ -1,4 +1,4 @@
-package shop.model.servlet;
+package shop.servlet.user;
 
 import java.io.IOException;
 
@@ -13,11 +13,12 @@ import javax.servlet.http.HttpSession;
 import shop.model.bean.MemberBeans;
 import shop.model.service.UserService;
 
-@WebServlet("/MembeUpdateCompleteServlet")
+@WebServlet("/membeUpdateComplete")
 public class MemberUpdateCompleteServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		UserService userService = new UserService();
 		HttpSession session = request.getSession();
 
 		MemberBeans memberBeans = new MemberBeans();
@@ -27,8 +28,6 @@ public class MemberUpdateCompleteServlet extends HttpServlet {
 		memberLoginInfo = (MemberBeans) session.getAttribute("memberLoginInfo");
 
 		String errorMessage = "";
-
-		UserService userService = new UserService();
 
 		//ログインメールアドレスと更新メールアドレスの比較
 		if(memberBeans.getMemberMail() ==  memberLoginInfo.getMemberMail()) {
@@ -73,7 +72,7 @@ public class MemberUpdateCompleteServlet extends HttpServlet {
 					session.setAttribute(errorMessage, "errorMessage");
 
 					// member_insert_input.jsp にページ遷移
-					RequestDispatcher dispatch = request.getRequestDispatcher("member_update_input.jsp");
+					RequestDispatcher dispatch = request.getRequestDispatcher("WEB-INF/jsp/user/member_update_input.jsp");
 					dispatch.forward(request, response);
 
 
@@ -87,7 +86,7 @@ public class MemberUpdateCompleteServlet extends HttpServlet {
 						session.removeAttribute("mamberBeans");
 
 						// member_insert_complete.jsp にページ遷移
-						RequestDispatcher dispatch = request.getRequestDispatcher("member_update_complete.jsp");
+						RequestDispatcher dispatch = request.getRequestDispatcher("WEB-INF/jsp/user/member_update_complete.jsp");
 						dispatch.forward(request, response);
 
 					}else {
@@ -97,7 +96,7 @@ public class MemberUpdateCompleteServlet extends HttpServlet {
 						session.setAttribute(errorMessage, "errorMessage");
 
 						// member_insert_input.jsp にページ遷移
-						RequestDispatcher dispatch = request.getRequestDispatcher("member_update_input.jsp");
+						RequestDispatcher dispatch = request.getRequestDispatcher("WEB-INF/jsp/user/member_update_input.jsp");
 						dispatch.forward(request, response);
 
 
@@ -108,3 +107,4 @@ public class MemberUpdateCompleteServlet extends HttpServlet {
 	}
 
 }
+

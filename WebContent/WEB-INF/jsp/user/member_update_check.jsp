@@ -5,15 +5,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>会員情報更新確認</title>
 </head>
 
 <% MemberBeans memberBeans = (MemberBeans) session.getAttribute("memberBeans");%>
 
 <body>
 
-<h2>入力フォーム</h2>
-<form action="" method="post">
+<h2>会員情報更新確認</h2>
+<form action="membeUpdateComplete" method="get">
     <table border="1">
         <tr>
             <th>メールアドレス</th>
@@ -71,9 +71,11 @@
      <input type="submit" value="確認">
 
     </form>
+<form action="membeUpdateInput" method="get">
 
-      <a href="/student_dontneed_shop_dev/WebContent/WEB-INF/jsp/member/member_top.jsp">戻る</a><br>
+     <input type="submit" value="戻る">
 
+</form>
 </body>
 </html>
 

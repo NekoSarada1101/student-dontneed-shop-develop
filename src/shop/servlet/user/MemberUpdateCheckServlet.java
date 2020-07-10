@@ -1,4 +1,4 @@
-package shop.model.servlet;
+package shop.servlet.user;
 
 import java.io.IOException;
 
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import shop.model.bean.MemberBeans;
 
-@WebServlet("/MembeUpdateCheckServlet")
+@WebServlet("/memberUpdateCheck")
 public class MemberUpdateCheckServlet extends HttpServlet {
 
 
@@ -64,7 +64,7 @@ public class MemberUpdateCheckServlet extends HttpServlet {
 			session.setAttribute("memberBeans",memberBeans);
 
 			// member_insert_check.jsp にページ遷移
-					RequestDispatcher dispatch = request.getRequestDispatcher("member_insert_check.jsp");
+					RequestDispatcher dispatch = request.getRequestDispatcher("WEB-INF/jsp/user/member_insert_check.jsp");
 					dispatch.forward(request, response);
 		}
 }

@@ -4,13 +4,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>会員情報更新完了</title>
 </head>
 <body>
 
 <h3>更新完了しました</h3>
 
-<a href="/student_dontneed_shop_dev/WebContent/WEB-INF/jsp/member/member_top.jsp">トップへ</a><br>
+<form action="memberTop" method="post">
 
+     <input type="submit" value="トップへ戻る">
+
+</form>
 </body>
 </html>

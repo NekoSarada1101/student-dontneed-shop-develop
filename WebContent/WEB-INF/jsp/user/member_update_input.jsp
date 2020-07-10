@@ -14,7 +14,7 @@
 
 
 <h2>入力フォーム</h2>
-<form action="" method="post">
+<form action="memberUpdateCheck" method="post">
 
 	<p> <%=errorMessage %> </p>
 
@@ -75,8 +75,10 @@
      <input type="submit" value="確認">
 
     </form>
+<form action="memberTop" method="post">
 
-      <a href="/student_dontneed_shop_dev/WebContent/WEB-INF/jsp/member/member_top.jsp">戻る</a><br>
+     <input type="submit" value="トップへ戻る">
 
+</form>
 </body>
 </html>

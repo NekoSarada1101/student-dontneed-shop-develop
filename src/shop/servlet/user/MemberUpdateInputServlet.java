@@ -1,4 +1,4 @@
-package shop.model.servlet;
+package shop.servlet.user;
 
 import java.io.IOException;
 
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import shop.model.bean.MemberBeans;
 
-@WebServlet("/MembeUpdateInputServlet")
+@WebServlet("/membeUpdateInput")
 public class MemberUpdateInputServlet extends HttpServlet {
 
 
@@ -27,7 +27,7 @@ public class MemberUpdateInputServlet extends HttpServlet {
 
 
 		// member_update_input.jsp にページ遷移
-				RequestDispatcher dispatch = request.getRequestDispatcher("member_update_input.jsp");
+				RequestDispatcher dispatch = request.getRequestDispatcher("WEB-INF/jsp/user/member_update_input.jsp");
 				dispatch.forward(request, response);
 	}
 
