@@ -85,7 +85,7 @@
     <input type="submit" value="登録">
 </form>
 
-<form action="memberInsertInput" method="post">
+<form action="memberInsertInput" method="get">
     <input type="submit" value="戻る">
 </form>
 </body>
