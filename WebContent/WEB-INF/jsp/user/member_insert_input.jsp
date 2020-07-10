@@ -79,7 +79,10 @@
         </tr>
     </table>
 
-    <input type="submit" value="確認">
+    <%if (errorMessage != null) { %>
+    <%=errorMessage%>
+    <% } %>
+
     <input type="submit" value="登録">
 </form>
 
