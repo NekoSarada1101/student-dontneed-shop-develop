@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import shop.model.bean.MemberBeans;
 
 
-@WebServlet("/MemberInsertCheckServlet")
+@WebServlet("/MemberInsertCheck")
 public class MemberInsertCheckServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
