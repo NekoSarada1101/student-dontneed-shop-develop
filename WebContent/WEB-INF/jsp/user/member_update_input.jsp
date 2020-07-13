@@ -1,84 +1,84 @@
+<%@ page import="shop.model.bean.MemberBeans" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 
-    <% String errorMessage = (String)session.getAttribute("errorMessage"); %>
+<%
+    String errorMessage = (String) session.getAttribute("errorMessage");
+    MemberBeans memberBeans = (MemberBeans) session.getAttribute("memberBeans");
+%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>会員情報変更入力</title>
 </head>
-<% MemberBeans memberBeans = (MemberBeans)session.getAttribute("memberBeans");%>
+
 <body>
-
-
-
 <h2>入力フォーム</h2>
 <form action="memberUpdateCheck" method="post">
-
-	<p> <%=errorMessage %> </p>
-
     <table border="1">
         <tr>
             <th>メールアドレス</th>
-            <td><input type="text" value= <%=memberBeans.getMemberMail() %> name="memberMail" ></td>
-        </tr>
-
-        <tr>
-            <th>名前</th>
-            <td><input type="text" value= <%=memberBeans.getMemberName() %>name="memberName"></td>
+            <td><input type="text" value="<%=memberBeans.getMemberMail() %>" name="memberMail"></td>
         </tr>
 
         <tr>
             <th>パスワード</th>
-            <td><input type="text" value= <%=memberBeans.getMemberPassword() %>name="memberPassword"></td>
+            <td><input type="password" value="<%=memberBeans.getMemberPassword() %>" name="memberPassword"></td>
         </tr>
 
         <tr>
-            <th>住所</th>
-            <td><input type="text" value= <%=memberBeans.getAddress() %>name="address"></td>
+            <th>名前</th>
+            <td><input type="text" value="<%=memberBeans.getMemberName() %>" name="memberName"></td>
         </tr>
 
         <tr>
             <th>郵便番号</th>
-            <td><input type="text" value= <%=memberBeans.getPostalCode() %>name="postalCode"></td>
+            <td><input type="number" value="<%=memberBeans.getPostalCode() %>" name="postalCode"></td>
         </tr>
 
         <tr>
+            <th>住所</th>
+            <td><input type="text" value="<%=memberBeans.getAddress() %>" name="address"></td>
+        </tr>
+
+
+        <tr>
             <th>電話番号</th>
-            <td><input type="text" value= <%=memberBeans.getTell() %>name="tell"></td>
+            <td><input type="number" value="<%=memberBeans.getTell() %>" name="tell"></td>
         </tr>
 
         <tr>
             <th>クレジット番号</th>
-            <td><input type="text" value= <%=memberBeans.getCreditCard() %>name="creditCard"></td>
+            <td><input type="number" value="<%=memberBeans.getCreditCard() %>" name="creditCard"></td>
         </tr>
 
         <tr>
             <th>有効期限</th>
-            <td><input type="text" value= <%=memberBeans.getExpirationDate() %>name="expirationDate"></td>
+            <td><input type="date" value="<%=memberBeans.getExpirationDate() %>" name="expirationDate"></td>
+        </tr>
+
+        <tr>
+            <th>名義人名</th>
+            <td><input type="text" value="<%=memberBeans.getHolder() %>" name="holder"></td>
         </tr>
 
         <tr>
             <th>セキュリティコード</th>
-            <td><input type="text" value= <%=memberBeans.getSecurityCard() %>name="securityCard"></td>
+            <td><input type="number" value="<%=memberBeans.getSecurityCode() %>" name="securityCode"></td>
         </tr>
-
-        <tr>
-            <th>名義者名</th>
-            <td><input type="text" value= <%=memberBeans.getHolder() %>name="holder"></td>
-        </tr>
-
-
     </table>
 
-     <input type="submit" value="確認">
+    <%if (errorMessage != null) { %>
+    <%=errorMessage%>
+    <% } %>
 
-    </form>
-<form action="memberTop" method="post">
-
-     <input type="submit" value="トップへ戻る">
-
+    <input type="submit" value="変更">
 </form>
+
+<form action="memberDetail" method="get">
+    <input type="submit" value="戻る">
+</form>
+
 </body>
 </html>
