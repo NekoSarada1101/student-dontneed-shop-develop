@@ -28,6 +28,11 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/admin/product_insert_complete.jsp">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/admin/product_insert_input.jsp">
           <value>
             <PaintGroupHighlightMap />
