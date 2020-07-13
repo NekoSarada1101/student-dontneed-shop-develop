@@ -20,13 +20,13 @@ public class MemberInsertCheckServlet extends HttpServlet {
         String memberMail     = request.getParameter("memberMail");
         String memberPassword = request.getParameter("memberPassword");
         String memberName     = request.getParameter("memberName");
-        int    postalCode     = Integer.parseInt(request.getParameter("postalCode"));
+        String postalCode     = request.getParameter("postalCode");
         String address        = request.getParameter("address");
-        long    tell           = Long.parseLong(request.getParameter("tell"));
-        long    creditCard     = Long.parseLong(request.getParameter("creditCard"));
+        String tell           = request.getParameter("tell");
+        String creditCard     = request.getParameter("creditCard");
         String expirationDate = request.getParameter("expirationDate");
         String holder         = request.getParameter("holder");
-        int    securityCode   = Integer.parseInt(request.getParameter("securityCode"));
+        String securityCode   = request.getParameter("securityCode");
 
         MemberBeans memberBeans = new MemberBeans();
         memberBeans.setMemberMail(memberMail);
