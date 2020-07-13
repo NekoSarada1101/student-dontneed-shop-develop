@@ -66,7 +66,7 @@
 
         <form action="productSearchAndDisplay" method="post"
               class="form-inline form-group my-md-auto mb-1 ml-lg-3 w-100">
-            <select class="custom-select form-control col-2 col-md-1" id="genre" name="genreCode">
+            <select class="custom-select form-control bg-white col-2 col-md-1" id="genre" name="genreCode">
                 <option value="0">すべて</option>
                 <% for (Map<String, Object> genreInfoMap : genreInfoList) { %>
                 <option value="<%=genreInfoMap.get("genreCode")%>">
@@ -75,18 +75,18 @@
                 <% } %>
             </select>
 
-            <select class="custom-select form-control rounded-0 col-2 col-md-1" name="sortColumn">
+            <select class="custom-select form-control bg-white rounded-0 col-2 col-md-1" name="sortColumn">
                 <option value="product_id">登録日</option>
                 <option value="product_name">商品名</option>
                 <option value="price">価格</option>
             </select>
 
-            <select class="custom-select form-control rounded-0 col-2 col-md-1" name="sortOrder">
+            <select class="custom-select form-control bg-white rounded-0 col-2 col-md-1" name="sortOrder">
                 <option value="asc">昇順</option>
                 <option value="desc" selected>降順</option>
             </select>
 
-            <input type="text" class="form-control rounded-0 col-4 col-md-8" name="searchWord">
+            <input type="text" class="form-control bg-white rounded-0 col-4 col-md-8" name="searchWord">
 
             <button type="submit" class="btn btn-warning col-2 col-md-1" id="search"><i class="fas fa-search"></i>
             </button>

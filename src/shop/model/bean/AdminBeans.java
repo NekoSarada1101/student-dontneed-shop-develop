@@ -3,11 +3,11 @@ package shop.model.bean;
 import java.io.Serializable;
 
 public class AdminBeans implements Serializable {
-    private String adminMail = null;
+    private String adminMail     = null;
     private String adminPassword = null;
-    private String adminName = null;
-    private int postalCode = 0;
-    private String address = null;
+    private String adminName     = null;
+    private String postalCode    = null;
+    private String address       = null;
 
     public String getAdminMail() {
         return adminMail;
@@ -33,11 +33,11 @@ public class AdminBeans implements Serializable {
         this.adminName = adminName;
     }
 
-    public int getPostalCode() {
+    public String getPostalCode() {
         return postalCode;
     }
 
-    public void setPostalCode(int postalCode) {
+    public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
     }
 

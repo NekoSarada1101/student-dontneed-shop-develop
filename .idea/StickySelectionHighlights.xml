@@ -23,6 +23,16 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/admin/product_insert_check.jsp">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/admin/product_insert_input.jsp">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/user/cart_display.jsp">
           <value>
             <PaintGroupHighlightMap />
@@ -43,12 +53,32 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/user/member_insert_input.jsp">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/user/member_product_detail.jsp">
           <value>
             <PaintGroupHighlightMap />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/user/member_top.jsp">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/user/member_update_check.jsp">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/user/member_update_complete.jsp">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/user/member_update_input.jsp">
           <value>
             <PaintGroupHighlightMap />
           </value>
@@ -68,6 +98,16 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/WebContent/css/admin_login.css">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/WebContent/css/common.css">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/shop/model/bean/AdminBeans.java">
           <value>
             <PaintGroupHighlightMap />
@@ -78,17 +118,17 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/shop/model/bean/ProductBeans.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/shop/model/dao/ProductDao.java">
           <value>
             <PaintGroupHighlightMap />
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/WebContent/css/admin_login.css">
-          <value>
-            <PaintGroupHighlightMap />
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/WebContent/css/common.css">
+        <entry key="$PROJECT_DIR$/src/shop/model/dao/PurchaseDao.java">
           <value>
             <PaintGroupHighlightMap />
           </value>
@@ -143,6 +183,11 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/shop/servlet/admin/ProductUpdateCheckServlet.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/shop/servlet/admin/ProductUpdateInputServlet.java">
           <value>
             <PaintGroupHighlightMap />
@@ -173,12 +218,32 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/shop/servlet/user/MemberInsertCheckServlet.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/shop/servlet/user/MemberProductDetailServlet.java">
           <value>
             <PaintGroupHighlightMap />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/shop/servlet/user/MemberTopServlet.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/shop/servlet/user/MemberUpdateCheckServlet.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/shop/servlet/user/MemberUpdateCompleteServlet.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/shop/servlet/user/MemberUpdateInputServlet.java">
           <value>
             <PaintGroupHighlightMap />
           </value>
