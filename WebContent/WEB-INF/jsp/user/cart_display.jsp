@@ -18,7 +18,7 @@
 <body>
 <%@include file="/WEB-INF/jsp/user/member_header.jsp" %>
 
-<div class="p-1  p-md-3 p-lg-5">
+<div class="p-1 p-md-3 p-lg-5">
 
     <div class="row">
         <form action="memberTop" method="get" class="col-6 mx-auto mb-3 row">

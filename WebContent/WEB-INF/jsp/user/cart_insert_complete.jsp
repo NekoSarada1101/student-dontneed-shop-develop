@@ -11,7 +11,6 @@
     <meta charset="UTF-8">
     <title>カート追加完了</title>
     <%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
-    <link rel="stylesheet" href="css/common.css">
 </head>
 
 <body>

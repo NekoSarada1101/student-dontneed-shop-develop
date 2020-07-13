@@ -14,7 +14,6 @@
     <meta charset="UTF-8">
     <title>商品検索結果</title>
     <%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
-    <link rel="stylesheet" href="css/common.css">
 </head>
 
 <body>
