@@ -18,10 +18,10 @@ public class UserService extends CommonService {
 
 		UserDao userDao = new UserDao();
 
-		boolean couldupdate = userDao.updateMember(membeerBeans);
-
+    public boolean updateMember(MemberBeans memberBeans) {
+        return userDao.updateMember(memberBeans);
 		return couldupdate;
-	}
+    }
 >>>>>>> create:会員情報変更機能 #9
 
     public boolean insertMember(MemberBeans membeerBeans) {

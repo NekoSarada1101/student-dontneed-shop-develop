@@ -65,17 +65,25 @@ public class UserDao extends DaoBase {
         return insertLine != 0;
     }
 
-    public AdminBeans fetchAdminLogin(String adminMail, String password) {
+    public boolean updateMember(MemberBeans memberBeans) {
         PreparedStatement stmt       = null;
-        ResultSet         rs         = null;
-        AdminBeans        adminBeans = null;
+        int               updateLine = 0;
+
         try {
             this.connect();
-            stmt = con.prepareStatement("SELECT * FROM admin WHERE admin_mail = ? AND admin_password = ?");
-            stmt.setString(1, adminMail);
-            stmt.setString(2, password);
-            rs = stmt.executeQuery();
-            rs.next();
+            stmt = con.prepareStatement("UPDATE member SET member_mail = ?, member_password = ?, member_name = ?, postal_code = ?, address = ?, tell = ?, credit_card = ?, expiration_date = ?, holder = ?, security_code = ? WHERE member_mail = ?");
+            stmt.setString(1, memberBeans.getMemberMail());
+            stmt.setString(2, memberBeans.getMemberPassword());
+            stmt.setString(3, memberBeans.getMemberName());
+            stmt.setString(4, memberBeans.getPostalCode());
+            stmt.setString(5, memberBeans.getAddress());
+            stmt.setString(6, memberBeans.getTell());
+            stmt.setString(7, memberBeans.getCreditCard());
+            stmt.setString(8, memberBeans.getExpirationDate());
+            stmt.setString(9, memberBeans.getHolder());
+            stmt.setString(10, memberBeans.getSecurityCode());
+            stmt.setString(11, memberBeans.getMemberMail());
+            updateLine = stmt.executeUpdate();
 
             adminBeans = new AdminBeans();
             adminBeans.setAdminMail(rs.getString("admin_mail"));
@@ -94,7 +102,7 @@ public class UserDao extends DaoBase {
                 e.printStackTrace();
             }
         }
-        return adminBeans;
+        return updateLine != 0;
     }
 
     public boolean deleteMember(MemberBeans memberBeans) {
