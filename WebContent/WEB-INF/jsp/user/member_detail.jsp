@@ -1,5 +1,4 @@
 <%@ page import="shop.model.bean.MemberBeans" %>
-<%@ page import="java.util.Map" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     MemberBeans memberBeans = (MemberBeans) session.getAttribute("memberLoginInfo");
@@ -75,7 +74,7 @@
             </li>
         </ul>
 
-        <form action="memberUpdateInput" method="post" class="col-6 text-center">
+        <form action="memberUpdateInput" method="get" class="col-6 text-center">
             <button type="submit" class="btn btn-info btn-lg">変更</button>
 
         </form>

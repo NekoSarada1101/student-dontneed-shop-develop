@@ -1,4 +1,3 @@
-
 package shop.model.service;
 
 import shop.model.bean.AdminBeans;
@@ -13,15 +12,19 @@ public class UserService extends CommonService {
         return userDao.checkMemberMailExists(memberMail);
     }
 
-    public boolean insertMember(MemberBeans membeerBeans) {
-        return userDao.insertMember(membeerBeans);
+    public boolean insertMember(MemberBeans memberBeans) {
+        return userDao.insertMember(memberBeans);
     }
 
-    public AdminBeans fetchAdminLogin(String adminMail, String adminPassword) {
-        return userDao.fetchAdminLogin(adminMail, adminPassword);
+    public boolean updateMember(MemberBeans memberBeans) {
+        return userDao.updateMember(memberBeans);
     }
 
     public boolean deleteMember(MemberBeans memberBeans) {
         return userDao.deleteMember(memberBeans);
+    }
+
+    public AdminBeans fetchAdminLogin(String adminMail, String adminPassword) {
+        return userDao.fetchAdminLogin(adminMail, adminPassword);
     }
 }

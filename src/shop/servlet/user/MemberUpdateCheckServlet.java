@@ -10,9 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-
-@WebServlet("/memberInsertCheck")
-public class MemberInsertCheckServlet extends HttpServlet {
+@WebServlet("/memberUpdateCheck")
+public class MemberUpdateCheckServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -28,7 +27,7 @@ public class MemberInsertCheckServlet extends HttpServlet {
         String holder         = request.getParameter("holder");
         String securityCode   = request.getParameter("securityCode");
 
-        MemberBeans memberBeans = new MemberBeans();
+        MemberBeans memberBeans = (MemberBeans) session.getAttribute("memberBeans");
         memberBeans.setMemberMail(memberMail);
         memberBeans.setMemberPassword(memberPassword);
         memberBeans.setMemberName(memberName);
@@ -42,6 +41,6 @@ public class MemberInsertCheckServlet extends HttpServlet {
 
         session.setAttribute("memberBeans", memberBeans);
 
-        request.getRequestDispatcher("WEB-INF/jsp/user/member_insert_check.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/jsp/user/member_update_check.jsp").forward(request, response);
     }
 }

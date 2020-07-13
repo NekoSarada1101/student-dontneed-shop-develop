@@ -4,16 +4,16 @@ import java.io.Serializable;
 
 public class MemberBeans implements Serializable {
 
-    private String memberMail = null;
+    private String memberMail     = null;
     private String memberPassword = null;
-    private String memberName = null;
-    private int postalCode = 0;
-    private String address = null;
-    private long tell = 0;
-    private long creditCard = 0;
+    private String memberName     = null;
+    private String postalCode     = null;
+    private String address        = null;
+    private String tell           = null;
+    private String creditCard     = null;
     private String expirationDate = null;
-    private String holder = null;
-    private int securityCode = 0;
+    private String holder         = null;
+    private String securityCode   = null;
 
     public String getMemberMail() {
         return memberMail;
@@ -39,11 +39,11 @@ public class MemberBeans implements Serializable {
         this.memberName = memberName;
     }
 
-    public int getPostalCode() {
+    public String getPostalCode() {
         return postalCode;
     }
 
-    public void setPostalCode(int postalCode) {
+    public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
     }
 
@@ -55,19 +55,19 @@ public class MemberBeans implements Serializable {
         this.address = address;
     }
 
-    public long getTell() {
+    public String getTell() {
         return tell;
     }
 
-    public void setTell(long tell) {
+    public void setTell(String tell) {
         this.tell = tell;
     }
 
-    public long getCreditCard() {
+    public String getCreditCard() {
         return creditCard;
     }
 
-    public void setCreditCard(long creditCard) {
+    public void setCreditCard(String creditCard) {
         this.creditCard = creditCard;
     }
 
@@ -87,11 +87,11 @@ public class MemberBeans implements Serializable {
         this.holder = holder;
     }
 
-    public int getSecurityCode() {
+    public String getSecurityCode() {
         return securityCode;
     }
 
-    public void setSecurityCode(int securityCode) {
+    public void setSecurityCode(String securityCode) {
         this.securityCode = securityCode;
     }
 }
