@@ -33,6 +33,11 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/bootstrap.jsp">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/user/cart_display.jsp">
           <value>
             <PaintGroupHighlightMap />
