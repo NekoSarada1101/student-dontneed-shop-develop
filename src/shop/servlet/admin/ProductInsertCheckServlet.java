@@ -1,6 +1,7 @@
 
 package shop.servlet.admin;
 
+import shop.model.bean.AdminBeans;
 import shop.model.bean.ProductBeans;
 import shop.model.service.ProductService;
 
@@ -19,12 +20,12 @@ public class ProductInsertCheckServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String productName = request.getParameter("productName");
-        int price = Integer.parseInt(request.getParameter("price"));
-        Part filePart = request.getPart("image");
-        InputStream inputStream = filePart.getInputStream();
-        String productExplanation = request.getParameter("productExplanation");
-        int genreCode = Integer.parseInt(request.getParameter("genre"));
+        String      productName        = request.getParameter("productName");
+        int         price              = Integer.parseInt(request.getParameter("price"));
+        Part        filePart           = request.getPart("image");
+        InputStream inputStream        = filePart.getInputStream();
+        String      productExplanation = request.getParameter("productExplanation");
+        int         genreCode          = Integer.parseInt(request.getParameter("genre"));
 
         ProductBeans productBeans = new ProductBeans();
         productBeans.setProductName(productName);
@@ -34,8 +35,7 @@ public class ProductInsertCheckServlet extends HttpServlet {
         productBeans.setGenreCode(genreCode);
 
         HttpSession session = request.getSession();
-        //        productBeans.setAdminMail(((AdminLoginInfo) session.getAttribute("adminLoginInfo")).getAdminMail());
-        productBeans.setAdminMail("ryouta@gmail.com");
+        productBeans.setAdminMail(((AdminBeans) session.getAttribute("adminLoginInfo")).getAdminMail());
 
         session.setAttribute("productBeans", productBeans);
 
