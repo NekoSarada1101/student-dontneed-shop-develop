@@ -29,7 +29,7 @@ public class PurchaseCheckServlet extends HttpServlet {
 
         String errorMessage = "";
 
-        if (purchaseMap.get("deleteList") != null) {
+        if (purchaseMap.get("deleteList").size() != 0) {
             List<ProductBeans> deleteList = purchaseMap.get("deleteList");
             for (ProductBeans productBeans : deleteList) {
                 purchaseService.deleteCart(memberMail, productBeans.getProductId());
