@@ -1,7 +1,6 @@
 
 package shop.servlet.user;
 
-import shop.model.bean.MemberBeans;
 import shop.model.bean.ProductBeans;
 import shop.model.service.ProductService;
 
@@ -22,22 +21,6 @@ public class MemberTopServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-
-        //test//
-        MemberBeans memberBeans = new MemberBeans();
-        memberBeans.setMemberName("原田遼汰");
-        memberBeans.setMemberMail("ryouta@gmail.com");
-        memberBeans.setMemberPassword("ryouta");
-        memberBeans.setPostalCode("0987654");
-        memberBeans.setAddress("aiueo");
-        memberBeans.setTell("09812345678");
-        memberBeans.setCreditCard("1234567812345678");
-        memberBeans.setExpirationDate("2020-01-01");
-        memberBeans.setHolder("HARADA RYOUTA");
-        memberBeans.setSecurityCode("012");
-        session.setAttribute("memberLoginInfo", memberBeans);
-        //test//
-
         List<ProductBeans> productList = productService.fetchSearchProductList(0, "product_id", "desc", "");
         session.setAttribute("productList", productList);
 
