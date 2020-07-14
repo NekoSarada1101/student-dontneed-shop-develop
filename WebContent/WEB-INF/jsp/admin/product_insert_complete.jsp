@@ -16,6 +16,8 @@
     <button type="submit" class="btn btn-primary btn-block mx-auto col-6 col-lg-4">トップへ戻る</button>
 </form>
 
+<%@include file="/WEB-INF/jsp/admin/admin_footer.jsp" %>
+
 <%@include file="/WEB-INF/jsp/script.jsp" %>
 </body>
 </html>
