@@ -9,6 +9,44 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserDao extends DaoBase {
+    public MemberBeans fetchMemberLogin(String memberMail, String password) {
+        PreparedStatement stmt        = null;
+        ResultSet         rs          = null;
+        MemberBeans       memberBeans = null;
+
+        try {
+            this.connect();
+            stmt = con.prepareStatement("SELECT * FROM member WHERE member_mail = ? AND member_password = ?");
+            stmt.setString(1, memberMail);
+            stmt.setString(2, password);
+            rs = stmt.executeQuery();
+            rs.next();
+
+            memberBeans = new MemberBeans();
+            memberBeans.setMemberMail(rs.getString("member_mail"));
+            memberBeans.setMemberPassword(rs.getString("member_password"));
+            memberBeans.setMemberName(rs.getString("member_name"));
+            memberBeans.setPostalCode(rs.getString("postal_code"));
+            memberBeans.setAddress(rs.getString("address"));
+            memberBeans.setTell(rs.getString("tell"));
+            memberBeans.setCreditCard(rs.getString("credit_card"));
+            memberBeans.setExpirationDate(rs.getString("expiration_date"));
+            memberBeans.setHolder(rs.getString("holder"));
+            memberBeans.setSecurityCode(rs.getString("security_code"));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            try {
+                this.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return memberBeans;
+    }
+
     public boolean checkMemberMailExists(String memberMail) {
         PreparedStatement stmt = null;
         ResultSet         rs   = null;
@@ -119,6 +157,7 @@ public class UserDao extends DaoBase {
         return deleteLine != 0;
     }
 
+
     public AdminBeans fetchAdminLogin(String adminMail, String password) {
         PreparedStatement stmt       = null;
         ResultSet         rs         = null;
@@ -151,3 +190,4 @@ public class UserDao extends DaoBase {
         return adminBeans;
     }
 }
+

@@ -8,6 +8,10 @@ public class UserService extends CommonService {
 
     private UserDao userDao = new UserDao();
 
+    public MemberBeans fetchMemberLogin(String memberMail, String memberPassword) {
+        return userDao.fetchMemberLogin(memberMail, memberPassword);
+    }
+
     public boolean checkMemberMailExists(String memberMail) {
         return userDao.checkMemberMailExists(memberMail);
     }
