@@ -25,7 +25,7 @@ public class CartDisplayServlet extends HttpServlet {
 
         List<ProductBeans> cartList = purchaseService.fetchCartList(memberMail);
 
-        session.setAttribute("cartList", cartList);
+        session.setAttribute("productList", cartList);
         request.getRequestDispatcher("WEB-INF/jsp/user/cart_display.jsp").forward(request, response);
     }
 }
