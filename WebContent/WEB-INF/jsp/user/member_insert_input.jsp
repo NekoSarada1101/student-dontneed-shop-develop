@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="shop.model.bean.MemberBeans" %>
 <%
@@ -92,3 +93,106 @@
 
 </body>
 </html>
+=======
+<%@ page language="java" contentType="text/html; charset=UTF-8"pageEncoding="UTF-8"%>
+
+<%
+
+%>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>会員情報登録入力</title>
+<%@include file="/WEB-INF/jsp/bootstrap.jsp"%>
+</head>
+
+<body>
+<%@include file="/WEB-INF/jsp/user/member_header.jsp" %>
+
+<h1 class="mt-3 text-center">会員情報登録入力</h1>
+<div class="row  mt-3">
+    <div class="col-12 col-sm-8 col-md-6 col-lg-4 row mx-auto">
+        <form action="productInsertCheck" method="post" class="row mx-auto" id="form" enctype=multipart/form-data>
+            <div class="form-group col-12">
+                <label for="productName"><strong>メールアドレス</strong></label>
+                <input type="text" value="<%=productBeans.getProductName()%>" class="form-control" id="productName"
+                       name="productName" maxlength="30" required>
+            </div>
+            <div class="form-group col-6">
+                <label for="price"><strong>氏名</strong></label>
+                <input type="number" value="<%=productBeans.getPrice()%>" class="form-control" id="price" name="price"
+                       maxlength="16" required>
+            </div>
+            <div class="form-group col-12">
+                <label for="image"><strong>パスワード</strong></label>
+                <input type="file" class="form-control" id="image" name="image" onchange="previewImage(this);"
+                       accept="image/*" required>
+                <div>
+                    Preview:<br>
+                    <img class="position-static" id="preview" src="getImage" style="max-width:400px;">
+                </div>
+            </div>
+            <div class="form-group col-12">
+                <label for="productExplanation"><strong>クレジットカード</strong></label>
+                <textarea class="form-control" id="productExplanation"
+                          name="productExplanation" rows="10"
+                          cols="40" maxlength="400" required><%=productBeans.getProductExplanation()%></textarea>
+            </div>
+            <div class="form-group col-6">
+                <labal for="genre"><strong>住所</strong></labal>
+                <select class="custom-select form-control" id="genre" name="genre">
+                    <% for (Map<String, Object> genreInfoMap : genreInfoList) { %>
+                    <option value="<%=genreInfoMap.get("genreCode")%>">
+                        <%=genreInfoMap.get("genreName")%>
+                    </option>
+                    <% } %>
+                </select>
+            </div>
+             <div class="form-group col-6">
+                <label for="price"><strong>郵便番号</strong></label>
+                <input type="number" value="<%=productBeans.getPrice()%>" class="form-control" id="price" name="price"
+                       maxlength="16" required>
+            </div>
+             <div class="form-group col-6">
+                <label for="price"><strong>電話番号</strong></label>
+                <input type="number" value="<%=productBeans.getPrice()%>" class="form-control" id="price" name="price"
+                       maxlength="16" required>
+            </div>
+             <div class="form-group col-6">
+                <label for="price"><strong>有効期限</strong></label>
+                <input type="number" value="<%=productBeans.getPrice()%>" class="form-control" id="price" name="price"
+                       maxlength="16" required>
+            </div>
+             <div class="form-group col-6">
+                <label for="price"><strong>セキュリティコード</strong></label>
+                <input type="number" value="<%=productBeans.getPrice()%>" class="form-control" id="price" name="price"
+                       maxlength="16" required>
+            </div>
+             <div class="form-group col-6">
+                <label for="price"><strong>名義人</strong></label>
+                <input type="number" value="<%=productBeans.getPrice()%>" class="form-control" id="price" name="price"
+                       maxlength="16" required>
+            </div>
+        </form>
+
+        <form action="adminTop" method="get" class="col-6">
+            <button type="submit" class="btn btn-outline-dark btn-block">戻る</button>
+        </form>
+
+        <div class="px-3 col-6">
+            <button type="submit" class="btn btn-primary btn-block" form="form">登録</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</body>
+</html>
+>>>>>>> Stashed changes
