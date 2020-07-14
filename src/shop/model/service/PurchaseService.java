@@ -2,6 +2,7 @@
 package shop.model.service;
 
 import shop.model.bean.ProductBeans;
+import shop.model.bean.PurchaseDetailBeans;
 import shop.model.dao.PurchaseDao;
 
 import java.util.List;
@@ -25,6 +26,10 @@ public class PurchaseService extends CommonService {
 
     public Map<String, List<ProductBeans>> checkExistsStock(String memberMail) {
         return purchaseDao.checkExistsStock(memberMail);
+    }
+
+    public boolean insertPurchaseDetail(List<PurchaseDetailBeans> purchaseDetailList){
+        return purchaseDao.insertPurchaseDetail(purchaseDetailList);
     }
 
     public List<Map<String, Object>> fetchPurchaseHistory(String memberMail) {

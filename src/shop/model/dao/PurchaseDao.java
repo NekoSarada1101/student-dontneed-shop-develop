@@ -156,6 +156,48 @@ public class PurchaseDao extends DaoBase {
         return purchaseMap;
     }
 
+    //購入明細登録
+    public boolean insertPurchaseDetail(List<PurchaseDetailBeans> purchaseDetailBeansList) {
+        PreparedStatement stmt       = null;
+        int               insertLine = 0;
+
+        try {
+            this.connect();
+
+            //SQL文生成
+            String sql = "INSERT INTO purchase_details (member_mail, product_id, purchase_date) VALUES ";
+            for (int i = 0; i < purchaseDetailBeansList.size(); i++) {
+                sql += "(?, ?, ?),";
+                //末尾の , を削除
+                if (i == purchaseDetailBeansList.size() - 1) {
+                    sql = sql.substring(0, sql.lastIndexOf(","));
+                }
+            }
+            System.out.println(sql);
+            stmt = con.prepareStatement(sql);
+            for (PurchaseDetailBeans purchaseDetailBeans : purchaseDetailBeansList) {
+                int parameterIndex = 1;
+                stmt.setString(parameterIndex, purchaseDetailBeans.getMemberMail());
+                stmt.setInt(parameterIndex + 1, purchaseDetailBeans.getProductId());
+                stmt.setString(parameterIndex + 2, purchaseDetailBeans.getPurchaseDate());
+                parameterIndex += 3;
+            }
+            insertLine = stmt.executeUpdate();
+            System.out.println(insertLine);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            try {
+                this.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return insertLine != 0;
+    }
+
     //購入履歴取得
     public List<Map<String, Object>> fetchPurchaseHistory(String memberMail) {
         PreparedStatement stmt = null;
