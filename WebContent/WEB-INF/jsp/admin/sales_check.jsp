@@ -9,7 +9,7 @@
     PurchaseService purchaseService = new PurchaseService();
     ProductService productService = new ProductService();
 
-    List<Map<String, Object>> salesList = purchaseService.fetchSalesInfo(/*((AdminBeans) session.getAttribute("adminBeans")).getAdminMail()*/ "ryouta@gmail.com");
+    List<Map<String, Object>> salesList = purchaseService.fetchSalesInfo(((AdminBeans) session.getAttribute("adminLoginInfo")).getAdminMail());
     List<Map<String, Object>> genreInfoList = productService.fetchGenreInfo();
 %>
 <!DOCTYPE html>
