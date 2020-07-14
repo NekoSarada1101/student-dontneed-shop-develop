@@ -18,17 +18,18 @@ import shop.model.service.PurchaseService;
 @WebServlet("/cartDelete")
 public class CartDeleteServle extends HttpServlet {
 
-    PurchaseService purchaseService = new PurchaseService();
-    ProductBeans productBeans = new ProductBeans();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	List<ProductBeans> cartList = new ArrayList<ProductBeans>();
     	HttpSession session = request.getSession();
     	cartList = (List<ProductBeans>)session.getAttribute("cartList");
+    	PurchaseService purchaseService = new PurchaseService();
+
+
     	String memberMail = ((MemberBeans) session.getAttribute("memberLoginInfo")).getMemberMail();
     	int index = Integer.parseInt( request.getParameter("index"));
-    	productBeans = cartList.get(index);
+    	ProductBeans productBeans = cartList.get(index);
     	int productId = productBeans.getProductId();
     	boolean couldDelete = purchaseService.deleteCart(memberMail, productId);
     	request.setAttribute("couldDelete", couldDelete);
