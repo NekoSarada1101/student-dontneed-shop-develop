@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class AdminDetailsServlet
  */
-@WebServlet("/AdminDetailServlet")
+@WebServlet("/adminDetail")
 public class AdminDetailServlet extends HttpServlet {
 
 	@Override
