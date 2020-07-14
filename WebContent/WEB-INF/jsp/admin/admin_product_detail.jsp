@@ -22,7 +22,7 @@
 
 <div class="container-fluid">
     <div class="mt-5 px-5 row">
-        <div class="card col-12 col-sm-8 col-md-6 col-lg-3 p-0 mx-auto" id="card">
+        <div class="card col-12 col-sm-8 col-md-6 col-lg-4 p-0 mx-auto" id="card">
             <div class="card-header square-image" id="square-image">
                 <img src="getImage" alt="...">
             </div>
