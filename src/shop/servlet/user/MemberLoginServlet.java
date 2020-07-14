@@ -1,70 +1,43 @@
+
 package shop.servlet.user;
 
-import java.io.IOException;
+import shop.model.bean.MemberBeans;
+import shop.model.service.UserService;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
-import shop.model.bean.MemberBeans;
-import shop.model.service.UserService;
-
-/**
- * Servlet implementation class MemberLoginServlet
- */
-@WebServlet("/MemberLogin")
-
+@WebServlet("/memberLogin")
 public class MemberLoginServlet extends HttpServlet {
- private static final long serialVersionUID = 1L;
 
- /**
-  * @see HttpServlet#HttpServlet()
-  */
- public MemberLoginServlet() {
-     super();
-     // TODO Auto-generated constructor stub
- }
+    private UserService userService = new UserService();
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	@Override
-protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/user/member_login.jsp");
-		dispatcher .forward(request, response);
-	}
-/**
- * @see HttpServlet#doPost(HttpServletRequest request,HttpServletResponse response
- */
-	@Override
-protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("WEB-INF/jsp/user/member_login.jsp").forward(request, response);
+    }
 
- UserService userService = new UserService();
- MemberBeans memberBeans = new MemberBeans();
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String memberMail     = request.getParameter("memberMail");
+        String memberPassword = request.getParameter("memberPassword");
 
- String memberMail = request.getParameter("memberMail");
- String memberPassword = request.getParameter("memberPassword");
- memberBeans = userService.fetchMemberLogin(memberMail, memberPassword);
+        MemberBeans memberBeans = userService.fetchMemberLogin(memberMail, memberPassword);
 
- String path ="";
- HttpSession session = request.getSession();
-
- if(memberBeans == null) {
-	 String errorMessage = "ログインに失敗しました";
-		session.setAttribute("errorMessage", errorMessage);
-		path = "WEB-INF/jsp/user/member_login.jsp";
-	}else {
-		session.setAttribute("logininfo", memberBeans);
-		path = "WEB-INF/jsp/user/member_top.jsp";
-	}
-
-		request.getRequestDispatcher(path).forward(request,response);
-}
-
+        //遷移先
+        HttpSession session = request.getSession();
+        if (memberBeans == null) { //取得に失敗した場合
+            request.setAttribute("errorMessage", "メールアドレスまたはパスワードが間違っています");
+            request.getRequestDispatcher("WEB-INF/jsp/user/member_login.jsp").forward(request, response);
+        } else {
+            //取得した場合
+            session.setAttribute("memberLoginInfo", memberBeans);
+            response.sendRedirect("memberTop");
+        }
+    }
 }
