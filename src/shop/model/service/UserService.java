@@ -12,7 +12,6 @@ public class UserService extends CommonService {
         return userDao.fetchMemberLogin(memberMail, memberPassword);
     }
 
-
     public boolean checkMemberMailExists(String memberMail) {
         return userDao.checkMemberMailExists(memberMail);
     }
