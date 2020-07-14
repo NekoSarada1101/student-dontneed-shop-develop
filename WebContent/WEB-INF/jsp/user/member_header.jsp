@@ -15,7 +15,6 @@
 <head>
     <meta charset="UTF-8">
     <title>会員ヘッダー</title>
-    <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/member_header.css">
 </head>
 

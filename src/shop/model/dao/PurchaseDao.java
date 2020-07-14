@@ -2,6 +2,7 @@
 package shop.model.dao;
 
 import shop.model.bean.ProductBeans;
+import shop.model.bean.PurchaseDetailBeans;
 import shop.model.service.ProductService;
 
 import java.io.IOException;
@@ -17,8 +18,8 @@ public class PurchaseDao extends DaoBase {
 
     //カート一覧取得
     public List<ProductBeans> fetchCartList(String memberMail) {
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
+        PreparedStatement  stmt     = null;
+        ResultSet          rs       = null;
         List<ProductBeans> cartList = null;
 
         try {
@@ -57,8 +58,8 @@ public class PurchaseDao extends DaoBase {
 
     //カート登録
     public boolean insertCart(String memberMail, int productId) {
-        PreparedStatement stmt = null;
-        int insertLine = 0;
+        PreparedStatement stmt       = null;
+        int               insertLine = 0;
 
         try {
             this.connect();
@@ -82,9 +83,8 @@ public class PurchaseDao extends DaoBase {
 
     //カート削除
     public boolean deleteCart(String memberMail, int productId) {
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        int deleteLine = 0;
+        PreparedStatement stmt       = null;
+        int               deleteLine = 0;
 
         try {
             this.connect();
@@ -107,11 +107,11 @@ public class PurchaseDao extends DaoBase {
 
     //カートに登録されている商品が購入済みかを確認
     public Map<String, List<ProductBeans>> checkExistsStock(String memberMail) {
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        List<ProductBeans> purchaseList = null;
-        List<ProductBeans> deleteList = null;
-        Map<String, List<ProductBeans>> purchaseMap = null;
+        PreparedStatement               stmt         = null;
+        ResultSet                       rs           = null;
+        List<ProductBeans>              purchaseList = null;
+        List<ProductBeans>              deleteList   = null;
+        Map<String, List<ProductBeans>> purchaseMap  = null;
 
         try {
             this.connect();
@@ -156,10 +156,52 @@ public class PurchaseDao extends DaoBase {
         return purchaseMap;
     }
 
+    //購入明細登録
+    public boolean insertPurchaseDetail(List<PurchaseDetailBeans> purchaseDetailBeansList) {
+        PreparedStatement stmt       = null;
+        int               insertLine = 0;
+
+        try {
+            this.connect();
+
+            //SQL文生成
+            String sql = "INSERT INTO purchase_details (member_mail, product_id, purchase_date) VALUES ";
+            for (int i = 0; i < purchaseDetailBeansList.size(); i++) {
+                sql += "(?, ?, ?),";
+                //末尾の , を削除
+                if (i == purchaseDetailBeansList.size() - 1) {
+                    sql = sql.substring(0, sql.lastIndexOf(","));
+                }
+            }
+            System.out.println(sql);
+            stmt = con.prepareStatement(sql);
+            for (PurchaseDetailBeans purchaseDetailBeans : purchaseDetailBeansList) {
+                int parameterIndex = 1;
+                stmt.setString(parameterIndex, purchaseDetailBeans.getMemberMail());
+                stmt.setInt(parameterIndex + 1, purchaseDetailBeans.getProductId());
+                stmt.setString(parameterIndex + 2, purchaseDetailBeans.getPurchaseDate());
+                parameterIndex += 3;
+            }
+            insertLine = stmt.executeUpdate();
+            System.out.println(insertLine);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            try {
+                this.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return insertLine != 0;
+    }
+
     //購入履歴取得
     public List<Map<String, Object>> fetchPurchaseHistory(String memberMail) {
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
+        PreparedStatement         stmt         = null;
+        ResultSet                 rs           = null;
         List<Map<String, Object>> purchaseList = null;
 
         try {
@@ -172,8 +214,8 @@ public class PurchaseDao extends DaoBase {
             purchaseList = new ArrayList<>();
 
             while (rs.next()) {
-                Map<String, Object> purchaseMap = new HashMap<>();
-                ProductBeans productBeans = new ProductBeans();
+                Map<String, Object> purchaseMap  = new HashMap<>();
+                ProductBeans        productBeans = new ProductBeans();
                 productBeans.setProductId(rs.getInt("product_id"));
                 productBeans.setProductName(rs.getString("product_name"));
                 productBeans.setPrice(rs.getInt("price"));
@@ -196,8 +238,8 @@ public class PurchaseDao extends DaoBase {
 
     //売上情報取得
     public List<Map<String, Object>> fetchSalesInfo(String adminMail) {
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
+        PreparedStatement         stmt      = null;
+        ResultSet                 rs        = null;
         List<Map<String, Object>> salesList = null;
 
         try {
@@ -210,8 +252,8 @@ public class PurchaseDao extends DaoBase {
             salesList = new ArrayList<>();
 
             while (rs.next()) {
-                Map<String, Object> salesMap = new HashMap<>();
-                ProductBeans productBeans = new ProductBeans();
+                Map<String, Object> salesMap     = new HashMap<>();
+                ProductBeans        productBeans = new ProductBeans();
                 productBeans.setProductId(rs.getInt("product_id"));
                 productBeans.setProductName(rs.getString("product_name"));
                 productBeans.setPrice(rs.getInt("price"));

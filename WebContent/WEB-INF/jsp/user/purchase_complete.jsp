@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>購入確認</title>
+    <title>購入完了</title>
     <%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
 </head>
 
@@ -17,18 +17,11 @@
 
 <div>
     <div class="row mt-5">
-        <form action="cartDisplay" method="get" class="col-6">
-            <button type="submit" class="btn btn-outline-dark btn-block btn-lg ml-auto col-12 col-md-8">戻る</button>
+        <form action="memberTop" method="get" class="col-6">
+            <button type="submit" class="btn btn-outline-dark btn-block btn-lg ml-auto col-12 col-md-8">トップへ戻る</button>
         </form>
 
-        <form action="purchaseComplete" method="post" class="col-6">
-            <button type="submit" class="btn btn-primary btn-block btn-lg mr-auto col-12 col-md-8">購入</button>
-        </form>
     </div>
-
-    <p class="text-danger">
-        <%=request.getAttribute("errorMessage")%>
-    </p>
 
     <%
         int i = 0;

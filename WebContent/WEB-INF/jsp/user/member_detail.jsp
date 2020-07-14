@@ -9,7 +9,6 @@
     <meta charset="UTF-8">
     <title>会員情報</title>
     <%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
-    <link rel="stylesheet" href="css/common.css">
 </head>
 
 <body>

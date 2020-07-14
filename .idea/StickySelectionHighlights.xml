@@ -28,7 +28,22 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/admin/product_insert_complete.jsp">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/admin/product_insert_input.jsp">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/admin/sales_check.jsp">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/bootstrap.jsp">
           <value>
             <PaintGroupHighlightMap />
           </value>
@@ -88,6 +103,11 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/user/purchase_complete.jsp">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/user/purchase_history.jsp">
           <value>
             <PaintGroupHighlightMap />
@@ -119,6 +139,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/shop/model/bean/ProductBeans.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/shop/model/bean/PurchaseDetailBeans.java">
           <value>
             <PaintGroupHighlightMap />
           </value>
@@ -254,6 +279,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/shop/servlet/user/PurchaseCheckServlet.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/shop/servlet/user/PurchaseCompleteServlet.java">
           <value>
             <PaintGroupHighlightMap />
           </value>

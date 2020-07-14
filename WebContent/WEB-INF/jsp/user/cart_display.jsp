@@ -5,7 +5,7 @@
 <%@ page import="shop.model.service.PurchaseService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
-    List<ProductBeans> cartList = (List<ProductBeans>) session.getAttribute("cartList");
+    List<ProductBeans> cartList = (List<ProductBeans>) session.getAttribute("productList");
 %>
 <!DOCTYPE html>
 <html>
@@ -18,7 +18,7 @@
 <body>
 <%@include file="/WEB-INF/jsp/user/member_header.jsp" %>
 
-<div class="p-1  p-md-3 p-lg-5">
+<div class="p-1 p-md-3 p-lg-5">
 
     <div class="row">
         <form action="memberTop" method="get" class="col-6 mx-auto mb-3 row">
@@ -57,8 +57,9 @@
                     <%=productBeans.getPrice() + "円"%>
                 </td>
                 <td class="col-3 text-center">
-                    <form action="productDetail" method="post">
+                    <form action="memberProductDetail" method="post">
                         <button type="submit" class="btn btn-primary">詳細表示</button>
+                        <input type="hidden" value="<%=i%>" name="index">
                     </form>
                 </td>
                 <td class="col-3 text-center">

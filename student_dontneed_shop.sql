@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 2020 年 7 月 13 日 02:43
+-- Generation Time: 2020 年 7 月 14 日 02:43
 -- サーバのバージョン： 5.7.25
 -- PHP Version: 7.3.1
 
@@ -28,6 +28,7 @@ CREATE TABLE `admin` (
   `address` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
 -- --------------------------------------------------------
 
 --
@@ -35,7 +36,7 @@ CREATE TABLE `admin` (
 --
 
 CREATE TABLE `cart` (
-  `member_mail` varchar(30) NOT NULL,
+  `member_mail` varchar(100) NOT NULL,
   `product_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -50,6 +51,7 @@ CREATE TABLE `genre` (
   `genre_name` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
 -- --------------------------------------------------------
 
 --
@@ -57,7 +59,7 @@ CREATE TABLE `genre` (
 --
 
 CREATE TABLE `member` (
-  `member_mail` varchar(30) NOT NULL,
+  `member_mail` varchar(100) NOT NULL,
   `member_password` varchar(128) NOT NULL,
   `member_name` varchar(20) NOT NULL,
   `postal_code` char(7) NOT NULL,
@@ -94,7 +96,7 @@ CREATE TABLE `product` (
 
 CREATE TABLE `purchase_details` (
   `purchase_id` int(11) NOT NULL,
-  `member_mail` varchar(30) DEFAULT NULL,
+  `member_mail` varchar(100) DEFAULT NULL,
   `product_id` int(11) NOT NULL,
   `purchase_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -152,7 +154,7 @@ ALTER TABLE `purchase_details`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `purchase_details`
@@ -168,8 +170,8 @@ ALTER TABLE `purchase_details`
 -- テーブルの制約 `cart`
 --
 ALTER TABLE `cart`
-  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`member_mail`) REFERENCES `member` (`member_mail`),
-  ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`);
+  ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`),
+  ADD CONSTRAINT `cart_ibfk_3` FOREIGN KEY (`member_mail`) REFERENCES `member` (`member_mail`);
 
 --
 -- テーブルの制約 `product`
@@ -182,5 +184,5 @@ ALTER TABLE `product`
 -- テーブルの制約 `purchase_details`
 --
 ALTER TABLE `purchase_details`
-  ADD CONSTRAINT `purchase_details_ibfk_2` FOREIGN KEY (`member_mail`) REFERENCES `member` (`member_mail`),
-  ADD CONSTRAINT `purchase_details_ibfk_3` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`);
+  ADD CONSTRAINT `purchase_details_ibfk_3` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`),
+  ADD CONSTRAINT `purchase_details_ibfk_4` FOREIGN KEY (`member_mail`) REFERENCES `member` (`member_mail`);

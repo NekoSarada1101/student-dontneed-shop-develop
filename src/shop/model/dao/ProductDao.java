@@ -101,13 +101,14 @@ public class ProductDao extends DaoBase {
 
         try {
             this.connect();
-            stmt = con.prepareStatement("UPDATE product SET product_name = ?, price = ?, image = ?, product_explanation = ?, genre_code = ? WHERE product_id = ?");
+            stmt = con.prepareStatement("UPDATE product SET product_name = ?, price = ?, image = ?, product_explanation = ?, genre_code = ?, is_sold = ? WHERE product_id = ?");
             stmt.setString(1, productBeans.getProductName());
             stmt.setInt(2, productBeans.getPrice());
             stmt.setBinaryStream(3, new ByteArrayInputStream(productBeans.getImage()));
             stmt.setString(4, productBeans.getProductExplanation());
-            stmt.setInt(5, productBeans.getGenreCode());
-            stmt.setInt(6, productBeans.getProductId());
+            stmt.setBoolean(5, productBeans.getIsSold());
+            stmt.setInt(6, productBeans.getGenreCode());
+            stmt.setInt(7, productBeans.getProductId());
             updateLine = stmt.executeUpdate();
 
         } catch (SQLException e) {

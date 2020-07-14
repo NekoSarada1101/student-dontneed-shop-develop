@@ -15,7 +15,6 @@
     <meta charset="UTF-8">
     <title>管理者トップ</title>
     <%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
-    <link rel="stylesheet" href="css/common.css">
 </head>
 
 <body>
