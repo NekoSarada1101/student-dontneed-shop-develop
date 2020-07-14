@@ -20,60 +20,60 @@
 <body>
 <%@include file="/WEB-INF/jsp/admin/admin_header.jsp" %>
 
-	<h1 class="mt-3 text-center">商品情報変更入力</h1>
-	<div class="row mt-3">
-		<div class="col-12 col-sm-8 col-md-6 col-lg-4 row mx-auto">
+<h1 class="mt-3 text-center">商品情報変更入力</h1>
+<div class="row mt-3">
+    <div class="col-12 col-sm-8 col-md-6 col-lg-4 row mx-auto">
 
-    		<form action="productUpdateCheck" method="post" class="row mx-auto" id="form" enctype=multipart/form-data>
-        		<div class="form-group col-12">
-            		<label for="productName">商品名</label>
-            		<input type="text" value="<%=productBeans.getProductName()%>" class="form-control" id="productName"
-                   		name="productName" maxlength="30" required>
-        		</div>
+        <form action="productUpdateCheck" method="post" class="row mx-auto" id="form" enctype=multipart/form-data>
+            <div class="form-group col-12">
+                <label for="productName">商品名</label>
+                <input type="text" value="<%=productBeans.getProductName()%>" class="form-control" id="productName"
+                       name="productName" maxlength="30" required>
+            </div>
 
-        		<div class="form-group col-6">
-            		<label for="price">価格</label>
-            		<input type="number" value="<%=productBeans.getPrice()%>" class="form-control" id="price" name="price"
-            			maxlength="16" required>
-        		</div>
+            <div class="form-group col-6">
+                <label for="price">価格</label>
+                <input type="number" value="<%=productBeans.getPrice()%>" class="form-control" id="price" name="price"
+                       maxlength="16" required>
+            </div>
 
-        		<div class="form-group col-12">
-            		<label for="image">画像</label>
-            		<input type="file" class="form-control" id="image" name="image" onchange="previewImage(this);"
-                   		accept="image/*" required>
-            		<p>Preview:<br>
-                		<img class="position-static" id="preview" src="getImage" style="max-width:400px;">
-            		</p>
-        		</div>
+            <div class="form-group col-12">
+                <label for="image">画像</label>
+                <input type="file" class="form-control" id="image" name="image" onchange="previewImage(this);"
+                       accept="image/*" required>
+                <p>Preview:<br>
+                    <img class="position-static" id="preview" src="getImage" style="max-width:400px;">
+                </p>
+            </div>
 
-        		<div class="form-group col-12">
-            		<label for="productExplanation"><strong>商品説明</strong></label>
+            <div class="form-group col-12">
+                <label for="productExplanation"><strong>商品説明</strong></label>
                 <textarea class="form-control" id="productExplanation"
                           name="productExplanation" rows="10"
                           cols="40" maxlength="400" required><%=productBeans.getProductExplanation()%></textarea>
-        		</div>
+            </div>
 
-        		<div class="form-group col-6">
-            		<labal for="genre">ジャンル</labal>
-            		<select class="custom-select form-control" id="genre" name="genre">
-                		<% for (Map<String, Object> genreInfoMap : genreInfoList) { %>
-                		<option value="<%=genreInfoMap.get("genreCode")%>">
-                    		<%=genreInfoMap.get("genreName")%>
-                		</option>
-                		<% } %>
-           		 	</select>
-				</div>
-    		</form>
+            <div class="form-group col-6">
+                <labal for="genre">ジャンル</labal>
+                <select class="custom-select form-control" id="genre" name="genre">
+                    <% for (Map<String, Object> genreInfoMap : genreInfoList) { %>
+                    <option value="<%=genreInfoMap.get("genreCode")%>">
+                        <%=genreInfoMap.get("genreName")%>
+                    </option>
+                    <% } %>
+                </select>
+            </div>
+        </form>
 
-    		<form action="adminProductDetail" method="post" class="col-6">
-        		<button type="submit" class="btn btn-outline-dark btn-block">戻る</button>
-    		</form>
+        <form action="adminProductDetail" method="post" class="col-6">
+            <button type="submit" class="btn btn-outline-dark btn-block">戻る</button>
+        </form>
 
-    		<div class="px-3 col-6">
-    			<button type="submit" class="btn btn-primary btn-block" form="form">変更</button>
-    		</div>
-		</div>
-	</div>
+        <div class="px-3 col-6">
+            <button type="submit" class="btn btn-primary btn-block" form="form">変更</button>
+        </div>
+    </div>
+</div>
 
 <%@include file="/WEB-INF/jsp/admin/admin_footer.jsp" %>
 
