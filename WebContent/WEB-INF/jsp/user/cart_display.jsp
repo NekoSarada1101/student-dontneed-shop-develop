@@ -27,7 +27,7 @@
         <form action="purchaseCheck" method="get" class="col-6 mx-auto mb-3 row">
             <button type="submit" class="btn btn-primary btn-block col-8 mr-auto">購入</button>
         </form>
-        <div class="col-7"></div>
+        <div class="col-7"><p></p></div>
         <table class="table table-hover col-11 col-md-8 mx-auto">
             <thead>
             <tr class="row">
