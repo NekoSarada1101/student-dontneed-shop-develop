@@ -20,6 +20,7 @@
         <a href="memberTop" class="navbar-brand text-white mr-3" style="width: 160px">KIK</a>
     </nav>
 </header>
+
 <h1 class="mt-3 text-center">会員情報登録確認</h1>
 <div class="row  mt-3">
     <div class="col-12 col-sm-8 col-md-6 col-lg-4 row mx-auto">
