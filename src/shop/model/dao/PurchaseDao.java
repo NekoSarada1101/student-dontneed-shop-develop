@@ -116,6 +116,7 @@ public class PurchaseDao extends DaoBase {
             stmt.setInt(1, productId);
             rs = stmt.executeQuery();
             rs.next();
+            rs.getInt("product_id");
 
         } catch (SQLException e) {
             e.printStackTrace();
