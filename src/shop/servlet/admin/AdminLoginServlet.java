@@ -27,6 +27,11 @@ public class AdminLoginServlet extends HttpServlet {
         String adminMail = request.getParameter("adminMail");
         String adminPassword = request.getParameter("adminPassword");
 
+        if (!checkInputText(adminMail, adminPassword)) {
+            request.getRequestDispatcher("WEB-INF/jsp/error.jsp").forward(request, response);
+            return;
+        }
+
         AdminBeans adminBeans = userService.fetchAdminLogin(adminMail, adminPassword);
 
         //遷移先
@@ -39,5 +44,11 @@ public class AdminLoginServlet extends HttpServlet {
             session.setAttribute("adminLoginInfo", adminBeans);
             response.sendRedirect("adminTop");
         }
+    }
+
+    public boolean checkInputText(String adminMail, String adminPassword) {
+        if (!userService.checkLength(adminMail, 100, 1)) return false;
+        if (!userService.checkLength(adminPassword, 128, 1)) return false;
+        return true;
     }
 }
