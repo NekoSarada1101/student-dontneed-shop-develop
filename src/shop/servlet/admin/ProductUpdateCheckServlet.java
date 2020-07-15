@@ -19,11 +19,24 @@ public class ProductUpdateCheckServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String      productName        = request.getParameter("productName");
-        int         price              = Integer.parseInt(request.getParameter("price"));
         Part        filePart           = request.getPart("image");
         InputStream inputStream        = filePart.getInputStream();
         String      productExplanation = request.getParameter("productExplanation");
-        int         genreCode          = Integer.parseInt(request.getParameter("genre"));
+        int         price;
+        int         genreCode;
+        try {
+            price     = Integer.parseInt(request.getParameter("price"));
+            genreCode = Integer.parseInt(request.getParameter("genre"));
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            request.getRequestDispatcher("WEB-INF/jsp/error.jsp").forward(request, response);
+            return;
+        }
+
+        if (!checkInputText(productName, price, productExplanation)) {
+            request.getRequestDispatcher("WEB-INF/jsp/error.jsp").forward(request, response);
+            return;
+        }
 
         HttpSession session = request.getSession();
 
@@ -45,5 +58,11 @@ public class ProductUpdateCheckServlet extends HttpServlet {
         session.setAttribute("productBeans", productBeans);
 
         request.getRequestDispatcher("WEB-INF/jsp/admin/product_update_check.jsp").forward(request, response);
+    }
+
+    public boolean checkInputText(String productName, int price, String productExplanation) {
+        if (!productService.checkLength(productName, 30, 1)) return false;
+        if (!productService.checkLength(productExplanation, 400, 1)) return false;
+        return true;
     }
 }
