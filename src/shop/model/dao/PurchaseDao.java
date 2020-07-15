@@ -105,6 +105,31 @@ public class PurchaseDao extends DaoBase {
         return deleteLine != 0;
     }
 
+    //カートに追加済みか確認
+    public boolean checkExistsCart(int productId) {
+        PreparedStatement stmt = null;
+        ResultSet         rs   = null;
+
+        try {
+            this.connect();
+            stmt = con.prepareStatement("SELECT * FROM cart WHERE product_id = ?");
+            stmt.setInt(1, productId);
+            rs = stmt.executeQuery();
+            rs.next();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return /* is_exists = */false;
+        } finally {
+            try {
+                this.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return /* is_exists = */ true;
+    }
+
     //カートに登録されている商品が購入済みかを確認
     public Map<String, List<ProductBeans>> checkExistsStock(String memberMail) {
         PreparedStatement               stmt         = null;
