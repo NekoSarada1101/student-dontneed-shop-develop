@@ -7,7 +7,6 @@
     <%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
      <link rel="stylesheet" href="css/member_header.css">
 </head>
-
 <body>
 <header class="sticky-top">
     <nav class="nav navbar-expand-lg bg-success px-1 px-md-2 px-lg-4">
