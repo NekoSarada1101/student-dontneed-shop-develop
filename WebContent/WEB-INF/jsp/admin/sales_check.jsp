@@ -22,54 +22,62 @@
 
 <body>
 <%@include file="/WEB-INF/jsp/admin/admin_header.jsp" %>
+<h1 class="mt-3 text-center">売上確認</h1>
+<div class="p-1  p-md-3 p-lg-5">
+    <div class="row">
+        <form action="adminTop" method="get" class="col-11 col-md-8 mx-auto mb-3 row">
+            <button type="submit" class="btn btn-outline-dark btn-block col-4 mr-auto">戻る</button>
+        </form>
 
-<div>
-    <form action="adminTop" method="get">
-        <button type="submit" class="btn btn-outline-dark">戻る</button>
-    </form>
+        <table class="table table-hover col-11 col-md-8 mx-auto">
+            <thead>
+            <tr class="row">
+                <th scope="col" class="col-2">商品ID</th>
+                <th scope="col" class="col-3">商品名</th>
+                <th scope="col" class="col-2">ジャンル</th>
+                <th scope="col" class="col-2">価格</th>
+                <th scope="col" class="col-3">購入日</th>
+            </tr>
+            </thead>
 
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th scope="col">商品名</th>
-            <th scope="col">価格</th>
-            <th scope="col">ジャンル</th>
-            <th scope="col">購入日</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <%
-            for (Map<String, Object> salesMap : salesList) {
-                ProductBeans productBeans = (ProductBeans) salesMap.get("productBeans");
-        %>
-        <tr>
-            <th scope="row">
-                <%=productBeans.getProductName()%>
-            </th>
-            <td>
-                <%=productBeans.getPrice()%>
-            </td>
-            <td>
-                <%
-                    for (Map<String, Object> genreInfoMap : genreInfoList) {
-                        if (productBeans.getGenreCode() == (int) genreInfoMap.get("genreCode")) {
-                %>
-                <%=genreInfoMap.get("genreName")%>
-                <%
+            <tbody>
+            <%
+                for (Map<String, Object> salesMap : salesList) {
+                    ProductBeans productBeans = (ProductBeans) salesMap.get("productBeans");
+            %>
+            <tr class="row">
+                <td scope="row" class="col-2">
+                    <%=productBeans.getProductId()%>
+                </td>
+                <td class="col-3">
+                    <%=productBeans.getProductName()%>
+                </td>
+                <td class="col-2">
+                    <%
+                        for (Map<String, Object> genreInfoMap : genreInfoList) {
+                            if (productBeans.getGenreCode() == (int) genreInfoMap.get("genreCode")) {
+                    %>
+                    <%=genreInfoMap.get("genreName")%>
+                    <%
+                            }
                         }
-                    }
-
-                %>
-            </td>
-            <td>
-                <%=salesMap.get("purchaseDate")%>
-            </td>
-        </tr>
-        <% } %>
-        </tbody>
-    </table>
+                    %>
+                </td>
+                <td class="col-2">
+                    <%=productBeans.getPrice() + "円"%>
+                </td>
+                <td class="col-3">
+                    <%=salesMap.get("purchaseDate")%>
+                </td>
+            </tr>
+            <%
+                } %>
+            </tbody>
+        </table>
+    </div>
 </div>
+
+<%@include file="/WEB-INF/jsp/admin/admin_footer.jsp" %>
 
 <%@include file="/WEB-INF/jsp/script.jsp" %>
 </body>
