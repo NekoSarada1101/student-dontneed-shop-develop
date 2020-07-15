@@ -38,7 +38,7 @@
                        name="memberMail" maxlength="30" required>
             </div>
 
-            <div class="form-group col-6">
+            <div class="form-group col-12">
                 <label for="memberName"><strong>氏名</strong></label>
                 <input type="text" value="<%=memberBeans.getMemberName()%>" class="form-control" id="memberName" name="memberName"
                        maxlength="20" required>
@@ -56,37 +56,37 @@
                        maxlength="16" required>
             </div>
 
-            <div class="form-group col-6">
+            <div class="form-group col-12">
                 <label for="address"><strong>住所</strong></label>
                 <input type="text" value="<%=memberBeans.getAddress()%>"class="form-control" id="address" name="address"
                        maxlength="50" required>
             </div>
 
-            <div class="form-group col-6">
+            <div class="form-group col-12">
                 <label for="postalCode"><strong>郵便番号</strong></label>
                 <input type="number" value="<%=memberBeans.getPostalCode()%>" class="form-control" id="price" name="price"
                        maxlength="7" required>
             </div>
 
-             <div class="form-group col-6">
+             <div class="form-group col-12">
                 <label for="tell"><strong>電話番号</strong></label>
                 <input type="tel" value="<%=memberBeans.getTell()%>" class="form-control" id="price" name="price"
                        maxlength="11" required>
             </div>
 
-             <div class="form-group col-6">
+             <div class="form-group col-12">
                 <label for="expirationDate"><strong>有効期限</strong></label>
                 <input type="date" value="<%=memberBeans.getExpirationDate()%>" class="form-control" id="price" name="price"
                        maxlength="16" required>
             </div>
 
-             <div class="form-group col-6">
+             <div class="form-group col-12">
                 <label for="securityCode"><strong>セキュリティコード</strong></label>
                 <input type="number" value="<%=memberBeans.getSecurityCode()%>" class="form-control" id="price" name="price"
                        maxlength="3" required>
             </div>
 
-             <div class="form-group col-6">
+             <div class="form-group col-12">
                 <label for="holder"><strong>名義人</strong></label>
                 <input type="text" value="<%=memberBeans.getHolder()%>" class="form-control" id="price" name="price"
                        maxlength="20" required>
