@@ -1,8 +1,10 @@
 <%@ page import="shop.model.bean.ProductBeans" %>
 <%@ page import="java.util.Map" %>
+<%@ page import="shop.model.service.PurchaseService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     ProductBeans productBeans = (ProductBeans) session.getAttribute("productBeans");
+
 %>
 <!DOCTYPE html>
 <html>
@@ -48,7 +50,18 @@
                     <button type="submit" class="btn btn-outline-dark btn-block">戻る</button>
                 </form>
                 <form action="cartInsert" method="post" class="col-6">
+                    <%
+                        PurchaseService purchaseService = new PurchaseService();
+                        if (purchaseService.checkExistsCart(productBeans.getProductId())) {
+                    %>
+                    <button type="submit" class="btn btn-primary btn-block" disabled>カートに追加済み</button>
+                    <%
+                    } else {
+                    %>
                     <button type="submit" class="btn btn-primary btn-block">カートに追加</button>
+                    <%
+                        }
+                    %>
                 </form>
             </div>
         </div>

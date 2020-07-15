@@ -24,11 +24,15 @@ public class PurchaseService extends CommonService {
         return purchaseDao.deleteCart(memberMail, productId);
     }
 
+    public boolean checkExistsCart(int productId) {
+        return purchaseDao.checkExistsCart(productId);
+    }
+
     public Map<String, List<ProductBeans>> checkExistsStock(String memberMail) {
         return purchaseDao.checkExistsStock(memberMail);
     }
 
-    public boolean insertPurchaseDetail(List<PurchaseDetailBeans> purchaseDetailList){
+    public boolean insertPurchaseDetail(List<PurchaseDetailBeans> purchaseDetailList) {
         return purchaseDao.insertPurchaseDetail(purchaseDetailList);
     }
 
