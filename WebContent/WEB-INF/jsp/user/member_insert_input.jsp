@@ -30,7 +30,7 @@
 <h1 class="mt-3 text-center">会員情報登録入力</h1>
 <div class="row  mt-3">
     <div class="col-12 col-sm-8 col-md-6 col-lg-4 row mx-auto">
-        <form action="productInsertCheck" method="post" class="row mx-auto" id="form" enctype=multipart/form-data>
+        <form action="memberInsertCheck" method="post" class="row mx-auto" id="form" enctype=multipart/form-data>
 
             <div class="form-group col-12">
                 <label for="memberMail"><strong>メールアドレス</strong></label>
@@ -70,13 +70,13 @@
 
              <div class="form-group col-6">
                 <label for="tell"><strong>電話番号</strong></label>
-                <input type="number" value="<%=memberBeans.getTell()%>" class="form-control" id="price" name="price"
+                <input type="tel" value="<%=memberBeans.getTell()%>" class="form-control" id="price" name="price"
                        maxlength="11" required>
             </div>
 
              <div class="form-group col-6">
                 <label for="expirationDate"><strong>有効期限</strong></label>
-                <input type="number" value="<%=memberBeans.getExpirationDate()%>" class="form-control" id="price" name="price"
+                <input type="date" value="<%=memberBeans.getExpirationDate()%>" class="form-control" id="price" name="price"
                        maxlength="16" required>
             </div>
 
@@ -104,7 +104,19 @@
     </div>
 </div>
 
+<%@include file="/WEB-INF/jsp/user/member_footer.jsp" %>
 
+<script>
+    function previewImage(obj) {
+        var fileReader = new FileReader();
+        fileReader.onload = (function () {
+            document.getElementById('preview').src = fileReader.result;
+        });
+        fileReader.readAsDataURL(obj.files[0]);
+    }
+</script>
+
+<%@include file="/WEB-INF/jsp/script.jsp" %>
 
 
 
