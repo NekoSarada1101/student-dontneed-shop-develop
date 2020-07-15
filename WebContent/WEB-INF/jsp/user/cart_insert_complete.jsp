@@ -46,8 +46,11 @@
                 </p>
             </div>
             <div class="card-footer row m-0">
-                <form action="memberTop" method="get" class="col-10 mx-auto">
+                <form action="memberTop" method="get" class="col-6">
                     <button type="submit" class="btn btn-outline-dark btn-block">トップへ戻る</button>
+                </form>
+                <form action="cartDisplay" method="get" class="col-6">
+                    <button type="submit" class="btn btn-primary btn-block">カート閲覧画面へ</button>
                 </form>
             </div>
         </div>
