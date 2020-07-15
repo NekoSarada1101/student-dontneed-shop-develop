@@ -1,6 +1,4 @@
 <%@ page import="shop.model.bean.ProductBeans" %>
-<%@ page import="shop.model.service.ProductService" %>
-<%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
