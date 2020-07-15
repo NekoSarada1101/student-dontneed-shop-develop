@@ -20,56 +20,82 @@
 <body>
 <%@include file="/WEB-INF/jsp/admin/admin_header.jsp" %>
 
-<div>
-    <table class="table table-striped">
-        <tbody>
-        <tr>
-            <th scope="row">商品名</th>
-            <td>
-                <%=productBeans.getProductName()%>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">価格</th>
-            <td>
-                <%=productBeans.getPrice()%>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">画像</th>
-            <td><img src="getImage" alt="商品画像"></td>
-        </tr>
-        <tr>
-            <th scope="row">商品説明</th>
-            <td>
-                <%=productBeans.getProductExplanation()%>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">ジャンル</th>
-            <td>
-                <%
-                    for (Map<String, Object> genreInfoMap : genreInfoList) {
-                        if (productBeans.getGenreCode() == (int) genreInfoMap.get("genreCode")) {
-                %>
-                <%=genreInfoMap.get("genreName")%>
-                <%
-                        }
-                    }
-                %>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+<h1 class="mt-3 text-center">商品情報変更確認</h1>
+<div class="row mt-3">
+	<div class="col-12 col-sm-8 col-md-6 col-lg-4 row mx-auto">
 
-    <form action="productUpdateComplete" method="post">
-        <button type="submit" class="btn btn-primary">変更する</button>
-    </form>
+		<table class="table table-striped">
+        	<tbody>
+        		<tr class="row">
+            		<th class="col-3">商品名</th>
+            		<td class="col-9">
+                		<%=productBeans.getProductName()%>
+            		</td>
+        		</tr>
 
-    <form action="productUpdateInput" method="get">
-        <button type="submit" class="btn btn-outline-dark">戻る</button>
-    </form>
+        		<tr class="row">
+            		<th class="col-3">価格</th>
+            		<td class="col-9">
+                		<%=productBeans.getPrice()%>
+            		</td>
+        		</tr>
+
+        		<tr class="row">
+            		<th class="col-3">画像</th>
+            		<td id="square-image" class="col-9">
+            			<img src="getImage" alt="商品画像">
+            		</td>
+        		</tr>
+
+        		<tr class="row">
+            		<th class="col-3">商品説明</th>
+            		<td class="col-9">
+                		<%=productBeans.getProductExplanation()%>
+            		</td>
+        		</tr>
+
+        		<tr class="row">
+            		<th class="col-3">ジャンル</th>
+            		<td class="col-9">
+                		<%
+                    		for (Map<String, Object> genreInfoMap : genreInfoList) {
+                        		if (productBeans.getGenreCode() == (int) genreInfoMap.get("genreCode")) {
+                		%>
+                		<%=genreInfoMap.get("genreName")%>
+                		<%
+                        		}
+                    		}
+                		%>
+            		</td>
+        		</tr>
+        	</tbody>
+    	</table>
+
+			<form action="productUpdateInput" method="get" class="col-6">
+        		<button type="submit" class="btn btn-outline-dark btn-block">戻る</button>
+    		</form>
+
+    		<form action="productUpdateComplete" method="post" class="col-6">
+        		<button type="submit" class="btn btn-primary btn-block">変更する</button>
+    		</form>
+
+
+	</div>
 </div>
+
+<%@ include file="/WEB-INF/jsp/admin/admin_footer.jsp" %>
+
+<script>
+    window.onload = imageResizeFunc;
+    window.addEventListener("resize", imageResizeFunc);
+
+    function imageResizeFunc() {
+        var width = document.getElementById('square-image').offsetWidth;
+        console.log(width)
+        width = String(width) + "px";
+        document.getElementById("square-image").style.height = width;
+    }
+</script>
 
 <%@include file="/WEB-INF/jsp/script.jsp" %>
 </body>
