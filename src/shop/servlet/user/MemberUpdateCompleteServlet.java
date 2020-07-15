@@ -26,6 +26,7 @@ public class MemberUpdateCompleteServlet extends HttpServlet {
                 request.setAttribute("errorMessage", errorMessage);
 
                 request.getRequestDispatcher("WEB-INF/jsp/user/member_update_input.jsp").forward(request, response);
+                return;
             }
 
         userService.updateMember(memberBeans);

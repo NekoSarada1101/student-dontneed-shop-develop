@@ -27,6 +27,7 @@ public class MemberInsertCompleteServlet extends HttpServlet {
             request.setAttribute("errorMessage", errorMessage);
 
             request.getRequestDispatcher("WEB-INF/jsp/user/member_insert_input.jsp").forward(request, response);
+            return;
         }
 
         userService.insertMember(memberBeans);
