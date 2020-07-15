@@ -27,6 +27,11 @@ public class MemberLoginServlet extends HttpServlet {
         String memberMail     = request.getParameter("memberMail");
         String memberPassword = request.getParameter("memberPassword");
 
+        if (!checkInputText(memberMail, memberPassword)) {
+            request.getRequestDispatcher("WEB-INF/jsp/error.jsp").forward(request, response);
+            return;
+        }
+
         MemberBeans memberBeans = userService.fetchMemberLogin(memberMail, memberPassword);
 
         //遷移先
@@ -39,5 +44,11 @@ public class MemberLoginServlet extends HttpServlet {
             session.setAttribute("memberLoginInfo", memberBeans);
             response.sendRedirect("memberTop");
         }
+    }
+
+    public boolean checkInputText(String memberMail, String memberPassword) {
+        if (!userService.checkLength(memberMail, 100, 1)) return false;
+        if (!userService.checkLength(memberPassword, 128, 1)) return false;
+        return true;
     }
 }
