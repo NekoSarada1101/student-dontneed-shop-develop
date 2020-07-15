@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="shop.model.service.ProductService" %>
+<%@ page import="java.util.Map" %>
 <%@ page import="shop.model.bean.ProductBeans" %>
-<%@ page import="shop.model.bean.MemberBeans" %>
 <%
     ProductBeans productBeans = (ProductBeans) session.getAttribute("productBeans");
 %>
@@ -16,31 +15,58 @@
 <body>
 <%@include file="/WEB-INF/jsp/user/member_header.jsp" %>
 
-<h2>カートに追加しました</h2>
+<h1 class="mt-3 text-center">カートに追加しました！</h1>
 
-<div class="card mb-3" style="max-width: 500px;">
-    <div class="row no-gutters">
-        <div class="col-lg-6">
-            <img src="getImage" class="card-img" alt="...">
-        </div>
-        <div class="col-lg-6">
+<div class="container-fluid">
+    <div class="mt-5 px-5 row">
+        <div class="card col-12 col-sm-8 col-md-6 col-lg-4 p-0 mx-auto" id="card">
+            <div class="card-header square-image" id="square-image">
+                <img src="getImage" alt="...">
+            </div>
             <div class="card-body">
-                <div class="card-title">商品名
+                <h5 class="card-title mb-1">
                     <%=productBeans.getProductName()%>
-                </div>
-                <div class="card-title">値段
-                    <%=productBeans.getPrice()%>
-                </div>
+                </h5>
+                <p class="card-subtitle text-muted mb-2">
+                    <%
+                        for (Map<String, Object> genreInfoMap : genreInfoList) {
+                            if (productBeans.getGenreCode() == (int) genreInfoMap.get("genreCode")) {
+                    %>
+                    <%=genreInfoMap.get("genreName")%>
+                    <%
+                            }
+                        }
+                    %>
+                </p>
+                <p class="card-text text-danger mb-3">
+                    <%=productBeans.getPrice()%>円
+                </p>
+                <p class="card-text mb-3">
+                    <%=productBeans.getProductExplanation()%>
+                </p>
+            </div>
+            <div class="card-footer row m-0">
+                <form action="memberTop" method="get" class="col-10 mx-auto">
+                    <button type="submit" class="btn btn-outline-dark btn-block">トップへ戻る</button>
+                </form>
             </div>
         </div>
     </div>
 </div>
 
-<form action="cartDisplay" method="get">
-    <input type="submit" value="カートに進む">
-</form>
-
 <%@include file="/WEB-INF/jsp/user/member_footer.jsp" %>
+
+<script>
+    window.onload = imageResizeFunc;
+    window.addEventListener("resize", imageResizeFunc);
+
+    function imageResizeFunc() {
+        var width = document.getElementById('square-image').offsetWidth;
+        console.log(width)
+        width = String(width) + "px";
+        document.getElementById("square-image").style.height = width;
+    }
+</script>
 
 <%@include file="/WEB-INF/jsp/script.jsp" %>
 
