@@ -8,6 +8,10 @@
 
     ProductService productService = new ProductService();
     List<Map<String, Object>> genreInfoList = productService.fetchGenreInfo();
+
+    String productName = productService.escapeProcess(productBeans.getProductName());
+    String price = productService.escapeProcess(String.valueOf(productBeans.getPrice()));
+    String productExplanation = productService.escapeProcess(productBeans.getProductExplanation());
 %>
 <!DOCTYPE html>
 <html>
@@ -20,6 +24,10 @@
 <body>
 <%@include file="/WEB-INF/jsp/admin/admin_header.jsp" %>
 
+                <%=productName%>
+                <%=price%>
+                <%=productExplanation%>
+                <%=productService.escapeProcess((String) genreInfoMap.get("genreName"))%>
 <h1 class="mt-3 text-center">商品情報削除確認</h1>
 <div class="row  mt-3">
     <div class="col-12 col-sm-8 col-md-6 col-lg-4 row mx-auto">
