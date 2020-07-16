@@ -30,17 +30,17 @@
 <div class="row  mt-3">
     <div class="col-12 col-sm-8 col-md-6 col-lg-4 row mx-auto">
         <form action="productInsertCheck" method="post" class="col-12 mx-auto" id="form" enctype=multipart/form-data>
-            <div class="form-group row mx-0">
+            <div class="form-group row">
                 <label for="productName" class="col-12"><strong>商品名</strong></label>
                 <input type="text" value="<%=productBeans.getProductName()%>" class="form-control col-12" id="productName"
                        name="productName" maxlength="30" required>
             </div>
-            <div class="form-group row mx-0">
+            <div class="form-group row">
                 <label for="price" class="col-12"><strong>価格</strong></label>
                 <input type="number" value="<%=productBeans.getPrice()%>" class="form-control col-12" id="price" name="price"
                        maxlength="16" required>
             </div>
-            <div class="form-group row mx-0">
+            <div class="form-group row">
                 <label for="image" class="col-12"><strong>画像</strong></label>
                 <input type="file" class="form-control col-12" id="image" name="image" onchange="previewImage(this);"
                        accept="image/*" required>
@@ -49,13 +49,13 @@
                     <img class="position-static" id="preview" src="getImage" style="max-width:400px;">
                 </div>
             </div>
-            <div class="form-group row mx-0">
+            <div class="form-group row">
                 <label for="productExplanation" class="col-12"><strong>商品説明</strong></label>
                 <textarea class="form-control col-12" id="productExplanation"
                           name="productExplanation" rows="10"
                           cols="40" maxlength="400" required><%=productBeans.getProductExplanation()%></textarea>
             </div>
-            <div class="form-group row mx-0">
+            <div class="form-group row">
                 <labal for="genre" class="col-12"><strong>ジャンル</strong></labal>
                 <select class="custom-select form-control col-6" id="genre" name="genre">
                     <% for (Map<String, Object> genreInfoMap : genreInfoList) { %>
