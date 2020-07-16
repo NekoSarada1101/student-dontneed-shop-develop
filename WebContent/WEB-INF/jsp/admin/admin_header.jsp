@@ -4,9 +4,12 @@
 <%@ page import="shop.model.bean.MemberBeans" %>
 <%@ page import="shop.model.bean.ProductBeans" %>
 <%@ page import="shop.model.bean.AdminBeans" %>
+<%@ page import="shop.model.service.CommonService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     String adminName = ((AdminBeans) session.getAttribute("adminLoginInfo")).getAdminName();
+    CommonService commonService = new CommonService();
+    adminName = commonService.escapeProcess(adminName);
 %>
 <!DOCTYPE html>
 <html>
