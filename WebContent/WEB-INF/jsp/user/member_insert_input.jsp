@@ -42,56 +42,56 @@
         <% } %>
 
         <form action="memberInsertCheck" method="post" class="col-12 mx-auto" id="form">
-            <div class="form-group row mx-0">
+            <div class="form-group row">
                 <label for="memberMail" class="col-12"><strong>メールアドレス</strong></label>
                 <input type="text" value="<%=memberBeans.getMemberMail()%>" class="form-control col-12" id="memberMail"
                        name="memberMail" maxlength="100" required>
             </div>
-            <div class="form-group row mx-0">
+            <div class="form-group row">
                 <label for="memberPassword"><strong>パスワード</strong></label>
                 <input type="password" class="form-control col-12" id="memberPassword" name="memberPassword"
                        maxlength="128"
                        required>
             </div>
-            <div class="form-group row mx-0">
+            <div class="form-group row">
                 <label for="name" class="col-12"><strong>名前</strong></label>
                 <input type="text" value="<%=memberBeans.getMemberName()%>" class="form-control col-6" id="name"
                        name="name"
                        maxlength="20" required>
             </div>
-            <div class="form-group row mx-0">
+            <div class="form-group row">
                 <label for="postalCode" class="col-12"><strong>郵便番号</strong></label>
                 <input type="number" value="<%=memberBeans.getPostalCode()%>" class="form-control col-4" id="postalCode"
                        name="postalCode" minlength="7" maxlength="7" required>
             </div>
-            <div class="form-group row mx-0">
+            <div class="form-group row">
                 <label for="address" class="col-12"><strong>住所</strong></label>
                 <input type="text" value="<%=memberBeans.getAddress()%>" class="form-control col-12" id="address"
                        name="address" maxlength="50" required>
             </div>
-            <div class="form-group row mx-0">
+            <div class="form-group row">
                 <label for="tell" class="col-12"><strong>電話番号</strong></label>
                 <input type="number" value="<%=memberBeans.getTell()%>" class="form-control col-6" id="tell" name="tell"
                        maxlength="11" required>
             </div>
-            <div class="form-group row mx-0">
+            <div class="form-group row">
                 <label for="creditCard" class="col-12"><strong>クレジットカード</strong></label>
                 <input type="number" value="<%=memberBeans.getCreditCard()%>" class="form-control col-6" id="creditCard"
                        name="creditCard" minlength="16" maxlength="16" required>
             </div>
-            <div class="form-group row mx-0">
+            <div class="form-group row">
                 <label for="expirationDate" class="col-12"><strong>有効期限</strong></label>
                 <input type="date" value="<%=memberBeans.getExpirationDate()%>" class="form-control col-4"
                        id="expirationDate"
                        name="expirationDate" required>
             </div>
-            <div class="form-group row mx-0">
+            <div class="form-group row">
                 <label for="holder" class="col-12"><strong>名義人名</strong></label>
                 <input type="text" value="<%=memberBeans.getHolder()%>" class="form-control col-6" id="holder"
                        name="holder"
                        maxlength="20" required>
             </div>
-            <div class="form-group row mx-0">
+            <div class="form-group row">
                 <label for="securityCode" class="col-12"><strong>セキュリティコード</strong></label>
                 <input type="number" value="<%=memberBeans.getSecurityCode()%>" class="form-control col-3"
                        id="securityCode"
