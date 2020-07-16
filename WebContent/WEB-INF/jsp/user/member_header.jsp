@@ -5,10 +5,11 @@
 <%@ page import="shop.model.service.ProductService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
-    String memberName = ((MemberBeans) session.getAttribute("memberLoginInfo")).getMemberName();
-
     ProductService productService = new ProductService();
     List<Map<String, Object>> genreInfoList = productService.fetchGenreInfo();
+
+    String memberName = ((MemberBeans) session.getAttribute("memberLoginInfo")).getMemberName();
+    memberName = productService.escapeProcess(memberName);
 %>
 <!DOCTYPE html>
 <html>
