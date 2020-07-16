@@ -10,9 +10,9 @@
 <body>
 <%@include file="/WEB-INF/jsp/admin/admin_header.jsp" %>
 
-<h1 class="mt-3 text-center">登録完了</h1>
+<h1 class="mt-3 text-center">商品情報登録完了</h1>
 
-<form action="adminTop" method="get">
+<form action="adminTop" method="get" class="mt-5">
     <button type="submit" class="btn btn-primary btn-block mx-auto col-6 col-lg-4">トップへ戻る</button>
 </form>
 
