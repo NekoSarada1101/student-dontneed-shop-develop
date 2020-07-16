@@ -14,9 +14,9 @@
     </nav>
 </header>
 
-<h1 class="mt-3 text-center">登録完了しました</h1>
+<h1 class="mt-3 text-center">会員情報登録完了</h1>
 
-<form action="memberLogin" method="get">
+<form action="memberLogin" method="get" class="mt-5">
     <button type="submit" class="btn btn-primary btn-block mx-auto col-6 col-lg-4">ログイン画面へ</button>
 </form>
 

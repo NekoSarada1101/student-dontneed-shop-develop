@@ -11,11 +11,13 @@
 <body>
 <%@include file="/WEB-INF/jsp/admin/admin_header.jsp" %>
 
-<p>変更完了</p>
+<h1 class="mt-3 text-center">商品情報削除完了</h1>
 
-<form action="adminTop" method="get">
-    <button type="submit" class="btn btn-primary">トップへ戻る</button>
+<form action="adminTop" method="get" class="mt-5">
+    <button type="submit" class="btn btn-primary btn-block mx-auto col-6 col-lg-4">トップへ戻る</button>
 </form>
+
+<%@include file="/WEB-INF/jsp/admin/admin_footer.jsp" %>
 
 <%@include file="/WEB-INF/jsp/script.jsp" %>
 </body>
