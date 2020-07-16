@@ -7,6 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <title>会員情報変更確認</title>
+    <%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
 </head>
 
 <body>
