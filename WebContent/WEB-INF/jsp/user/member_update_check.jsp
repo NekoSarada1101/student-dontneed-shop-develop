@@ -1,7 +1,19 @@
 <%@ page import="shop.model.bean.MemberBeans" %>
+<%@ page import="shop.model.service.CommonService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     MemberBeans memberBeans = (MemberBeans) session.getAttribute("memberBeans");
+
+    CommonService commonService = new CommonService();
+    String memberMail = commonService.escapeProcess(memberBeans.getMemberMail());
+    String name = commonService.escapeProcess(memberBeans.getMemberName());
+    String postalCode = commonService.escapeProcess(memberBeans.getPostalCode());
+    String address = commonService.escapeProcess(memberBeans.getAddress());
+    String tell = commonService.escapeProcess(memberBeans.getTell());
+    String creditCard = commonService.escapeProcess(memberBeans.getCreditCard());
+    String expirationDate = commonService.escapeProcess(memberBeans.getExpirationDate());
+    String holder = commonService.escapeProcess(memberBeans.getHolder());
+    String securityCode = commonService.escapeProcess(memberBeans.getSecurityCode());
 %><!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +33,7 @@
             <tr class="row">
                 <th class="col-4">メールアドレス</th>
                 <td class="col-8">
-                    <%= memberBeans.getMemberMail() %>
+                    <%=memberMail%>
                 </td>
             </tr>
 
@@ -35,55 +47,55 @@
             <tr class="row">
                 <th class="col-4">名前</th>
                 <td class="col-8">
-                    <%= memberBeans.getMemberName() %>
+                    <%=name%>
                 </td>
             </tr>
 
             <tr class="row">
                 <th class="col-4">郵便番号</th>
                 <td class="col-8">
-                    <%= memberBeans.getPostalCode() %>
+                    <%=postalCode%>
                 </td>
             </tr>
 
             <tr class="row">
                 <th class="col-4">住所</th>
                 <td class="col-8">
-                    <%= memberBeans.getAddress() %>
+                    <%=address%>
                 </td>
             </tr>
 
             <tr class="row">
                 <th class="col-4">電話番号</th>
                 <td class="col-8">
-                    <%= memberBeans.getTell() %>
+                    <%=tell%>
                 </td>
             </tr>
 
             <tr class="row">
                 <th class="col-4">クレジット番号</th>
                 <td class="col-8">
-                    <%= memberBeans.getCreditCard() %>
+                    <%=creditCard%>
                 </td>
             </tr>
 
             <tr class="row">
                 <th class="col-4">有効期限</th>
                 <td class="col-8">
-                    <%= memberBeans.getExpirationDate() %>
+                    <%=expirationDate%>
                 </td>
             </tr>
 
             <tr class="row">
                 <th class="col-4">名義者名</th>
                 <td class="col-8">
-                    <%= memberBeans.getHolder() %>
+                    <%=holder%>
                 </td>
             </tr>
             <tr class="row">
                 <th class="col-4">セキュリティコード</th>
                 <td class="col-8">
-                    <%= memberBeans.getSecurityCode() %>
+                    <%=securityCode%>
                 </td>
             </tr>
         </table>
