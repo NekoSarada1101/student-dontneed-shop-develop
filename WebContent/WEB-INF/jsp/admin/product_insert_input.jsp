@@ -29,35 +29,35 @@
 <h1 class="mt-3 text-center">商品情報登録入力</h1>
 <div class="row  mt-3">
     <div class="col-12 col-sm-8 col-md-6 col-lg-4 row mx-auto">
-        <form action="productInsertCheck" method="post" class="row mx-auto" id="form" enctype=multipart/form-data>
-            <div class="form-group col-12">
-                <label for="productName"><strong>商品名</strong></label>
-                <input type="text" value="<%=productBeans.getProductName()%>" class="form-control" id="productName"
+        <form action="productInsertCheck" method="post" class="col-12 mx-auto" id="form" enctype=multipart/form-data>
+            <div class="form-group row mx-0">
+                <label for="productName" class="col-12"><strong>商品名</strong></label>
+                <input type="text" value="<%=productBeans.getProductName()%>" class="form-control col-12" id="productName"
                        name="productName" maxlength="30" required>
             </div>
-            <div class="form-group col-6">
-                <label for="price"><strong>価格</strong></label>
-                <input type="number" value="<%=productBeans.getPrice()%>" class="form-control" id="price" name="price"
+            <div class="form-group row mx-0">
+                <label for="price" class="col-12"><strong>価格</strong></label>
+                <input type="number" value="<%=productBeans.getPrice()%>" class="form-control col-12" id="price" name="price"
                        maxlength="16" required>
             </div>
-            <div class="form-group col-12">
-                <label for="image"><strong>画像</strong></label>
-                <input type="file" class="form-control" id="image" name="image" onchange="previewImage(this);"
+            <div class="form-group row mx-0">
+                <label for="image" class="col-12"><strong>画像</strong></label>
+                <input type="file" class="form-control col-12" id="image" name="image" onchange="previewImage(this);"
                        accept="image/*" required>
                 <div>
                     Preview:<br>
                     <img class="position-static" id="preview" src="getImage" style="max-width:400px;">
                 </div>
             </div>
-            <div class="form-group col-12">
-                <label for="productExplanation"><strong>商品説明</strong></label>
-                <textarea class="form-control" id="productExplanation"
+            <div class="form-group row mx-0">
+                <label for="productExplanation" class="col-12"><strong>商品説明</strong></label>
+                <textarea class="form-control col-12" id="productExplanation"
                           name="productExplanation" rows="10"
                           cols="40" maxlength="400" required><%=productBeans.getProductExplanation()%></textarea>
             </div>
-            <div class="form-group col-6">
-                <labal for="genre"><strong>ジャンル</strong></labal>
-                <select class="custom-select form-control" id="genre" name="genre">
+            <div class="form-group row mx-0">
+                <labal for="genre" class="col-12"><strong>ジャンル</strong></labal>
+                <select class="custom-select form-control col-6" id="genre" name="genre">
                     <% for (Map<String, Object> genreInfoMap : genreInfoList) { %>
                     <option value="<%=genreInfoMap.get("genreCode")%>">
                         <%=genreInfoMap.get("genreName")%>
