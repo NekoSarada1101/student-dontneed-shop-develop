@@ -4,6 +4,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     List<ProductBeans> purchaseList = (List<ProductBeans>) session.getAttribute("productList");
+
+    int total = 0;
+    for (ProductBeans productBeans : purchaseList) {
+        total += productBeans.getPrice();
+    }
 %>
 <!DOCTYPE html>
 <html>
@@ -31,6 +36,12 @@
         <p class="text-danger">
             <%=request.getAttribute("errorMessage")%>
         </p>
+    </div>
+
+    <div class="col-11 col-md-8 mx-auto">
+        <h3 class="text-left">
+            合計金額：<%=total + "円"%>
+        </h3>
     </div>
 
     <table class="table table-hover col-11 col-md-8 mx-auto">
