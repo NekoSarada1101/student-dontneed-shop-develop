@@ -29,21 +29,21 @@
             </div>
             <div class="card-body">
                 <h5 class="card-title mb-1">
-                    <%=productBeans.getProductName()%>
+                    <%=productService.escapeProcess(productBeans.getProductName())%>
                 </h5>
                 <p class="card-subtitle text-muted mb-2">
                     <%
                         for (Map<String, Object> genreInfoMap : genreInfoList) {
                             if (productBeans.getGenreCode() == (int) genreInfoMap.get("genreCode")) {
                     %>
-                    <%=genreInfoMap.get("genreName")%>
+                    <%=productService.escapeProcess((String)genreInfoMap.get("genreName"))%>
                     <%
                             }
                         }
                     %>
                 </p>
                 <span class="card-text text-danger mb-3">
-                    <%=productBeans.getPrice()%>円
+                    <%=productService.escapeProcess(String.valueOf(productBeans.getPrice()))%>円
                 </span>
             </div>
             <div class="card-footer">
