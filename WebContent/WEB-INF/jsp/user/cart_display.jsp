@@ -3,9 +3,12 @@
 <%@ page import="java.util.List" %>
 <%@ page import="javax.print.attribute.standard.PrinterURI" %>
 <%@ page import="shop.model.service.PurchaseService" %>
+<%@ page import="shop.model.service.ProductService" %>
+<%@ page import="shop.model.service.CommonService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     List<ProductBeans> cartList = (List<ProductBeans>) session.getAttribute("productList");
+    CommonService commonService = new CommonService();
 %>
 <!DOCTYPE html>
 <html>
@@ -50,11 +53,11 @@
                 </td>
                 <td class="col-2 col-lg-3">
                     <strong>
-                        <%=productBeans.getProductName()%>
+                        <%=commonService.escapeProcess(productBeans.getProductName())%>
                     </strong>
                 </td>
                 <td class="col-2">
-                    <%=productBeans.getPrice() + "円"%>
+                    <%=commonService.escapeProcess(String.valueOf(productBeans.getPrice())) + "円"%>
                 </td>
                 <td class="col-3 text-center">
                     <form action="memberProductDetail" method="post">

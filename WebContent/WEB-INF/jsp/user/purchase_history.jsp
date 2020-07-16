@@ -50,14 +50,14 @@
                 </td>
                 <td class="col-2 col-lg-3">
                     <strong>
-                        <%=productBeans.getProductName()%>
+                        <%=purchaseService.escapeProcess(productBeans.getProductName())%>
                     </strong>
                 </td>
                 <td class="col-2">
-                    <%=productBeans.getPrice() + "円"%>
+                    <%=purchaseService.escapeProcess(String.valueOf(productBeans.getPrice())) + "円"%>
                 </td>
                 <td class="col-3">
-                    <%=purchaseMap.get("purchaseDate")%>
+                    <%=purchaseService.escapeProcess((String) purchaseMap.get("purchaseDate"))%>
                 </td>
                 <td class="col-3 text-center">
                     <form action="productDetail" method="post">

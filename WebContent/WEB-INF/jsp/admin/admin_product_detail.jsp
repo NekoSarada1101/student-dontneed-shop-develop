@@ -8,6 +8,10 @@
 
     ProductService productService = new ProductService();
     List<Map<String, Object>> genreInfoList = productService.fetchGenreInfo();
+
+    String productName = productService.escapeProcess(productBeans.getProductName());
+    String price = productService.escapeProcess(String.valueOf(productBeans.getPrice()));
+    String productExplanation = productService.escapeProcess(productBeans.getProductExplanation());
 %>
 <!DOCTYPE html>
 <html>
@@ -28,24 +32,24 @@
             </div>
             <div class="card-body">
                 <h5 class="card-title mb-1">
-                    <%=productBeans.getProductName()%>
+                    <%=productName%>
                 </h5>
                 <p class="card-subtitle text-muted mb-2">
                     <%
                         for (Map<String, Object> genreInfoMap : genreInfoList) {
                             if (productBeans.getGenreCode() == (int) genreInfoMap.get("genreCode")) {
                     %>
-                    <%=genreInfoMap.get("genreName")%>
+                    <%=productService.escapeProcess((String) genreInfoMap.get("genreName"))%>
                     <%
                             }
                         }
                     %>
                 </p>
                 <p class="card-text text-danger mb-3">
-                    <%=productBeans.getPrice()%>円
+                    <%=price%>円
                 </p>
                 <p class="card-text mb-3">
-                    <%=productBeans.getProductExplanation()%>
+                    <%=productExplanation%>
                 </p>
                 <p class="card-text mb-3">
                     <% if (productBeans.getIsSold()) { %>

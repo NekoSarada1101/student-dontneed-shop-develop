@@ -47,27 +47,27 @@
             %>
             <tr class="row">
                 <td scope="row" class="col-2">
-                    <%=productBeans.getProductId()%>
+                    <%=productService.escapeProcess(String.valueOf(productBeans.getProductId()))%>
                 </td>
                 <td class="col-3">
-                    <%=productBeans.getProductName()%>
+                    <%=productService.escapeProcess(productBeans.getProductName())%>
                 </td>
                 <td class="col-2">
                     <%
                         for (Map<String, Object> genreInfoMap : genreInfoList) {
                             if (productBeans.getGenreCode() == (int) genreInfoMap.get("genreCode")) {
                     %>
-                    <%=genreInfoMap.get("genreName")%>
+                    <%=productService.escapeProcess((String) genreInfoMap.get("genreName"))%>
                     <%
                             }
                         }
                     %>
                 </td>
                 <td class="col-2">
-                    <%=productBeans.getPrice() + "円"%>
+                    <%=productService.escapeProcess(String.valueOf(productBeans.getPrice())) + "円"%>
                 </td>
                 <td class="col-3">
-                    <%=salesMap.get("purchaseDate")%>
+                    <%=productService.escapeProcess((String) salesMap.get("purchaseDate"))%>
                 </td>
             </tr>
             <%

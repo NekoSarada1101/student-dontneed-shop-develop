@@ -1,7 +1,17 @@
 <%@ page import="shop.model.bean.MemberBeans" %>
+<%@ page import="shop.model.service.CommonService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     MemberBeans memberBeans = (MemberBeans) session.getAttribute("memberLoginInfo");
+
+    CommonService commonService = new CommonService();
+    String memberMail = commonService.escapeProcess(memberBeans.getMemberMail());
+    String postalCode = commonService.escapeProcess(memberBeans.getPostalCode());
+    String address = commonService.escapeProcess(memberBeans.getAddress());
+    String creditCard = commonService.escapeProcess(memberBeans.getCreditCard());
+    String expirationDate = commonService.escapeProcess(memberBeans.getExpirationDate());
+    String holder = commonService.escapeProcess(memberBeans.getHolder());
+    String securityCode = commonService.escapeProcess(memberBeans.getSecurityCode());
 %>
 <!DOCTYPE html>
 <html>
@@ -22,13 +32,7 @@
             <li class="list-group-item">
                 <label for="memberMail"><strong>会員メール</strong></label>
                 <p id="memberMail">
-                    <%=memberBeans.getMemberMail()%>
-                </p>
-            </li>
-            <li class="list-group-item">
-                <label for="memberName"><strong>会員名</strong></label>
-                <p id="memberName">
-                    <%=memberBeans.getMemberName()%>
+                    <%=memberMail%>
                 </p>
             </li>
             <li class="list-group-item">
@@ -36,39 +40,45 @@
                 <p id="memberPassword">●●●●●●●●</p>
             </li>
             <li class="list-group-item">
+                <label for="memberName"><strong>会員名</strong></label>
+                <p id="memberName">
+                    <%=memberName%>
+                </p>
+            </li>
+            <li class="list-group-item">
                 <label for="postalCode"><strong>郵便番号</strong></label>
                 <p id="postalCode">
-                    <%=memberBeans.getPostalCode()%>
+                    <%=postalCode%>
                 </p>
             </li>
             <li class="list-group-item">
                 <label for="address"><strong>住所</strong></label>
                 <p id="address">
-                    <%=memberBeans.getAddress()%>
+                    <%=address%>
                 </p>
             </li>
             <li class="list-group-item">
                 <label for="creditCard"><strong>クレジットカード番号</strong></label>
                 <p id="creditCard">
-                    <%=memberBeans.getCreditCard()%>
+                    <%=creditCard%>
                 </p>
             </li>
             <li class="list-group-item">
                 <label for="expirationDate"><strong>有効期限</strong></label>
                 <p id="expirationDate">
-                    <%=memberBeans.getExpirationDate()%>
+                    <%=expirationDate%>
                 </p>
             </li>
             <li class="list-group-item">
                 <label for="holder"><strong>名義人</strong></label>
                 <p id="holder">
-                    <%=memberBeans.getHolder()%>
+                    <%=holder%>
                 </p>
             </li>
             <li class="list-group-item">
                 <label for="securityCode"><strong>セキュリティコード</strong></label>
                 <p id="securityCode">
-                    <%=memberBeans.getSecurityCode()%>
+                    <%=securityCode%>
                 </p>
             </li>
         </ul>

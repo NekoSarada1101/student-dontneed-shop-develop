@@ -8,6 +8,10 @@
 
     ProductService productService = new ProductService();
     List<Map<String, Object>> genreInfoList = productService.fetchGenreInfo();
+
+    String productName = productService.escapeProcess(productBeans.getProductName());
+    String price = productService.escapeProcess(String.valueOf(productBeans.getPrice()));
+    String productExplanation = productService.escapeProcess(productBeans.getProductExplanation());
 %>
 <!DOCTYPE html>
 <html>
@@ -29,14 +33,14 @@
             <tr class="row">
                 <th class="col-3">商品名</th>
                 <td class="col-9">
-                    <%=productBeans.getProductName()%>
+                    <%=productName%>
                 </td>
             </tr>
 
             <tr class="row">
                 <th class="col-3">価格</th>
                 <td class="col-9">
-                    <%=productBeans.getPrice()%>
+                    <%=price%>
                 </td>
             </tr>
 
@@ -50,7 +54,7 @@
             <tr class="row">
                 <th class="col-3">商品説明</th>
                 <td class="col-9">
-                    <%=productBeans.getProductExplanation()%>
+                    <%=productExplanation%>
                 </td>
             </tr>
 
@@ -61,7 +65,7 @@
                         for (Map<String, Object> genreInfoMap : genreInfoList) {
                             if (productBeans.getGenreCode() == (int) genreInfoMap.get("genreCode")) {
                     %>
-                    <%=genreInfoMap.get("genreName")%>
+                    <%=productService.escapeProcess((String) genreInfoMap.get("genreName"))%>
                     <%
                             }
                         }

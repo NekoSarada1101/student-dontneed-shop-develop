@@ -1,4 +1,5 @@
 <%@ page import="shop.model.bean.ProductBeans" %>
+<%@ page import="shop.model.service.ProductService" %>
 <%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
@@ -27,57 +28,57 @@
     </div>
 
     <div class="col-7">
-    	<p class="text-danger">
-        	<%=request.getAttribute("errorMessage")%>
-    	</p>
+        <p class="text-danger">
+            <%=request.getAttribute("errorMessage")%>
+        </p>
     </div>
 
     <table class="table table-hover col-11 col-md-8 mx-auto">
-            <thead>
-            <tr class="row">
-                <th scope="col" class="col-2 col-lg-1">画像</th>
-                <th scope="col" class="col-2 col-lg-3">商品名</th>
-                <th scope="col" class="col-2">価格</th>
-                <th scope="col" class="col-3"></th>
-                <th scope="col" class="col-3"></th>
-            </tr>
-            </thead>
+        <thead>
+        <tr class="row">
+            <th scope="col" class="col-2 col-lg-1">画像</th>
+            <th scope="col" class="col-2 col-lg-3">商品名</th>
+            <th scope="col" class="col-2">価格</th>
+            <th scope="col" class="col-3"></th>
+            <th scope="col" class="col-3"></th>
+        </tr>
+        </thead>
 
-            <tbody>
-            <%
-                int i = 0;
-                for (ProductBeans productBeans : purchaseList) {
-            %>
-            <tr class="row">
-                <td scope="row" id="square-image<%=i%>" class="square-image col-2 col-lg-1">
-                    <img src="getImageList?index=<%=i%>" alt="">
-                </td>
-                <td class="col-2 col-lg-3">
-                    <strong>
-                        <%=productBeans.getProductName()%>
-                    </strong>
-                </td>
-                <td class="col-2">
-                    <%=productBeans.getPrice() + "円"%>
-                </td>
-                <td class="col-3 text-center">
-                    <form action="memberProductDetail" method="post">
-                        <button type="submit" class="btn btn-primary">詳細表示</button>
-                        <input type="hidden" value="<%=i%>" name="index">
-                    </form>
-                </td>
-                <td class="col-3 text-center">
-                    <form action="cartDelete" method="get">
-                        <button type="submit" class="btn btn-danger">削除</button>
-                    </form>
-                </td>
-            </tr>
-            <%
-                    i++;
-                }
-            %>
-            </tbody>
-        </table>
+        <tbody>
+        <%
+            int i = 0;
+            for (ProductBeans productBeans : purchaseList) {
+        %>
+        <tr class="row">
+            <td scope="row" id="square-image<%=i%>" class="square-image col-2 col-lg-1">
+                <img src="getImageList?index=<%=i%>" alt="">
+            </td>
+            <td class="col-2 col-lg-3">
+                <strong>
+                    <%=productService.escapeProcess(productBeans.getProductName())%>
+                </strong>
+            </td>
+            <td class="col-2">
+                <%=productService.escapeProcess(String.valueOf(productBeans.getPrice())) + "円"%>
+            </td>
+            <td class="col-3 text-center">
+                <form action="memberProductDetail" method="post">
+                    <button type="submit" class="btn btn-primary">詳細表示</button>
+                    <input type="hidden" value="<%=i%>" name="index">
+                </form>
+            </td>
+            <td class="col-3 text-center">
+                <form action="cartDelete" method="get">
+                    <button type="submit" class="btn btn-danger">削除</button>
+                </form>
+            </td>
+        </tr>
+        <%
+                i++;
+            }
+        %>
+        </tbody>
+    </table>
 
 </div>
 
