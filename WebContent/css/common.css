@@ -77,3 +77,8 @@ table {
 .form-control:focus {
   background-color: rgba(92, 184, 92, 0.05);
 }
+
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
