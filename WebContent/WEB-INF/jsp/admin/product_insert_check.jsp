@@ -66,11 +66,11 @@
             </tbody>
         </table>
 
-        <form action="productInsertInput" method="post" class="col-6">
+        <form action="productInsertInput" method="post" class="col-6 ml-0">
             <button type="submit" class="btn btn-outline-dark btn-block">戻る</button>
         </form>
 
-        <form action="productInsertComplete" method="post" class="col-6">
+        <form action="productInsertComplete" method="post" class="col-6 mr-0">
             <button type="submit" class="btn btn-primary btn-block">登録する</button>
         </form>
     </div>
