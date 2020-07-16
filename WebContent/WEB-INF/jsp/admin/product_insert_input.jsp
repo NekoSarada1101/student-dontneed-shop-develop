@@ -38,7 +38,7 @@
             <div class="form-group row">
                 <label for="price" class="col-12"><strong>価格</strong></label>
                 <input type="number" value="<%=productBeans.getPrice()%>" class="form-control col-12" id="price" name="price"
-                       maxlength="16" required>
+                       max="99999999999" required>
             </div>
             <div class="form-group row">
                 <label for="image" class="col-12"><strong>画像</strong></label>
