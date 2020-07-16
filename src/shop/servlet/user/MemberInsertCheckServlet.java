@@ -1,6 +1,7 @@
 package shop.servlet.user;
 
 import shop.model.bean.MemberBeans;
+import shop.model.service.CommonService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +14,8 @@ import java.io.IOException;
 
 @WebServlet("/memberInsertCheck")
 public class MemberInsertCheckServlet extends HttpServlet {
+
+    CommonService commonService = new CommonService();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -27,6 +30,11 @@ public class MemberInsertCheckServlet extends HttpServlet {
         String expirationDate = request.getParameter("expirationDate");
         String holder         = request.getParameter("holder");
         String securityCode   = request.getParameter("securityCode");
+
+        if (!checkInputText(memberMail, memberPassword, memberName, postalCode, address, tell, creditCard, holder, securityCode)) {
+            request.getRequestDispatcher("WEB-INF/jsp/error.jsp").forward(request, response);
+            return;
+        }
 
         MemberBeans memberBeans = new MemberBeans();
         memberBeans.setMemberMail(memberMail);
@@ -43,5 +51,18 @@ public class MemberInsertCheckServlet extends HttpServlet {
         session.setAttribute("memberBeans", memberBeans);
 
         request.getRequestDispatcher("WEB-INF/jsp/user/member_insert_check.jsp").forward(request, response);
+    }
+
+    public boolean checkInputText(String memberMail, String memberPassword, String memberName, String postalCode, String address, String tell, String creditCard, String holder, String securityCode) {
+        if (!commonService.checkLength(memberMail, 100, 1)) return false;
+        if (!commonService.checkLength(memberPassword, 128, 1)) return false;
+        if (!commonService.checkLength(memberName, 20, 1)) return false;
+        if (!commonService.checkLength(postalCode, 7, 7)) return false;
+        if (!commonService.checkLength(address, 50, 1)) return false;
+        if (!commonService.checkLength(tell, 11, 1)) return false;
+        if (!commonService.checkLength(creditCard, 16, 16)) return false;
+        if (!commonService.checkLength(holder, 20, 1)) return false;
+        if (!commonService.checkLength(securityCode, 3, 3)) return false;
+        return true;
     }
 }

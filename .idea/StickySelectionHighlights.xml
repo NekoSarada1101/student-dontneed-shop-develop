@@ -78,6 +78,11 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/error.jsp">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/user/cart_display.jsp">
           <value>
             <PaintGroupHighlightMap />
@@ -213,6 +218,11 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/shop/model/service/CommonService.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/shop/model/service/ProductService.java">
           <value>
             <PaintGroupHighlightMap />
@@ -294,6 +304,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/shop/servlet/user/MemberInsertCheckServlet.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/shop/servlet/user/MemberInsertCompleteServlet.java">
           <value>
             <PaintGroupHighlightMap />
           </value>

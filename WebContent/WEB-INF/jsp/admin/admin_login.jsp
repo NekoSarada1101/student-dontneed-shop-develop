@@ -22,11 +22,11 @@
     <form action="adminLogin" method="POST" class="col-10 col-sm-8 col-md-6 col-lg-3 mx-auto">
         <div class="form-group">
             <label for="adminMail"><strong>メールアドレス</strong></label>
-            <input type="text" class="form-control" id="adminMail" name="adminMail">
+            <input type="text" class="form-control" id="adminMail" name="adminMail" maxlength="100" required>
         </div>
         <div class="form-group">
             <label for="adminPassword"><strong>パスワード</strong></label>
-            <input type="password" class="form-control" id="adminPassword" name="adminPassword">
+            <input type="password" class="form-control" id="adminPassword" name="adminPassword" maxlength="128" required>
         </div>
 
         <%if (errorMessage != null) { %>
