@@ -33,18 +33,16 @@
             <tr class="row">
                 <th class="col-3">商品名</th>
                 <td class="col-9">
-                    <%=productBeans.getProductName()%>
+                    <%=productName%>
                 </td>
             </tr>
-                    <%=productName%>
 
             <tr class="row">
                 <th class="col-3">価格</th>
                 <td class="col-9">
-                    <%=productBeans.getPrice()%>
+                    <%=price%>
                 </td>
             </tr>
-                    <%=price%>
 
             <tr class="row">
                 <th class="col-3">画像</th>
@@ -56,10 +54,9 @@
             <tr class="row">
                 <th class="col-3">商品説明</th>
                 <td class="col-9">
-                    <%=productBeans.getProductExplanation()%>
+                    <%=productExplanation%>
                 </td>
             </tr>
-                    <%=productExplanation%>
 
             <tr class="row">
                 <th class="col-3">ジャンル</th>
@@ -68,7 +65,7 @@
                         for (Map<String, Object> genreInfoMap : genreInfoList) {
                             if (productBeans.getGenreCode() == (int) genreInfoMap.get("genreCode")) {
                     %>
-                    <%=genreInfoMap.get("genreName")%>
+                    <%=productService.escapeProcess((String) genreInfoMap.get("genreName"))%>
                     <%
                             }
                         }
@@ -77,7 +74,6 @@
             </tr>
             </tbody>
         </table>
-                    <%=productService.escapeProcess((String) genreInfoMap.get("genreName"))%>
 
         <form action="productUpdateInput" method="get" class="col-6 ml-0">
             <button type="submit" class="btn btn-outline-dark btn-block">戻る</button>

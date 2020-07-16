@@ -24,10 +24,6 @@
 <body>
 <%@include file="/WEB-INF/jsp/admin/admin_header.jsp" %>
 
-                <%=productName%>
-                <%=price%>
-                <%=productExplanation%>
-                <%=productService.escapeProcess((String) genreInfoMap.get("genreName"))%>
 <h1 class="mt-3 text-center">商品情報削除確認</h1>
 <div class="row  mt-3">
     <div class="col-12 col-sm-8 col-md-6 col-lg-4 row mx-auto">
@@ -36,13 +32,13 @@
             <tr class="row">
                 <th class="col-3">商品名</th>
                 <td class="col-9">
-                    <%=productBeans.getProductName()%>
+                    <%=productName%>
                 </td>
             </tr>
             <tr class="row">
                 <th class="col-3">価格</th>
                 <td class="col-9">
-                    <%=productBeans.getPrice()%>
+                    <%=price%>
                 </td>
             </tr>
             <tr class="row">
@@ -54,7 +50,7 @@
             <tr class="row">
                 <th class="col-3">商品説明</th>
                 <td class="col-9">
-                    <%=productBeans.getProductExplanation()%>
+                    <%=productExplanation%>
                 </td>
             </tr>
             <tr class="row">
@@ -64,7 +60,7 @@
                         for (Map<String, Object> genreInfoMap : genreInfoList) {
                             if (productBeans.getGenreCode() == (int) genreInfoMap.get("genreCode")) {
                     %>
-                    <%=genreInfoMap.get("genreName")%>
+                    <%=productService.escapeProcess((String) genreInfoMap.get("genreName"))%>
                     <%
                             }
                         }
