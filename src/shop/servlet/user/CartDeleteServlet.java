@@ -16,7 +16,7 @@ import shop.model.bean.ProductBeans;
 import shop.model.service.PurchaseService;
 
 @WebServlet("/cartDelete")
-public class CartDeleteServle extends HttpServlet {
+public class CartDeleteServlet extends HttpServlet {
 
 
     @Override
