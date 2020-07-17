@@ -68,6 +68,7 @@
                 <td class="col-3 text-center">
                     <form action="cartDelete" method="get">
                         <button type="submit" class="btn btn-danger">削除</button>
+                        <input type="hidden" value="<%=i%>" name="index">
                     </form>
                 </td>
             </tr>
