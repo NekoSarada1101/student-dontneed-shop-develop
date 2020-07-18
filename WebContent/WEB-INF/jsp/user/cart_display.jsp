@@ -28,7 +28,17 @@
             <button type="submit" class="btn btn-outline-dark btn-block col-8 ml-auto">トップ画面へ戻る</button>
         </form>
         <form action="purchaseCheck" method="get" class="col-6 mx-auto mb-3 row">
+            <%
+                if (cartList.size() >= 1) {
+            %>
             <button type="submit" class="btn btn-primary btn-block col-8 mr-auto">購入</button>
+            <%
+            } else {
+            %>
+            <button type="submit" class="btn btn-primary btn-block col-8 mr-auto" disabled>購入</button>
+            <%
+                }
+            %>
         </form>
         <div class="col-7"><p></p></div>
         <table class="table table-hover col-11 col-md-8 mx-auto">
