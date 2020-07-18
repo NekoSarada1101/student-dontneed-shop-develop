@@ -1,15 +1,22 @@
 
 package shop.model.dao;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import shop.model.bean.AdminBeans;
 import shop.model.bean.MemberBeans;
+import shop.model.service.CommonService;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserDao extends DaoBase {
+
+    private Logger logger = LogManager.getLogger();
+
     public MemberBeans fetchMemberLogin(String memberMail, String password) {
+        logger.trace("{} Start", CommonService.getMethodName());
         PreparedStatement stmt        = null;
         ResultSet         rs          = null;
         MemberBeans       memberBeans = null;
@@ -34,8 +41,12 @@ public class UserDao extends DaoBase {
             memberBeans.setHolder(rs.getString("holder"));
             memberBeans.setSecurityCode(rs.getString("security_code"));
 
+            logger.info("memberBeans={}", memberBeans);
+
         } catch (SQLException e) {
             e.printStackTrace();
+            logger.error("error={}", e);
+
             return null;
         } finally {
             try {
@@ -43,36 +54,45 @@ public class UserDao extends DaoBase {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            logger.trace("{} End", CommonService.getMethodName());
         }
         return memberBeans;
     }
 
     public boolean checkMemberMailExists(String memberMail) {
-        PreparedStatement stmt = null;
-        ResultSet         rs   = null;
+        logger.trace("{} Start", CommonService.getMethodName());
+        PreparedStatement stmt     = null;
+        ResultSet         rs       = null;
+        boolean           isExists = false;
 
         try {
             this.connect();
-            stmt = con.prepareStatement("SELECT * FROM member WHERE member_mail = ?");
+            stmt = con.prepareStatement("SELECT * FROM member WHERE exists(SELECT * FROM member m WHERE m.member_mail = ?)");
             stmt.setString(1, memberMail);
             rs = stmt.executeQuery();
-            rs.next();
-            rs.getString("member_mail");
+            if (rs.next()) {
+                isExists = true;
+            } else {
+                isExists = false;
+            }
+            logger.info("isExists={}", isExists);
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return /* isExists = */ false;
+            logger.error("error={}", e);
         } finally {
             try {
                 this.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            logger.trace("{} End", CommonService.getMethodName());
         }
-        return /* isExists = */ true;
+        return isExists;
     }
 
     public boolean insertMember(MemberBeans memberBeans) {
+        logger.trace("{} Start", CommonService.getMethodName());
         PreparedStatement stmt       = null;
         int               insertLine = 0;
 
@@ -90,20 +110,25 @@ public class UserDao extends DaoBase {
             stmt.setString(9, memberBeans.getHolder());
             stmt.setString(10, memberBeans.getSecurityCode());
             insertLine = stmt.executeUpdate();
+            logger.info("insertLine={}", insertLine);
 
         } catch (SQLException e) {
             e.printStackTrace();
+            logger.error("error={}", e);
+
         } finally {
             try {
                 this.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            logger.trace("{} End", CommonService.getMethodName());
         }
         return insertLine != 0;
     }
 
     public boolean updateMember(MemberBeans memberBeans) {
+        logger.trace("{} Start", CommonService.getMethodName());
         PreparedStatement stmt       = null;
         int               updateLine = 0;
 
@@ -122,20 +147,25 @@ public class UserDao extends DaoBase {
             stmt.setString(10, memberBeans.getSecurityCode());
             stmt.setString(11, memberBeans.getMemberMail());
             updateLine = stmt.executeUpdate();
+            logger.info("updateList={}", updateLine);
 
         } catch (SQLException e) {
             e.printStackTrace();
+            logger.error("error={}", e);
+
         } finally {
             try {
                 this.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            logger.trace("{} End", CommonService.getMethodName());
         }
         return updateLine != 0;
     }
 
     public boolean deleteMember(MemberBeans memberBeans) {
+        logger.trace("{} Start", CommonService.getMethodName());
         PreparedStatement stmt       = null;
         int               deleteLine = 0;
 
@@ -144,21 +174,26 @@ public class UserDao extends DaoBase {
             stmt = con.prepareStatement("DELETE FROM member WHERE member_mail = ?");
             stmt.setString(1, memberBeans.getMemberMail());
             deleteLine = stmt.executeUpdate();
+            logger.info("deleteList={}", deleteLine);
 
         } catch (SQLException e) {
             e.printStackTrace();
+            logger.error("error={}", e);
+
         } finally {
             try {
                 this.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            logger.trace("{} End", CommonService.getMethodName());
         }
         return deleteLine != 0;
     }
 
 
     public AdminBeans fetchAdminLogin(String adminMail, String password) {
+        logger.trace("{} Start", CommonService.getMethodName());
         PreparedStatement stmt       = null;
         ResultSet         rs         = null;
         AdminBeans        adminBeans = null;
@@ -176,9 +211,12 @@ public class UserDao extends DaoBase {
             adminBeans.setAdminPassword(rs.getString("admin_password"));
             adminBeans.setPostalCode(rs.getString("postal_code"));
             adminBeans.setAddress(rs.getString("address"));
+            logger.info("adminBeans={}", adminBeans);
 
         } catch (SQLException e) {
             e.printStackTrace();
+            logger.error("error={}", e);
+
             return null;
         } finally {
             try {
@@ -186,6 +224,7 @@ public class UserDao extends DaoBase {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            logger.trace("{} End", CommonService.getMethodName());
         }
         return adminBeans;
     }
