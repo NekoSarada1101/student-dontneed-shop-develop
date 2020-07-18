@@ -1,8 +1,10 @@
 <%@ page import="shop.model.bean.ProductBeans" %>
+<%@ page import="shop.model.service.CommonService" %>
 <%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     List<ProductBeans> purchaseList = (List<ProductBeans>) session.getAttribute("productList");
+    CommonService commonService = new CommonService();
 %>
 <!DOCTYPE html>
 <html>
@@ -44,11 +46,11 @@
                 </td>
                 <td class="col-3 col-lg-4">
                     <strong>
-                        <%=productBeans.getProductName()%>
+                        <%=commonService.escapeProcess(productBeans.getProductName()))%>
                     </strong>
                 </td>
                 <td class="col-6">
-                    <%=productBeans.getPrice() + "円"%>
+                    <%=commonService.escapeProcess(String.valueOf(productBeans.getPrice())) + "円"%>
                 </td>
             </tr>
             <%
