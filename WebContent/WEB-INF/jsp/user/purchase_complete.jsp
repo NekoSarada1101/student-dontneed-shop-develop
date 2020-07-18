@@ -15,37 +15,49 @@
 <body>
 <%@include file="/WEB-INF/jsp/user/member_header.jsp" %>
 
-<div>
-    <div class="row mt-5">
-        <form action="memberTop" method="get" class="col-6">
-            <button type="submit" class="btn btn-outline-dark btn-block btn-lg ml-auto col-12 col-md-8">トップへ戻る</button>
+<div class="p-1 p-md-3 p-lg-5">
+
+    <div class="row">
+        <form action="memberTop" method="get" class="col-11 col-md-8 mx-auto mb-3 row">
+            <button type="submit" class="btn btn-outline-dark btn-block col-5 mr-auto">トップへ戻る</button>
         </form>
 
-    </div>
+    <div class="col-7"><p></p></div>
 
-    <%
-        int i = 0;
-        for (ProductBeans productBeans : purchaseList) {
-    %>
-    <div class="card mb-3">
-        <div class="row no-gutters">
-            <div class="col-md-4 square-image" id="square-image">
-                <img src="getImageList?index=<%=i%>" alt="...">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title"><%=productBeans.getProductName()%>
-                    </h5>
-                    <p class="card-text text-danger"><%=productBeans.getPrice() + "円"%>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <%
-            i++;
-        }
-    %>
+    <table class="table table-hover col-11 col-md-8 mx-auto">
+            <thead>
+            <tr class="row">
+                <th scope="col" class="col-3 col-lg-2">画像</th>
+                <th scope="col" class="col-3 col-lg-4">商品名</th>
+                <th scope="col" class="col-6">価格</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <%
+                int i = 0;
+                for (ProductBeans productBeans : purchaseList) {
+            %>
+            <tr class="row">
+                <td scope="row" id="square-image<%=i%>" class="square-image col-3 col-lg-2">
+                    <img src="getImageList?index=<%=i%>" alt="">
+                </td>
+                <td class="col-3 col-lg-4">
+                    <strong>
+                        <%=productBeans.getProductName()%>
+                    </strong>
+                </td>
+                <td class="col-6">
+                    <%=productBeans.getPrice() + "円"%>
+                </td>
+            </tr>
+            <%
+                    i++;
+                }
+            %>
+            </tbody>
+        </table>
+	</div>
 </div>
 
 <%@include file="/WEB-INF/jsp/user/member_footer.jsp" %>
