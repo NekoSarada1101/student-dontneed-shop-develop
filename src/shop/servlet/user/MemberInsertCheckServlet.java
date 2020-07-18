@@ -1,5 +1,7 @@
 package shop.servlet.user;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import shop.model.bean.MemberBeans;
 import shop.model.service.CommonService;
 
@@ -16,8 +18,10 @@ import java.io.IOException;
 public class MemberInsertCheckServlet extends HttpServlet {
 
     CommonService commonService = new CommonService();
+    private Logger logger = LogManager.getLogger();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        logger.trace("{} Start", CommonService.getMethodName());
         HttpSession session = request.getSession();
 
         String memberMail     = request.getParameter("memberMail");
@@ -31,8 +35,11 @@ public class MemberInsertCheckServlet extends HttpServlet {
         String holder         = request.getParameter("holder");
         String securityCode   = request.getParameter("securityCode");
 
+        logger.info("memberMail={}", memberMail);
+
         if (!checkInputText(memberMail, memberPassword, memberName, postalCode, address, tell, creditCard, holder, securityCode)) {
             request.getRequestDispatcher("WEB-INF/jsp/error.jsp").forward(request, response);
+            logger.trace("{} End", CommonService.getMethodName());
             return;
         }
 
@@ -49,7 +56,7 @@ public class MemberInsertCheckServlet extends HttpServlet {
         memberBeans.setSecurityCode(securityCode);
 
         session.setAttribute("memberBeans", memberBeans);
-
+        logger.trace("{} End", CommonService.getMethodName());
         request.getRequestDispatcher("WEB-INF/jsp/user/member_insert_check.jsp").forward(request, response);
     }
 

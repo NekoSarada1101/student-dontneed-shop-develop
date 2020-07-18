@@ -1,6 +1,9 @@
 package shop.servlet.user;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import shop.model.bean.MemberBeans;
+import shop.model.service.CommonService;
 import shop.model.service.UserService;
 
 import javax.servlet.ServletException;
@@ -15,10 +18,14 @@ import java.io.IOException;
 public class MemberUpdateCompleteServlet extends HttpServlet {
 
     UserService userService = new UserService();
+    private Logger logger = LogManager.getLogger();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        logger.trace("{} Start", CommonService.getMethodName());
         HttpSession session     = request.getSession();
         MemberBeans memberBeans = (MemberBeans) session.getAttribute("memberBeans");
+
+        logger.info("memberBeans={}", memberBeans);
 
         if (!memberBeans.getMemberMail().equals(((MemberBeans) session.getAttribute("memberLoginInfo")).getMemberMail()))
             if (userService.checkMemberMailExists(memberBeans.getMemberMail())) {
@@ -32,7 +39,7 @@ public class MemberUpdateCompleteServlet extends HttpServlet {
         userService.updateMember(memberBeans);
         session.setAttribute("memberLoginInfo", memberBeans);
         session.removeAttribute("memberBeans");
-
+        logger.trace("{} End", CommonService.getMethodName());
         request.getRequestDispatcher("WEB-INF/jsp/user/member_update_complete.jsp").forward(request, response);
     }
 }

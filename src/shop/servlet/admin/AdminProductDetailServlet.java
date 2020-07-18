@@ -1,6 +1,9 @@
 package shop.servlet.admin;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import shop.model.bean.ProductBeans;
+import shop.model.service.CommonService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,8 +17,11 @@ import java.util.List;
 @WebServlet("/adminProductDetail")
 public class AdminProductDetailServlet extends HttpServlet {
 
+    private Logger logger = LogManager.getLogger();
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        logger.trace("{} Start", CommonService.getMethodName());
         HttpSession session = request.getSession();
 
         int index = 0;
@@ -24,8 +30,10 @@ public class AdminProductDetailServlet extends HttpServlet {
         } catch (NumberFormatException e) { //商品情報変更入力画面から遷移したら
             index = (int) session.getAttribute("index");
         }
+        logger.info("index={}", index);
 
         List<ProductBeans> productList = (List<ProductBeans>) session.getAttribute("productList");
+        logger.info("productList={}", productList);
 
         ProductBeans productBeans = new ProductBeans();
         productBeans.setProductId(productList.get(index).getProductId());
@@ -38,7 +46,7 @@ public class AdminProductDetailServlet extends HttpServlet {
 
         session.setAttribute("index", index);
         session.setAttribute("productBeans", productBeans);
-
+        logger.trace("{} End", CommonService.getMethodName());
         request.getRequestDispatcher("WEB-INF/jsp/admin/admin_product_detail.jsp").forward(request, response);
     }
 }

@@ -46,7 +46,7 @@
                 </td>
                 <td class="col-3 col-lg-4">
                     <strong>
-                        <%=commonService.escapeProcess(productBeans.getProductName()))%>
+                        <%=commonService.escapeProcess(productBeans.getProductName())%>
                     </strong>
                 </td>
                 <td class="col-6">

@@ -1,8 +1,11 @@
 
 package shop.servlet.admin;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import shop.model.bean.AdminBeans;
 import shop.model.bean.ProductBeans;
+import shop.model.service.CommonService;
 import shop.model.service.ProductService;
 
 import javax.servlet.ServletException;
@@ -17,9 +20,11 @@ import java.io.InputStream;
 public class ProductInsertCheckServlet extends HttpServlet {
 
     ProductService productService = new ProductService();
+    private Logger logger = LogManager.getLogger();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        logger.trace("{} Start", CommonService.getMethodName());
         String      productName        = request.getParameter("productName");
         Part        filePart           = request.getPart("image");
         InputStream inputStream        = filePart.getInputStream();
@@ -31,13 +36,21 @@ public class ProductInsertCheckServlet extends HttpServlet {
             genreCode = Integer.parseInt(request.getParameter("genre"));
         } catch (NumberFormatException e) {
             e.printStackTrace();
+            logger.error("error={}", e);
+            logger.trace("{} End", CommonService.getMethodName());
             request.getRequestDispatcher("WEB-INF/jsp/error.jsp").forward(request, response);
             return;
         }
-        System.out.println(filePart);
+
+        logger.info("productName={}", productName);
+        logger.info("inputStream={}", inputStream);
+        logger.info("productExplanation={}", productExplanation);
+        logger.info("price={}", price);
+        logger.info("genreCode={}", genreCode);
 
         if (!checkInputText(productName, price, productExplanation)) {
             request.getRequestDispatcher("WEB-INF/jsp/error.jsp").forward(request, response);
+            logger.trace("{} End", CommonService.getMethodName());
             return;
         }
 
@@ -52,7 +65,7 @@ public class ProductInsertCheckServlet extends HttpServlet {
         productBeans.setAdminMail(((AdminBeans) session.getAttribute("adminLoginInfo")).getAdminMail());
 
         session.setAttribute("productBeans", productBeans);
-
+        logger.trace("{} End", CommonService.getMethodName());
         request.getRequestDispatcher("WEB-INF/jsp/admin/product_insert_check.jsp").forward(request, response);
     }
 

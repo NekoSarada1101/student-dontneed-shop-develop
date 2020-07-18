@@ -1,8 +1,11 @@
 
 package shop.servlet.user;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import shop.model.bean.MemberBeans;
 import shop.model.bean.ProductBeans;
+import shop.model.service.CommonService;
 import shop.model.service.PurchaseService;
 
 import javax.servlet.ServletException;
@@ -19,13 +22,17 @@ import java.util.Map;
 public class PurchaseCheckServlet extends HttpServlet {
 
     private PurchaseService purchaseService = new PurchaseService();
+    private Logger          logger          = LogManager.getLogger();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        logger.trace("{} Start", CommonService.getMethodName());
         HttpSession session = request.getSession();
 
         String memberMail = ((MemberBeans) session.getAttribute("memberLoginInfo")).getMemberMail();
         Map<String, List<ProductBeans>> purchaseMap = purchaseService.checkExistsStock(memberMail);
+        logger.info("purchaseMap={}", purchaseMap);
+
 
         String errorMessage = "";
 
@@ -40,7 +47,7 @@ public class PurchaseCheckServlet extends HttpServlet {
 
         request.setAttribute("errorMessage", errorMessage);
         session.setAttribute("productList", purchaseMap.get("purchaseList"));
-
+        logger.trace("{} End", CommonService.getMethodName());
         request.getRequestDispatcher("WEB-INF/jsp/user/purchase_check.jsp").forward(request, response);
     }
 }

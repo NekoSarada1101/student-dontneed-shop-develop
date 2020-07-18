@@ -1,7 +1,10 @@
 package shop.servlet.user;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import shop.model.bean.MemberBeans;
 import shop.model.bean.ProductBeans;
+import shop.model.service.CommonService;
 import shop.model.service.PurchaseService;
 
 import javax.servlet.ServletException;
@@ -16,15 +19,19 @@ import java.io.IOException;
 public class CartInsertServlet extends HttpServlet {
 
     PurchaseService purchaseService = new PurchaseService();
+    private Logger logger = LogManager.getLogger();
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        logger.trace("{} Start", CommonService.getMethodName());
         HttpSession session = request.getSession();
         String memberMail = ((MemberBeans) session.getAttribute("memberLoginInfo")).getMemberMail();
         int productId = ((ProductBeans) session.getAttribute("productBeans")).getProductId();
+        logger.info("memberMail={}", memberMail);
+        logger.info("productId={}", productId);
 
         purchaseService.insertCart(memberMail, productId);
-
+        logger.trace("{} End", CommonService.getMethodName());
         request.getRequestDispatcher("WEB-INF/jsp/user/cart_insert_complete.jsp").forward(request, response);
     }
 }

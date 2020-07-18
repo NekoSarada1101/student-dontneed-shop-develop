@@ -1,8 +1,11 @@
 package shop.servlet.user;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import shop.model.bean.MemberBeans;
 import shop.model.bean.ProductBeans;
 import shop.model.bean.PurchaseDetailBeans;
+import shop.model.service.CommonService;
 import shop.model.service.ProductService;
 import shop.model.service.PurchaseService;
 
@@ -23,9 +26,11 @@ public class PurchaseCompleteServlet extends HttpServlet {
 
     private PurchaseService purchaseService = new PurchaseService();
     private ProductService  productService  = new ProductService();
+    private Logger          logger          = LogManager.getLogger();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        logger.trace("{} Start", CommonService.getMethodName());
         HttpSession               session            = request.getSession();
         String                    memberMail         = ((MemberBeans) session.getAttribute("memberLoginInfo")).getMemberMail();
         List<ProductBeans>        purchaseList       = (List<ProductBeans>) session.getAttribute("productList");
@@ -33,7 +38,10 @@ public class PurchaseCompleteServlet extends HttpServlet {
         SimpleDateFormat          sdf                = new SimpleDateFormat("yyyy-MM-dd");
         String                    today              = sdf.format(cal.getTime());
         List<PurchaseDetailBeans> purchaseDetailList = new ArrayList<>();
-
+        logger.info("memberMail={}", memberMail);
+        logger.info("purchaseList={}", purchaseList);
+        logger.info("today={}", today);
+        logger.info("purchaseDetailList={}", purchaseDetailList);
 
         for (ProductBeans productBeans : purchaseList) {
             PurchaseDetailBeans purchaseDetailBeans = new PurchaseDetailBeans();
@@ -53,6 +61,7 @@ public class PurchaseCompleteServlet extends HttpServlet {
             purchaseService.deleteCart(memberMail, productBeans.getProductId());
         }
 
+        logger.trace("{} End", CommonService.getMethodName());
         request.getRequestDispatcher("WEB-INF/jsp/user/purchase_complete.jsp").forward(request, response);
     }
 }
