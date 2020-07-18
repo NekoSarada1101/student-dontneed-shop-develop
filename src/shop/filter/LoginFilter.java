@@ -1,6 +1,8 @@
 
 package shop.filter;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import shop.model.bean.AdminBeans;
 import shop.model.bean.MemberBeans;
 
@@ -19,9 +21,11 @@ import java.util.List;
 @WebFilter("/*")
 public class LoginFilter implements Filter {
     private List<String> memberUrlPatterns = Arrays.asList("/memberTop", "/memberInsertInput", "/memberInsertCheck", "/memberInsertComplete", "/memberUpdateInput", "/memberUpdateCheck",
-            "/memberUpdateComplete", "/memberDeleteCheck", "/memberDeleteComplete", "/productSearchAndDisplay", "/memberProductDetail", "/memberDetail", "/cartInsert", "/cartDisplay", "/purchaseCheck",
+            "/memberUpdateComplete", "/memberDeleteCheck", "/memberDeleteComplete", "/productSearchAndDisplay", "/memberProductDetail", "/memberDetail", "/cartInsert", "/cartDisplay", "/cartDelete", "/purchaseCheck",
             "/purchaseComplete");
     private List<String> adminUrlPatterns  = Arrays.asList("/adminTop", "/adminProductDetail", "/productInsertInput", "/productInsertCheck", "/productInsertComplete", "/productUpdateInput", "/productUpdateCheck", "/productUpdateComplete", "/productDeleteCheck", "/productDeleteComplete", "/salesCheck");
+
+    private Logger logger = LogManager.getLogger();
 
     /**
      * Default constructor.
@@ -43,7 +47,6 @@ public class LoginFilter implements Filter {
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         // TODO Auto-generated method stub
         // place your code here
-
         HttpServletRequest  request  = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
         HttpSession         session  = request.getSession();
@@ -72,6 +75,8 @@ public class LoginFilter implements Filter {
             }
         } else if (path.equals("/memberLogin") || path.equals("/adminLogin") || path.contains("Image") || path.contains("css") || path.contains("js")) {
             chain.doFilter(req, res);
+        }else{
+            logger.fatal("フィルター対象のファイルではありません");
         }
     }
 
