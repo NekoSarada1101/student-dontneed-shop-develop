@@ -23,4 +23,8 @@ public class CommonService {
         str = str.replace(" ", "&nbsp");
         return str;
     }
+
+    public static String getMethodName() {
+        return Thread.currentThread().getStackTrace()[2].getMethodName();
+    }
 }
