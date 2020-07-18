@@ -27,11 +27,9 @@
     <table class="table table-hover col-11 col-md-8 mx-auto">
             <thead>
             <tr class="row">
-                <th scope="col" class="col-2 col-lg-1">画像</th>
-                <th scope="col" class="col-2 col-lg-3">商品名</th>
-                <th scope="col" class="col-2">価格</th>
-                <th scope="col" class="col-3"></th>
-                <th scope="col" class="col-3"></th>
+                <th scope="col" class="col-3 col-lg-2">画像</th>
+                <th scope="col" class="col-3 col-lg-4">商品名</th>
+                <th scope="col" class="col-6">価格</th>
             </tr>
             </thead>
 
@@ -41,20 +39,16 @@
                 for (ProductBeans productBeans : purchaseList) {
             %>
             <tr class="row">
-                <td scope="row" id="square-image<%=i%>" class="square-image col-2 col-lg-1">
+                <td scope="row" id="square-image<%=i%>" class="square-image col-3 col-lg-2">
                     <img src="getImageList?index=<%=i%>" alt="">
                 </td>
-                <td class="col-2 col-lg-3">
+                <td class="col-3 col-lg-4">
                     <strong>
                         <%=productBeans.getProductName()%>
                     </strong>
                 </td>
-                <td class="col-2">
+                <td class="col-6">
                     <%=productBeans.getPrice() + "円"%>
-                </td>
-                <td class="col-3 text-center">
-                </td>
-                <td class="col-3 text-center">
                 </td>
             </tr>
             <%
