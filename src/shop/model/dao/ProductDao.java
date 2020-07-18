@@ -1,7 +1,10 @@
 
 package shop.model.dao;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import shop.model.bean.ProductBeans;
+import shop.model.service.CommonService;
 import shop.model.service.ProductService;
 
 import java.io.ByteArrayInputStream;
@@ -16,8 +19,11 @@ import java.util.Map;
 
 public class ProductDao extends DaoBase {
 
+    private Logger logger = LogManager.getLogger();
+
     //検索
     public List<ProductBeans> fetchSearchProductList(int genreCode, String sortColumn, String sortOrder, String searchWord) {
+        logger.trace("{} Start", CommonService.getMethodName());
         PreparedStatement stmt = null;
         ResultSet rs = null;
         List<ProductBeans> productList = null;
@@ -53,21 +59,25 @@ public class ProductDao extends DaoBase {
                 productBeans.setAdminMail(rs.getString("admin_mail"));
                 productList.add(productBeans);
             }
+            logger.info("productList={}", productList);
 
         } catch (SQLException | IOException e) {
             e.printStackTrace();
+            logger.error("error={}", e);
         } finally {
             try {
                 this.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            logger.trace("{} End", CommonService.getMethodName());
         }
         return productList;
     }
 
     //商品登録
     public boolean insertProduct(ProductBeans productBeans) {
+        logger.trace("{} Start", CommonService.getMethodName());
         PreparedStatement stmt = null;
         int insertLine = 0;
 
@@ -81,21 +91,25 @@ public class ProductDao extends DaoBase {
             stmt.setInt(5, productBeans.getGenreCode());
             stmt.setString(6, productBeans.getAdminMail());
             insertLine = stmt.executeUpdate();
+            logger.info("insertLine={}", insertLine);
 
         } catch (SQLException e) {
             e.printStackTrace();
+            logger.error("error={}", e);
         } finally {
             try {
                 this.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            logger.trace("{} End", CommonService.getMethodName());
         }
         return insertLine != 0;
     }
 
     //商品変更
     public boolean updateProduct(ProductBeans productBeans) {
+        logger.trace("{} Start", CommonService.getMethodName());
         PreparedStatement stmt = null;
         int updateLine = 0;
 
@@ -110,21 +124,25 @@ public class ProductDao extends DaoBase {
             stmt.setInt(6, productBeans.getGenreCode());
             stmt.setInt(7, productBeans.getProductId());
             updateLine = stmt.executeUpdate();
+            logger.info("updateLine={}", updateLine);
 
         } catch (SQLException e) {
             e.printStackTrace();
+            logger.error("error={}", e);
         } finally {
             try {
                 this.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            logger.trace("{} End", CommonService.getMethodName());
         }
         return updateLine != 0;
     }
 
     //ジャンル情報取得
     public List<Map<String, Object>> fetchGenreInfo() {
+        logger.trace("{} Start", CommonService.getMethodName());
         PreparedStatement stmt = null;
         ResultSet rs = null;
         List<Map<String, Object>> genreInfoList = null;
@@ -142,21 +160,25 @@ public class ProductDao extends DaoBase {
                 genreInfoMap.put("genreName", rs.getString("genre_name"));
                 genreInfoList.add(genreInfoMap);
             }
+            logger.info("genreInfoList={}", genreInfoList);
 
         } catch (SQLException e) {
             e.printStackTrace();
+            logger.error("error={}", e);
         } finally {
             try {
                 this.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            logger.trace("{} End", CommonService.getMethodName());
         }
         return genreInfoList;
     }
 
     //管理者ごとの商品一覧取得
     public List<ProductBeans> fetchAdminProductList(String adminMail) {
+        logger.trace("{} Start", CommonService.getMethodName());
         PreparedStatement stmt = null;
         ResultSet rs = null;
         List<ProductBeans> productList = null;
@@ -182,15 +204,18 @@ public class ProductDao extends DaoBase {
                 productBeans.setAdminMail(rs.getString("admin_mail"));
                 productList.add(productBeans);
             }
+            logger.info("productList={}", productList);
 
         } catch (SQLException | IOException e) {
             e.printStackTrace();
+            logger.error("error={}", e);
         } finally {
             try {
                 this.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            logger.trace("{} End", CommonService.getMethodName());
         }
         return productList;
     }
