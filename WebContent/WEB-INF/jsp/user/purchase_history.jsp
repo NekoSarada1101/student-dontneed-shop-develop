@@ -1,6 +1,6 @@
 <%@ page import="shop.model.bean.MemberBeans" %>
 <%@ page import="shop.model.bean.ProductBeans" %>
-<%@ page import="shop.model.service.ProductService" %>
+<%@ page import="shop.model.service.ErrorCheckService" %>
 <%@ page import="shop.model.service.PurchaseService" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
@@ -20,13 +20,16 @@
 <body>
 <%@include file="/WEB-INF/jsp/user/member_header.jsp" %>
 
-<div class="p-1  p-md-3 p-lg-5">
+<h1 class="text-center my-5">購入履歴</h1>
 
+<div class="px-1 px-md-3 px-lg-5">
     <div class="row">
         <form action="memberTop" method="get" class="col-11 col-md-8 mx-auto mb-3 row">
             <button type="submit" class="btn btn-outline-dark btn-block col-5 mr-auto">トップ画面へ戻る</button>
         </form>
+
         <div class="col-7"></div>
+
         <table class="table table-hover col-11 col-md-8 mx-auto">
             <thead>
             <tr class="row">
@@ -50,14 +53,14 @@
                 </td>
                 <td class="col-2 col-lg-3">
                     <strong>
-                        <%=purchaseService.escapeProcess(productBeans.getProductName())%>
+                        <%=ErrorCheckService.escapeProcess(productBeans.getProductName())%>
                     </strong>
                 </td>
                 <td class="col-2">
-                    <%=purchaseService.escapeProcess(String.valueOf(productBeans.getPrice())) + "円"%>
+                    <%=ErrorCheckService.escapeProcess(String.valueOf(productBeans.getPrice())) + "円"%>
                 </td>
                 <td class="col-3">
-                    <%=purchaseService.escapeProcess((String) purchaseMap.get("purchaseDate"))%>
+                    <%=ErrorCheckService.escapeProcess((String) purchaseMap.get("purchaseDate"))%>
                 </td>
                 <td class="col-3 text-center">
                     <form action="productDetail" method="post">
@@ -93,6 +96,5 @@
 </script>
 
 <%@include file="/WEB-INF/jsp/script.jsp" %>
-
 </body>
 </html>
