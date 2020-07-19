@@ -1,10 +1,9 @@
-
 package shop.servlet.user;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import shop.model.bean.ProductBeans;
-import shop.model.service.CommonService;
+import shop.model.service.ErrorCheckService;
 import shop.model.service.ProductService;
 
 import javax.servlet.ServletException;
@@ -20,18 +19,18 @@ import java.util.List;
 public class MemberTopServlet extends HttpServlet {
 
     private ProductService productService = new ProductService();
-    private Logger logger = LogManager.getLogger();
+    private Logger         logger         = LogManager.getLogger();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        logger.trace("{} Start", CommonService.getMethodName());
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
 
-        HttpSession session = request.getSession();
+        HttpSession        session     = request.getSession();
         List<ProductBeans> productList = productService.fetchSearchProductList(0, "product_id", "desc", "");
         session.setAttribute("productList", productList);
-        logger.info("productList={}", productList);
+        logger.info("productList.size={}", productList.size());
 
-        logger.trace("{} End", CommonService.getMethodName());
+        logger.trace("{} End", ErrorCheckService.getMethodName());
         request.getRequestDispatcher("WEB-INF/jsp/user/member_top.jsp").forward(request, response);
     }
 }
