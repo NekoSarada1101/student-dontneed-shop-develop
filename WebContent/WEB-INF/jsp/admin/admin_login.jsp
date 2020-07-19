@@ -37,6 +37,10 @@
 
         <button type="submit" class="btn btn-primary btn-block mt-5">ログイン</button>
     </form>
+
+    <form action="adminInsertInput" method="get" class="col-10 col-sm-8 col-md-6 col-lg-3 mx-auto">
+        <button type="submit" class="btn btn-link btn-block mt-3">管理者登録</button>
+    </form>
 </div>
 
 <%@include file="/WEB-INF/jsp/admin/admin_footer.jsp" %>

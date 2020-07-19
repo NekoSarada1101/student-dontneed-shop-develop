@@ -228,5 +228,68 @@ public class UserDao extends DaoBase {
         }
         return adminBeans;
     }
+
+    public boolean checkAdminMailExists(String adminMail) {
+        logger.trace("{} Start", CommonService.getMethodName());
+        PreparedStatement stmt     = null;
+        ResultSet         rs       = null;
+        boolean           isExists = false;
+
+        try {
+            this.connect();
+            stmt = con.prepareStatement("SELECT * FROM admin WHERE exists(SELECT * FROM admin m WHERE m.admin_mail = ?)");
+            stmt.setString(1, adminMail);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                isExists = true;
+            } else {
+                isExists = false;
+            }
+            logger.info("isExists={}", isExists);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            logger.error("error={}", e);
+        } finally {
+            try {
+                this.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            logger.trace("{} End", CommonService.getMethodName());
+        }
+        return isExists;
+    }
+
+    public boolean insertAdmin(AdminBeans adminBeans) {
+        logger.trace("{} Start", CommonService.getMethodName());
+        PreparedStatement stmt       = null;
+        int               insertLine = 0;
+
+        try {
+            this.connect();
+            stmt = con.prepareStatement("INSERT INTO admin (admin_mail, admin_password, admin_name, postal_code, address) VALUES (?,?,?,?,?)");
+            stmt.setString(1, adminBeans.getAdminMail());
+            stmt.setString(2, adminBeans.getAdminPassword());
+            stmt.setString(3, adminBeans.getAdminName());
+            stmt.setString(4, adminBeans.getPostalCode());
+            stmt.setString(5, adminBeans.getAddress());
+            insertLine = stmt.executeUpdate();
+            logger.info("insertLine={}", insertLine);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            logger.error("error={}", e);
+        } finally {
+            try {
+                this.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            logger.trace("{} End", CommonService.getMethodName());
+        }
+        return insertLine != 0;
+    }
+
 }
 
