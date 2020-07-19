@@ -5,7 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import shop.model.bean.AdminBeans;
 import shop.model.bean.MemberBeans;
-import shop.model.service.CommonService;
+import shop.model.service.ErrorCheckService;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,7 +16,7 @@ public class UserDao extends DaoBase {
     private Logger logger = LogManager.getLogger();
 
     public MemberBeans fetchMemberLogin(String memberMail, String password) {
-        logger.trace("{} Start", CommonService.getMethodName());
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
         PreparedStatement stmt        = null;
         ResultSet         rs          = null;
         MemberBeans       memberBeans = null;
@@ -40,13 +40,11 @@ public class UserDao extends DaoBase {
             memberBeans.setExpirationDate(rs.getString("expiration_date"));
             memberBeans.setHolder(rs.getString("holder"));
             memberBeans.setSecurityCode(rs.getString("security_code"));
-
             logger.info("memberBeans={}", memberBeans);
 
         } catch (SQLException e) {
             e.printStackTrace();
-            logger.error("error={}", e);
-
+            logger.error("error", e);
             return null;
         } finally {
             try {
@@ -54,13 +52,14 @@ public class UserDao extends DaoBase {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            logger.trace("{} End", CommonService.getMethodName());
+            logger.trace("{} End", ErrorCheckService.getMethodName());
         }
         return memberBeans;
     }
 
+
     public boolean checkMemberMailExists(String memberMail) {
-        logger.trace("{} Start", CommonService.getMethodName());
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
         PreparedStatement stmt     = null;
         ResultSet         rs       = null;
         boolean           isExists = false;
@@ -79,20 +78,21 @@ public class UserDao extends DaoBase {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            logger.error("error={}", e);
+            logger.error("error", e);
         } finally {
             try {
                 this.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            logger.trace("{} End", CommonService.getMethodName());
+            logger.trace("{} End", ErrorCheckService.getMethodName());
         }
         return isExists;
     }
 
+
     public boolean insertMember(MemberBeans memberBeans) {
-        logger.trace("{} Start", CommonService.getMethodName());
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
         PreparedStatement stmt       = null;
         int               insertLine = 0;
 
@@ -114,21 +114,21 @@ public class UserDao extends DaoBase {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            logger.error("error={}", e);
-
+            logger.error("error", e);
         } finally {
             try {
                 this.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            logger.trace("{} End", CommonService.getMethodName());
+            logger.trace("{} End", ErrorCheckService.getMethodName());
         }
         return insertLine != 0;
     }
 
+
     public boolean updateMember(MemberBeans memberBeans) {
-        logger.trace("{} Start", CommonService.getMethodName());
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
         PreparedStatement stmt       = null;
         int               updateLine = 0;
 
@@ -151,21 +151,21 @@ public class UserDao extends DaoBase {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            logger.error("error={}", e);
-
+            logger.error("error", e);
         } finally {
             try {
                 this.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            logger.trace("{} End", CommonService.getMethodName());
+            logger.trace("{} End", ErrorCheckService.getMethodName());
         }
         return updateLine != 0;
     }
 
+
     public boolean deleteMember(MemberBeans memberBeans) {
-        logger.trace("{} Start", CommonService.getMethodName());
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
         PreparedStatement stmt       = null;
         int               deleteLine = 0;
 
@@ -178,25 +178,25 @@ public class UserDao extends DaoBase {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            logger.error("error={}", e);
-
+            logger.error("error", e);
         } finally {
             try {
                 this.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            logger.trace("{} End", CommonService.getMethodName());
+            logger.trace("{} End", ErrorCheckService.getMethodName());
         }
         return deleteLine != 0;
     }
 
 
     public AdminBeans fetchAdminLogin(String adminMail, String password) {
-        logger.trace("{} Start", CommonService.getMethodName());
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
         PreparedStatement stmt       = null;
         ResultSet         rs         = null;
         AdminBeans        adminBeans = null;
+
         try {
             this.connect();
             stmt = con.prepareStatement("SELECT * FROM admin WHERE admin_mail = ? AND admin_password = ?");
@@ -215,8 +215,7 @@ public class UserDao extends DaoBase {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            logger.error("error={}", e);
-
+            logger.error("error", e);
             return null;
         } finally {
             try {
@@ -224,13 +223,14 @@ public class UserDao extends DaoBase {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            logger.trace("{} End", CommonService.getMethodName());
+            logger.trace("{} End", ErrorCheckService.getMethodName());
         }
         return adminBeans;
     }
 
+
     public boolean checkAdminMailExists(String adminMail) {
-        logger.trace("{} Start", CommonService.getMethodName());
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
         PreparedStatement stmt     = null;
         ResultSet         rs       = null;
         boolean           isExists = false;
@@ -249,20 +249,21 @@ public class UserDao extends DaoBase {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            logger.error("error={}", e);
+            logger.error("error", e);
         } finally {
             try {
                 this.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            logger.trace("{} End", CommonService.getMethodName());
+            logger.trace("{} End", ErrorCheckService.getMethodName());
         }
         return isExists;
     }
 
+
     public boolean insertAdmin(AdminBeans adminBeans) {
-        logger.trace("{} Start", CommonService.getMethodName());
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
         PreparedStatement stmt       = null;
         int               insertLine = 0;
 
@@ -279,20 +280,21 @@ public class UserDao extends DaoBase {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            logger.error("error={}", e);
+            logger.error("error", e);
         } finally {
             try {
                 this.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            logger.trace("{} End", CommonService.getMethodName());
+            logger.trace("{} End", ErrorCheckService.getMethodName());
         }
         return insertLine != 0;
     }
 
+
     public boolean updateAdmin(AdminBeans adminBeans) {
-        logger.trace("{} Start", CommonService.getMethodName());
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
         PreparedStatement stmt       = null;
         int               updateLine = 0;
 
@@ -310,15 +312,14 @@ public class UserDao extends DaoBase {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            logger.error("error={}", e);
-
+            logger.error("error", e);
         } finally {
             try {
                 this.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            logger.trace("{} End", CommonService.getMethodName());
+            logger.trace("{} End", ErrorCheckService.getMethodName());
         }
         return updateLine != 0;
     }
