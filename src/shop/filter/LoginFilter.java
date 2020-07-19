@@ -25,7 +25,7 @@ public class LoginFilter implements Filter {
             "/memberUpdateComplete", "/memberDeleteCheck", "/memberDeleteComplete", "/productSearchAndDisplay", "/memberProductDetail", "/memberDetail", "/cartInsert", "/cartDisplay", "/cartDelete", "/purchaseCheck",
             "/purchaseComplete", "/purchaseHistory");
 
-    private List<String> adminUrlPatterns = Arrays.asList("/adminLogout", "/adminTop", "/adminDetail", "/adminProductDetail", "/adminUpdateInput", "/adminUpdateCheck", "/adminUpdateComplete", "/productInsertInput", "/productInsertCheck", "/productInsertComplete", "/productUpdateInput", "/productUpdateCheck", "/productUpdateComplete", "/productDeleteCheck", "/productDeleteComplete", "/salesCheck");
+    private List<String> adminUrlPatterns = Arrays.asList("/adminLogout", "/adminTop", "/adminDetail", "/adminProductDetail", "/adminUpdateInput", "/adminUpdateCheck", "/adminUpdateComplete", "/adminDeleteCheck", "/adminDeleteComplete", "/productInsertInput", "/productInsertCheck", "/productInsertComplete", "/productUpdateInput", "/productUpdateCheck", "/productUpdateComplete", "/productDeleteCheck", "/productDeleteComplete", "/salesCheck");
 
     private Logger logger = LogManager.getLogger();
 
