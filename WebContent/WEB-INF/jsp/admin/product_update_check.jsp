@@ -2,6 +2,7 @@
 <%@ page import="shop.model.service.ProductService" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
+<%@ page import="shop.model.service.ErrorCheckService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     ProductBeans productBeans = (ProductBeans) session.getAttribute("productBeans");
@@ -9,9 +10,9 @@
     ProductService productService = new ProductService();
     List<Map<String, Object>> genreInfoList = productService.fetchGenreInfo();
 
-    String productName = productService.escapeProcess(productBeans.getProductName());
-    String price = productService.escapeProcess(String.valueOf(productBeans.getPrice()));
-    String productExplanation = productService.escapeProcess(productBeans.getProductExplanation());
+    String productName = ErrorCheckService.escapeProcess(productBeans.getProductName());
+    String price = ErrorCheckService.escapeProcess(String.valueOf(productBeans.getPrice()));
+    String productExplanation = ErrorCheckService.escapeProcess(productBeans.getProductExplanation());
 %>
 <!DOCTYPE html>
 <html>
@@ -24,10 +25,10 @@
 <body>
 <%@include file="/WEB-INF/jsp/admin/admin_header.jsp" %>
 
-<h1 class="mt-3 text-center">商品情報変更確認</h1>
-<div class="row mt-3">
-    <div class="col-12 col-sm-8 col-md-6 col-lg-4 row mx-auto">
+<h1 class="my-5 text-center">商品情報変更確認</h1>
 
+<div class="row">
+    <div class="col-12 col-sm-8 col-md-6 col-lg-4 row mx-auto">
         <table class="table table-striped">
             <tbody>
             <tr class="row">
@@ -98,8 +99,6 @@
         document.getElementById("square-image").style.height = width;
     }
 </script>
-
-<%@ include file="/WEB-INF/jsp/admin/admin_footer.jsp" %>
 
 <%@include file="/WEB-INF/jsp/script.jsp" %>
 </body>
