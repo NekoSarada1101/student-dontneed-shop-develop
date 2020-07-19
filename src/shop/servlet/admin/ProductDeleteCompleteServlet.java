@@ -3,7 +3,7 @@ package shop.servlet.admin;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import shop.model.bean.ProductBeans;
-import shop.model.service.CommonService;
+import shop.model.service.ErrorCheckService;
 import shop.model.service.ProductService;
 
 import javax.servlet.ServletException;
@@ -22,13 +22,14 @@ public class ProductDeleteCompleteServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        logger.trace("{} Start", CommonService.getMethodName());
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
+
         HttpSession  session      = request.getSession();
         ProductBeans productBeans = (ProductBeans) session.getAttribute("productBeans");
         logger.info("productBeans={}", productBeans);
 
         productService.deleteProduct(productBeans);
-        logger.trace("{} End", CommonService.getMethodName());
+        logger.trace("{} End", ErrorCheckService.getMethodName());
         request.getRequestDispatcher("WEB-INF/jsp/admin/product_delete_complete.jsp").forward(request, response);
     }
 }

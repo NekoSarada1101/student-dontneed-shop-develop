@@ -8,7 +8,7 @@
 <body>
 <div class="mt-5">
     <footer class="footer bg-success fixed-bottom">
-        <p>student_dontneed_shop</p>
+        <p> </p>
     </footer>
 </div>
 </body>

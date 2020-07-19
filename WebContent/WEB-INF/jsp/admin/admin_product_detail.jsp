@@ -2,6 +2,7 @@
 <%@ page import="shop.model.service.ProductService" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
+<%@ page import="shop.model.service.ErrorCheckService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     ProductBeans productBeans = (ProductBeans) session.getAttribute("productBeans");
@@ -9,9 +10,9 @@
     ProductService productService = new ProductService();
     List<Map<String, Object>> genreInfoList = productService.fetchGenreInfo();
 
-    String productName = productService.escapeProcess(productBeans.getProductName());
-    String price = productService.escapeProcess(String.valueOf(productBeans.getPrice()));
-    String productExplanation = productService.escapeProcess(productBeans.getProductExplanation());
+    String productName = ErrorCheckService.escapeProcess(productBeans.getProductName());
+    String price = ErrorCheckService.escapeProcess(String.valueOf(productBeans.getPrice()));
+    String productExplanation = ErrorCheckService.escapeProcess(productBeans.getProductExplanation());
 %>
 <!DOCTYPE html>
 <html>
@@ -30,10 +31,12 @@
             <div class="card-header square-image" id="square-image">
                 <img src="getImage" alt="...">
             </div>
+
             <div class="card-body">
                 <h5 class="card-title mb-1">
                     <%=productName%>
                 </h5>
+
                 <p class="card-subtitle text-muted mb-2">
                     <%
                         for (Map<String, Object> genreInfoMap : genreInfoList) {
@@ -45,12 +48,15 @@
                         }
                     %>
                 </p>
+
                 <p class="card-text text-danger mb-3">
                     <%=price%>円
                 </p>
+
                 <p class="card-text mb-3">
                     <%=productExplanation%>
                 </p>
+
                 <p class="card-text mb-3">
                     <% if (productBeans.getIsSold()) { %>
                     <span class="text-danger">販売済み</span>
@@ -59,6 +65,7 @@
                     <% } %>
                 </p>
             </div>
+
             <div class="card-footer">
                 <form action="productUpdateInput" method="get">
                     <button type="submit" class="btn btn-primary btn-block mb-2">変更する
@@ -81,8 +88,6 @@
 
 <%@include file="/WEB-INF/jsp/admin/admin_footer.jsp" %>
 
-<%@include file="/WEB-INF/jsp/script.jsp" %>
-
 <script>
     window.onload = imageResizeFunc;
     window.addEventListener("resize", imageResizeFunc);
@@ -94,5 +99,7 @@
         document.getElementById("square-image").style.height = width;
     }
 </script>
+
+<%@include file="/WEB-INF/jsp/script.jsp" %>
 </body>
 </html>

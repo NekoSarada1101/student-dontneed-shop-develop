@@ -10,13 +10,11 @@
 <body>
 <%@include file="/WEB-INF/jsp/user/member_header.jsp" %>
 
-<div>
-    <h1>退会完了しました</h1>
+<h1 class="my-5 text-center">退会完了</h1>
 
-    <form action="memberLogin" method="get" class="mt-5">
-        <button type="submit" class="btn btn-primary">トップへ戻る</button>
-    </form>
-</div>
+<form action="memberLogin" method="get" class="mt-5">
+    <button type="submit" class="btn btn-primary btn-block mx-auto col-6 col-lg-4">ログイン画面へ</button>
+</form>
 
 <%@include file="/WEB-INF/jsp/user/member_footer.jsp" %>
 

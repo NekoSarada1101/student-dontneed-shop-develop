@@ -5,7 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import shop.model.bean.MemberBeans;
 import shop.model.bean.ProductBeans;
-import shop.model.service.CommonService;
+import shop.model.service.ErrorCheckService;
 import shop.model.service.PurchaseService;
 
 import javax.servlet.ServletException;
@@ -27,11 +27,11 @@ public class PurchaseHistoryServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        logger.trace("{} Start", CommonService.getMethodName());
-        HttpSession session = request.getSession();
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
 
+        HttpSession               session         = request.getSession();
         List<Map<String, Object>> purchaseHistory = purchaseService.fetchPurchaseHistory(((MemberBeans) session.getAttribute("memberLoginInfo")).getMemberMail());
-        logger.info("purchaseHistory={}", purchaseHistory);
+        logger.info("purchaseHistory.size={}", purchaseHistory.size());
 
         List<ProductBeans> productList = new ArrayList<>();
         for (Map<String, Object> purchaseMap : purchaseHistory) {
@@ -39,7 +39,7 @@ public class PurchaseHistoryServlet extends HttpServlet {
         }
 
         session.setAttribute("productList", productList);
-        logger.trace("{} End", CommonService.getMethodName());
+        logger.trace("{} End", ErrorCheckService.getMethodName());
         request.getRequestDispatcher("WEB-INF/jsp/user/purchase_history.jsp").forward(request, response);
     }
 }

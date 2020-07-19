@@ -20,10 +20,12 @@ import java.util.List;
  */
 @WebFilter("/*")
 public class LoginFilter implements Filter {
+
     private List<String> memberUrlPatterns = Arrays.asList("/memberLogout", "/memberTop", "/memberUpdateInput", "/memberUpdateCheck",
             "/memberUpdateComplete", "/memberDeleteCheck", "/memberDeleteComplete", "/productSearchAndDisplay", "/memberProductDetail", "/memberDetail", "/cartInsert", "/cartDisplay", "/cartDelete", "/purchaseCheck",
-            "/purchaseComplete");
-    private List<String> adminUrlPatterns  = Arrays.asList("/adminLogout", "/adminTop", "/adminDetail", "/adminProductDetail", "/adminUpdateInput", "/adminUpdateCheck", "/adminUpdateComplete", "/productInsertInput", "/productInsertCheck", "/productInsertComplete", "/productUpdateInput", "/productUpdateCheck", "/productUpdateComplete", "/productDeleteCheck", "/productDeleteComplete", "/salesCheck");
+            "/purchaseComplete", "/purchaseHistory");
+
+    private List<String> adminUrlPatterns = Arrays.asList("/adminLogout", "/adminTop", "/adminDetail", "/adminProductDetail", "/adminUpdateInput", "/adminUpdateCheck", "/adminUpdateComplete", "/productInsertInput", "/productInsertCheck", "/productInsertComplete", "/productUpdateInput", "/productUpdateCheck", "/productUpdateComplete", "/productDeleteCheck", "/productDeleteComplete", "/salesCheck");
 
     private Logger logger = LogManager.getLogger();
 
@@ -31,22 +33,18 @@ public class LoginFilter implements Filter {
      * Default constructor.
      */
     public LoginFilter() {
-        // TODO Auto-generated constructor stub
     }
 
     /**
      * @see Filter#destroy()
      */
     public void destroy() {
-        // TODO Auto-generated method stub
     }
 
     /**
      * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
      */
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
-        // TODO Auto-generated method stub
-        // place your code here
         HttpServletRequest  request  = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
         HttpSession         session  = request.getSession();
@@ -60,7 +58,7 @@ public class LoginFilter implements Filter {
                 chain.doFilter(req, res);
             } else {
                 // セッションがNullならば、エラー画面へ飛ばす
-                req.getRequestDispatcher("WEB-INF/jsp/error_login_filter.jsp").forward(req, res);
+                response.sendRedirect("loginFilterError");
             }
         } else if (adminUrlPatterns.contains(path)) {
             AdminBeans adminBeans = (AdminBeans) session.getAttribute("adminLoginInfo");
@@ -69,13 +67,14 @@ public class LoginFilter implements Filter {
                 chain.doFilter(req, res);
             } else {
                 // セッションがNullならば、エラー画面へ飛ばす
-                req.getRequestDispatcher("WEB-INF/jsp/error_login_filter.jsp").forward(req, res);
+                response.sendRedirect("loginFilterError");
             }
-        } else if (path.equals("/memberLogin") || path.contains("/memberInsert") || path.equals("/adminLogin") || path.contains("/adminInsert") || path.contains("Image") || path.contains("css") || path.contains("js")) {
+        } else if (path.equals("/memberLogin") || path.contains("/memberInsert") || path.equals("/adminLogin") || path.contains("/adminInsert") || path.contains("Image") || path.contains("css") || path.contains("js") || path.equals("/loginFilterError")) {
             chain.doFilter(req, res);
         } else {
-            logger.fatal("フィルター対象のファイルではありません");
-            req.getRequestDispatcher("WEB-INF/jsp/error_login_filter.jsp").forward(req, res);
+            logger.fatal("フィルター対象のファイルではありません：{}", path);
+
+            response.sendRedirect("loginFilterError");
         }
     }
 
@@ -83,7 +82,5 @@ public class LoginFilter implements Filter {
      * @see Filter#init(FilterConfig)
      */
     public void init(FilterConfig fConfig) throws ServletException {
-        // TODO Auto-generated method stub
     }
-
 }

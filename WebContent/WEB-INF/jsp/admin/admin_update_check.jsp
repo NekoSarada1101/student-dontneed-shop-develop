@@ -1,15 +1,13 @@
 <%@ page import="shop.model.bean.AdminBeans" %>
-<%@ page import="shop.model.bean.MemberBeans" %>
-<%@ page import="shop.model.service.CommonService" %>
+<%@ page import="shop.model.service.ErrorCheckService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     AdminBeans adminBeans = (AdminBeans) session.getAttribute("adminBeans");
 
-    CommonService service = new CommonService();
-    String adminMail = service.escapeProcess(adminBeans.getAdminMail());
-    String name = service.escapeProcess(adminBeans.getAdminName());
-    String postalCode = service.escapeProcess(adminBeans.getPostalCode());
-    String address = service.escapeProcess(adminBeans.getAddress());
+    String adminMail = ErrorCheckService.escapeProcess(adminBeans.getAdminMail());
+    String name = ErrorCheckService.escapeProcess(adminBeans.getAdminName());
+    String postalCode = ErrorCheckService.escapeProcess(adminBeans.getPostalCode());
+    String address = ErrorCheckService.escapeProcess(adminBeans.getAddress());
 %><!DOCTYPE html>
 <html>
 <head>
@@ -21,8 +19,9 @@
 <body>
 <%@include file="/WEB-INF/jsp/admin/admin_header.jsp" %>
 
-<h1 class="mt-3 text-center">管理者情報変更確認</h1>
-<div class="row  mt-3">
+<h1 class="my-5 text-center">管理者情報変更確認</h1>
+
+<div class="row">
     <div class="col-11 col-sm-8 col-md-6 col-lg-4 row mx-auto">
         <table class="table table-striped">
             <tbody>
@@ -75,7 +74,6 @@
 <%@ include file="/WEB-INF/jsp/admin/admin_footer.jsp" %>
 
 <%@include file="/WEB-INF/jsp/script.jsp" %>
-
 </body>
 </html>
 

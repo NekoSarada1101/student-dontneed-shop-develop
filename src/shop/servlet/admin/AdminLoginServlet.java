@@ -1,10 +1,9 @@
-
 package shop.servlet.admin;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import shop.model.bean.AdminBeans;
-import shop.model.service.CommonService;
+import shop.model.service.ErrorCheckService;
 import shop.model.service.UserService;
 
 import javax.servlet.ServletException;
@@ -23,44 +22,46 @@ public class AdminLoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        logger.trace("{} Start", CommonService.getMethodName());
-        logger.trace("{} End", CommonService.getMethodName());
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
+        logger.trace("{} End", ErrorCheckService.getMethodName());
         request.getRequestDispatcher("WEB-INF/jsp/admin/admin_login.jsp").forward(request, response);
     }
 
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        logger.trace("{} Start", CommonService.getMethodName());
-        String adminMail = request.getParameter("adminMail");
-        String adminPassword = request.getParameter("adminPassword");
-        logger.info("adminMail={}", adminMail);
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
 
+        String adminMail     = request.getParameter("adminMail");
+        String adminPassword = request.getParameter("adminPassword");
 
         if (!checkInputText(adminMail, adminPassword)) {
-            request.getRequestDispatcher("WEB-INF/jsp/error.jsp").forward(request, response);
-            logger.trace("{} End", CommonService.getMethodName());
+            request.setAttribute("errorMessage", "不正な入力です");
+            logger.trace("{} End", ErrorCheckService.getMethodName());
+            request.getRequestDispatcher("WEB-INF/jsp/admin/admin_login.jsp").forward(request, response);
             return;
         }
 
         AdminBeans adminBeans = userService.fetchAdminLogin(adminMail, adminPassword);
 
-        //遷移先
         HttpSession session = request.getSession();
-        if (adminBeans == null) { //取得に失敗した場合
+        if (adminBeans == null) {
+            //取得に失敗した場合
             request.setAttribute("errorMessage", "メールアドレスまたはパスワードが間違っています");
-            logger.trace("{} End", CommonService.getMethodName());
+            logger.trace("{} End", ErrorCheckService.getMethodName());
             request.getRequestDispatcher("WEB-INF/jsp/admin/admin_login.jsp").forward(request, response);
         } else {
-            //取得した場合
+            //取得に成功した場合
             session.setAttribute("adminLoginInfo", adminBeans);
-            logger.trace("{} End", CommonService.getMethodName());
+            logger.trace("{} End", ErrorCheckService.getMethodName());
             response.sendRedirect("adminTop");
         }
     }
 
+
     public boolean checkInputText(String adminMail, String adminPassword) {
-        if (!userService.checkLength(adminMail, 100, 1)) return false;
-        if (!userService.checkLength(adminPassword, 128, 1)) return false;
+        if (!ErrorCheckService.checkLength(adminMail, 100, 1)) return false;
+        if (!ErrorCheckService.checkLength(adminPassword, 128, 1)) return false;
         return true;
     }
 }

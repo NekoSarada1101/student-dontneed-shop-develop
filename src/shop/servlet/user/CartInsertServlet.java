@@ -4,7 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import shop.model.bean.MemberBeans;
 import shop.model.bean.ProductBeans;
-import shop.model.service.CommonService;
+import shop.model.service.ErrorCheckService;
 import shop.model.service.PurchaseService;
 
 import javax.servlet.ServletException;
@@ -23,15 +23,15 @@ public class CartInsertServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        logger.trace("{} Start", CommonService.getMethodName());
-        HttpSession session = request.getSession();
-        String memberMail = ((MemberBeans) session.getAttribute("memberLoginInfo")).getMemberMail();
-        int productId = ((ProductBeans) session.getAttribute("productBeans")).getProductId();
-        logger.info("memberMail={}", memberMail);
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
+
+        HttpSession session    = request.getSession();
+        String      memberMail = ((MemberBeans) session.getAttribute("memberLoginInfo")).getMemberMail();
+        int         productId  = ((ProductBeans) session.getAttribute("productBeans")).getProductId();
         logger.info("productId={}", productId);
 
         purchaseService.insertCart(memberMail, productId);
-        logger.trace("{} End", CommonService.getMethodName());
+        logger.trace("{} End", ErrorCheckService.getMethodName());
         request.getRequestDispatcher("WEB-INF/jsp/user/cart_insert_complete.jsp").forward(request, response);
     }
 }

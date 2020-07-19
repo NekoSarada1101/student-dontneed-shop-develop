@@ -1,11 +1,10 @@
-
 package shop.servlet.user;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import shop.model.bean.MemberBeans;
 import shop.model.bean.ProductBeans;
-import shop.model.service.CommonService;
+import shop.model.service.ErrorCheckService;
 import shop.model.service.PurchaseService;
 
 import javax.servlet.ServletException;
@@ -26,16 +25,14 @@ public class PurchaseCheckServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        logger.trace("{} Start", CommonService.getMethodName());
-        HttpSession session = request.getSession();
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
 
-        String memberMail = ((MemberBeans) session.getAttribute("memberLoginInfo")).getMemberMail();
+        HttpSession                     session     = request.getSession();
+        String                          memberMail  = ((MemberBeans) session.getAttribute("memberLoginInfo")).getMemberMail();
         Map<String, List<ProductBeans>> purchaseMap = purchaseService.checkExistsStock(memberMail);
         logger.info("purchaseMap={}", purchaseMap);
 
-
         String errorMessage = "";
-
         if (purchaseMap.get("deleteList").size() != 0) {
             List<ProductBeans> deleteList = purchaseMap.get("deleteList");
             for (ProductBeans productBeans : deleteList) {
@@ -47,7 +44,7 @@ public class PurchaseCheckServlet extends HttpServlet {
 
         request.setAttribute("errorMessage", errorMessage);
         session.setAttribute("productList", purchaseMap.get("purchaseList"));
-        logger.trace("{} End", CommonService.getMethodName());
+        logger.trace("{} End", ErrorCheckService.getMethodName());
         request.getRequestDispatcher("WEB-INF/jsp/user/purchase_check.jsp").forward(request, response);
     }
 }

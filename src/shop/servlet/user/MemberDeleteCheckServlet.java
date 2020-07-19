@@ -2,7 +2,7 @@ package shop.servlet.user;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import shop.model.service.CommonService;
+import shop.model.service.ErrorCheckService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,8 +18,8 @@ public class MemberDeleteCheckServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        logger.trace("{} Start", CommonService.getMethodName());
-        logger.trace("{} End", CommonService.getMethodName());
-        request.getRequestDispatcher("WEB-INF/jsp/admin/member_delete_check.jsp").forward(request, response);
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
+        logger.trace("{} End", ErrorCheckService.getMethodName());
+        request.getRequestDispatcher("WEB-INF/jsp/user/member_delete_check.jsp").forward(request, response);
     }
 }

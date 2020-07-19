@@ -5,7 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import shop.model.bean.ProductBeans;
 import shop.model.bean.PurchaseDetailBeans;
-import shop.model.service.CommonService;
+import shop.model.service.ErrorCheckService;
 import shop.model.service.ProductService;
 
 import java.io.IOException;
@@ -21,9 +21,8 @@ public class PurchaseDao extends DaoBase {
 
     private Logger logger = LogManager.getLogger();
 
-    //カート一覧取得
     public List<ProductBeans> fetchCartList(String memberMail) {
-        logger.trace("{} Start", CommonService.getMethodName());
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
         PreparedStatement  stmt     = null;
         ResultSet          rs       = null;
         List<ProductBeans> cartList = null;
@@ -49,25 +48,25 @@ public class PurchaseDao extends DaoBase {
                 productBeans.setAdminMail(rs.getString("admin_mail"));
                 cartList.add(productBeans);
             }
-            logger.info("cartList={}", cartList);
+            logger.info("cartList.size={}", cartList.size());
 
         } catch (SQLException | IOException e) {
             e.printStackTrace();
-            logger.error("error={}", e);
+            logger.error("error", e);
         } finally {
             try {
                 this.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            logger.trace("{} End", CommonService.getMethodName());
+            logger.trace("{} End", ErrorCheckService.getMethodName());
         }
         return cartList;
     }
 
-    //カート登録
+
     public boolean insertCart(String memberMail, int productId) {
-        logger.trace("{} Start", CommonService.getMethodName());
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
         PreparedStatement stmt       = null;
         int               insertLine = 0;
 
@@ -81,7 +80,7 @@ public class PurchaseDao extends DaoBase {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            logger.error("error={}", e);
+            logger.error("error", e);
 
         } finally {
             try {
@@ -89,14 +88,14 @@ public class PurchaseDao extends DaoBase {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            logger.trace("{} End", CommonService.getMethodName());
+            logger.trace("{} End", ErrorCheckService.getMethodName());
         }
         return insertLine != 0;
     }
 
-    //カート削除
+
     public boolean deleteCart(String memberMail, int productId) {
-        logger.trace("{} Start", CommonService.getMethodName());
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
         PreparedStatement stmt       = null;
         int               deleteLine = 0;
 
@@ -110,21 +109,21 @@ public class PurchaseDao extends DaoBase {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            logger.error("error={}", e);
+            logger.error("error", e);
         } finally {
             try {
                 this.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            logger.trace("{} End", CommonService.getMethodName());
+            logger.trace("{} End", ErrorCheckService.getMethodName());
         }
         return deleteLine != 0;
     }
 
-    //カートに追加済みか確認
+
     public boolean checkExistsCart(int productId) {
-        logger.trace("{} Start", CommonService.getMethodName());
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
         PreparedStatement stmt     = null;
         ResultSet         rs       = null;
         boolean           isExists = false;
@@ -143,21 +142,21 @@ public class PurchaseDao extends DaoBase {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            logger.error("error={}", e);
+            logger.error("error", e);
         } finally {
             try {
                 this.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            logger.trace("{} End", CommonService.getMethodName());
+            logger.trace("{} End", ErrorCheckService.getMethodName());
         }
         return isExists;
     }
 
-    //カートに登録されている商品が購入済みかを確認
+
     public Map<String, List<ProductBeans>> checkExistsStock(String memberMail) {
-        logger.trace("{} Start", CommonService.getMethodName());
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
         PreparedStatement               stmt         = null;
         ResultSet                       rs           = null;
         List<ProductBeans>              purchaseList = null;
@@ -198,27 +197,26 @@ public class PurchaseDao extends DaoBase {
 
         } catch (SQLException | IOException e) {
             e.printStackTrace();
-            logger.error("error={}", e);
+            logger.error("error", e);
         } finally {
             try {
                 this.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            logger.trace("{} End", CommonService.getMethodName());
+            logger.trace("{} End", ErrorCheckService.getMethodName());
         }
         return purchaseMap;
     }
 
-    //購入明細登録
+
     public boolean insertPurchaseDetail(List<PurchaseDetailBeans> purchaseDetailBeansList) {
-        logger.trace("{} Start", CommonService.getMethodName());
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
         PreparedStatement stmt       = null;
         int               insertLine = 0;
 
         try {
             this.connect();
-
             //SQL文生成
             String sql = "INSERT INTO purchase_details (member_mail, product_id, purchase_date) VALUES ";
             for (int i = 0; i < purchaseDetailBeansList.size(); i++) {
@@ -242,7 +240,7 @@ public class PurchaseDao extends DaoBase {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            logger.error("error={}", e);
+            logger.error("error", e);
 
         } finally {
             try {
@@ -250,14 +248,14 @@ public class PurchaseDao extends DaoBase {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            logger.trace("{} End", CommonService.getMethodName());
+            logger.trace("{} End", ErrorCheckService.getMethodName());
         }
         return insertLine != 0;
     }
 
-    //購入履歴取得
+
     public List<Map<String, Object>> fetchPurchaseHistory(String memberMail) {
-        logger.trace("{} Start", CommonService.getMethodName());
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
         PreparedStatement         stmt         = null;
         ResultSet                 rs           = null;
         List<Map<String, Object>> purchaseList = null;
@@ -287,11 +285,11 @@ public class PurchaseDao extends DaoBase {
                 purchaseMap.put("purchaseDate", rs.getString("purchase_date"));
                 purchaseList.add(purchaseMap);
             }
-            logger.info("purchaseList={}", purchaseList);
+            logger.info("purchaseList.size={}", purchaseList.size());
 
         } catch (SQLException | IOException e) {
             e.printStackTrace();
-            logger.error("error={}", e);
+            logger.error("error", e);
 
         } finally {
             try {
@@ -299,14 +297,14 @@ public class PurchaseDao extends DaoBase {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            logger.trace("{} End", CommonService.getMethodName());
+            logger.trace("{} End", ErrorCheckService.getMethodName());
         }
         return purchaseList;
     }
 
-    //売上情報取得
+
     public List<Map<String, Object>> fetchSalesInfo(String adminMail) {
-        logger.trace("{} Start", CommonService.getMethodName());
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
         PreparedStatement         stmt      = null;
         ResultSet                 rs        = null;
         List<Map<String, Object>> salesList = null;
@@ -336,11 +334,11 @@ public class PurchaseDao extends DaoBase {
                 salesMap.put("purchaseDate", rs.getString("purchase_date"));
                 salesList.add(salesMap);
             }
-            logger.info("salesList={}", salesList);
+            logger.info("salesList.size={}", salesList.size());
 
         } catch (SQLException | IOException e) {
             e.printStackTrace();
-            logger.error("error={}", e);
+            logger.error("error", e);
 
         } finally {
             try {
@@ -348,7 +346,7 @@ public class PurchaseDao extends DaoBase {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            logger.trace("{} End", CommonService.getMethodName());
+            logger.trace("{} End", ErrorCheckService.getMethodName());
         }
         return salesList;
     }

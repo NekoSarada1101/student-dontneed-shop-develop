@@ -10,16 +10,19 @@
 <body>
 <%@include file="/WEB-INF/jsp/user/member_header.jsp" %>
 
-<div>
-    <h1>退会しますか？</h1>
-    <form action="memberDeleteComplete" method="post">
-        <button type="submit" class="btn btn-danger">退会する</button>
+<h1 class="my-5 text-center">退会しますか？</h1>
+
+<div class="col-11 col-sm-8 col-md-6 col-lg-4 row mx-auto">
+    <form action="memberDetail" method="get" class="col-6 pl-0">
+        <button type="submit" class="btn btn-outline-dark btn-block">戻る</button>
     </form>
 
-    <form action="memberDetail" method="get">
-        <button type="submit" class="btn btn-outline-dark">戻る</button>
+    <form action="memberDeleteComplete" method="get" class="col-6 pl-0">
+        <button type="submit" class="btn btn-danger btn-block">退会する</button>
     </form>
 </div>
+
+<%@ include file="/WEB-INF/jsp/user/member_footer.jsp" %>
 
 <%@include file="/WEB-INF/jsp/script.jsp" %>
 </body>

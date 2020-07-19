@@ -3,7 +3,7 @@ package shop.model.dao;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import shop.model.service.CommonService;
+import shop.model.service.ErrorCheckService;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,7 +14,7 @@ public class DaoBase {
     private   Logger     logger = LogManager.getLogger();
 
     public void connect() {
-        logger.trace("{} Start", CommonService.getMethodName());
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -27,12 +27,12 @@ public class DaoBase {
             e.printStackTrace();
             logger.error("error={}", e);
         } finally {
-            logger.trace("{} End", CommonService.getMethodName());
+            logger.trace("{} End", ErrorCheckService.getMethodName());
         }
     }
 
     public void close() {
-        logger.trace("{} Start", CommonService.getMethodName());
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
         try {
             if (con != null) {
                 con.close();
@@ -41,7 +41,7 @@ public class DaoBase {
             e.printStackTrace();
             logger.error("error={}", e);
         } finally {
-            logger.trace("{} End", CommonService.getMethodName());
+            logger.trace("{} End", ErrorCheckService.getMethodName());
         }
     }
 }

@@ -4,7 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import shop.model.bean.MemberBeans;
 import shop.model.bean.ProductBeans;
-import shop.model.service.CommonService;
+import shop.model.service.ErrorCheckService;
 import shop.model.service.PurchaseService;
 
 import javax.servlet.ServletException;
@@ -24,16 +24,16 @@ public class CartDisplayServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        logger.trace("{} Start", CommonService.getMethodName());
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
+
         HttpSession session    = request.getSession();
         String      memberMail = ((MemberBeans) session.getAttribute("memberLoginInfo")).getMemberMail();
-        logger.info("memberMail={}", memberMail);
 
         List<ProductBeans> cartList = purchaseService.fetchCartList(memberMail);
-        logger.info("cartList={}", cartList);
+        logger.info("cartList.size={}", cartList.size());
 
         session.setAttribute("productList", cartList);
-        logger.trace("{} End", CommonService.getMethodName());
+        logger.trace("{} End", ErrorCheckService.getMethodName());
         request.getRequestDispatcher("WEB-INF/jsp/user/cart_display.jsp").forward(request, response);
     }
 }

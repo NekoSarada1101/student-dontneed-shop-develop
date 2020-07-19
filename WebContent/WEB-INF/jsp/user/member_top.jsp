@@ -1,7 +1,7 @@
 <%@ page import="shop.model.bean.ProductBeans" %>
-<%@ page import="shop.model.service.ProductService" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
+<%@ page import="shop.model.service.ErrorCheckService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     List<ProductBeans> productList = (List<ProductBeans>) session.getAttribute("productList");
@@ -27,25 +27,29 @@
             <div class="card-header square-image" id="square-image<%=i%>">
                 <img src="getImageList?index=<%=i%>" alt="...">
             </div>
+
             <div class="card-body">
                 <h5 class="card-title mb-1">
-                    <%=productService.escapeProcess(productBeans.getProductName())%>
+                    <%=ErrorCheckService.escapeProcess(productBeans.getProductName())%>
                 </h5>
+
                 <p class="card-subtitle text-muted mb-2">
                     <%
                         for (Map<String, Object> genreInfoMap : genreInfoList) {
                             if (productBeans.getGenreCode() == (int) genreInfoMap.get("genreCode")) {
                     %>
-                    <%=productService.escapeProcess((String)genreInfoMap.get("genreName"))%>
+                    <%=ErrorCheckService.escapeProcess((String) genreInfoMap.get("genreName"))%>
                     <%
                             }
                         }
                     %>
                 </p>
+
                 <span class="card-text text-danger mb-3">
-                    <%=productService.escapeProcess(String.valueOf(productBeans.getPrice()))%>円
+                    <%=ErrorCheckService.escapeProcess(String.valueOf(productBeans.getPrice()))%>円
                 </span>
             </div>
+
             <div class="card-footer">
                 <form action="memberProductDetail" method="post" target="_blank">
                     <input type="hidden" value="<%=i%>" name="index">
@@ -53,7 +57,6 @@
                 </form>
             </div>
         </div>
-
         <%
                 if (i == 11) {
                     break;
@@ -83,6 +86,5 @@
 </script>
 
 <%@include file="/WEB-INF/jsp/script.jsp" %>
-
 </body>
 </html>

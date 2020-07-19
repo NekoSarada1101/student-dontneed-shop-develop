@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 import shop.model.bean.MemberBeans;
 import shop.model.bean.ProductBeans;
 import shop.model.bean.PurchaseDetailBeans;
-import shop.model.service.CommonService;
+import shop.model.service.ErrorCheckService;
 import shop.model.service.ProductService;
 import shop.model.service.PurchaseService;
 
@@ -30,19 +30,18 @@ public class PurchaseCompleteServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        logger.trace("{} Start", CommonService.getMethodName());
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
+
         HttpSession               session            = request.getSession();
         String                    memberMail         = ((MemberBeans) session.getAttribute("memberLoginInfo")).getMemberMail();
         List<ProductBeans>        purchaseList       = (List<ProductBeans>) session.getAttribute("productList");
         Calendar                  cal                = Calendar.getInstance();
         SimpleDateFormat          sdf                = new SimpleDateFormat("yyyy-MM-dd");
         String                    today              = sdf.format(cal.getTime());
-        List<PurchaseDetailBeans> purchaseDetailList = new ArrayList<>();
-        logger.info("memberMail={}", memberMail);
-        logger.info("purchaseList={}", purchaseList);
+        logger.info("purchaseList.size={}", purchaseList.size());
         logger.info("today={}", today);
-        logger.info("purchaseDetailList={}", purchaseDetailList);
 
+        List<PurchaseDetailBeans> purchaseDetailList = new ArrayList<>();
         for (ProductBeans productBeans : purchaseList) {
             PurchaseDetailBeans purchaseDetailBeans = new PurchaseDetailBeans();
             purchaseDetailBeans.setMemberMail(memberMail);
@@ -51,7 +50,6 @@ public class PurchaseCompleteServlet extends HttpServlet {
             purchaseDetailList.add(purchaseDetailBeans);
         }
 
-        //購入詳細登録
         purchaseService.insertPurchaseDetail(purchaseDetailList);
 
         //購入した商品を購入済みにしカートから削除
@@ -61,7 +59,7 @@ public class PurchaseCompleteServlet extends HttpServlet {
             purchaseService.deleteCart(memberMail, productBeans.getProductId());
         }
 
-        logger.trace("{} End", CommonService.getMethodName());
+        logger.trace("{} End", ErrorCheckService.getMethodName());
         request.getRequestDispatcher("WEB-INF/jsp/user/purchase_complete.jsp").forward(request, response);
     }
 }

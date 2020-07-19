@@ -1,15 +1,15 @@
-<%@ page import="org.omg.CORBA.OBJ_ADAPTER" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.List" %>
 <%@ page import="shop.model.bean.MemberBeans" %>
 <%@ page import="shop.model.service.ProductService" %>
+<%@ page import="shop.model.service.ErrorCheckService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     ProductService productService = new ProductService();
     List<Map<String, Object>> genreInfoList = productService.fetchGenreInfo();
 
     String memberName = ((MemberBeans) session.getAttribute("memberLoginInfo")).getMemberName();
-    memberName = productService.escapeProcess(memberName);
+    memberName = ErrorCheckService.escapeProcess(memberName);
 %>
 <!DOCTYPE html>
 <html>
@@ -35,27 +35,32 @@
                     aria-haspopup="true" aria-expanded="false">
                 メニュー
             </button>
+
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <form action="memberDetail" method="get" class="dropdown-item">
                     <button type="submit" class="btn btn-link text-dark">
                         <span><i class="fas fa-user"></i> 会員詳細</span>
                     </button>
                 </form>
+
                 <form action="purchaseHistory" method="get" class="dropdown-item">
                     <button type="submit" class="btn btn-link text-dark">
                         <span><i class="fas fa-history"></i> 購入履歴</span>
                     </button>
                 </form>
+
                 <form action="cartDisplay" method="get" class="dropdown-item">
                     <button type="submit" class="btn btn-link text-dark">
                         <span><i class="fas fa-shopping-cart"></i> カート閲覧</span>
                     </button>
                 </form>
+
                 <form action=adminLogin method="get" class="dropdown-item">
                     <button type="submit" class="btn btn-link text-dark">
                         <span><i class="fas fa-sign-in-alt"></i> 管理者ログイン</span>
                     </button>
                 </form>
+
                 <form action="memberLogout" method="get" class="dropdown-item">
                     <button type="submit" class="btn btn-link text-dark">
                         <span><i class="fas fa-sign-out-alt"></i> ログアウト</span>

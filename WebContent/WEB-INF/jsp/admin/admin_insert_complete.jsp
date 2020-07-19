@@ -14,13 +14,14 @@
     </nav>
 </header>
 
-<h1 class="mt-3 text-center">管理者情報登録完了</h1>
+<h1 class="my-5 text-center">管理者情報登録完了</h1>
 
 <form action="adminLogin" method="get" class="mt-5">
     <button type="submit" class="btn btn-primary btn-block mx-auto col-6 col-lg-4">ログイン画面へ</button>
 </form>
 
 <%@include file="/WEB-INF/jsp/admin/admin_footer.jsp" %>
+
 <%@include file="/WEB-INF/jsp/script.jsp" %>
 </body>
 </html>

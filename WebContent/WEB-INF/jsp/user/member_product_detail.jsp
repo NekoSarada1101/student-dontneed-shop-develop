@@ -1,15 +1,14 @@
 <%@ page import="shop.model.bean.ProductBeans" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="shop.model.service.PurchaseService" %>
-<%@ page import="shop.model.service.CommonService" %>
+<%@ page import="shop.model.service.ErrorCheckService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     ProductBeans productBeans = (ProductBeans) session.getAttribute("productBeans");
 
-    CommonService commonService = new CommonService();
-    String productName = commonService.escapeProcess(productBeans.getProductName());
-    String price = commonService.escapeProcess(String.valueOf(productBeans.getPrice()));
-    String productExplanation = commonService.escapeProcess(productBeans.getProductExplanation());
+    String productName = ErrorCheckService.escapeProcess(productBeans.getProductName());
+    String price = ErrorCheckService.escapeProcess(String.valueOf(productBeans.getPrice()));
+    String productExplanation = ErrorCheckService.escapeProcess(productBeans.getProductExplanation());
 
 %>
 <!DOCTYPE html>
@@ -29,32 +28,38 @@
             <div class="card-header square-image" id="square-image">
                 <img src="getImage" alt="...">
             </div>
+
             <div class="card-body">
                 <h5 class="card-title mb-1">
                     <%=productName%>
                 </h5>
+
                 <p class="card-subtitle text-muted mb-2">
                     <%
                         for (Map<String, Object> genreInfoMap : genreInfoList) {
                             if (productBeans.getGenreCode() == (int) genreInfoMap.get("genreCode")) {
                     %>
-                    <%=commonService.escapeProcess((String) genreInfoMap.get("genreName"))%>
+                    <%=ErrorCheckService.escapeProcess((String) genreInfoMap.get("genreName"))%>
                     <%
                             }
                         }
                     %>
                 </p>
+
                 <p class="card-text text-danger mb-3">
                     <%=price%>円
                 </p>
+
                 <p class="card-text mb-3">
                     <%=productExplanation%>
                 </p>
             </div>
+
             <div class="card-footer row m-0">
                 <form action="memberTop" method="get" class="col-6">
                     <button type="submit" class="btn btn-outline-dark btn-block">戻る</button>
                 </form>
+
                 <form action="cartInsert" method="post" class="col-6">
                     <%
                         PurchaseService purchaseService = new PurchaseService();
@@ -76,8 +81,6 @@
 
 <%@include file="/WEB-INF/jsp/user/member_footer.jsp" %>
 
-<%@include file="/WEB-INF/jsp/script.jsp" %>
-
 <script>
     window.onload = imageResizeFunc;
     window.addEventListener("resize", imageResizeFunc);
@@ -89,5 +92,7 @@
         document.getElementById("square-image").style.height = width;
     }
 </script>
+
+<%@include file="/WEB-INF/jsp/script.jsp" %>
 </body>
 </html>

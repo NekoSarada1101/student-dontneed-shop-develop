@@ -1,7 +1,7 @@
-<%@ page import="shop.model.bean.ProductBeans" %>
-<%@ page import="shop.model.service.ProductService" %>
-<%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="shop.model.bean.ProductBeans" %>
+<%@ page import="java.util.List" %>
+<%@ page import="shop.model.service.ErrorCheckService" %>
 <%
     List<ProductBeans> purchaseList = (List<ProductBeans>) session.getAttribute("productList");
 
@@ -21,7 +21,9 @@
 <body>
 <%@include file="/WEB-INF/jsp/user/member_header.jsp" %>
 
-<div class="p-1 p-md-3 p-lg-5">
+<h1 class="text-center my-5">購入確認</h1>
+
+<div class="px-1 px-md-3 px-lg-5">
     <div class="row">
         <form action="cartDisplay" method="get" class="col-6 mx-auto mb-3 row">
             <button type="submit" class="btn btn-outline-dark btn-block col-8 ml-auto">戻る</button>
@@ -47,11 +49,9 @@
     <table class="table table-hover col-11 col-md-8 mx-auto">
         <thead>
         <tr class="row">
-            <th scope="col" class="col-2 col-lg-1">画像</th>
-            <th scope="col" class="col-2 col-lg-3">商品名</th>
-            <th scope="col" class="col-2">価格</th>
-            <th scope="col" class="col-3"></th>
-            <th scope="col" class="col-3"></th>
+            <th scope="col" class="col-3 col-lg-2">画像</th>
+            <th scope="col" class="col-3 col-lg-4">商品名</th>
+            <th scope="col" class="col-6">価格</th>
         </tr>
         </thead>
 
@@ -61,27 +61,16 @@
             for (ProductBeans productBeans : purchaseList) {
         %>
         <tr class="row">
-            <td scope="row" id="square-image<%=i%>" class="square-image col-2 col-lg-1">
+            <td scope="row" id="square-image<%=i%>" class="square-image col-3 col-lg-2">
                 <img src="getImageList?index=<%=i%>" alt="">
             </td>
-            <td class="col-2 col-lg-3">
+            <td class="col-3 col-lg-4">
                 <strong>
-                    <%=productService.escapeProcess(productBeans.getProductName())%>
+                    <%=ErrorCheckService.escapeProcess(productBeans.getProductName())%>
                 </strong>
             </td>
-            <td class="col-2">
-                <%=productService.escapeProcess(String.valueOf(productBeans.getPrice())) + "円"%>
-            </td>
-            <td class="col-3 text-center">
-                <form action="memberProductDetail" method="post">
-                    <button type="submit" class="btn btn-primary">詳細表示</button>
-                    <input type="hidden" value="<%=i%>" name="index">
-                </form>
-            </td>
-            <td class="col-3 text-center">
-                <form action="cartDelete" method="get">
-                    <button type="submit" class="btn btn-danger">削除</button>
-                </form>
+            <td class="col-6">
+                <%=ErrorCheckService.escapeProcess(String.valueOf(productBeans.getPrice())) + "円"%>
             </td>
         </tr>
         <%
@@ -112,6 +101,5 @@
 </script>
 
 <%@include file="/WEB-INF/jsp/script.jsp" %>
-
 </body>
 </html>

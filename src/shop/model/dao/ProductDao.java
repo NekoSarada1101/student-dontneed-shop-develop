@@ -4,7 +4,7 @@ package shop.model.dao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import shop.model.bean.ProductBeans;
-import shop.model.service.CommonService;
+import shop.model.service.ErrorCheckService;
 import shop.model.service.ProductService;
 
 import java.io.ByteArrayInputStream;
@@ -21,11 +21,10 @@ public class ProductDao extends DaoBase {
 
     private Logger logger = LogManager.getLogger();
 
-    //検索
     public List<ProductBeans> fetchSearchProductList(int genreCode, String sortColumn, String sortOrder, String searchWord) {
-        logger.trace("{} Start", CommonService.getMethodName());
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
+        PreparedStatement  stmt        = null;
+        ResultSet          rs          = null;
         List<ProductBeans> productList = null;
 
         try {
@@ -59,27 +58,27 @@ public class ProductDao extends DaoBase {
                 productBeans.setAdminMail(rs.getString("admin_mail"));
                 productList.add(productBeans);
             }
-            logger.info("productList={}", productList);
+            logger.info("productList.size={}", productList.size());
 
         } catch (SQLException | IOException e) {
             e.printStackTrace();
-            logger.error("error={}", e);
+            logger.error("error", e);
         } finally {
             try {
                 this.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            logger.trace("{} End", CommonService.getMethodName());
+            logger.trace("{} End", ErrorCheckService.getMethodName());
         }
         return productList;
     }
 
-    //商品登録
+
     public boolean insertProduct(ProductBeans productBeans) {
-        logger.trace("{} Start", CommonService.getMethodName());
-        PreparedStatement stmt = null;
-        int insertLine = 0;
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
+        PreparedStatement stmt       = null;
+        int               insertLine = 0;
 
         try {
             this.connect();
@@ -95,23 +94,23 @@ public class ProductDao extends DaoBase {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            logger.error("error={}", e);
+            logger.error("error", e);
         } finally {
             try {
                 this.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            logger.trace("{} End", CommonService.getMethodName());
+            logger.trace("{} End", ErrorCheckService.getMethodName());
         }
         return insertLine != 0;
     }
 
-    //商品変更
+
     public boolean updateProduct(ProductBeans productBeans) {
-        logger.trace("{} Start", CommonService.getMethodName());
-        PreparedStatement stmt = null;
-        int updateLine = 0;
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
+        PreparedStatement stmt       = null;
+        int               updateLine = 0;
 
         try {
             this.connect();
@@ -128,23 +127,23 @@ public class ProductDao extends DaoBase {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            logger.error("error={}", e);
+            logger.error("error", e);
         } finally {
             try {
                 this.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            logger.trace("{} End", CommonService.getMethodName());
+            logger.trace("{} End", ErrorCheckService.getMethodName());
         }
         return updateLine != 0;
     }
 
-    //ジャンル情報取得
+
     public List<Map<String, Object>> fetchGenreInfo() {
-        logger.trace("{} Start", CommonService.getMethodName());
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
+        PreparedStatement         stmt          = null;
+        ResultSet                 rs            = null;
         List<Map<String, Object>> genreInfoList = null;
 
         try {
@@ -160,27 +159,27 @@ public class ProductDao extends DaoBase {
                 genreInfoMap.put("genreName", rs.getString("genre_name"));
                 genreInfoList.add(genreInfoMap);
             }
-            logger.info("genreInfoList={}", genreInfoList);
+            logger.info("genreInfoList.size={}", genreInfoList.size());
 
         } catch (SQLException e) {
             e.printStackTrace();
-            logger.error("error={}", e);
+            logger.error("error", e);
         } finally {
             try {
                 this.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            logger.trace("{} End", CommonService.getMethodName());
+            logger.trace("{} End", ErrorCheckService.getMethodName());
         }
         return genreInfoList;
     }
 
-    //管理者ごとの商品一覧取得
+
     public List<ProductBeans> fetchAdminProductList(String adminMail) {
-        logger.trace("{} Start", CommonService.getMethodName());
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
+        PreparedStatement  stmt        = null;
+        ResultSet          rs          = null;
         List<ProductBeans> productList = null;
 
         try {
@@ -204,18 +203,18 @@ public class ProductDao extends DaoBase {
                 productBeans.setAdminMail(rs.getString("admin_mail"));
                 productList.add(productBeans);
             }
-            logger.info("productList={}", productList);
+            logger.info("productList.size={}", productList.size());
 
         } catch (SQLException | IOException e) {
             e.printStackTrace();
-            logger.error("error={}", e);
+            logger.error("error", e);
         } finally {
             try {
                 this.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            logger.trace("{} End", CommonService.getMethodName());
+            logger.trace("{} End", ErrorCheckService.getMethodName());
         }
         return productList;
     }

@@ -3,7 +3,7 @@ package shop.servlet.admin;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import shop.model.bean.ProductBeans;
-import shop.model.service.CommonService;
+import shop.model.service.ErrorCheckService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,11 +21,12 @@ public class ProductDeleteCheckServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        logger.trace("{} Start", CommonService.getMethodName());
-        HttpSession session = request.getSession();
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
+
+        HttpSession        session     = request.getSession();
         List<ProductBeans> productList = (List<ProductBeans>) session.getAttribute("productList");
-        int index = Integer.parseInt(request.getParameter("index"));
-        logger.info("productList={}", productList);
+        int                index       = Integer.parseInt(request.getParameter("index"));
+        logger.info("productList.size={}", productList.size());
         logger.info("index={}", index);
 
         ProductBeans productBeans = new ProductBeans();
@@ -38,7 +39,7 @@ public class ProductDeleteCheckServlet extends HttpServlet {
         productBeans.setGenreCode(productList.get(index).getGenreCode());
 
         session.setAttribute("productBeans", productBeans);
-        logger.trace("{} End", CommonService.getMethodName());
+        logger.trace("{} End", ErrorCheckService.getMethodName());
         request.getRequestDispatcher("WEB-INF/jsp/admin/product_delete_check.jsp").forward(request, response);
     }
 }
