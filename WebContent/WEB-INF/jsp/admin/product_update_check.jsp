@@ -66,7 +66,7 @@
                         for (Map<String, Object> genreInfoMap : genreInfoList) {
                             if (productBeans.getGenreCode() == (int) genreInfoMap.get("genreCode")) {
                     %>
-                    <%=productService.escapeProcess((String) genreInfoMap.get("genreName"))%>
+                    <%=ErrorCheckService.escapeProcess((String) genreInfoMap.get("genreName"))%>
                     <%
                             }
                         }
