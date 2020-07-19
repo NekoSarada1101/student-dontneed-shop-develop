@@ -3,7 +3,7 @@ package shop.servlet.user;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import shop.model.bean.ProductBeans;
-import shop.model.service.CommonService;
+import shop.model.service.ErrorCheckService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,13 +21,13 @@ public class MemberProductDetailServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        logger.trace("{} Start", CommonService.getMethodName());
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
         HttpSession session = request.getSession();
 
         int index = Integer.parseInt(request.getParameter("index"));
         logger.info("index={}", index);
         List<ProductBeans> productList = (List<ProductBeans>) session.getAttribute("productList");
-        logger.info("productList={}", productList);
+        logger.info("productList.size={}", productList.size());
 
         ProductBeans productBeans = new ProductBeans();
         productBeans.setProductId(productList.get(index).getProductId());
@@ -39,7 +39,7 @@ public class MemberProductDetailServlet extends HttpServlet {
         productBeans.setGenreCode(productList.get(index).getGenreCode());
         session.setAttribute("productBeans", productBeans);
 
-        logger.trace("{} End", CommonService.getMethodName());
+        logger.trace("{} End", ErrorCheckService.getMethodName());
         request.getRequestDispatcher("WEB-INF/jsp/user/member_product_detail.jsp").forward(request, response);
     }
 }
