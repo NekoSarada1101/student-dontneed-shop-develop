@@ -31,7 +31,7 @@
             </button>
         </form>
 
-        <form action="logout" method="get" class="ml-1 ml-sm-3">
+        <form action="adminLogout" method="get" class="ml-1 ml-sm-3">
             <button type="submit" class="btn btn-dark">ログアウト</button>
         </form>
     </nav>

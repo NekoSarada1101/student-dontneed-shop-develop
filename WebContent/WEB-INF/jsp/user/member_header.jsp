@@ -56,7 +56,7 @@
                         <span><i class="fas fa-sign-in-alt"></i> 管理者ログイン</span>
                     </button>
                 </form>
-                <form action="logout" method="get" class="dropdown-item">
+                <form action="memberLogout" method="get" class="dropdown-item">
                     <button type="submit" class="btn btn-link text-dark">
                         <span><i class="fas fa-sign-out-alt"></i> ログアウト</span>
                     </button>
