@@ -291,5 +291,36 @@ public class UserDao extends DaoBase {
         return insertLine != 0;
     }
 
+    public boolean updateAdmin(AdminBeans adminBeans) {
+        logger.trace("{} Start", CommonService.getMethodName());
+        PreparedStatement stmt       = null;
+        int               updateLine = 0;
+
+        try {
+            this.connect();
+            stmt = con.prepareStatement("UPDATE admin SET admin_mail = ?, admin_password = ?, admin_name = ?, postal_code = ?, address = ? WHERE admin_mail = ?");
+            stmt.setString(1, adminBeans.getAdminMail());
+            stmt.setString(2, adminBeans.getAdminPassword());
+            stmt.setString(3, adminBeans.getAdminName());
+            stmt.setString(4, adminBeans.getPostalCode());
+            stmt.setString(5, adminBeans.getAddress());
+            stmt.setString(6, adminBeans.getAdminMail());
+            updateLine = stmt.executeUpdate();
+            logger.info("updateList={}", updateLine);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            logger.error("error={}", e);
+
+        } finally {
+            try {
+                this.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            logger.trace("{} End", CommonService.getMethodName());
+        }
+        return updateLine != 0;
+    }
 }
 
