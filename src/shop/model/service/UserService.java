@@ -35,6 +35,7 @@ public class UserService extends CommonService {
     public boolean checkAdminMailExists(String adminMail) {
         return userDao.checkAdminMailExists(adminMail);
     }
+
     public boolean insertAdmin(AdminBeans adminBeans) {
         return userDao.insertAdmin(adminBeans);
     }

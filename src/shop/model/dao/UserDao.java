@@ -11,9 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import shop.model.bean.AdminBeans;
-import shop.model.bean.MemberBeans;
-
 public class UserDao extends DaoBase {
 
     private Logger logger = LogManager.getLogger();
@@ -231,32 +228,41 @@ public class UserDao extends DaoBase {
         }
         return adminBeans;
     }
+
     public boolean checkAdminMailExists(String adminMail) {
-        PreparedStatement stmt = null;
-        ResultSet         rs   = null;
+        logger.trace("{} Start", CommonService.getMethodName());
+        PreparedStatement stmt     = null;
+        ResultSet         rs       = null;
+        boolean           isExists = false;
 
         try {
             this.connect();
-            stmt = con.prepareStatement("SELECT * FROM admin WHERE admin_mail = ?");
+            stmt = con.prepareStatement("SELECT * FROM admin WHERE exists(SELECT * FROM admin m WHERE m.admin_mail = ?)");
             stmt.setString(1, adminMail);
             rs = stmt.executeQuery();
-            rs.next();
-            rs.getString("admin_mail");
+            if (rs.next()) {
+                isExists = true;
+            } else {
+                isExists = false;
+            }
+            logger.info("isExists={}", isExists);
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return /* isExists = */ false;
+            logger.error("error={}", e);
         } finally {
             try {
                 this.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            logger.trace("{} End", CommonService.getMethodName());
         }
-        return /* isExists = */ true;
+        return isExists;
     }
 
     public boolean insertAdmin(AdminBeans adminBeans) {
+        logger.trace("{} Start", CommonService.getMethodName());
         PreparedStatement stmt       = null;
         int               insertLine = 0;
 
@@ -269,15 +275,18 @@ public class UserDao extends DaoBase {
             stmt.setString(4, adminBeans.getPostalCode());
             stmt.setString(5, adminBeans.getAddress());
             insertLine = stmt.executeUpdate();
+            logger.info("insertLine={}", insertLine);
 
         } catch (SQLException e) {
             e.printStackTrace();
+            logger.error("error={}", e);
         } finally {
             try {
                 this.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            logger.trace("{} End", CommonService.getMethodName());
         }
         return insertLine != 0;
     }
