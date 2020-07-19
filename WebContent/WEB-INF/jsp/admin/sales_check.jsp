@@ -4,6 +4,7 @@
 <%@ page import="java.util.Map" %>
 <%@ page import="shop.model.bean.ProductBeans" %>
 <%@ page import="shop.model.service.ProductService" %>
+<%@ page import="shop.model.service.ErrorCheckService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     PurchaseService purchaseService = new PurchaseService();
@@ -22,8 +23,10 @@
 
 <body>
 <%@include file="/WEB-INF/jsp/admin/admin_header.jsp" %>
-<h1 class="mt-3 text-center">売上確認</h1>
-<div class="p-1  p-md-3 p-lg-5">
+
+<h1 class="my-5 text-center">売上確認</h1>
+
+<div class="px-1  px-md-3 px-lg-5">
     <div class="row">
         <form action="adminTop" method="get" class="col-11 col-md-8 mx-auto mb-3 row">
             <button type="submit" class="btn btn-outline-dark btn-block col-4 mr-auto">戻る</button>
@@ -47,27 +50,27 @@
             %>
             <tr class="row">
                 <td scope="row" class="col-2">
-                    <%=productService.escapeProcess(String.valueOf(productBeans.getProductId()))%>
+                    <%=ErrorCheckService.escapeProcess(String.valueOf(productBeans.getProductId()))%>
                 </td>
                 <td class="col-3">
-                    <%=productService.escapeProcess(productBeans.getProductName())%>
+                    <%=ErrorCheckService.escapeProcess(productBeans.getProductName())%>
                 </td>
                 <td class="col-2">
                     <%
                         for (Map<String, Object> genreInfoMap : genreInfoList) {
                             if (productBeans.getGenreCode() == (int) genreInfoMap.get("genreCode")) {
                     %>
-                    <%=productService.escapeProcess((String) genreInfoMap.get("genreName"))%>
+                    <%=ErrorCheckService.escapeProcess((String) genreInfoMap.get("genreName"))%>
                     <%
                             }
                         }
                     %>
                 </td>
                 <td class="col-2">
-                    <%=productService.escapeProcess(String.valueOf(productBeans.getPrice())) + "円"%>
+                    <%=ErrorCheckService.escapeProcess(String.valueOf(productBeans.getPrice())) + "円"%>
                 </td>
                 <td class="col-3">
-                    <%=productService.escapeProcess((String) salesMap.get("purchaseDate"))%>
+                    <%=ErrorCheckService.escapeProcess((String) salesMap.get("purchaseDate"))%>
                 </td>
             </tr>
             <%
