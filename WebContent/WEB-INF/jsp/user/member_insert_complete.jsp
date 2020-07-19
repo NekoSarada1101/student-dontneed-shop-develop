@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>会員情報登録完了</title>
     <%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
-     <link rel="stylesheet" href="css/member_header.css">
+    <link rel="stylesheet" href="css/member_header.css">
 </head>
 <body>
 <header class="sticky-top">
@@ -14,13 +14,14 @@
     </nav>
 </header>
 
-<h1 class="mt-3 text-center">会員情報登録完了</h1>
+<h1 class="my-5 text-center">会員情報登録完了</h1>
 
 <form action="memberLogin" method="get" class="mt-5">
     <button type="submit" class="btn btn-primary btn-block mx-auto col-6 col-lg-4">ログイン画面へ</button>
 </form>
 
 <%@include file="/WEB-INF/jsp/user/member_footer.jsp" %>
+
 <%@include file="/WEB-INF/jsp/script.jsp" %>
 </body>
 </html>

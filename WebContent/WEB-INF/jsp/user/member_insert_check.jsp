@@ -1,21 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="shop.model.bean.MemberBeans" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.Map" %>
-<%@ page import="shop.model.service.CommonService" %>
+<%@ page import="shop.model.service.ErrorCheckService" %>
 <%
     MemberBeans memberBeans = (MemberBeans) session.getAttribute("memberBeans");
 
-    CommonService commonService = new CommonService();
-    String memberMail = commonService.escapeProcess(memberBeans.getMemberMail());
-    String memberName = commonService.escapeProcess(memberBeans.getMemberName());
-    String postalCode = commonService.escapeProcess(memberBeans.getPostalCode());
-    String address = commonService.escapeProcess(memberBeans.getAddress());
-    String tell = commonService.escapeProcess(memberBeans.getTell());
-    String creditCard = commonService.escapeProcess(memberBeans.getCreditCard());
-    String expirationDate = commonService.escapeProcess(memberBeans.getExpirationDate());
-    String holder = commonService.escapeProcess(memberBeans.getHolder());
-    String securityCode = commonService.escapeProcess(memberBeans.getSecurityCode());
+    String memberMail = ErrorCheckService.escapeProcess(memberBeans.getMemberMail());
+    String memberName = ErrorCheckService.escapeProcess(memberBeans.getMemberName());
+    String postalCode = ErrorCheckService.escapeProcess(memberBeans.getPostalCode());
+    String address = ErrorCheckService.escapeProcess(memberBeans.getAddress());
+    String tell = ErrorCheckService.escapeProcess(memberBeans.getTell());
+    String creditCard = ErrorCheckService.escapeProcess(memberBeans.getCreditCard());
+    String expirationDate = ErrorCheckService.escapeProcess(memberBeans.getExpirationDate());
+    String holder = ErrorCheckService.escapeProcess(memberBeans.getHolder());
+    String securityCode = ErrorCheckService.escapeProcess(memberBeans.getSecurityCode());
 %>
 <!DOCTYPE html>
 <html>
@@ -32,10 +29,12 @@
         <a href="memberTop" class="navbar-brand text-white mr-3" style="width: 160px">KIK</a>
     </nav>
 </header>
-<h1 class="mt-3 text-center">会員情報登録確認</h1>
-<div class="row  mt-3">
+
+<h1 class="my-5 text-center">会員情報登録確認</h1>
+
+<div class="row">
     <div class="col-11 col-sm-8 col-md-6 col-lg-4 row mx-auto">
-        <table class="table table-striped">
+        <table class="table table-striped border">
             <tbody>
             <tr class="row">
                 <th class="col-4">メールアドレス</th>
@@ -116,6 +115,7 @@
         </form>
     </div>
 </div>
+
 <%@ include file="/WEB-INF/jsp/user/member_footer.jsp" %>
 </body>
 </html>
