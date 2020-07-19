@@ -2,6 +2,7 @@
 <%@ page import="shop.model.service.ProductService" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
+<%@ page import="shop.model.service.ErrorCheckService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     ProductBeans productBeans = (ProductBeans) session.getAttribute("productBeans");
@@ -9,9 +10,9 @@
     ProductService productService = new ProductService();
     List<Map<String, Object>> genreInfoList = productService.fetchGenreInfo();
 
-    String productName = productService.escapeProcess(productBeans.getProductName());
-    String price = productService.escapeProcess(String.valueOf(productBeans.getPrice()));
-    String productExplanation = productService.escapeProcess(productBeans.getProductExplanation());
+    String productName = ErrorCheckService.escapeProcess(productBeans.getProductName());
+    String price = ErrorCheckService.escapeProcess(String.valueOf(productBeans.getPrice()));
+    String productExplanation = ErrorCheckService.escapeProcess(productBeans.getProductExplanation());
 %>
 <!DOCTYPE html>
 <html>
@@ -24,8 +25,9 @@
 <body>
 <%@include file="/WEB-INF/jsp/admin/admin_header.jsp" %>
 
-<h1 class="mt-3 text-center">商品情報削除確認</h1>
-<div class="row  mt-3">
+<h1 class="my-5 text-center">商品情報削除確認</h1>
+
+<div class="row">
     <div class="col-12 col-sm-8 col-md-6 col-lg-4 row mx-auto">
         <table class="table table-striped">
             <tbody>
@@ -35,24 +37,28 @@
                     <%=productName%>
                 </td>
             </tr>
+
             <tr class="row">
                 <th class="col-3">価格</th>
                 <td class="col-9">
                     <%=price%>
                 </td>
             </tr>
+
             <tr class="row">
                 <th class="col-3">画像</th>
                 <td id="square-image" class="col-9">
                     <img src="getImage" alt="">
                 </td>
             </tr>
+
             <tr class="row">
                 <th class="col-3">商品説明</th>
                 <td class="col-9">
                     <%=productExplanation%>
                 </td>
             </tr>
+
             <tr class="row">
                 <th class="col-3">ジャンル</th>
                 <td class="col-9">
@@ -60,7 +66,7 @@
                         for (Map<String, Object> genreInfoMap : genreInfoList) {
                             if (productBeans.getGenreCode() == (int) genreInfoMap.get("genreCode")) {
                     %>
-                    <%=productService.escapeProcess((String) genreInfoMap.get("genreName"))%>
+                    <%=ErrorCheckService.escapeProcess((String) genreInfoMap.get("genreName"))%>
                     <%
                             }
                         }
