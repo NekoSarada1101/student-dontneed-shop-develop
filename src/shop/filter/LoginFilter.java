@@ -23,7 +23,7 @@ public class LoginFilter implements Filter {
     private List<String> memberUrlPatterns = Arrays.asList("/memberLogout", "/memberTop", "/memberUpdateInput", "/memberUpdateCheck",
             "/memberUpdateComplete", "/memberDeleteCheck", "/memberDeleteComplete", "/productSearchAndDisplay", "/memberProductDetail", "/memberDetail", "/cartInsert", "/cartDisplay", "/cartDelete", "/purchaseCheck",
             "/purchaseComplete");
-    private List<String> adminUrlPatterns  = Arrays.asList("/adminLogout", "/adminTop", "/adminProductDetail", "/productInsertInput", "/productInsertCheck", "/productInsertComplete", "/productUpdateInput", "/productUpdateCheck", "/productUpdateComplete", "/productDeleteCheck", "/productDeleteComplete", "/salesCheck");
+    private List<String> adminUrlPatterns  = Arrays.asList("/adminLogout", "/adminTop", "/adminDetail", "/adminProductDetail", "/adminUpdateInput", "/adminUpdateCheck", "/adminUpdateComplete", "/productInsertInput", "/productInsertCheck", "/productInsertComplete", "/productUpdateInput", "/productUpdateCheck", "/productUpdateComplete", "/productDeleteCheck", "/productDeleteComplete", "/salesCheck");
 
     private Logger logger = LogManager.getLogger();
 
@@ -75,7 +75,7 @@ public class LoginFilter implements Filter {
             chain.doFilter(req, res);
         } else {
             logger.fatal("フィルター対象のファイルではありません");
-            chain.doFilter(req, res);
+            req.getRequestDispatcher("WEB-INF/jsp/error_login_filter.jsp").forward(req, res);
         }
     }
 
