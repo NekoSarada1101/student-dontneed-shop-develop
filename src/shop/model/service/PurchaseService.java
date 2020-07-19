@@ -8,7 +8,7 @@ import shop.model.dao.PurchaseDao;
 import java.util.List;
 import java.util.Map;
 
-public class PurchaseService extends CommonService {
+public class PurchaseService {
 
     PurchaseDao purchaseDao = new PurchaseDao();
 

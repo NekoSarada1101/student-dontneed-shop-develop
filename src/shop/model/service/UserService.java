@@ -4,7 +4,7 @@ import shop.model.bean.AdminBeans;
 import shop.model.bean.MemberBeans;
 import shop.model.dao.UserDao;
 
-public class UserService extends CommonService {
+public class UserService {
 
     private UserDao userDao = new UserDao();
 

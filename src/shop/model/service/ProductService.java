@@ -10,7 +10,7 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
-public class ProductService extends CommonService {
+public class ProductService {
 
     private ProductDao productDao = new ProductDao();
 
@@ -26,6 +26,7 @@ public class ProductService extends CommonService {
         return productDao.updateProduct(productBeans);
     }
 
+    //商品情報のis_soldをtrueにする
     public boolean deleteProduct(ProductBeans productBeans) {
         return productDao.updateProduct(productBeans);
     }
