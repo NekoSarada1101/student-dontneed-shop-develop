@@ -13,7 +13,7 @@
 <body>
 <header class="sticky-top">
     <nav class="navbar navbar-expand-lg bg-success px-1 px-md-2 px-lg-3">
-        <span href="adminTop" class="navbar-brand text-white mr-3" style="width: 160px">KIK</span>
+        <span href="memberTop" class="navbar-brand text-white mr-3" style="width: 160px">KIK</span>
     </nav>
 </header>
 
