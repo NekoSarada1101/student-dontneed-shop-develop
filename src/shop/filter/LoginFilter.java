@@ -71,7 +71,7 @@ public class LoginFilter implements Filter {
                 // セッションがNullならば、エラー画面へ飛ばす
                 req.getRequestDispatcher("WEB-INF/jsp/error_login_filter.jsp").forward(req, res);
             }
-        } else if (path.equals("/memberLogin") || path.contains("/memberInsert") || path.equals("/adminLogin") || path.contains("Image") || path.contains("css") || path.contains("js")) {
+        } else if (path.equals("/memberLogin") || path.contains("/memberInsert") || path.equals("/adminLogin") || path.contains("/adminInsert") || path.contains("Image") || path.contains("css") || path.contains("js")) {
             chain.doFilter(req, res);
         } else {
             logger.fatal("フィルター対象のファイルではありません");
