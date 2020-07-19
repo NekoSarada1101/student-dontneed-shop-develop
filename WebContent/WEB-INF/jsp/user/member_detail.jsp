@@ -1,17 +1,16 @@
 <%@ page import="shop.model.bean.MemberBeans" %>
-<%@ page import="shop.model.service.CommonService" %>
+<%@ page import="shop.model.service.ErrorCheckService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     MemberBeans memberBeans = (MemberBeans) session.getAttribute("memberLoginInfo");
 
-    CommonService commonService = new CommonService();
-    String memberMail = commonService.escapeProcess(memberBeans.getMemberMail());
-    String postalCode = commonService.escapeProcess(memberBeans.getPostalCode());
-    String address = commonService.escapeProcess(memberBeans.getAddress());
-    String creditCard = commonService.escapeProcess(memberBeans.getCreditCard());
-    String expirationDate = commonService.escapeProcess(memberBeans.getExpirationDate());
-    String holder = commonService.escapeProcess(memberBeans.getHolder());
-    String securityCode = commonService.escapeProcess(memberBeans.getSecurityCode());
+    String memberMail = ErrorCheckService.escapeProcess(memberBeans.getMemberMail());
+    String postalCode = ErrorCheckService.escapeProcess(memberBeans.getPostalCode());
+    String address = ErrorCheckService.escapeProcess(memberBeans.getAddress());
+    String creditCard = ErrorCheckService.escapeProcess(memberBeans.getCreditCard());
+    String expirationDate = ErrorCheckService.escapeProcess(memberBeans.getExpirationDate());
+    String holder = ErrorCheckService.escapeProcess(memberBeans.getHolder());
+    String securityCode = ErrorCheckService.escapeProcess(memberBeans.getSecurityCode());
 %>
 <!DOCTYPE html>
 <html>
@@ -24,7 +23,7 @@
 <body>
 <%@include file="/WEB-INF/jsp/user/member_header.jsp" %>
 
-<h2 class="text-center mt-2">会員情報</h2>
+<h1 class="text-center my-5">会員情報</h1>
 
 <div class="row">
     <div class="row col-8 col-md-4 mx-auto">
@@ -83,13 +82,12 @@
             </li>
         </ul>
 
-        <form action="memberUpdateInput" method="get" class="col-6 text-center">
-            <button type="submit" class="btn btn-info btn-lg">変更</button>
-
+        <form action="memberDeleteCheck" method="get" class="col-6 text-center">
+            <button type="submit" class="btn btn-danger btn-block">退会</button>
         </form>
 
-        <form action="memberDeleteCheck" method="post" class="col-6 text-center">
-            <button type="submit" class="btn btn-danger btn-lg">退会</button>
+        <form action="memberUpdateInput" method="get" class="col-6 text-center">
+            <button type="submit" class="btn btn-info btn-block">変更</button>
         </form>
     </div>
 </div>
@@ -97,6 +95,5 @@
 <%@include file="/WEB-INF/jsp/user/member_footer.jsp" %>
 
 <%@include file="/WEB-INF/jsp/script.jsp" %>
-
 </body>
 </html>
