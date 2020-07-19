@@ -20,10 +20,10 @@ import java.util.List;
  */
 @WebFilter("/*")
 public class LoginFilter implements Filter {
-    private List<String> memberUrlPatterns = Arrays.asList("/memberTop", "/memberInsertInput", "/memberInsertCheck", "/memberInsertComplete", "/memberUpdateInput", "/memberUpdateCheck",
+    private List<String> memberUrlPatterns = Arrays.asList("/memberLogout", "/memberTop", "/memberUpdateInput", "/memberUpdateCheck",
             "/memberUpdateComplete", "/memberDeleteCheck", "/memberDeleteComplete", "/productSearchAndDisplay", "/memberProductDetail", "/memberDetail", "/cartInsert", "/cartDisplay", "/cartDelete", "/purchaseCheck",
             "/purchaseComplete");
-    private List<String> adminUrlPatterns  = Arrays.asList("/adminTop", "/adminProductDetail", "/productInsertInput", "/productInsertCheck", "/productInsertComplete", "/productUpdateInput", "/productUpdateCheck", "/productUpdateComplete", "/productDeleteCheck", "/productDeleteComplete", "/salesCheck");
+    private List<String> adminUrlPatterns  = Arrays.asList("/adminLogout", "/adminTop", "/adminProductDetail", "/productInsertInput", "/productInsertCheck", "/productInsertComplete", "/productUpdateInput", "/productUpdateCheck", "/productUpdateComplete", "/productDeleteCheck", "/productDeleteComplete", "/salesCheck");
 
     private Logger logger = LogManager.getLogger();
 
@@ -60,8 +60,7 @@ public class LoginFilter implements Filter {
                 chain.doFilter(req, res);
             } else {
                 // セッションがNullならば、エラー画面へ飛ばす
-                RequestDispatcher dispatcher = req.getRequestDispatcher("/error");
-                dispatcher.forward(req, res);
+                req.getRequestDispatcher("WEB-INF/jsp/error_login_filter.jsp").forward(req, res);
             }
         } else if (adminUrlPatterns.contains(path)) {
             AdminBeans adminBeans = (AdminBeans) session.getAttribute("adminLoginInfo");
@@ -70,13 +69,13 @@ public class LoginFilter implements Filter {
                 chain.doFilter(req, res);
             } else {
                 // セッションがNullならば、エラー画面へ飛ばす
-                RequestDispatcher dispatcher = req.getRequestDispatcher("/error");
-                dispatcher.forward(req, res);
+                req.getRequestDispatcher("WEB-INF/jsp/error_login_filter.jsp").forward(req, res);
             }
-        } else if (path.equals("/memberLogin") || path.equals("/adminLogin") || path.contains("Image") || path.contains("css") || path.contains("js")) {
+        } else if (path.equals("/memberLogin") || path.contains("/memberInsert") || path.equals("/adminLogin") || path.contains("Image") || path.contains("css") || path.contains("js")) {
             chain.doFilter(req, res);
-        }else{
+        } else {
             logger.fatal("フィルター対象のファイルではありません");
+            chain.doFilter(req, res);
         }
     }
 
