@@ -3,7 +3,7 @@ package shop.servlet.admin;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import shop.model.bean.ProductBeans;
-import shop.model.service.CommonService;
+import shop.model.service.ErrorCheckService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,19 +21,23 @@ public class AdminProductDetailServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        logger.trace("{} Start", CommonService.getMethodName());
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
+
         HttpSession session = request.getSession();
 
-        int index = 0;
-        try { //商品一覧から遷移したら
+        int    index = 0;
+        String path  = request.getRequestURI().substring(request.getContextPath().length()).replaceAll("[/]+$", "");
+        if (path.equals("/adminTop")) {
+            //管理者トップから遷移したら
             index = Integer.parseInt(request.getParameter("index"));
-        } catch (NumberFormatException e) { //商品情報変更入力画面から遷移したら
+        } else if (path.equals("/productUpdateInput")) {
+            //商品情報変更入力画面から遷移したら
             index = (int) session.getAttribute("index");
         }
         logger.info("index={}", index);
 
         List<ProductBeans> productList = (List<ProductBeans>) session.getAttribute("productList");
-        logger.info("productList={}", productList);
+        logger.info("productList.size={}", productList.size());
 
         ProductBeans productBeans = new ProductBeans();
         productBeans.setProductId(productList.get(index).getProductId());
@@ -46,7 +50,7 @@ public class AdminProductDetailServlet extends HttpServlet {
 
         session.setAttribute("index", index);
         session.setAttribute("productBeans", productBeans);
-        logger.trace("{} End", CommonService.getMethodName());
+        logger.trace("{} End", ErrorCheckService.getMethodName());
         request.getRequestDispatcher("WEB-INF/jsp/admin/admin_product_detail.jsp").forward(request, response);
     }
 }
