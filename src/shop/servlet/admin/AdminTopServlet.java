@@ -4,7 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import shop.model.bean.AdminBeans;
 import shop.model.bean.ProductBeans;
-import shop.model.service.CommonService;
+import shop.model.service.ErrorCheckService;
 import shop.model.service.ProductService;
 
 import javax.servlet.ServletException;
@@ -24,17 +24,17 @@ public class AdminTopServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        logger.trace("{} Start", CommonService.getMethodName());
-        HttpSession session = request.getSession();
-        String adminMail = ((AdminBeans) session.getAttribute("adminLoginInfo")).getAdminMail();
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
+
+        HttpSession        session     = request.getSession();
+        String             adminMail   = ((AdminBeans) session.getAttribute("adminLoginInfo")).getAdminMail();
         List<ProductBeans> productList = productService.fetchAdminProductList(adminMail);
-        logger.info("adminMail={}", adminMail);
-        logger.info("productList={}", productList);
+        logger.info("productList.size={}", productList.size());
 
         session.removeAttribute("productBeans");
         session.removeAttribute("productList");
         session.setAttribute("productList", productList);
-        logger.trace("{} End", CommonService.getMethodName());
+        logger.trace("{} End", ErrorCheckService.getMethodName());
         request.getRequestDispatcher("WEB-INF/jsp/admin/admin_top.jsp").forward(request, response);
     }
 }
