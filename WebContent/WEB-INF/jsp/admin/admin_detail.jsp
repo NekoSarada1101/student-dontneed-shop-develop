@@ -51,12 +51,12 @@
             </li>
         </ul>
 
-        <form action="adminUpdateInput" method="post" class="col-6 text-center">
+        <form action="adminUpdateInput" method="get" class="col-6 text-center">
             <button type="submit" class="btn btn-info btn-lg">変更</button>
         </form>
 
 
-        <form action="adminDeleteCheck" method="post" class="col-6 text-center">
+        <form action="adminDeleteCheck" method="get" class="col-6 text-center">
             <button type="submit" class="btn btn-danger btn-lg">退会</button>
         </form>
     </div>

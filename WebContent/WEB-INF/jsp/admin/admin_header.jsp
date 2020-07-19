@@ -23,7 +23,7 @@
     <nav class="navbar navbar-expand-lg bg-success px-1 px-md-2 px-lg-4">
         <a href="adminTop" class="navbar-brand text-white mr-3" style="width: 160px">KIK</a>
 
-        <form action="adminDetail" method="post" class="ml-auto">
+        <form action="adminDetail" method="get" class="ml-auto">
             <button type="submit" class="btn btn-warning">
                 <%=adminName + "さん"%>
                 <br>
