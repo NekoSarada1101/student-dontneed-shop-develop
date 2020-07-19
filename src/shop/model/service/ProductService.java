@@ -39,11 +39,16 @@ public class ProductService {
         return productDao.fetchAdminProductList(adminMail);
     }
 
+    //商品情報のis_soldをtrueにする
+    public boolean deleteProductAll(String adminMail) {
+        return productDao.deleteProductAll(adminMail);
+    }
+
     //InputStreamをByte配列にする
     public byte[] convertInputStreamToByteArray(InputStream inputStream) throws IOException {
         ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-        int nRead;
-        byte[] data = new byte[16777215];
+        int                   nRead;
+        byte[]                data   = new byte[16777215];
         while ((nRead = inputStream.read(data, 0, data.length)) != -1) {
             buffer.write(data, 0, nRead);
         }

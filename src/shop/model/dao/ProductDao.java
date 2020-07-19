@@ -218,4 +218,31 @@ public class ProductDao extends DaoBase {
         }
         return productList;
     }
+
+
+    public boolean deleteProductAll(String adminMail) {
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
+        PreparedStatement stmt       = null;
+        int               deleteLine = 0;
+
+        try {
+            this.connect();
+            stmt = con.prepareStatement("UPDATE product SET is_sold = true WHERE admin_mail = ?");
+            stmt.setString(1, adminMail);
+            deleteLine = stmt.executeUpdate();
+            logger.info("deleteLine={}", deleteLine);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            logger.error("error", e);
+        } finally {
+            try {
+                this.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            logger.trace("{} End", ErrorCheckService.getMethodName());
+        }
+        return deleteLine != 0;
+    }
 }
