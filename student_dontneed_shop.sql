@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 2020 年 7 月 14 日 02:43
+-- Generation Time: 2020 年 7 月 19 日 12:39
 -- サーバのバージョン： 5.7.25
 -- PHP Version: 7.3.1
 
@@ -21,13 +21,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
-  `admin_mail` varchar(30) NOT NULL,
+  `admin_mail` varchar(100) NOT NULL,
   `admin_password` varchar(128) NOT NULL,
   `admin_name` varchar(20) NOT NULL,
   `postal_code` char(7) NOT NULL,
   `address` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 -- --------------------------------------------------------
 
@@ -50,7 +49,6 @@ CREATE TABLE `genre` (
   `genre_code` int(4) NOT NULL,
   `genre_name` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 -- --------------------------------------------------------
 
@@ -81,11 +79,11 @@ CREATE TABLE `product` (
   `product_id` int(11) NOT NULL,
   `product_name` varchar(30) NOT NULL,
   `price` int(16) NOT NULL,
-  `image` mediumblob,
+  `image` mediumblob NOT NULL,
   `product_explanation` varchar(400) NOT NULL,
   `is_sold` tinyint(1) NOT NULL DEFAULT '0',
   `genre_code` int(4) NOT NULL,
-  `admin_mail` varchar(30) NOT NULL
+  `admin_mail` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -143,8 +141,8 @@ ALTER TABLE `product`
 --
 ALTER TABLE `purchase_details`
   ADD PRIMARY KEY (`purchase_id`),
-  ADD KEY `member_mail` (`member_mail`),
-  ADD KEY `product_id` (`product_id`);
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `purchase_details_ibfk_4` (`member_mail`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -154,13 +152,13 @@ ALTER TABLE `purchase_details`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `purchase_details`
 --
 ALTER TABLE `purchase_details`
-  MODIFY `purchase_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `purchase_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- ダンプしたテーブルの制約
@@ -177,12 +175,12 @@ ALTER TABLE `cart`
 -- テーブルの制約 `product`
 --
 ALTER TABLE `product`
-  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`admin_mail`) REFERENCES `admin` (`admin_mail`),
-  ADD CONSTRAINT `product_ibfk_2` FOREIGN KEY (`genre_code`) REFERENCES `genre` (`genre_code`);
+  ADD CONSTRAINT `product_ibfk_2` FOREIGN KEY (`genre_code`) REFERENCES `genre` (`genre_code`),
+  ADD CONSTRAINT `product_ibfk_3` FOREIGN KEY (`admin_mail`) REFERENCES `admin` (`admin_mail`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- テーブルの制約 `purchase_details`
 --
 ALTER TABLE `purchase_details`
   ADD CONSTRAINT `purchase_details_ibfk_3` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`),
-  ADD CONSTRAINT `purchase_details_ibfk_4` FOREIGN KEY (`member_mail`) REFERENCES `member` (`member_mail`);
+  ADD CONSTRAINT `purchase_details_ibfk_4` FOREIGN KEY (`member_mail`) REFERENCES `member` (`member_mail`) ON DELETE SET NULL ON UPDATE CASCADE;
