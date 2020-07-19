@@ -3,7 +3,7 @@ package shop.servlet.user;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import shop.model.bean.MemberBeans;
-import shop.model.service.CommonService;
+import shop.model.service.ErrorCheckService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,13 +19,13 @@ public class MemberUpdateInputServlet extends HttpServlet {
     private Logger logger = LogManager.getLogger();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        logger.trace("{} Start", CommonService.getMethodName());
-        HttpSession session         = request.getSession();
-        MemberBeans memberBeans     = new MemberBeans();
-        MemberBeans memberLoginInfo = (MemberBeans) session.getAttribute("memberLoginInfo");
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
 
+        HttpSession session         = request.getSession();
+        MemberBeans memberLoginInfo = (MemberBeans) session.getAttribute("memberLoginInfo");
         logger.info("memberLoginInfo={}", memberLoginInfo);
 
+        MemberBeans memberBeans = new MemberBeans();
         memberBeans.setMemberMail(memberLoginInfo.getMemberMail());
         memberBeans.setMemberPassword(memberLoginInfo.getMemberPassword());
         memberBeans.setMemberName(memberLoginInfo.getMemberName());
@@ -38,7 +38,7 @@ public class MemberUpdateInputServlet extends HttpServlet {
         memberBeans.setSecurityCode(memberLoginInfo.getSecurityCode());
 
         session.setAttribute("memberBeans", memberBeans);
-        logger.trace("{} End", CommonService.getMethodName());
+        logger.trace("{} End", ErrorCheckService.getMethodName());
         request.getRequestDispatcher("WEB-INF/jsp/user/member_update_input.jsp").forward(request, response);
     }
 }
