@@ -1,15 +1,9 @@
-<%@ page import="org.omg.CORBA.OBJ_ADAPTER" %>
-<%@ page import="java.util.Map" %>
-<%@ page import="java.util.List" %>
-<%@ page import="shop.model.bean.MemberBeans" %>
-<%@ page import="shop.model.bean.ProductBeans" %>
-<%@ page import="shop.model.bean.AdminBeans" %>
-<%@ page import="shop.model.service.CommonService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="shop.model.bean.AdminBeans" %>
+<%@ page import="shop.model.service.ErrorCheckService" %>
 <%
     String adminName = ((AdminBeans) session.getAttribute("adminLoginInfo")).getAdminName();
-    CommonService commonService = new CommonService();
-    adminName = commonService.escapeProcess(adminName);
+    adminName = ErrorCheckService.escapeProcess(adminName);
 %>
 <!DOCTYPE html>
 <html>
