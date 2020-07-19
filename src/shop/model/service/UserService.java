@@ -39,4 +39,9 @@ public class UserService extends CommonService {
     public boolean insertAdmin(AdminBeans adminBeans) {
         return userDao.insertAdmin(adminBeans);
     }
+
+    public boolean updateAdmin(AdminBeans adminBeans) {
+        return userDao.updateAdmin(adminBeans);
+    }
+
 }
