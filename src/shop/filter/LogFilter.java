@@ -20,22 +20,18 @@ public class LogFilter implements Filter {
      * Default constructor.
      */
     public LogFilter() {
-        // TODO Auto-generated constructor stub
     }
 
     /**
      * @see Filter#destroy()
      */
     public void destroy() {
-        // TODO Auto-generated method stub
     }
 
     /**
      * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
      */
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
-        // TODO Auto-generated method stub
-        // place your code here
         HttpServletRequest  request  = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
 
@@ -44,7 +40,6 @@ public class LogFilter implements Filter {
         logger.info("requestUri={}", uri);
         logger.info("responseStatus={}", status);
 
-        // pass the request along the filter chain
         chain.doFilter(request, response);
     }
 
@@ -52,7 +47,5 @@ public class LogFilter implements Filter {
      * @see Filter#init(FilterConfig)
      */
     public void init(FilterConfig fConfig) throws ServletException {
-        // TODO Auto-generated method stub
     }
-
 }
