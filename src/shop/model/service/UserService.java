@@ -44,4 +44,7 @@ public class UserService {
         return userDao.updateAdmin(adminBeans);
     }
 
+    public boolean deleteAdmin(AdminBeans adminBeans) {
+        return userDao.deleteAdmin(adminBeans);
+    }
 }

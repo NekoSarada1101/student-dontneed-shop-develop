@@ -323,5 +323,32 @@ public class UserDao extends DaoBase {
         }
         return updateLine != 0;
     }
+
+
+    public boolean deleteAdmin(AdminBeans adminBeans) {
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
+        PreparedStatement stmt       = null;
+        int               deleteLine = 0;
+
+        try {
+            this.connect();
+            stmt = con.prepareStatement("DELETE FROM admin WHERE admin_mail = ?");
+            stmt.setString(1, adminBeans.getAdminMail());
+            deleteLine = stmt.executeUpdate();
+            logger.info("deleteList={}", deleteLine);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            logger.error("error", e);
+        } finally {
+            try {
+                this.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            logger.trace("{} End", ErrorCheckService.getMethodName());
+        }
+        return deleteLine != 0;
+    }
 }
 
