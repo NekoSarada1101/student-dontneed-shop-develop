@@ -2,7 +2,7 @@ package shop.servlet.user;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import shop.model.service.CommonService;
+import shop.model.service.ErrorCheckService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,8 +18,8 @@ public class MemberDetailServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        logger.trace("{} Start", CommonService.getMethodName());
-        logger.trace("{} End", CommonService.getMethodName());
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
+        logger.trace("{} End", ErrorCheckService.getMethodName());
         request.getRequestDispatcher("WEB-INF/jsp/user/member_detail.jsp").forward(request, response);
     }
 }
