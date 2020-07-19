@@ -5,7 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import shop.model.bean.AdminBeans;
 import shop.model.bean.ProductBeans;
-import shop.model.service.CommonService;
+import shop.model.service.ErrorCheckService;
 import shop.model.service.ProductService;
 
 import javax.servlet.ServletException;
@@ -24,7 +24,8 @@ public class ProductInsertCheckServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        logger.trace("{} Start", CommonService.getMethodName());
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
+
         String      productName        = request.getParameter("productName");
         Part        filePart           = request.getPart("image");
         InputStream inputStream        = filePart.getInputStream();
@@ -37,8 +38,9 @@ public class ProductInsertCheckServlet extends HttpServlet {
         } catch (NumberFormatException e) {
             e.printStackTrace();
             logger.error("error={}", e);
-            logger.trace("{} End", CommonService.getMethodName());
-            request.getRequestDispatcher("WEB-INF/jsp/error.jsp").forward(request, response);
+            request.setAttribute("errorMessage", "不正な入力です");
+            logger.trace("{} End", ErrorCheckService.getMethodName());
+            request.getRequestDispatcher("WEB-INF/jsp/admin/product_insert_input.jsp").forward(request, response);
             return;
         }
 
@@ -49,8 +51,9 @@ public class ProductInsertCheckServlet extends HttpServlet {
         logger.info("genreCode={}", genreCode);
 
         if (!checkInputText(productName, price, productExplanation)) {
-            request.getRequestDispatcher("WEB-INF/jsp/error.jsp").forward(request, response);
-            logger.trace("{} End", CommonService.getMethodName());
+            request.setAttribute("errorMessage", "不正な入力です");
+            logger.trace("{} End", ErrorCheckService.getMethodName());
+            request.getRequestDispatcher("WEB-INF/jsp/admin/product_insert_input.jsp").forward(request, response);
             return;
         }
 
@@ -65,13 +68,14 @@ public class ProductInsertCheckServlet extends HttpServlet {
         productBeans.setAdminMail(((AdminBeans) session.getAttribute("adminLoginInfo")).getAdminMail());
 
         session.setAttribute("productBeans", productBeans);
-        logger.trace("{} End", CommonService.getMethodName());
+        logger.trace("{} End", ErrorCheckService.getMethodName());
         request.getRequestDispatcher("WEB-INF/jsp/admin/product_insert_check.jsp").forward(request, response);
     }
 
+
     public boolean checkInputText(String productName, int price, String productExplanation) {
-        if (!productService.checkLength(productName, 30, 1)) return false;
-        if (!productService.checkLength(productExplanation, 400, 1)) return false;
+        if (!ErrorCheckService.checkLength(productName, 30, 1)) return false;
+        if (!ErrorCheckService.checkLength(productExplanation, 400, 1)) return false;
         return true;
     }
 }
