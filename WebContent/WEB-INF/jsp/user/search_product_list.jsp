@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@page import="shop.model.bean.ProductBeans" %>
-<%@page import="shop.model.service.ProductService" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
-
+<%@ page import="shop.model.service.ErrorCheckService" %>
 <%
+    String errorMessage = (String) request.getAttribute("errorMessage");
     List<ProductBeans> productList = (List<ProductBeans>) session.getAttribute("productList");
 %>
 <!DOCTYPE html>
@@ -14,13 +13,18 @@
     <meta charset="UTF-8">
     <title>商品検索結果</title>
     <%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
-    <link rel="stylesheet" href="css/common.css">
 </head>
 
 <body>
 <%@include file="/WEB-INF/jsp/user/member_header.jsp" %>
 
 <div class="container-fluid">
+    <%if (errorMessage != null) { %>
+    <div class="alert alert-danger col-12">
+        <%=errorMessage%>
+    </div>
+    <% } %>
+
     <div class="mt-5 px-5 row">
         <%
             int i = 0;
@@ -30,25 +34,29 @@
             <div class="card-header square-image" id="square-image<%=i%>">
                 <img src="getImageList?index=<%=i%>" alt="...">
             </div>
+
             <div class="card-body">
                 <h5 class="card-title mb-1">
-                    <%=productService.escapeProcess(productBeans.getProductName())%>
+                    <%=ErrorCheckService.escapeProcess(productBeans.getProductName())%>
                 </h5>
+
                 <p class="card-subtitle text-muted mb-2">
                     <%
                         for (Map<String, Object> genreInfoMap : genreInfoList) {
                             if (productBeans.getGenreCode() == (int) genreInfoMap.get("genreCode")) {
                     %>
-                    <%=productService.escapeProcess((String) genreInfoMap.get("genreName"))%>
+                    <%=ErrorCheckService.escapeProcess((String) genreInfoMap.get("genreName"))%>
                     <%
                             }
                         }
                     %>
                 </p>
+
                 <span class="card-text text-danger mb-3">
-                    <%=productService.escapeProcess(String.valueOf(productBeans.getPrice()))%>円
+                    <%=ErrorCheckService.escapeProcess(String.valueOf(productBeans.getPrice()))%>円
                 </span>
             </div>
+
             <div class="card-footer">
                 <form action="adminProductDetail" method="post">
                     <input type="hidden" value="<%=i%>" name="index">
@@ -56,7 +64,6 @@
                 </form>
             </div>
         </div>
-
         <%
                 i++;
             }
