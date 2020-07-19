@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>管理者情報登録完了</title>
     <%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
-     <link rel="stylesheet" href="css/admin_header.css">
+    <link rel="stylesheet" href="css/admin_header.css">
 </head>
 <body>
 <header class="sticky-top">

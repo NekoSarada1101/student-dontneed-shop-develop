@@ -4,11 +4,11 @@
     String errorMessage = (String) request.getAttribute("errorMessage");
     AdminBeans adminBeans = (AdminBeans) session.getAttribute("adminBeans");
     if (adminBeans == null) {
-    	adminBeans = new AdminBeans();
-    	adminBeans.setAdminMail("");
-    	adminBeans.setAdminName("");
-    	adminBeans.setPostalCode("");
-    	adminBeans.setAddress("");
+        adminBeans = new AdminBeans();
+        adminBeans.setAdminMail("");
+        adminBeans.setAdminName("");
+        adminBeans.setPostalCode("");
+        adminBeans.setAddress("");
     }
 %>
 <!DOCTYPE html>
@@ -36,28 +36,29 @@
         </div>
         <% } %>
 
-        <form action="memberInsertCheck" method="post" class="col-12 mx-auto" id="form">
+        <form action="adminInsertCheck" method="post" class="col-12 mx-auto" id="form">
             <div class="form-group row">
-                <label for="memberMail" class="col-12"><strong>メールアドレス</strong></label>
-                <input type="email" value="<%=adminBeans.getAdminMail()%>" class="form-control col-12" id="memberMail"
-                       name="memberMail" maxlength="100" required>
+                <label for="adminMail" class="col-12"><strong>メールアドレス</strong></label>
+                <input type="email" value="<%=adminBeans.getAdminMail()%>" class="form-control col-12" id="adminMail"
+                       name="adminMail" maxlength="100" required>
             </div>
             <div class="form-group row">
-                <label for="memberPassword"><strong>パスワード</strong></label>
-                <input type="password" class="form-control col-12" id="memberPassword" name="memberPassword"
+                <label for="adminPassword"><strong>パスワード</strong></label>
+                <input type="password" class="form-control col-12" id="adminPassword" name="adminPassword"
                        maxlength="128"
                        required>
             </div>
             <div class="form-group row">
                 <label for="name" class="col-12"><strong>名前</strong></label>
                 <input type="text" value="<%=adminBeans.getAdminName()%>" class="form-control col-6" id="name"
-                       name="memberName"
+                       name="adminName"
                        maxlength="20" required>
             </div>
             <div class="form-group row">
                 <label for="postalCode" class="col-12"><strong>郵便番号</strong></label>
                 <input type="text" value="<%=adminBeans.getPostalCode()%>" class="form-control col-4" id="postalCode"
-                       name="postalCode" placeholder="ハイフン無し" pattern="\d{7}" title="郵便番号をハイフン無しで入力してください" required onKeyUp="AjaxZip3.zip2addr(this,'','address','address');">
+                       name="postalCode" placeholder="ハイフン無し" pattern="\d{7}" title="郵便番号をハイフン無しで入力してください" required
+                       onKeyUp="AjaxZip3.zip2addr(this,'','address','address');">
             </div>
             <div class="form-group row">
                 <label for="address" class="col-12"><strong>住所</strong></label>
