@@ -59,15 +59,25 @@ public class MemberUpdateCheckServlet extends HttpServlet {
 
 
     public boolean checkInputTextLegth(String memberMail, String memberPassword, String memberName, String postalCode, String address, String tell, String creditCard, String holder, String securityCode) {
-        if (!ErrorCheckService.checkLength(memberMail, /* maxLength= */100, /* minLength= */1)) return false;
-        if (!ErrorCheckService.checkLength(memberPassword, 128, 1)) return false;
-        if (!ErrorCheckService.checkLength(memberName, 20, 1)) return false;
-        if (!ErrorCheckService.checkLength(postalCode, 7, 7)) return false;
-        if (!ErrorCheckService.checkLength(address, 50, 1)) return false;
-        if (!ErrorCheckService.checkLength(tell, 11, 1)) return false;
-        if (!ErrorCheckService.checkLength(creditCard, 16, 16)) return false;
-        if (!ErrorCheckService.checkLength(holder, 20, 1)) return false;
-        if (!ErrorCheckService.checkLength(securityCode, 3, 3)) return false;
+        if (!ErrorCheckService.checkLength(memberMail, /* maxLength= */100, /* minLength= */1)) {
+            return false;
+        } else if (!ErrorCheckService.checkLength(memberPassword, 128, 1)) {
+            return false;
+        } else if (!ErrorCheckService.checkLength(memberName, 20, 1)) {
+            return false;
+        } else if (!ErrorCheckService.checkLength(postalCode, 7, 7)) {
+            return false;
+        } else if (!ErrorCheckService.checkLength(address, 50, 1)) {
+            return false;
+        } else if (!ErrorCheckService.checkLength(tell, 11, 1)) {
+            return false;
+        } else if (!ErrorCheckService.checkLength(creditCard, 16, 16)) {
+            return false;
+        } else if (!ErrorCheckService.checkLength(holder, 20, 1)) {
+            return false;
+        } else if (!ErrorCheckService.checkLength(securityCode, 3, 3)) {
+            return false;
+        }
         return true;
     }
 }
