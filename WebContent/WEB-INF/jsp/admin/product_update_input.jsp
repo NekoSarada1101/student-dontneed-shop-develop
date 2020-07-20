@@ -32,7 +32,7 @@
         </div>
         <% } %>
 
-        <form action="productInsertCheck" method="post" class="col-12 mx-auto" id="form" enctype=multipart/form-data>
+        <form action="productUpdateCheck" method="post" class="col-12 mx-auto" id="form" enctype=multipart/form-data>
             <div class="form-group row">
                 <label for="productName" class="col-12"><strong>商品名</strong></label>
                 <input type="text" value="<%=productBeans.getProductName()%>" class="form-control col-12"

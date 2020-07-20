@@ -28,7 +28,7 @@ public class AdminInsertCheckServlet extends HttpServlet {
         String      postalCode    = request.getParameter("postalCode");
         String      address       = request.getParameter("address");
 
-        if (!checkInputText(adminMail, adminPassword, adminName, postalCode, address)) {
+        if (!checkInputTextLength(adminMail, adminPassword, adminName, postalCode, address)) {
             request.setAttribute("errorMessage", "不正な入力です");
             logger.trace("{} End", ErrorCheckService.getMethodName());
             request.getRequestDispatcher("WEB-INF/jsp/admin/admin_insert_input.jsp").forward(request, response);
@@ -48,12 +48,18 @@ public class AdminInsertCheckServlet extends HttpServlet {
     }
 
 
-    public boolean checkInputText(String adminMail, String adminPassword, String adminName, String postalCode, String address) {
-        if (!ErrorCheckService.checkLength(adminMail, 100, 1)) return false;
-        if (!ErrorCheckService.checkLength(adminPassword, 128, 1)) return false;
-        if (!ErrorCheckService.checkLength(adminName, 20, 1)) return false;
-        if (!ErrorCheckService.checkLength(postalCode, 7, 7)) return false;
-        if (!ErrorCheckService.checkLength(address, 50, 1)) return false;
+    public boolean checkInputTextLength(String adminMail, String adminPassword, String adminName, String postalCode, String address) {
+        if (!ErrorCheckService.checkLength(adminMail, /* maxLength= */100, /* minLength= */1)) {
+            return false;
+        } else if (!ErrorCheckService.checkLength(adminPassword, 128, 1)) {
+            return false;
+        } else if (!ErrorCheckService.checkLength(adminName, 20, 1)) {
+            return false;
+        } else if (!ErrorCheckService.checkLength(postalCode, 7, 7)) {
+            return false;
+        } else if (!ErrorCheckService.checkLength(address, 50, 1)) {
+            return false;
+        }
         return true;
     }
 }

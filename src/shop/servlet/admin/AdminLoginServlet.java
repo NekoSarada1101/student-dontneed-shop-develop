@@ -35,7 +35,7 @@ public class AdminLoginServlet extends HttpServlet {
         String adminMail     = request.getParameter("adminMail");
         String adminPassword = request.getParameter("adminPassword");
 
-        if (!checkInputText(adminMail, adminPassword)) {
+        if (!checkInputTextLength(adminMail, adminPassword)) {
             request.setAttribute("errorMessage", "不正な入力です");
             logger.trace("{} End", ErrorCheckService.getMethodName());
             request.getRequestDispatcher("WEB-INF/jsp/admin/admin_login.jsp").forward(request, response);
@@ -59,9 +59,12 @@ public class AdminLoginServlet extends HttpServlet {
     }
 
 
-    public boolean checkInputText(String adminMail, String adminPassword) {
-        if (!ErrorCheckService.checkLength(adminMail, 100, 1)) return false;
-        if (!ErrorCheckService.checkLength(adminPassword, 128, 1)) return false;
+    public boolean checkInputTextLength(String adminMail, String adminPassword) {
+        if (!ErrorCheckService.checkLength(adminMail, /* maxLength= */100, /* minLength= */1)) {
+            return false;
+        } else if (!ErrorCheckService.checkLength(adminPassword, 128, 1)) {
+            return false;
+        }
         return true;
     }
 }

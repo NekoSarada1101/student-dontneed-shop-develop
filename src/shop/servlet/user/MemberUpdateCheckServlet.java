@@ -33,7 +33,7 @@ public class MemberUpdateCheckServlet extends HttpServlet {
         String      holder         = request.getParameter("holder");
         String      securityCode   = request.getParameter("securityCode");
 
-        if (!checkInputText(memberMail, memberPassword, memberName, postalCode, address, tell, creditCard, holder, securityCode)) {
+        if (!checkInputTextLegth(memberMail, memberPassword, memberName, postalCode, address, tell, creditCard, holder, securityCode)) {
             request.setAttribute("errorMessage", "不正な入力です");
             logger.trace("{} End", ErrorCheckService.getMethodName());
             request.getRequestDispatcher("WEB-INF/jsp/user/member_update_input.jsp").forward(request, response);
@@ -58,16 +58,26 @@ public class MemberUpdateCheckServlet extends HttpServlet {
     }
 
 
-    public boolean checkInputText(String memberMail, String memberPassword, String memberName, String postalCode, String address, String tell, String creditCard, String holder, String securityCode) {
-        if (!ErrorCheckService.checkLength(memberMail, 100, 1)) return false;
-        if (!ErrorCheckService.checkLength(memberPassword, 128, 1)) return false;
-        if (!ErrorCheckService.checkLength(memberName, 20, 1)) return false;
-        if (!ErrorCheckService.checkLength(postalCode, 7, 7)) return false;
-        if (!ErrorCheckService.checkLength(address, 50, 1)) return false;
-        if (!ErrorCheckService.checkLength(tell, 11, 1)) return false;
-        if (!ErrorCheckService.checkLength(creditCard, 16, 16)) return false;
-        if (!ErrorCheckService.checkLength(holder, 20, 1)) return false;
-        if (!ErrorCheckService.checkLength(securityCode, 3, 3)) return false;
+    public boolean checkInputTextLegth(String memberMail, String memberPassword, String memberName, String postalCode, String address, String tell, String creditCard, String holder, String securityCode) {
+        if (!ErrorCheckService.checkLength(memberMail, /* maxLength= */100, /* minLength= */1)) {
+            return false;
+        } else if (!ErrorCheckService.checkLength(memberPassword, 128, 1)) {
+            return false;
+        } else if (!ErrorCheckService.checkLength(memberName, 20, 1)) {
+            return false;
+        } else if (!ErrorCheckService.checkLength(postalCode, 7, 7)) {
+            return false;
+        } else if (!ErrorCheckService.checkLength(address, 50, 1)) {
+            return false;
+        } else if (!ErrorCheckService.checkLength(tell, 11, 1)) {
+            return false;
+        } else if (!ErrorCheckService.checkLength(creditCard, 16, 16)) {
+            return false;
+        } else if (!ErrorCheckService.checkLength(holder, 20, 1)) {
+            return false;
+        } else if (!ErrorCheckService.checkLength(securityCode, 3, 3)) {
+            return false;
+        }
         return true;
     }
 }
