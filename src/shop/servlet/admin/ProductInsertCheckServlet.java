@@ -36,6 +36,7 @@ public class ProductInsertCheckServlet extends HttpServlet {
             price = Integer.parseInt(request.getParameter("price"));
             genreCode = Integer.parseInt(request.getParameter("genre"));
         } catch (NumberFormatException e) {
+            //価格とジャンルコードに数字以外が入力されたら
             e.printStackTrace();
             logger.error("error={}", e);
             request.setAttribute("errorMessage", "不正な入力です");
@@ -50,7 +51,7 @@ public class ProductInsertCheckServlet extends HttpServlet {
         logger.info("price={}", price);
         logger.info("genreCode={}", genreCode);
 
-        if (!checkInputText(productName, price, productExplanation)) {
+        if (!checkInputTextLength(productName, price, productExplanation)) {
             request.setAttribute("errorMessage", "不正な入力です");
             logger.trace("{} End", ErrorCheckService.getMethodName());
             request.getRequestDispatcher("WEB-INF/jsp/admin/product_insert_input.jsp").forward(request, response);
@@ -73,9 +74,12 @@ public class ProductInsertCheckServlet extends HttpServlet {
     }
 
 
-    public boolean checkInputText(String productName, int price, String productExplanation) {
-        if (!ErrorCheckService.checkLength(productName, 30, 1)) return false;
-        if (!ErrorCheckService.checkLength(productExplanation, 400, 1)) return false;
+    public boolean checkInputTextLength(String productName, int price, String productExplanation) {
+        if (!ErrorCheckService.checkLength(productName, /* maxLength= */30, /* minLength= */1)) {
+            return false;
+        } else if (!ErrorCheckService.checkLength(productExplanation, 400, 1)) {
+            return false;
+        }
         return true;
     }
 }

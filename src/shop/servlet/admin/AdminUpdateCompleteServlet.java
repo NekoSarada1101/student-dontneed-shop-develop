@@ -27,6 +27,7 @@ public class AdminUpdateCompleteServlet extends HttpServlet {
         AdminBeans  adminBeans = (AdminBeans) session.getAttribute("adminBeans");
         logger.info("adminBeans={}", adminBeans);
 
+        //メールアドレスが変更された時
         if (!adminBeans.getAdminMail().equals(((AdminBeans) session.getAttribute("adminLoginInfo")).getAdminMail()))
             if (userService.checkAdminMailExists(adminBeans.getAdminMail())) {
                 String errorMessage = "そのメールアドレスは既に登録済みです";

@@ -35,7 +35,7 @@ public class MemberLoginServlet extends HttpServlet {
         String memberMail     = request.getParameter("memberMail");
         String memberPassword = request.getParameter("memberPassword");
 
-        if (!checkInputText(memberMail, memberPassword)) {
+        if (!checkInputTextLength(memberMail, memberPassword)) {
             request.setAttribute("errorMessage", "不正な入力です");
             logger.trace("{} End", ErrorCheckService.getMethodName());
             request.getRequestDispatcher("WEB-INF/jsp/user/member_login.jsp").forward(request, response);
@@ -61,9 +61,12 @@ public class MemberLoginServlet extends HttpServlet {
     }
 
 
-    public boolean checkInputText(String memberMail, String memberPassword) {
-        if (!ErrorCheckService.checkLength(memberMail, 100, 1)) return false;
-        if (!ErrorCheckService.checkLength(memberPassword, 128, 1)) return false;
+    public boolean checkInputTextLength(String memberMail, String memberPassword) {
+        if (!ErrorCheckService.checkLength(memberMail, /* maxLength= */100, /* minLength= */1)) {
+            return false;
+        } else if (!ErrorCheckService.checkLength(memberPassword, 128, 1)) {
+            return false;
+        }
         return true;
     }
 }

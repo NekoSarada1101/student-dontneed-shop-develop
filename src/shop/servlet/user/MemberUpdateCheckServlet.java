@@ -33,7 +33,7 @@ public class MemberUpdateCheckServlet extends HttpServlet {
         String      holder         = request.getParameter("holder");
         String      securityCode   = request.getParameter("securityCode");
 
-        if (!checkInputText(memberMail, memberPassword, memberName, postalCode, address, tell, creditCard, holder, securityCode)) {
+        if (!checkInputTextLegth(memberMail, memberPassword, memberName, postalCode, address, tell, creditCard, holder, securityCode)) {
             request.setAttribute("errorMessage", "不正な入力です");
             logger.trace("{} End", ErrorCheckService.getMethodName());
             request.getRequestDispatcher("WEB-INF/jsp/user/member_update_input.jsp").forward(request, response);
@@ -58,8 +58,8 @@ public class MemberUpdateCheckServlet extends HttpServlet {
     }
 
 
-    public boolean checkInputText(String memberMail, String memberPassword, String memberName, String postalCode, String address, String tell, String creditCard, String holder, String securityCode) {
-        if (!ErrorCheckService.checkLength(memberMail, 100, 1)) return false;
+    public boolean checkInputTextLegth(String memberMail, String memberPassword, String memberName, String postalCode, String address, String tell, String creditCard, String holder, String securityCode) {
+        if (!ErrorCheckService.checkLength(memberMail, /* maxLength= */100, /* minLength= */1)) return false;
         if (!ErrorCheckService.checkLength(memberPassword, 128, 1)) return false;
         if (!ErrorCheckService.checkLength(memberName, 20, 1)) return false;
         if (!ErrorCheckService.checkLength(postalCode, 7, 7)) return false;
