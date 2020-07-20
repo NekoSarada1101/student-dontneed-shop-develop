@@ -28,6 +28,10 @@ public class UserService {
         return userDao.deleteMember(memberBeans);
     }
 
+    public MemberBeans fetchMemberLogin(String memberMail, String memberPassword) {
+        return userDao.fetchMemberLogin(memberMail, memberPassword);
+    }
+
     public AdminBeans fetchAdminLogin(String adminMail, String adminPassword) {
         return userDao.fetchAdminLogin(adminMail, adminPassword);
     }

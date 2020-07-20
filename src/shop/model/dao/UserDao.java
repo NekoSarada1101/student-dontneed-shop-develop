@@ -11,6 +11,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import shop.model.bean.AdminBeans;
+import shop.model.bean.MemberBeans;
+
 public class UserDao extends DaoBase {
 
     private Logger logger = LogManager.getLogger();
