@@ -84,12 +84,12 @@
         </ul>
 
         <form action="memberUpdateInput" method="get" class="col-6 text-center">
-            <button type="submit" class="btn btn-info btn-lg">変更</button>
+            <button type="submit" class="btn btn-info btn-block btn-lg">変更</button>
 
         </form>
 
         <form action="memberDeleteCheck" method="post" class="col-6 text-center">
-            <button type="submit" class="btn btn-danger btn-lg">退会</button>
+            <button type="submit" class="btn btn-danger btn-block btn-lg">退会</button>
         </form>
     </div>
 </div>

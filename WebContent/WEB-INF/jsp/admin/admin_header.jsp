@@ -24,7 +24,7 @@
         <a href="adminTop" class="navbar-brand text-white mr-3" style="width: 160px">KIK</a>
 
         <form action="adminDetail" method="post" class="ml-auto">
-            <button type="submit" class="btn btn-warning">
+            <button type="submit" class="btn btn-warning btn-block">
                 <%=adminName + "さん"%>
                 <br>
                 <span>管理者詳細へ</span>
@@ -32,7 +32,7 @@
         </form>
 
         <form action="logout" method="get" class="ml-1 ml-sm-3">
-            <button type="submit" class="btn btn-dark">ログアウト</button>
+            <button type="submit" class="btn btn-dark btn-block">ログアウト</button>
         </form>
     </nav>
 </header>
