@@ -23,7 +23,7 @@ public class LoginFilter implements Filter {
 
     private List<String> memberUrlPatterns = Arrays.asList("/memberLogout", "/memberTop", "/memberUpdateInput", "/memberUpdateCheck",
             "/memberUpdateComplete", "/memberDeleteCheck", "/memberDeleteComplete", "/productSearchAndDisplay", "/memberProductDetail", "/memberDetail", "/cartInsert", "/cartDisplay", "/cartDelete", "/purchaseCheck",
-            "/purchaseComplete", "/purchaseHistory", "/productListPagination");
+            "/purchaseComplete", "/purchaseHistory", "/productListPagination", "/genreSearch");
 
     private List<String> adminUrlPatterns = Arrays.asList("/adminLogout", "/adminTop", "/adminDetail", "/adminProductDetail", "/adminUpdateInput", "/adminUpdateCheck", "/adminUpdateComplete", "/adminDeleteCheck", "/adminDeleteComplete", "/productInsertInput", "/productInsertCheck", "/productInsertComplete", "/productUpdateInput", "/productUpdateCheck", "/productUpdateComplete", "/productDeleteCheck", "/productDeleteComplete", "/salesCheck");
 
@@ -59,6 +59,7 @@ public class LoginFilter implements Filter {
                 chain.doFilter(req, res);
             } else {
                 // セッションがNullならば、エラー画面へ飛ばす
+                logger.debug("memberLoginInfo is null");
                 response.sendRedirect("loginFilterError");
             }
         } else if (adminUrlPatterns.contains(path)) {
@@ -68,6 +69,7 @@ public class LoginFilter implements Filter {
                 chain.doFilter(req, res);
             } else {
                 // セッションがNullならば、エラー画面へ飛ばす
+                logger.debug("adminLoginInfo is null");
                 response.sendRedirect("loginFilterError");
             }
         } else if (path.equals("/memberLogin") || path.contains("/memberInsert") || path.equals("/adminLogin") || path.contains("/adminInsert") || path.contains("Image") || path.contains("css") || path.contains("js") || path.equals("/loginFilterError")) {
