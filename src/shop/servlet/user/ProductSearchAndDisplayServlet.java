@@ -26,16 +26,18 @@ public class ProductSearchAndDisplayServlet extends HttpServlet {
         logger.trace("{} Start", ErrorCheckService.getMethodName());
         HttpSession session = request.getSession();
 
-        int genreCode = Integer.parseInt(request.getParameter("genreCode"));
+        int    genreCode  = Integer.parseInt(request.getParameter("genreCode"));
         String sortColumn = request.getParameter("sortColumn");
-        String sortOrder = request.getParameter("sortOrder");
+        String sortOrder  = request.getParameter("sortOrder");
         String searchWord = request.getParameter("searchWord");
+        int    page       = Integer.parseInt(request.getParameter("page"));
         logger.info("genreCode={}", genreCode);
         logger.info("sortColumn={}", sortColumn);
         logger.info("sortOrder={}", sortOrder);
         logger.info("searchWord={}", searchWord);
+        logger.info("page={}", page);
 
-        if (!ErrorCheckService.checkAllowedSortColumn(sortColumn) || !ErrorCheckService.checkAllowedSortOrder(sortOrder)){
+        if (!ErrorCheckService.checkAllowedSortColumn(sortColumn) || !ErrorCheckService.checkAllowedSortOrder(sortOrder)) {
             request.setAttribute("errorMessage", "不正な入力です");
             logger.trace("{} End", ErrorCheckService.getMethodName());
             request.getRequestDispatcher("WEB-INF/jsp/user/search_product_list.jsp").forward(request, response);
@@ -46,6 +48,7 @@ public class ProductSearchAndDisplayServlet extends HttpServlet {
         logger.info("productList.size={}", productList.size());
 
         session.setAttribute("productList", productList);
+        request.setAttribute("page", page);
         logger.trace("{} End", ErrorCheckService.getMethodName());
         request.getRequestDispatcher("WEB-INF/jsp/user/search_product_list.jsp").forward(request, response);
     }
