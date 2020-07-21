@@ -29,6 +29,7 @@ public class GenreSearchServlet extends HttpServlet {
         int                genreCode   = Integer.parseInt(request.getParameter("genreCode"));
         List<ProductBeans> productList = productService.fetchSearchProductList(genreCode, "product_id", "desc", "");
 
+        request.setAttribute("page", 1);
         session.setAttribute("productList", productList);
         logger.trace("{} End", ErrorCheckService.getMethodName());
         request.getRequestDispatcher("WEB-INF/jsp/user/search_product_list.jsp").forward(request, response);
