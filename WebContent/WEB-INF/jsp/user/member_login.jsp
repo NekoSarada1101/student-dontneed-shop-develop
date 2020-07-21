@@ -49,7 +49,7 @@
     </form>
 
     <form action="adminLogin" method="get" class="col-10 col-sm-8 col-md-6 col-lg-3 mx-auto">
-        <button type="submit" class="btn btn-link btn-block mt-5">管理者ログインへ</button>
+        <button type="submit" class="btn btn-link btn-block mt-5">管理者画面へ</button>
     </form>
 </div>
 

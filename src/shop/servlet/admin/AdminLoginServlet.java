@@ -23,8 +23,17 @@ public class AdminLoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         logger.trace("{} Start", ErrorCheckService.getMethodName());
-        logger.trace("{} End", ErrorCheckService.getMethodName());
-        request.getRequestDispatcher("WEB-INF/jsp/admin/admin_login.jsp").forward(request, response);
+
+        HttpSession session    = request.getSession();
+        AdminBeans  adminBeans = (AdminBeans) session.getAttribute("adminLoginInfo");
+
+        if (adminBeans == null) {
+            logger.trace("{} End", ErrorCheckService.getMethodName());
+            request.getRequestDispatcher("WEB-INF/jsp/admin/admin_login.jsp").forward(request, response);
+        } else {
+            logger.trace("{} End", ErrorCheckService.getMethodName());
+            response.sendRedirect("adminTop");
+        }
     }
 
 

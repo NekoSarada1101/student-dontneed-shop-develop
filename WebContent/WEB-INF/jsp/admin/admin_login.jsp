@@ -48,7 +48,7 @@
 </form>
 
     <form action="memberLogin" method="get" class="col-10 col-sm-8 col-md-6 col-lg-3 mx-auto">
-        <button type="submit" class="btn btn-link btn-block mt-5">会員ログインへ</button>
+        <button type="submit" class="btn btn-link btn-block mt-5">会員画面へ</button>
     </form>
 </div>
 

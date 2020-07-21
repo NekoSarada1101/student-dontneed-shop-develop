@@ -23,8 +23,17 @@ public class MemberLoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         logger.trace("{} Start", ErrorCheckService.getMethodName());
-        logger.trace("{} End", ErrorCheckService.getMethodName());
-        request.getRequestDispatcher("WEB-INF/jsp/user/member_login.jsp").forward(request, response);
+
+        HttpSession session     = request.getSession();
+        MemberBeans memberBeans = (MemberBeans) session.getAttribute("memberLoginInfo");
+
+        if (memberBeans == null) {
+            logger.trace("{} End", ErrorCheckService.getMethodName());
+            request.getRequestDispatcher("WEB-INF/jsp/user/member_login.jsp").forward(request, response);
+        } else {
+            logger.trace("{} End", ErrorCheckService.getMethodName());
+            response.sendRedirect("memberTop");
+        }
     }
 
 
