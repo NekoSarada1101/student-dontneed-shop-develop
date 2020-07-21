@@ -26,7 +26,8 @@ public class AdminProductDetailServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         int    index = 0;
-        String path  = request.getRequestURI().substring(request.getContextPath().length()).replaceAll("[/]+$", "");
+        String path = request.getRequestURI().substring(request.getContextPath().length());
+        path = path.substring(path.lastIndexOf("/"));
         if (path.equals("/adminTop")) {
             //管理者トップから遷移したら
             index = Integer.parseInt(request.getParameter("index"));
