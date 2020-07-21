@@ -35,18 +35,20 @@
                 </h5>
 
                 <p class="card-subtitle text-muted mb-2">
-                    <%
+                        <%
                         for (Map<String, Object> genreInfoMap : genreInfoList) {
                             if (productBeans.getGenreCode() == (int) genreInfoMap.get("genreCode")) {
                     %>
-                    <form action = "genreSearch" method="get">
-                    <input type="hidden" value = "<%=(int) genreInfoMap.get("genreCode")%> name = "genreCode">
-                    <input type="submit"><%=ErrorCheckService.escapeProcess((String) genreInfoMap.get("genreName"))%></input>
-                    </form>
-                    <%
-                            }
+                <form action="genreSearch" method="get">
+                    <input type="hidden" value="<%=(int) genreInfoMap.get("genreCode")%>" name="genreCode">
+                    <button type="submit"
+                            class="btn btn-link p-0"><%=ErrorCheckService.escapeProcess((String) genreInfoMap.get("genreName"))%>
+                    </button>
+                </form>
+                <%
                         }
-                    %>
+                    }
+                %>
                 </p>
 
                 <p class="card-text text-danger mb-3">
