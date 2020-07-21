@@ -26,7 +26,7 @@ public class MemberTopServlet extends HttpServlet {
         logger.trace("{} Start", ErrorCheckService.getMethodName());
 
         HttpSession        session     = request.getSession();
-        List<ProductBeans> productList = productService.fetchSearchProductList(0, "product_id", "desc", "");
+        List<ProductBeans> productList = productService.fetchSearchProductList(/* genreCode= */0, /* sortColumn= */"product_id", /* sortOrder= */"desc", /* searchWord= */"");
         session.setAttribute("productList", productList);
         logger.info("productList.size={}", productList.size());
 
