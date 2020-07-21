@@ -6,6 +6,9 @@
 <%
     String errorMessage = (String) request.getAttribute("errorMessage");
     List<ProductBeans> productList = (List<ProductBeans>) session.getAttribute("productList");
+
+    int pageCount = (int) request.getAttribute("page");
+    final int PRODUCT_ITEM_MAX = 30;
 %>
 <!DOCTYPE html>
 <html>
@@ -27,8 +30,8 @@
 
     <div class="mt-5 px-5 row">
         <%
-            int i = 0;
-            for (ProductBeans productBeans : productList) {
+            for (int i = (pageCount - 1) * PRODUCT_ITEM_MAX; i < productList.size() && i <= (pageCount * PRODUCT_ITEM_MAX) - (1 * pageCount); i++) {
+                ProductBeans productBeans = productList.get(i);
         %>
         <div class="card col-6 col-md-4 col-lg-2 p-0" id="card">
             <div class="card-header square-image" id="square-image<%=i%>">
@@ -65,10 +68,56 @@
             </div>
         </div>
         <%
-                i++;
             }
         %>
     </div>
+
+    <nav aria-label="Page navigation example" class="mt-4">
+        <ul class="pagination justify-content-center">
+            <li class="page-item">
+                <%
+                    if (pageCount == 1) {
+                %>
+                <form action="productListPagination" method="get" class="page-link">
+                    <button type="submit" class="btn btn-link disabled">Previous</button>
+                </form>
+                <% } else { %>
+                <form action="productListPagination" method="get" class="page-link">
+                    <input type="hidden" value="<%=pageCount - 1%>" name="page">
+                    <button type="submit" class="btn btn-link">Previous</button>
+                </form>
+                <% } %>
+            </li>
+            <%
+                int pageMax = productList.size() / PRODUCT_ITEM_MAX;
+                if (productList.size() % PRODUCT_ITEM_MAX > 0) {
+                    pageMax++;
+                }
+                for (int i = 0; i < pageMax; i++) {
+            %>
+            <li class="page-item">
+                <form action="productListPagination" method="get" class="page-link">
+                    <input type="hidden" value="<%=i + 1%>" name="page">
+                    <button type="submit" class="btn btn-link"><%=i + 1%></button>
+                </form>
+            </li>
+            <% } %>
+            <li class="page-item">
+                <%
+                    if (pageCount == pageMax) {
+                %>
+                <form action="productListPagination" method="get" class="page-link">
+                    <button type="submit" class="btn btn-link disabled">Next</button>
+                </form>
+                <% } else { %>
+                <form action="productListPagination" method="get" class="page-link">
+                    <input type="hidden" value="<%=pageCount + 1%>" name="page">
+                    <button type="submit" class="btn btn-link">Next</button>
+                </form>
+                <% } %>
+            </li>
+        </ul>
+    </nav>
 </div>
 
 <%@include file="/WEB-INF/jsp/user/member_footer.jsp" %>
@@ -78,13 +127,14 @@
     window.addEventListener("resize", imageResizeFunc);
 
     function imageResizeFunc() {
-        var width = document.getElementById('square-image0').offsetWidth;
+        var width = document.getElementById('square-image<%=(pageCount - 1) * PRODUCT_ITEM_MAX%>').offsetWidth;
         console.log(width)
         var imageList = document.querySelectorAll(".square-image");
         console.log(imageList.length);
         width = String(width) + "px";
         for (var i = 0; i < imageList.length; i++) {
-            document.getElementById("square-image" + i).style.height = width;
+            var id = i + <%=(pageCount - 1) * PRODUCT_ITEM_MAX%>;
+            document.getElementById("square-image" + id).style.height = width;
         }
     }
 </script>
