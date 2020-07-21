@@ -1,7 +1,10 @@
 package shop.servlet.user;
 
-import java.io.IOException;
-import java.util.logging.LogManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import shop.model.bean.MemberBeans;
+import shop.model.service.ErrorCheckService;
+import shop.model.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,10 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import shop.model.bean.MemberBeans;
-import shop.model.service.ErrorCheckService;
-import shop.model.service.UserService;
+import java.io.IOException;
 
 @WebServlet("/memberLogin")
 public class MemberLoginServlet extends HttpServlet {
@@ -22,15 +22,18 @@ public class MemberLoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	HttpSession session = request.getSession();
-    	MemberBeans memberBeans = (MemberBeans)session.getAttribute("memberLoginInfo");
-    	if(memberBeans == null) {
-    		logger.trace("{} Start", ErrorCheckService.getMethodName());
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
+
+        HttpSession session     = request.getSession();
+        MemberBeans memberBeans = (MemberBeans) session.getAttribute("memberLoginInfo");
+
+        if (memberBeans == null) {
             logger.trace("{} End", ErrorCheckService.getMethodName());
             request.getRequestDispatcher("WEB-INF/jsp/user/member_login.jsp").forward(request, response);
-    	}else {
-    		response.sendRedirect("memberTop");
-    	}
+        } else {
+            logger.trace("{} End", ErrorCheckService.getMethodName());
+            response.sendRedirect("memberTop");
+        }
     }
 
 
