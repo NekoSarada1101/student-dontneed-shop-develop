@@ -61,7 +61,7 @@
             </div>
 
             <div class="card-footer">
-                <form action="adminProductDetail" method="post">
+                <form action="memberProductDetail" method="post">
                     <input type="hidden" value="<%=i%>" name="index">
                     <button type="submit" class="btn btn-primary btn-block">詳細表示</button>
                 </form>
