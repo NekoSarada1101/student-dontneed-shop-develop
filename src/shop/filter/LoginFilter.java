@@ -23,7 +23,7 @@ public class LoginFilter implements Filter {
 
     private List<String> memberUrlPatterns = Arrays.asList("/memberLogout", "/memberTop", "/memberUpdateInput", "/memberUpdateCheck",
             "/memberUpdateComplete", "/memberDeleteCheck", "/memberDeleteComplete", "/productSearchAndDisplay", "/memberProductDetail", "/memberDetail", "/cartInsert", "/cartDisplay", "/cartDelete", "/purchaseCheck",
-            "/purchaseComplete", "/purchaseHistory");
+            "/purchaseComplete", "/purchaseHistory", "/productListPagination");
 
     private List<String> adminUrlPatterns = Arrays.asList("/adminLogout", "/adminTop", "/adminDetail", "/adminProductDetail", "/adminUpdateInput", "/adminUpdateCheck", "/adminUpdateComplete", "/adminDeleteCheck", "/adminDeleteComplete", "/productInsertInput", "/productInsertCheck", "/productInsertComplete", "/productUpdateInput", "/productUpdateCheck", "/productUpdateComplete", "/productDeleteCheck", "/productDeleteComplete", "/salesCheck");
 
@@ -49,7 +49,8 @@ public class LoginFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
         HttpSession         session  = request.getSession();
 
-        String path = request.getRequestURI().substring(request.getContextPath().length()).replaceAll("[/]+$", "");
+        String path = request.getRequestURI().substring(request.getContextPath().length());
+        path = path.substring(path.lastIndexOf("/"));
 
         if (memberUrlPatterns.contains(path)) {
             MemberBeans memberBeans = (MemberBeans) session.getAttribute("memberLoginInfo");
