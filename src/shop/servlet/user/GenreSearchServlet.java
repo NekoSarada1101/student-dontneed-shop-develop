@@ -15,7 +15,7 @@ import shop.model.service.ProductService;
 
 
 
-@WebServlet("/GenreSearch")
+@WebServlet("/genreSearch")
 public class GenreSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ProductService productService = new ProductService();

@@ -39,7 +39,10 @@
                         for (Map<String, Object> genreInfoMap : genreInfoList) {
                             if (productBeans.getGenreCode() == (int) genreInfoMap.get("genreCode")) {
                     %>
-                    <%=ErrorCheckService.escapeProcess((String) genreInfoMap.get("genreName"))%>
+                    <form action = "genreSearch" method="get">
+                    <input type="hidden" value = "<%=(int) genreInfoMap.get("genreCode")%> name = "genreCode">
+                    <input type="submit"><%=ErrorCheckService.escapeProcess((String) genreInfoMap.get("genreName"))%></input>
+                    </form>
                     <%
                             }
                         }
