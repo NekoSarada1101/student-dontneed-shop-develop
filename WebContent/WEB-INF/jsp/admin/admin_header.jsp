@@ -14,20 +14,41 @@
 </head>
 <body>
 <header class="sticky-top">
-    <nav class="navbar navbar-expand-lg bg-success px-1 px-md-2 px-lg-4">
-        <a href="adminTop" class="navbar-brand text-white mr-3" style="width: 160px">KIK</a>
+    <nav class="nav navbar-expand-lg bg-success px-1 px-md-2 px-lg-4">
+        <a href="adminTop" class="navbar-brand text-white" style="width: 100px">KIK</a>
 
-        <form action="adminDetail" method="get" class="ml-auto">
-            <button type="submit" class="btn btn-warning">
-                <%=adminName + "さん"%>
-                <br>
-                <span>管理者詳細へ</span>
+        <p class="text-left text-white my-auto" style="width: 100px">
+            ようこそ！
+            <br>
+            <%=adminName%>さん
+        </p>
+
+        <div class="dropdown my-auto ml-3" style="width: 120px">
+            <button class="nav-link btn btn-warning dropdown-toggle col-12" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                メニュー
             </button>
-        </form>
 
-        <form action="adminLogout" method="get" class="ml-1 ml-sm-3">
-            <button type="submit" class="btn btn-dark">ログアウト</button>
-        </form>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <form action="adminDetail" method="get" class="dropdown-item">
+                    <button type="submit" class="btn btn-link text-dark">
+                        <span><i class="fas fa-user"></i> 管理者詳細</span>
+                    </button>
+                </form>
+
+                <form action=memberLogin method="get" class="dropdown-item">
+                    <button type="submit" class="btn btn-link text-dark">
+                        <span><i class="fas fa-sign-in-alt"></i> 会員ログイン</span>
+                    </button>
+                </form>
+
+                <form action="adminLogout" method="get" class="dropdown-item">
+                    <button type="submit" class="btn btn-link text-dark">
+                        <span><i class="fas fa-sign-out-alt"></i> ログアウト</span>
+                    </button>
+                </form>
+            </div>
+        </div>
     </nav>
 </header>
 </body>
