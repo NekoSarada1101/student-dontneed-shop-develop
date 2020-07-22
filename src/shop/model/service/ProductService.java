@@ -35,8 +35,8 @@ public class ProductService {
         return productDao.fetchGenreInfo();
     }
 
-    public List<ProductBeans> fetchAdminProductList(String adminMail) {
-        return productDao.fetchAdminProductList(adminMail);
+    public List<ProductBeans> fetchAdminSearchProductList(String adminMail, int genreCode, String sortColumn, String sortOrder, String searchWord) {
+        return productDao.fetchAdminSearchProductList(adminMail, genreCode, sortColumn, sortOrder, searchWord);
     }
 
     //商品情報のis_soldをtrueにする
