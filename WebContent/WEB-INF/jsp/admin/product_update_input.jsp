@@ -7,9 +7,6 @@
     String errorMessage = (String) request.getAttribute("errorMessage");
 
     ProductBeans productBeans = (ProductBeans) session.getAttribute("productBeans");
-
-    ProductService productService = new ProductService();
-    List<Map<String, Object>> genreInfoList = productService.fetchGenreInfo();
 %>
 <!DOCTYPE html>
 <html>

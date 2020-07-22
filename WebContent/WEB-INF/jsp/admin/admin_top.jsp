@@ -6,9 +6,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     List<ProductBeans> productList = (List<ProductBeans>) session.getAttribute("productList");
-
-    ProductService productService = new ProductService();
-    List<Map<String, Object>> genreInfoList = productService.fetchGenreInfo();
 %>
 <!DOCTYPE html>
 <html>
