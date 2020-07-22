@@ -44,7 +44,7 @@ public class AdminProductSearchAndDisplayServlet extends HttpServlet {
             return;
         }
 
-        List<ProductBeans> productList = productService.fetchSearchProductList(genreCode, sortColumn, sortOrder, searchWord);
+        List<ProductBeans> productList = productService.fetchAdminSearchProductList(adminMail, genreCode, sortColumn, sortOrder, searchWord);
         logger.info("productList.size={}", productList.size());
 
         session.setAttribute("productList", productList);

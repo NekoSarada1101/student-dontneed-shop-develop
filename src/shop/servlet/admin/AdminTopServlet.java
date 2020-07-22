@@ -28,7 +28,7 @@ public class AdminTopServlet extends HttpServlet {
 
         HttpSession        session     = request.getSession();
         String             adminMail   = ((AdminBeans) session.getAttribute("adminLoginInfo")).getAdminMail();
-        List<ProductBeans> productList = productService.fetchAdminProductList(adminMail);
+        List<ProductBeans> productList = productService.fetchAdminSearchProductList(adminMail, /* genreCode= */0, /* sortColumn= */"product_id", /* sortOrder= */"desc", /* searchWord= */"");
         logger.info("productList.size={}", productList.size());
 
         session.removeAttribute("productBeans");
