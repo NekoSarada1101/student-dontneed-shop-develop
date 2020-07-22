@@ -6,8 +6,8 @@
 <%@ page import="shop.model.service.ErrorCheckService" %>
 <%@ page import="shop.model.service.ErrorCheckService" %>
 <%
-	ProductService productService = new ProductService();
-	List<Map<String, Object>> genreInfoList = productService.fetchGenreInfo();
+    ProductService productService = new ProductService();
+    List<Map<String, Object>> genreInfoList = productService.fetchGenreInfo();
 
     String adminName = ((AdminBeans) session.getAttribute("adminLoginInfo")).getAdminName();
     adminName = ErrorCheckService.escapeProcess(adminName);
@@ -22,15 +22,15 @@
 <body>
 <header class="sticky-top">
     <nav class="nav navbar-expand-lg bg-success px-1 px-md-2 px-lg-4">
-        <a href="adminTop" class="navbar-brand text-white" style="width: 100px">KIK</a>
+        <a href="adminTop" class="navbar-brand text-white" style="width: 160px">KIK</a>
 
-        <p class="text-left text-white my-auto" style="width: 100px">
+        <p class="text-left text-white my-auto" style="width: 180px">
             ようこそ！
             <br>
             <%=adminName%>さん
         </p>
 
-        <div class="dropdown my-auto ml-3" style="width: 120px">
+        <div class="dropdown my-auto ml-auto" style="width: 120px">
             <button class="nav-link btn btn-warning dropdown-toggle col-12" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                 メニュー
@@ -56,7 +56,8 @@
                 </form>
             </div>
         </div>
-        <form action="productSearchAndDisplay" method="post"
+
+        <form action="adminProductSearchAndDisplay" method="post"
               class="form-inline form-group my-md-auto mb-1 ml-lg-3 w-100">
             <select class="custom-select form-control bg-white col-2 col-md-1" id="genre" name="genreCode">
                 <option value="0">すべて</option>
@@ -80,6 +81,7 @@
 
             <input type="text" class="form-control bg-white rounded-0 col-4 col-md-8" name="searchWord">
 
+            <input type="hidden" value="1" name="page">
             <button type="submit" class="btn btn-warning col-2 col-md-1" id="search"><i class="fas fa-search"></i>
             </button>
         </form>
