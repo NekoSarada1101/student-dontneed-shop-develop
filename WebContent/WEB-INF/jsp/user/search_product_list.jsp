@@ -94,11 +94,18 @@
                     pageMax++;
                 }
                 for (int i = 0; i < pageMax; i++) {
+                    if (pageCount == i + 1) {
             %>
+            <li class="page-item active text-white">
+                    <%
+                } else {
+                %>
             <li class="page-item">
+                <% } %>
                 <form action="productListPagination" method="get" class="page-link">
                     <input type="hidden" value="<%=i + 1%>" name="page">
-                    <button type="submit" class="btn btn-link"><%=i + 1%></button>
+                    <button type="submit" class="btn btn-link"><%=i + 1%>
+                    </button>
                 </form>
             </li>
             <% } %>
