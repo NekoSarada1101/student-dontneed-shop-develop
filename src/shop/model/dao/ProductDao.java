@@ -17,13 +17,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import shop.model.bean.ProductBeans;
-import shop.model.service.ErrorCheckService;
-import shop.model.service.ProductService;
-
 public class ProductDao extends DaoBase {
 
     private Logger logger = LogManager.getLogger();
@@ -183,50 +176,6 @@ public class ProductDao extends DaoBase {
     }
 
 
-    public List<ProductBeans> fetchAdminProductList(String adminMail) {
-        logger.trace("{} Start", ErrorCheckService.getMethodName());
-        PreparedStatement  stmt        = null;
-        ResultSet          rs          = null;
-        List<ProductBeans> productList = null;
-
-        try {
-            this.connect();
-            stmt = con.prepareStatement("SELECT * FROM product WHERE admin_mail = ?");
-            stmt.setString(1, adminMail);
-            rs = stmt.executeQuery();
-
-            ProductService productService = new ProductService();
-            productList = new ArrayList<>();
-
-            while (rs.next()) {
-                ProductBeans productBeans = new ProductBeans();
-                productBeans.setProductId(rs.getInt("product_id"));
-                productBeans.setProductName(rs.getString("product_name"));
-                productBeans.setPrice(rs.getInt("price"));
-                productBeans.setImage(productService.convertInputStreamToByteArray(rs.getBinaryStream("image")));
-                productBeans.setProductExplanation(rs.getString("product_explanation"));
-                productBeans.setIsSold(rs.getBoolean("is_sold"));
-                productBeans.setGenreCode(rs.getInt("genre_code"));
-                productBeans.setAdminMail(rs.getString("admin_mail"));
-                productList.add(productBeans);
-            }
-            logger.info("productList.size={}", productList.size());
-
-        } catch (SQLException | IOException e) {
-            e.printStackTrace();
-            logger.error("error", e);
-        } finally {
-            try {
-                this.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            logger.trace("{} End", ErrorCheckService.getMethodName());
-        }
-        return productList;
-    }
-
-
     public boolean deleteProductAll(String adminMail) {
         logger.trace("{} Start", ErrorCheckService.getMethodName());
         PreparedStatement stmt       = null;
@@ -266,10 +215,6 @@ public class ProductDao extends DaoBase {
             if (genreCode == 0) { //ジャンルですべてを指定された場合
                 stmt = con.prepareStatement("SELECT * FROM product WHERE admin_mail = ? AND is_sold = false AND product_name LIKE ? ORDER BY ? " + sortOrder);
                 stmt.setString(1, adminMail);
-                stmt.setString(2, sortColumn);
-            } else {
-                stmt = con.prepareStatement("SELECT * FROM product WHERE genre_code = ? AND is_sold = false AND product_name LIKE ? ORDER BY ? " + sortOrder);
-                stmt.setInt(1, genreCode);
                 stmt.setString(2, searchWord);
                 stmt.setString(3, sortColumn);
             } else {
