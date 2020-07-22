@@ -21,11 +21,37 @@ import java.util.List;
 @WebFilter("/*")
 public class LoginFilter implements Filter {
 
-    private List<String> memberUrlPatterns = Arrays.asList("/memberTop", "/memberUpdateInput", "/memberUpdateCheck",
-            "/memberUpdateComplete", "/memberDeleteCheck", "/memberDeleteComplete", "/productSearchAndDisplay", "/memberProductDetail", "/memberDetail", "/cartInsert", "/cartDisplay", "/cartDelete", "/purchaseCheck",
-            "/purchaseComplete", "/purchaseHistory", "/productListPagination", "/genreSearch");
+    private List<String> memberUrlPatterns = Arrays.asList(
+            "/memberTop",
+            "/productSearchAndDisplay", "/genreSearch", "/productListPagination",
+            "/memberProductDetail",
+            "/memberDetail",
+            "/memberUpdateInput", "/memberUpdateCheck", "/memberUpdateComplete",
+            "/memberDeleteCheck", "/memberDeleteComplete",
+            "/cartInsert", "/cartDisplay", "/cartDelete",
+            "/purchaseCheck", "/purchaseComplete", "/purchaseHistory"
+    );
 
-    private List<String> adminUrlPatterns = Arrays.asList("/adminTop", "/adminDetail", "/adminProductDetail", "/adminUpdateInput", "/adminUpdateCheck", "/adminUpdateComplete", "/adminDeleteCheck", "/adminDeleteComplete", "/productInsertInput", "/productInsertCheck", "/productInsertComplete", "/productUpdateInput", "/productUpdateCheck", "/productUpdateComplete", "/productDeleteCheck", "/productDeleteComplete", "/salesCheck");
+    private List<String> adminUrlPatterns = Arrays.asList(
+            "/adminTop",
+            "/adminProductSearchAndDisplay", "/adminProductListPagination",
+            "/adminProductDetail",
+            "/adminDetail",
+            "/adminUpdateInput", "/adminUpdateCheck", "/adminUpdateComplete",
+            "/adminDeleteCheck", "/adminDeleteComplete",
+            "/productInsertInput", "/productInsertCheck", "/productInsertComplete",
+            "/productUpdateInput", "/productUpdateCheck", "/productUpdateComplete",
+            "/productDeleteCheck", "/productDeleteComplete",
+            "/salesCheck"
+    );
+
+    private List<String> notFilterUrlPatterns = Arrays.asList(
+            "/memberLogin", "/adminLogin",
+            "/memberLogout", "/adminLogout",
+            "/memberInsertInput", "/memberInsertCheck", "/memberInsertComplete",
+            "adminInsertInput", "adminInsertCheck", "adminInsertComplete",
+            "/getImage", "/getImageList"
+    );
 
     private Logger logger = LogManager.getLogger();
 
@@ -57,27 +83,36 @@ public class LoginFilter implements Filter {
             if (memberBeans != null) {
                 // セッションがNULLでなければ、通常どおりの遷移
                 chain.doFilter(req, res);
+                return;
+
             } else {
                 // セッションがNullならば、エラー画面へ飛ばす
                 logger.debug(path + " memberLoginInfo is null");
                 response.sendRedirect("loginFilterError");
+                return;
             }
-        } else if (adminUrlPatterns.contains(path)) {
+        }
+
+        if (adminUrlPatterns.contains(path)) {
             AdminBeans adminBeans = (AdminBeans) session.getAttribute("adminLoginInfo");
             if (adminBeans != null) {
                 // セッションがNULLでなければ、通常どおりの遷移
                 chain.doFilter(req, res);
+                return;
+
             } else {
                 // セッションがNullならば、エラー画面へ飛ばす
                 logger.debug(path + " adminLoginInfo is null");
                 response.sendRedirect("loginFilterError");
+                return;
             }
-        } else if (path.equals("/memberLogin") || path.contains("/memberInsert") || path.equals("/adminLogin") || path.contains("/adminInsert") || path.contains("Image") || path.contains("css") || path.contains("Logout") || path.contains("js") || path.equals("/loginFilterError")) {
+        }
+
+        if (notFilterUrlPatterns.contains(path) || path.contains("css") || path.contains("js")) {
             chain.doFilter(req, res);
         } else {
             logger.fatal(path + " フィルター対象のファイルではありません：{}", path);
-
-            response.sendRedirect("loginFilterError");
+            chain.doFilter(req, res);
         }
     }
 
@@ -85,5 +120,7 @@ public class LoginFilter implements Filter {
      * @see Filter#init(FilterConfig)
      */
     public void init(FilterConfig fConfig) throws ServletException {
+
     }
 }
+

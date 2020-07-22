@@ -91,9 +91,9 @@
                 <option value="desc" selected>降順</option>
             </select>
 
-            <input type="hidden" value="1" name="page">
             <input type="text" class="form-control bg-white rounded-0 col-4 col-md-8" name="searchWord">
 
+            <input type="hidden" value="1" name="page">
             <button type="submit" class="btn btn-warning col-2 col-md-1" id="search"><i class="fas fa-search"></i>
             </button>
         </form>

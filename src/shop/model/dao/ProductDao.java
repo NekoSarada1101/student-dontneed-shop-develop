@@ -176,7 +176,33 @@ public class ProductDao extends DaoBase {
     }
 
 
-    public List<ProductBeans> fetchAdminProductList(String adminMail) {
+    public boolean deleteProductAll(String adminMail) {
+        logger.trace("{} Start", ErrorCheckService.getMethodName());
+        PreparedStatement stmt       = null;
+        int               deleteLine = 0;
+
+        try {
+            this.connect();
+            stmt = con.prepareStatement("UPDATE product SET is_sold = true WHERE admin_mail = ?");
+            stmt.setString(1, adminMail);
+            deleteLine = stmt.executeUpdate();
+            logger.info("deleteLine={}", deleteLine);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            logger.error("error", e);
+        } finally {
+            try {
+                this.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            logger.trace("{} End", ErrorCheckService.getMethodName());
+        }
+        return deleteLine != 0;
+    }
+
+    public List<ProductBeans> fetchAdminSearchProductList(String adminMail, int genreCode, String sortColumn, String sortOrder, String searchWord) {
         logger.trace("{} Start", ErrorCheckService.getMethodName());
         PreparedStatement  stmt        = null;
         ResultSet          rs          = null;
@@ -184,8 +210,20 @@ public class ProductDao extends DaoBase {
 
         try {
             this.connect();
-            stmt = con.prepareStatement("SELECT * FROM product WHERE admin_mail = ?");
-            stmt.setString(1, adminMail);
+            searchWord = "%" + searchWord + "%";
+
+            if (genreCode == 0) { //ジャンルですべてを指定された場合
+                stmt = con.prepareStatement("SELECT * FROM product WHERE admin_mail = ? AND is_sold = false AND product_name LIKE ? ORDER BY ? " + sortOrder);
+                stmt.setString(1, adminMail);
+                stmt.setString(2, searchWord);
+                stmt.setString(3, sortColumn);
+            } else {
+                stmt = con.prepareStatement("SELECT * FROM product WHERE admin_mail = ? AND genre_code = ? AND is_sold = false AND product_name LIKE ? ORDER BY ? " + sortOrder);
+                stmt.setString(1, adminMail);
+                stmt.setInt(2, genreCode);
+                stmt.setString(3, searchWord);
+                stmt.setString(4, sortColumn);
+            }
             rs = stmt.executeQuery();
 
             ProductService productService = new ProductService();
@@ -217,32 +255,5 @@ public class ProductDao extends DaoBase {
             logger.trace("{} End", ErrorCheckService.getMethodName());
         }
         return productList;
-    }
-
-
-    public boolean deleteProductAll(String adminMail) {
-        logger.trace("{} Start", ErrorCheckService.getMethodName());
-        PreparedStatement stmt       = null;
-        int               deleteLine = 0;
-
-        try {
-            this.connect();
-            stmt = con.prepareStatement("UPDATE product SET is_sold = true WHERE admin_mail = ?");
-            stmt.setString(1, adminMail);
-            deleteLine = stmt.executeUpdate();
-            logger.info("deleteLine={}", deleteLine);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            logger.error("error", e);
-        } finally {
-            try {
-                this.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            logger.trace("{} End", ErrorCheckService.getMethodName());
-        }
-        return deleteLine != 0;
     }
 }

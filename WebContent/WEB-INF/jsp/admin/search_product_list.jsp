@@ -19,7 +19,7 @@
 </head>
 
 <body>
-<%@include file="/WEB-INF/jsp/user/member_header.jsp" %>
+<%@include file="/WEB-INF/jsp/admin/admin_header.jsp" %>
 
 <div class="container-fluid">
     <%if (errorMessage != null) { %>
@@ -61,7 +61,7 @@
             </div>
 
             <div class="card-footer">
-                <form action="memberProductDetail" method="post" target="_blank">
+                <form action="adminProductDetail" method="post" target="_blank">
                     <input type="hidden" value="<%=i%>" name="index">
                     <button type="submit" class="btn btn-primary btn-block">詳細表示</button>
                 </form>
@@ -78,11 +78,11 @@
                 <%
                     if (pageCount == 1) {
                 %>
-                <form action="productListPagination" method="get" class="page-link">
+                <form action="adminProductListPagination" method="get" class="page-link">
                     <button type="submit" class="btn btn-link disabled">Previous</button>
                 </form>
                 <% } else { %>
-                <form action="productListPagination" method="get" class="page-link">
+                <form action="adminProductListPagination" method="get" class="page-link">
                     <input type="hidden" value="<%=pageCount - 1%>" name="page">
                     <button type="submit" class="btn btn-link">Previous</button>
                 </form>
@@ -102,7 +102,7 @@
                 %>
             <li class="page-item">
                 <% } %>
-                <form action="productListPagination" method="get" class="page-link">
+                <form action="adminProductListPagination" method="get" class="page-link">
                     <input type="hidden" value="<%=i + 1%>" name="page">
                     <button type="submit" class="btn btn-link"><%=i + 1%>
                     </button>
@@ -113,11 +113,11 @@
                 <%
                     if (pageCount == pageMax) {
                 %>
-                <form action="productListPagination" method="get" class="page-link">
+                <form action="adminProductListPagination" method="get" class="page-link">
                     <button type="submit" class="btn btn-link disabled">Next</button>
                 </form>
                 <% } else { %>
-                <form action="productListPagination" method="get" class="page-link">
+                <form action="adminProductListPagination" method="get" class="page-link">
                     <input type="hidden" value="<%=pageCount + 1%>" name="page">
                     <button type="submit" class="btn btn-link">Next</button>
                 </form>
@@ -127,7 +127,7 @@
     </nav>
 </div>
 
-<%@include file="/WEB-INF/jsp/user/member_footer.jsp" %>
+<%@include file="/WEB-INF/jsp/admin/admin_footer.jsp" %>
 
 <script>
     window.onload = imageResizeFunc;

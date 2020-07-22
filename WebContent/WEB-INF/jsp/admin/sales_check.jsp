@@ -8,10 +8,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     PurchaseService purchaseService = new PurchaseService();
-    ProductService productService = new ProductService();
 
     List<Map<String, Object>> salesList = purchaseService.fetchSalesInfo(((AdminBeans) session.getAttribute("adminLoginInfo")).getAdminMail());
-    List<Map<String, Object>> genreInfoList = productService.fetchGenreInfo();
 %>
 <!DOCTYPE html>
 <html>

@@ -6,9 +6,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     List<ProductBeans> productList = (List<ProductBeans>) session.getAttribute("productList");
-
-    ProductService productService = new ProductService();
-    List<Map<String, Object>> genreInfoList = productService.fetchGenreInfo();
 %>
 <!DOCTYPE html>
 <html>
@@ -71,13 +68,16 @@
             </div>
 
             <div class="card-footer">
-                <form action="adminProductDetail" method="post">
+                <form action="adminProductDetail" method="post" target="_blank">
                     <input type="hidden" value="<%=i%>" name="index">
                     <button type="submit" class="btn btn-primary btn-block">詳細表示</button>
                 </form>
             </div>
         </div>
         <%
+                if (i == 11) {
+                    break;
+                }
                 i++;
             }
         %>

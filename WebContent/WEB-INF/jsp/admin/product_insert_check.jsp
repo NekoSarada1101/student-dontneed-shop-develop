@@ -7,9 +7,6 @@
 <%
     ProductBeans productBeans = (ProductBeans) session.getAttribute("productBeans");
 
-    ProductService productService = new ProductService();
-    List<Map<String, Object>> genreInfoList = productService.fetchGenreInfo();
-
     String productName = ErrorCheckService.escapeProcess(productBeans.getProductName());
     String price = ErrorCheckService.escapeProcess(String.valueOf(productBeans.getPrice()));
     String productExplanation = ErrorCheckService.escapeProcess(productBeans.getProductExplanation());
