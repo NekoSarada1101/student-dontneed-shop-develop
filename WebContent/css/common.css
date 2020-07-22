@@ -86,3 +86,7 @@ table {
 label.col-12 {
   padding-left: 0;
 }
+
+.active form button {
+  color: white;
+}
