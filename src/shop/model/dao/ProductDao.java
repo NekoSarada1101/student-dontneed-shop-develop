@@ -1,6 +1,12 @@
 
 package shop.model.dao;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import shop.model.bean.ProductBeans;
+import shop.model.service.ErrorCheckService;
+import shop.model.service.ProductService;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.sql.PreparedStatement;
@@ -247,7 +253,7 @@ public class ProductDao extends DaoBase {
         return deleteLine != 0;
     }
 
-    public List<ProductBeans> adminFetchSearchProductList(int genreCode, String sortColumn, String sortOrder, String searchWord) {
+    public List<ProductBeans> fetchAdminSearchProductList(String adminMail, int genreCode, String sortColumn, String sortOrder, String searchWord) {
         logger.trace("{} Start", ErrorCheckService.getMethodName());
         PreparedStatement  stmt        = null;
         ResultSet          rs          = null;
@@ -258,14 +264,20 @@ public class ProductDao extends DaoBase {
             searchWord = "%" + searchWord + "%";
 
             if (genreCode == 0) { //ジャンルですべてを指定された場合
-                stmt = con.prepareStatement("SELECT * FROM product WHERE is_sold = false AND product_name LIKE ? ORDER BY ? " + sortOrder);
-                stmt.setString(1, searchWord);
+                stmt = con.prepareStatement("SELECT * FROM product WHERE admin_mail = ? AND is_sold = false AND product_name LIKE ? ORDER BY ? " + sortOrder);
+                stmt.setString(1, adminMail);
                 stmt.setString(2, sortColumn);
             } else {
                 stmt = con.prepareStatement("SELECT * FROM product WHERE genre_code = ? AND is_sold = false AND product_name LIKE ? ORDER BY ? " + sortOrder);
                 stmt.setInt(1, genreCode);
                 stmt.setString(2, searchWord);
                 stmt.setString(3, sortColumn);
+            } else {
+                stmt = con.prepareStatement("SELECT * FROM product WHERE admin_mail = ? AND genre_code = ? AND is_sold = false AND product_name LIKE ? ORDER BY ? " + sortOrder);
+                stmt.setString(1, adminMail);
+                stmt.setInt(2, genreCode);
+                stmt.setString(3, searchWord);
+                stmt.setString(4, sortColumn);
             }
             rs = stmt.executeQuery();
 
