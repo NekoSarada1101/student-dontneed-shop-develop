@@ -51,17 +51,17 @@ public class AdminLoginServlet extends HttpServlet {
             return;
         }
 
-        AdminBeans adminBeans = userService.fetchAdminLogin(adminMail, adminPassword);
+        AdminBeans adminLoginInfo = userService.fetchAdminLogin(adminMail, adminPassword);
 
         HttpSession session = request.getSession();
-        if (adminBeans == null) {
+        if (adminLoginInfo == null) {
             //取得に失敗した場合
             request.setAttribute("errorMessage", "メールアドレスまたはパスワードが間違っています");
             logger.trace("{} End", ErrorCheckService.getMethodName());
             request.getRequestDispatcher("WEB-INF/jsp/admin/admin_login.jsp").forward(request, response);
         } else {
             //取得に成功した場合
-            session.setAttribute("adminLoginInfo", adminBeans);
+            session.setAttribute("adminLoginInfo", adminLoginInfo);
             logger.trace("{} End", ErrorCheckService.getMethodName());
             response.sendRedirect("adminTop");
         }

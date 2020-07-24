@@ -27,12 +27,12 @@ public class AdminDeleteCompleteServlet extends HttpServlet {
         logger.trace("{} Start", ErrorCheckService.getMethodName());
 
         HttpSession session    = request.getSession();
-        AdminBeans  adminBeans = (AdminBeans) session.getAttribute("adminLoginInfo");
-        logger.info("adminLoginInfo={}", adminBeans);
+        AdminBeans  adminLoginInfo = (AdminBeans) session.getAttribute("adminLoginInfo");
+        logger.info("adminLoginInfo={}", adminLoginInfo);
 
-        userService.deleteAdmin(adminBeans);
+        userService.deleteAdmin(adminLoginInfo);
 
-        productService.deleteProductAll(adminBeans.getAdminMail());
+        productService.deleteProductAll(adminLoginInfo.getAdminMail());
 
         logger.trace("{} End", ErrorCheckService.getMethodName());
         request.getRequestDispatcher("WEB-INF/jsp/admin/admin_delete_complete.jsp").forward(request, response);

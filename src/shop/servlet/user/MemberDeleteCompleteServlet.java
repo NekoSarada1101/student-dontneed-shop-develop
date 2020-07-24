@@ -25,10 +25,10 @@ public class MemberDeleteCompleteServlet extends HttpServlet {
         logger.trace("{} Start", ErrorCheckService.getMethodName());
 
         HttpSession session = request.getSession();
-        MemberBeans memberBeans = (MemberBeans) session.getAttribute("memberLoginInfo");
-        logger.info("memberBeans={}", memberBeans);
+        MemberBeans memberLoginInfo = (MemberBeans) session.getAttribute("memberLoginInfo");
+        logger.info("memberLoginInfo={}", memberLoginInfo);
 
-        userService.deleteMember(memberBeans);
+        userService.deleteMember(memberLoginInfo);
         logger.trace("{} End", ErrorCheckService.getMethodName());
         request.getRequestDispatcher("WEB-INF/jsp/user/member_delete_complete.jsp").forward(request, response);
     }

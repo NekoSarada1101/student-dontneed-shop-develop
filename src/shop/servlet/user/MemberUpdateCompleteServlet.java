@@ -24,12 +24,12 @@ public class MemberUpdateCompleteServlet extends HttpServlet {
         logger.trace("{} Start", ErrorCheckService.getMethodName());
 
         HttpSession session     = request.getSession();
-        MemberBeans memberBeans = (MemberBeans) session.getAttribute("memberBeans");
-        logger.info("memberBeans={}", memberBeans);
+        MemberBeans memberLoginInfo = (MemberBeans) session.getAttribute("memberBeans");
+        logger.info("memberBeans={}", memberLoginInfo);
 
         //メールアドレスが変更された時
-        if (!memberBeans.getMemberMail().equals(((MemberBeans) session.getAttribute("memberLoginInfo")).getMemberMail())) {
-            if (userService.checkMemberMailExists(memberBeans.getMemberMail())) {
+        if (!memberLoginInfo.getMemberMail().equals(((MemberBeans) session.getAttribute("memberLoginInfo")).getMemberMail())) {
+            if (userService.checkMemberMailExists(memberLoginInfo.getMemberMail())) {
                 String errorMessage = "そのメールアドレスは既に登録済みです";
                 request.setAttribute("errorMessage", errorMessage);
                 logger.trace("{} End", ErrorCheckService.getMethodName());
@@ -38,8 +38,9 @@ public class MemberUpdateCompleteServlet extends HttpServlet {
             }
         }
 
-        userService.updateMember(memberBeans);
-        session.setAttribute("memberLoginInfo", memberBeans);
+        userService.updateMember(memberLoginInfo);
+
+        session.setAttribute("memberLoginInfo", memberLoginInfo);
         session.removeAttribute("memberBeans");
         logger.trace("{} End", ErrorCheckService.getMethodName());
         request.getRequestDispatcher("WEB-INF/jsp/user/member_update_complete.jsp").forward(request, response);
