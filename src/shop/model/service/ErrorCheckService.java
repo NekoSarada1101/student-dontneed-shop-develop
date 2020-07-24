@@ -7,6 +7,15 @@ public class ErrorCheckService {
         return false;
     }
 
+    public static boolean checkStringIsNumber(String num) {
+        try {
+            int a = Integer.parseInt(num);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+
     public static boolean checkAllowedSortColumn(String sortColumn) {
         if (sortColumn.equals("product_id") || sortColumn.equals("product_name") || sortColumn.equals("price"))
             return true;

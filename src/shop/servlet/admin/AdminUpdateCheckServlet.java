@@ -58,6 +58,8 @@ public class AdminUpdateCheckServlet extends HttpServlet {
             return false;
         } else if (!ErrorCheckService.checkLength(address, 50, 1)) {
             return false;
+        } else if (!ErrorCheckService.checkStringIsNumber(postalCode)) {
+            return false;
         }
         return true;
     }
