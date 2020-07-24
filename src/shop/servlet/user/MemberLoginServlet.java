@@ -3,7 +3,9 @@ package shop.servlet.user;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import shop.model.bean.MemberBeans;
+import shop.model.bean.ProductBeans;
 import shop.model.service.ErrorCheckService;
+import shop.model.service.ProductService;
 import shop.model.service.UserService;
 
 import javax.servlet.ServletException;
@@ -13,12 +15,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/memberLogin")
 public class MemberLoginServlet extends HttpServlet {
 
-    private UserService userService = new UserService();
-    private Logger      logger      = LogManager.getLogger();
+    private UserService    userService    = new UserService();
+    private ProductService productService = new ProductService();
+    private Logger         logger         = LogManager.getLogger();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,6 +32,10 @@ public class MemberLoginServlet extends HttpServlet {
         MemberBeans memberBeans = (MemberBeans) session.getAttribute("memberLoginInfo");
 
         if (memberBeans == null) {
+            List<ProductBeans> productList = productService.fetchSearchProductList(/* genreCode= */0, /* sortColumn= */"product_id", /* sortOrder= */"desc", /* searchWord= */"");
+            session.setAttribute("productList", productList);
+            logger.info("productList.size={}", productList.size());
+
             logger.trace("{} End", ErrorCheckService.getMethodName());
             request.getRequestDispatcher("WEB-INF/jsp/user/member_login.jsp").forward(request, response);
         } else {
