@@ -88,7 +88,9 @@ public class LoginFilter implements Filter {
             } else {
                 // セッションがNullならば、エラー画面へ飛ばす
                 logger.debug(path + " memberLoginInfo is null");
-                response.sendRedirect("loginFilterError");
+                request.setAttribute("errorMessage", "セッションタイムアウト、または不正な画面遷移が発生しました。");
+
+                request.getRequestDispatcher("WEB-INF/jsp/user/member_login.jsp").forward(request, response);
                 return;
             }
         }
@@ -103,7 +105,9 @@ public class LoginFilter implements Filter {
             } else {
                 // セッションがNullならば、エラー画面へ飛ばす
                 logger.debug(path + " adminLoginInfo is null");
-                response.sendRedirect("loginFilterError");
+                request.setAttribute("errorMessage", "セッションタイムアウト、または不正な画面遷移が発生しました。");
+
+                request.getRequestDispatcher("WEB-INF/jsp/admin/admin_login.jsp").forward(request, response);
                 return;
             }
         }
@@ -111,7 +115,7 @@ public class LoginFilter implements Filter {
         if (notFilterUrlPatterns.contains(path) || path.contains("css") || path.contains("js")) {
             chain.doFilter(req, res);
         } else {
-            logger.fatal(path + " フィルター対象のファイルではありません：{}", path);
+            logger.fatal("フィルター対象のファイルではありません：{}", path);
             chain.doFilter(req, res);
         }
     }
