@@ -29,9 +29,9 @@ public class MemberLoginServlet extends HttpServlet {
         logger.trace("{} Start", ErrorCheckService.getMethodName());
 
         HttpSession session     = request.getSession();
-        MemberBeans memberBeans = (MemberBeans) session.getAttribute("memberLoginInfo");
+        MemberBeans memberLoginInfo = (MemberBeans) session.getAttribute("memberLoginInfo");
 
-        if (memberBeans == null) {
+        if (memberLoginInfo == null) {
             List<ProductBeans> productList = productService.fetchSearchProductList(/* genreCode= */0, /* sortColumn= */"product_id", /* sortOrder= */"desc", /* searchWord= */"");
             session.setAttribute("productList", productList);
             logger.info("productList.size={}", productList.size());
@@ -59,11 +59,11 @@ public class MemberLoginServlet extends HttpServlet {
             return;
         }
 
-        MemberBeans memberBeans = userService.fetchMemberLogin(memberMail, memberPassword);
-        logger.info("memberBeans={}", memberBeans);
+        MemberBeans memberLoginInfo = userService.fetchMemberLogin(memberMail, memberPassword);
+        logger.info("memberLoginInfo={}", memberLoginInfo);
 
         HttpSession session = request.getSession();
-        if (memberBeans == null) {
+        if (memberLoginInfo == null) {
             //取得に失敗した場合
             request.setAttribute("errorMessage", "メールアドレスまたはパスワードが間違っています");
             logger.trace("{} End", ErrorCheckService.getMethodName());
@@ -71,7 +71,7 @@ public class MemberLoginServlet extends HttpServlet {
 
         } else {
             //取得に成功した場合
-            session.setAttribute("memberLoginInfo", memberBeans);
+            session.setAttribute("memberLoginInfo", memberLoginInfo);
             logger.trace("{} End", ErrorCheckService.getMethodName());
             response.sendRedirect("memberTop");
         }

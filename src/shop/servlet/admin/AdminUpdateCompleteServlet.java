@@ -23,22 +23,24 @@ public class AdminUpdateCompleteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         logger.trace("{} Start", ErrorCheckService.getMethodName());
 
-        HttpSession session    = request.getSession();
-        AdminBeans  adminBeans = (AdminBeans) session.getAttribute("adminBeans");
-        logger.info("adminBeans={}", adminBeans);
+        HttpSession session        = request.getSession();
+        AdminBeans  adminLoginInfo = (AdminBeans) session.getAttribute("adminBeans");
+        logger.info("adminBeans={}", adminLoginInfo);
 
         //メールアドレスが変更された時
-        if (!adminBeans.getAdminMail().equals(((AdminBeans) session.getAttribute("adminLoginInfo")).getAdminMail()))
-            if (userService.checkAdminMailExists(adminBeans.getAdminMail())) {
+        if (!adminLoginInfo.getAdminMail().equals(((AdminBeans) session.getAttribute("adminLoginInfo")).getAdminMail())) {
+            if (userService.checkAdminMailExists(adminLoginInfo.getAdminMail())) {
                 String errorMessage = "そのメールアドレスは既に登録済みです";
                 request.setAttribute("errorMessage", errorMessage);
+                logger.trace("{} End", ErrorCheckService.getMethodName());
                 request.getRequestDispatcher("WEB-INF/jsp/admin/admin_update_input.jsp").forward(request, response);
                 return;
             }
+        }
 
-        userService.updateAdmin(adminBeans);
+        userService.updateAdmin(adminLoginInfo);
 
-        session.setAttribute("adminLoginInfo", adminBeans);
+        session.setAttribute("adminLoginInfo", adminLoginInfo);
         session.removeAttribute("adminBeans");
         logger.trace("{} End", ErrorCheckService.getMethodName());
         request.getRequestDispatcher("WEB-INF/jsp/admin/admin_update_complete.jsp").forward(request, response);
