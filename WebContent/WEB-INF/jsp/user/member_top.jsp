@@ -19,6 +19,7 @@
 
 <div class="container-fluid">
     <div class="mt-5 px-5 row">
+        <h1 class="col-12">新着</h1>
         <%
             int i = 0;
             for (ProductBeans productBeans : productList) {
