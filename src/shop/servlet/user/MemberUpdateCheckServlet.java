@@ -77,6 +77,14 @@ public class MemberUpdateCheckServlet extends HttpServlet {
             return false;
         } else if (!ErrorCheckService.checkLength(securityCode, 3, 3)) {
             return false;
+        } else if (!ErrorCheckService.checkStringIsNumber(postalCode)) {
+            return false;
+        } else if (!ErrorCheckService.checkStringIsNumber(tell)) {
+            return false;
+        } else if (!ErrorCheckService.checkStringIsNumber(creditCard)) {
+            return false;
+        } else if (!ErrorCheckService.checkStringIsNumber(securityCode)) {
+            return false;
         }
         return true;
     }

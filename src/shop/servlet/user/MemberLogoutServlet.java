@@ -26,6 +26,6 @@ public class MemberLogoutServlet extends HttpServlet {
         session.removeAttribute("memberBeans");
 
         logger.trace("{} End", ErrorCheckService.getMethodName());
-        request.getRequestDispatcher("WEB-INF/jsp/user/member_login.jsp").forward(request,response);
+        response.sendRedirect("memberLogin");
     }
 }
