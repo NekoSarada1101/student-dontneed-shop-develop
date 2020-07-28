@@ -29,8 +29,8 @@
             <button type="submit" class="btn btn-outline-dark btn-block col-8 ml-auto">戻る</button>
         </form>
 
-        <form action="purchaseComplete" method="post" class="col-6 mx-auto mb-3 row">
-            <button type="submit" class="btn btn-primary btn-block col-8 mr-auto">購入</button>
+        <form action="purchaseComplete" method="post" class="col-6 mx-auto mb-3 row" onsubmit="this.disabled = true;">
+            <input type="submit" class="btn btn-primary btn-block col-8 mr-auto" value="購入">
         </form>
     </div>
 
