@@ -112,7 +112,7 @@ public class LoginFilter implements Filter {
             }
         }
 
-        if (notFilterUrlPatterns.contains(path) || path.contains("css") || path.contains("js")) {
+        if (notFilterUrlPatterns.contains(path) || path.contains("css") || path.contains("js") || path.contains("png")) {
             chain.doFilter(req, res);
         } else {
             logger.fatal("フィルター対象のファイルではありません：{}", path);
