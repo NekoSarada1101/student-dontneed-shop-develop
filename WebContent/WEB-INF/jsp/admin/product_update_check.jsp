@@ -44,7 +44,7 @@
 
             <tr class="row">
                 <th class="col-3">画像</th>
-                <td id="square-image" class="col-9">
+                <td id="square-image" class="col-9 square-image">
                     <img src="getImage" alt="商品画像">
                 </td>
             </tr>
