@@ -58,6 +58,12 @@
                 <span class="card-text text-danger mb-3">
                     <%=ErrorCheckService.escapeProcess(String.valueOf(productBeans.getPrice()))%>円
                 </span>
+                <br>
+                <% if (productBeans.isSold()) { %>
+                <span class="text-danger">販売済み</span>
+                <% } else {%>
+                <span class="text-success">在庫あり</span>
+                <% } %>
             </div>
 
             <div class="card-footer">
