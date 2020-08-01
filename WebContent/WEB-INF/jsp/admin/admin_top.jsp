@@ -71,6 +71,7 @@
             <div class="card-footer">
                 <form action="adminProductDetail" method="post" target="_blank">
                     <input type="hidden" value="<%=i%>" name="index">
+                    <input type="hidden" value="adminTop" name="from">
                     <button type="submit" class="btn btn-primary btn-block">詳細表示</button>
                 </form>
             </div>
