@@ -55,6 +55,8 @@ public class PurchaseDao extends DaoBase {
         } finally {
             try {
                 this.close();
+                stmt.close();
+                rs.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -84,6 +86,7 @@ public class PurchaseDao extends DaoBase {
         } finally {
             try {
                 this.close();
+                stmt.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -112,6 +115,7 @@ public class PurchaseDao extends DaoBase {
         } finally {
             try {
                 this.close();
+                stmt.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -145,6 +149,8 @@ public class PurchaseDao extends DaoBase {
         } finally {
             try {
                 this.close();
+                stmt.close();
+                rs.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -200,6 +206,8 @@ public class PurchaseDao extends DaoBase {
         } finally {
             try {
                 this.close();
+                stmt.close();
+                rs.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -224,9 +232,6 @@ public class PurchaseDao extends DaoBase {
                 if (i == purchaseDetailBeansList.size() - 1) {
                     sql = sql.substring(0, sql.lastIndexOf(","));
                 }
-            }
-            System.out.println(sql);
-            stmt = con.prepareStatement(sql);
             for (PurchaseDetailBeans purchaseDetailBeans : purchaseDetailBeansList) {
                 int parameterIndex = 1;
                 stmt.setString(parameterIndex, purchaseDetailBeans.getMemberMail());
@@ -244,6 +249,7 @@ public class PurchaseDao extends DaoBase {
         } finally {
             try {
                 this.close();
+                stmt.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -293,6 +299,8 @@ public class PurchaseDao extends DaoBase {
         } finally {
             try {
                 this.close();
+                stmt.close();
+                rs.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -342,6 +350,8 @@ public class PurchaseDao extends DaoBase {
         } finally {
             try {
                 this.close();
+                stmt.close();
+                rs.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }

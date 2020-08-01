@@ -48,6 +48,8 @@ public class UserDao extends DaoBase {
         } finally {
             try {
                 this.close();
+                stmt.close();
+                rs.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -81,6 +83,8 @@ public class UserDao extends DaoBase {
         } finally {
             try {
                 this.close();
+                stmt.close();
+                rs.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -117,6 +121,7 @@ public class UserDao extends DaoBase {
         } finally {
             try {
                 this.close();
+                stmt.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -154,6 +159,7 @@ public class UserDao extends DaoBase {
         } finally {
             try {
                 this.close();
+                stmt.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -181,6 +187,7 @@ public class UserDao extends DaoBase {
         } finally {
             try {
                 this.close();
+                stmt.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -219,6 +226,8 @@ public class UserDao extends DaoBase {
         } finally {
             try {
                 this.close();
+                stmt.close();
+                rs.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -252,6 +261,8 @@ public class UserDao extends DaoBase {
         } finally {
             try {
                 this.close();
+                stmt.close();
+                rs.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -283,6 +294,7 @@ public class UserDao extends DaoBase {
         } finally {
             try {
                 this.close();
+                stmt.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -315,6 +327,7 @@ public class UserDao extends DaoBase {
         } finally {
             try {
                 this.close();
+                stmt.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -342,6 +355,7 @@ public class UserDao extends DaoBase {
         } finally {
             try {
                 this.close();
+                stmt.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
