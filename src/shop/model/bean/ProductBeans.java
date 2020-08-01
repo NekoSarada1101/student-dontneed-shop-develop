@@ -14,4 +14,12 @@ public class ProductBeans implements Serializable {
     private boolean isSold             = false;
     private int     genreCode          = 0;
     private String  adminMail          = null;
+
+    public byte[] getImage(){
+        return this.image.clone();
+    }
+
+    public void setImage(byte[] image){
+        this.image = image.clone();
+    }
 }
