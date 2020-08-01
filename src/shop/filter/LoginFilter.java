@@ -48,7 +48,7 @@ public class LoginFilter implements Filter {
             "/memberLogin", "/adminLogin",
             "/memberLogout", "/adminLogout",
             "/memberInsertInput", "/memberInsertCheck", "/memberInsertComplete",
-            "adminInsertInput", "adminInsertCheck", "adminInsertComplete",
+            "/adminInsertInput", "/adminInsertCheck", "/adminInsertComplete",
             "/getImage", "/getImageList"
     );
 
