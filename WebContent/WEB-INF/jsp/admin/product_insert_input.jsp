@@ -23,7 +23,11 @@
 </head>
 
 <body>
-<%@include file="/WEB-INF/jsp/admin/admin_header.jsp" %>
+<header class="sticky-top">
+    <nav class="navbar navbar-expand-lg bg-success px-1 px-md-2 px-lg-3">
+        <span href="adminTop" class="navbar-brand text-white mr-3" style="width: 160px">KIK</span>
+    </nav>
+</header>
 
 <h1 class="my-5 text-center">商品情報登録入力</h1>
 
