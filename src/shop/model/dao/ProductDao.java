@@ -212,12 +212,12 @@ public class ProductDao extends DaoBase {
             searchWord = "%" + searchWord + "%";
 
             if (genreCode == 0) { //ジャンルですべてを指定された場合
-                stmt = con.prepareStatement("SELECT * FROM product WHERE admin_mail = ? AND is_sold = false AND product_name LIKE ? ORDER BY ? " + sortOrder);
+                stmt = con.prepareStatement("SELECT * FROM product WHERE admin_mail = ? AND product_name LIKE ? ORDER BY ? " + sortOrder);
                 stmt.setString(1, adminMail);
                 stmt.setString(2, searchWord);
                 stmt.setString(3, sortColumn);
             } else {
-                stmt = con.prepareStatement("SELECT * FROM product WHERE admin_mail = ? AND genre_code = ? AND is_sold = false AND product_name LIKE ? ORDER BY ? " + sortOrder);
+                stmt = con.prepareStatement("SELECT * FROM product WHERE admin_mail = ? AND genre_code = ? AND product_name LIKE ? ORDER BY ? " + sortOrder);
                 stmt.setString(1, adminMail);
                 stmt.setInt(2, genreCode);
                 stmt.setString(3, searchWord);
