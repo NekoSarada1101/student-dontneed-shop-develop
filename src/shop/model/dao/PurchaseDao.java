@@ -225,13 +225,14 @@ public class PurchaseDao extends DaoBase {
         try {
             this.connect();
             //SQL文生成
-            String sql = "INSERT INTO purchase_details (member_mail, product_id, purchase_date) VALUES ";
+            StringBuffer buffer = new StringBuffer();
             for (int i = 0; i < purchaseDetailBeansList.size(); i++) {
-                sql += "(?, ?, ?),";
-                //末尾の , を削除
-                if (i == purchaseDetailBeansList.size() - 1) {
-                    sql = sql.substring(0, sql.lastIndexOf(","));
-                }
+                buffer.append("(?, ?, ?),");
+            }
+            //末尾の , を削除
+            buffer.substring(0,buffer.lastIndexOf(","));
+
+            stmt = con.prepareStatement("INSERT INTO purchase_details (member_mail, product_id, purchase_date) VALUES " + buffer.toString());
             for (PurchaseDetailBeans purchaseDetailBeans : purchaseDetailBeansList) {
                 int parameterIndex = 1;
                 stmt.setString(parameterIndex, purchaseDetailBeans.getMemberMail());

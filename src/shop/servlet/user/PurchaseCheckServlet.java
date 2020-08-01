@@ -35,11 +35,14 @@ public class PurchaseCheckServlet extends HttpServlet {
         String errorMessage = "";
         if (purchaseMap.get("deleteList").size() != 0) {
             List<ProductBeans> deleteList = purchaseMap.get("deleteList");
+
+            StringBuffer buffer = new StringBuffer();
             for (ProductBeans productBeans : deleteList) {
                 purchaseService.deleteCart(memberMail, productBeans.getProductId());
-                errorMessage += productBeans.getProductName() + "\n";
+                buffer.append(productBeans.getProductName() + "\n");
             }
-            errorMessage += "が既に販売済みであったためカートから削除しました";
+            buffer.append("が既に販売済みであったためカートから削除しました");
+            errorMessage = buffer.toString();
         }
 
         request.setAttribute("errorMessage", errorMessage);
