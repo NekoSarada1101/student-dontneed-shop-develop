@@ -358,6 +358,11 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/shop/servlet/GetImageServlet.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/shop/servlet/LoginFilterErrorServlet.java">
           <value>
             <PaintGroupHighlightMap />
