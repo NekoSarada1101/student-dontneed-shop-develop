@@ -56,7 +56,7 @@
                 </p>
 
                 <p class="card-text mb-3">
-                    <% if (productBeans.getIsSold()) { %>
+                    <% if (productBeans.isSold()) { %>
                     <span class="text-danger">販売済み</span>
                     <% } else {%>
                     <span class="text-success">在庫あり</span>

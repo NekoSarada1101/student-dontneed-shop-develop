@@ -35,7 +35,7 @@ public class MemberProductDetailServlet extends HttpServlet {
         productBeans.setPrice(productList.get(index).getPrice());
         productBeans.setImage(productList.get(index).getImage());
         productBeans.setProductExplanation(productList.get(index).getProductExplanation());
-        productBeans.setIsSold(productList.get(index).getIsSold());
+        productBeans.setSold(productList.get(index).isSold());
         productBeans.setGenreCode(productList.get(index).getGenreCode());
         session.setAttribute("productBeans", productBeans);
 

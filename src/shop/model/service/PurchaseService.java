@@ -1,4 +1,3 @@
-
 package shop.model.service;
 
 import shop.model.bean.ProductBeans;

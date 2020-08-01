@@ -1,4 +1,3 @@
-
 package shop.servlet;
 
 import shop.model.bean.ProductBeans;

@@ -61,7 +61,7 @@
                     <%=ErrorCheckService.escapeProcess(String.valueOf(productBeans.getPrice()))%>円
                 </span>
                 <br>
-                <% if (productBeans.getIsSold()) { %>
+                <% if (productBeans.isSold()) { %>
                 <span class="text-danger">販売済み</span>
                 <% } else {%>
                 <span class="text-success">在庫あり</span>

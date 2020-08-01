@@ -1,4 +1,3 @@
-
 package shop.model.dao;
 
 import org.apache.logging.log4j.LogManager;
@@ -53,7 +52,7 @@ public class ProductDao extends DaoBase {
                 productBeans.setPrice(rs.getInt("price"));
                 productBeans.setImage(productService.convertInputStreamToByteArray(rs.getBinaryStream("image")));
                 productBeans.setProductExplanation(rs.getString("product_explanation"));
-                productBeans.setIsSold(rs.getBoolean("is_sold"));
+                productBeans.setSold(rs.getBoolean("is_sold"));
                 productBeans.setGenreCode(rs.getInt("genre_code"));
                 productBeans.setAdminMail(rs.getString("admin_mail"));
                 productList.add(productBeans);
@@ -119,7 +118,7 @@ public class ProductDao extends DaoBase {
             stmt.setInt(2, productBeans.getPrice());
             stmt.setBinaryStream(3, new ByteArrayInputStream(productBeans.getImage()));
             stmt.setString(4, productBeans.getProductExplanation());
-            stmt.setBoolean(5, productBeans.getIsSold());
+            stmt.setBoolean(5, productBeans.isSold());
             stmt.setInt(6, productBeans.getGenreCode());
             stmt.setInt(7, productBeans.getProductId());
             updateLine = stmt.executeUpdate();
@@ -236,7 +235,7 @@ public class ProductDao extends DaoBase {
                 productBeans.setPrice(rs.getInt("price"));
                 productBeans.setImage(productService.convertInputStreamToByteArray(rs.getBinaryStream("image")));
                 productBeans.setProductExplanation(rs.getString("product_explanation"));
-                productBeans.setIsSold(rs.getBoolean("is_sold"));
+                productBeans.setSold(rs.getBoolean("is_sold"));
                 productBeans.setGenreCode(rs.getInt("genre_code"));
                 productBeans.setAdminMail(rs.getString("admin_mail"));
                 productList.add(productBeans);

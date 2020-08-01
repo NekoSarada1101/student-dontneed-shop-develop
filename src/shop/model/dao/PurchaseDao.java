@@ -1,4 +1,3 @@
-
 package shop.model.dao;
 
 import org.apache.logging.log4j.LogManager;
@@ -43,7 +42,7 @@ public class PurchaseDao extends DaoBase {
                 productBeans.setPrice(rs.getInt("price"));
                 productBeans.setImage(productService.convertInputStreamToByteArray(rs.getBinaryStream("image")));
                 productBeans.setProductExplanation(rs.getString("product_explanation"));
-                productBeans.setIsSold(rs.getBoolean("is_sold"));
+                productBeans.setSold(rs.getBoolean("is_sold"));
                 productBeans.setGenreCode(rs.getInt("genre_code"));
                 productBeans.setAdminMail(rs.getString("admin_mail"));
                 cartList.add(productBeans);
@@ -181,11 +180,11 @@ public class PurchaseDao extends DaoBase {
                 productBeans.setPrice(rs.getInt("price"));
                 productBeans.setImage(productService.convertInputStreamToByteArray(rs.getBinaryStream("image")));
                 productBeans.setProductExplanation(rs.getString("product_explanation"));
-                productBeans.setIsSold(rs.getBoolean("is_sold"));
+                productBeans.setSold(rs.getBoolean("is_sold"));
                 productBeans.setGenreCode(rs.getInt("genre_code"));
                 productBeans.setAdminMail(rs.getString("admin_mail"));
 
-                if (productBeans.getIsSold()) { //購入済みなら
+                if (productBeans.isSold()) { //購入済みなら
                     deleteList.add(productBeans);
                 } else {  //購入されてないなら
                     purchaseList.add(productBeans);
@@ -277,7 +276,7 @@ public class PurchaseDao extends DaoBase {
                 productBeans.setPrice(rs.getInt("price"));
                 productBeans.setImage(productService.convertInputStreamToByteArray(rs.getBinaryStream("image")));
                 productBeans.setProductExplanation(rs.getString("product_explanation"));
-                productBeans.setIsSold(rs.getBoolean("is_sold"));
+                productBeans.setSold(rs.getBoolean("is_sold"));
                 productBeans.setGenreCode(rs.getInt("genre_code"));
                 productBeans.setAdminMail(rs.getString("admin_mail"));
 
@@ -326,7 +325,7 @@ public class PurchaseDao extends DaoBase {
                 productBeans.setPrice(rs.getInt("price"));
                 productBeans.setImage(productService.convertInputStreamToByteArray(rs.getBinaryStream("image")));
                 productBeans.setProductExplanation(rs.getString("product_explanation"));
-                productBeans.setIsSold(rs.getBoolean("is_sold"));
+                productBeans.setSold(rs.getBoolean("is_sold"));
                 productBeans.setGenreCode(rs.getInt("genre_code"));
                 productBeans.setAdminMail(rs.getString("admin_mail"));
 

@@ -54,7 +54,7 @@ public class PurchaseCompleteServlet extends HttpServlet {
 
         //購入した商品を購入済みにしカートから削除
         for (ProductBeans productBeans : purchaseList) {
-            productBeans.setIsSold(true);
+            productBeans.setSold(true);
             productService.updateProduct(productBeans);
             purchaseService.deleteCart(memberMail, productBeans.getProductId());
         }
