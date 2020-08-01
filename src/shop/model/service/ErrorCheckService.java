@@ -9,7 +9,7 @@ public class ErrorCheckService {
 
     public static boolean checkStringIsNumber(String num) {
         try {
-            int a = Integer.parseInt(num);
+            Integer.parseInt(num);
         } catch (Exception e) {
             return false;
         }

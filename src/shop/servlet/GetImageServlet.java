@@ -1,7 +1,6 @@
 package shop.servlet;
 
 import shop.model.bean.ProductBeans;
-import shop.model.service.ProductService;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
@@ -15,8 +14,6 @@ import java.io.*;
 
 @WebServlet("/getImage")
 public class GetImageServlet extends HttpServlet {
-
-    private ProductService productService = new ProductService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
