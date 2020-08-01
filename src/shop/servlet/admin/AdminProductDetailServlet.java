@@ -26,12 +26,11 @@ public class AdminProductDetailServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         int    index = 0;
-        String path = request.getRequestURI().substring(request.getContextPath().length());
-        path = path.substring(path.lastIndexOf("/"));
-        if (path.equals("/adminTop")) {
+        String from = request.getParameter("from");
+        if (from.equals("adminTop") || from.equals("search")) {
             //管理者トップから遷移したら
             index = Integer.parseInt(request.getParameter("index"));
-        } else if (path.equals("/productUpdateInput")) {
+        } else if (from.equals("/productUpdateInput")) {
             //商品情報変更入力画面から遷移したら
             index = (int) session.getAttribute("index");
         }

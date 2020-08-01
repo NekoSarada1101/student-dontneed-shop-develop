@@ -78,6 +78,7 @@
         </form>
 
         <div class="px-3 col-6">
+            <input type="hidden" value="productUpdateInput" name="from">
             <button type="submit" class="btn btn-primary btn-block" form="form">変更</button>
         </div>
     </div>
