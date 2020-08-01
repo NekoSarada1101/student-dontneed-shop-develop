@@ -66,18 +66,15 @@
 
             <div class="card-footer">
                 <form action="productUpdateInput" method="get">
-                    <button type="submit" class="btn btn-primary btn-block mb-2">変更する
-                    </button>
+                    <button type="submit" class="btn btn-primary btn-block mb-2">変更する</button>
                 </form>
 
                 <form action="productDeleteCheck" method="get">
-                    <button type="submit" class="btn btn-danger btn-block mb-2">販売済みにする
-                    </button>
+                    <button type="submit" class="btn btn-danger btn-block mb-2">販売済みにする</button>
                 </form>
 
                 <form action="adminTop" method="get">
-                    <button type="submit" class="btn btn-outline-dark btn-block">戻る
-                    </button>
+                    <button type="submit" class="btn btn-outline-dark btn-block">戻る</button>
                 </form>
             </div>
         </div>
