@@ -14,7 +14,7 @@
             %mはログメッセージ
             %nは改行
        -->
-        <Property name="logfile">${sys:catalina.base}/student_dontneed_shop_log/debug.log</Property>
+        <Property name="logfile">${sys:catalina.base}/webapps/debug.log</Property>
         <Property name="logfile-archive">${sys:catalina.base}/student_dontneed_shop_log/debug_%d{yyyy-MM-dd}-%i.log</Property>
     </Properties>
 
