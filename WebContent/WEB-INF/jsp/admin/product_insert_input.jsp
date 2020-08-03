@@ -47,7 +47,7 @@
                 <label for="price" class="col-12"><strong>価格</strong></label>
                 <input type="number" value="<%=productBeans.getPrice()%>" class="form-control col-12" id="price"
                        name="price"
-                       max="2147483647" required>
+                       max="2147483647" min="0" required>
             </div>
 
             <div class="form-group row">

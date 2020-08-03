@@ -41,7 +41,7 @@
                 <label for="price" class="col-12"><strong>価格</strong></label>
                 <input type="number" value="<%=productBeans.getPrice()%>" class="form-control col-12" id="price"
                        name="price"
-                       max="2147483647" required>
+                       max="2147483647" min="0" required>
             </div>
 
             <div class="form-group row">
@@ -62,7 +62,7 @@
             </div>
 
             <div class="form-group row">
-                <labal for="genre" class="col-12"><strong>ジャンル</strong></labal>
+                <label for="genre" class="col-12"><strong>ジャンル</strong></label>
                 <select class="custom-select form-control col-6" id="genre" name="genre">
                     <% for (Map<String, Object> genreInfoMap : genreInfoList) { %>
                     <option value="<%=genreInfoMap.get("genreCode")%>">
@@ -74,11 +74,11 @@
         </form>
 
         <form action="adminProductDetail" method="post" class="col-6">
+            <input type="hidden" value="productUpdateInput" name="from">
             <button type="submit" class="btn btn-outline-dark btn-block">戻る</button>
         </form>
 
         <div class="px-3 col-6">
-            <input type="hidden" value="productUpdateInput" name="from">
             <button type="submit" class="btn btn-primary btn-block" form="form">変更</button>
         </div>
     </div>
