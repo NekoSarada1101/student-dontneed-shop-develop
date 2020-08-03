@@ -25,7 +25,7 @@ public class ProductDeleteCheckServlet extends HttpServlet {
 
         HttpSession        session     = request.getSession();
         List<ProductBeans> productList = (List<ProductBeans>) session.getAttribute("productList");
-        int                index       = Integer.parseInt(request.getParameter("index"));
+        int                index       = (int) session.getAttribute("index");
         logger.info("productList.size={}", productList.size());
         logger.info("index={}", index);
 
