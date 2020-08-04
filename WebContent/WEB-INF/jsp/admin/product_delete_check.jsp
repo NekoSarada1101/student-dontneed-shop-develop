@@ -78,7 +78,7 @@
         </form>
 
         <form action="productDeleteComplete" method="post" class="col-6 mr-0">
-            <button type="submit" class="btn btn-primary btn-block">削除</button>
+            <button type="submit" class="btn btn-danger btn-block">販売済みにする</button>
         </form>
     </div>
 </div>
