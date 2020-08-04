@@ -143,7 +143,17 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/error_400.jsp">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/error_404.jsp">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/WebContent/WEB-INF/jsp/error_405.jsp">
           <value>
             <PaintGroupHighlightMap />
           </value>
