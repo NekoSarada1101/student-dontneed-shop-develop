@@ -74,6 +74,7 @@
         </table>
 
         <form action="adminProductDetail" method="post" class="col-6 ml-0">
+            <input type="hidden" value="/productDeleteCheck" name="from">
             <button type="submit" class="btn btn-outline-dark btn-block">戻る</button>
         </form>
 
