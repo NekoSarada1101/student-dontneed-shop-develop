@@ -15,7 +15,7 @@ public class ErrorCheckService {
 
     public static boolean checkStringIsNumber(String num) {
         try {
-            Integer.parseInt(num);
+            Long.parseLong(num);
         } catch (Exception e) {
             logger.debug(e);
             return false;
