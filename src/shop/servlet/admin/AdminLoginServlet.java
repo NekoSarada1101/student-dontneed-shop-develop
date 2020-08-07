@@ -26,6 +26,7 @@ public class AdminLoginServlet extends HttpServlet {
 
         HttpSession session    = request.getSession();
         AdminBeans  adminBeans = (AdminBeans) session.getAttribute("adminLoginInfo");
+        session.removeAttribute("adminBeans");
 
         if (adminBeans == null) {
             logger.trace("{} End", ErrorCheckService.getMethodName());
