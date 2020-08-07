@@ -89,7 +89,7 @@
 <%@include file="/WEB-INF/jsp/admin/admin_footer.jsp" %>
 
 <script>
-    window.onload = imageResizeFunc;
+    document.addEventListener("DOMContentLoaded", imageResizeFunc);
     window.addEventListener("resize", imageResizeFunc);
 
     function imageResizeFunc() {
