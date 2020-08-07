@@ -30,6 +30,7 @@ public class MemberLoginServlet extends HttpServlet {
 
         HttpSession session     = request.getSession();
         MemberBeans memberLoginInfo = (MemberBeans) session.getAttribute("memberLoginInfo");
+        session.removeAttribute("memberBeans");
 
         if (memberLoginInfo == null) {
             List<ProductBeans> productList = productService.fetchSearchProductList(/* genreCode= */0, /* sortColumn= */"product_id", /* sortOrder= */"desc", /* searchWord= */"");
