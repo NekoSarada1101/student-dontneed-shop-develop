@@ -12,7 +12,7 @@
 
 <h1 class="my-5 text-center">退会完了</h1>
 
-<form action="memberLogin" method="get" class="mt-5">
+<form action="memberLogout" method="get" class="mt-5">
     <button type="submit" class="btn btn-primary btn-block mx-auto col-6 col-lg-4">ログイン画面へ</button>
 </form>
 

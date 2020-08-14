@@ -12,7 +12,7 @@
 
 <h1 class="my-5 text-center">管理者情報削除完了</h1>
 
-<form action="adminLogin" method="get" class="mt-5">
+<form action="adminLogout" method="get" class="mt-5">
     <button type="submit" class="btn btn-primary btn-block mx-auto col-6 col-lg-4">ログイン画面へ</button>
 </form>
 
