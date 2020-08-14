@@ -26,7 +26,7 @@ public class ProductDeleteCompleteServlet extends HttpServlet {
 
         HttpSession  session      = request.getSession();
         ProductBeans productBeans = (ProductBeans) session.getAttribute("productBeans");
-        logger.info("productBeans={}", productBeans);
+        logger.info("productId={}", productBeans.getProductId());
 
         productService.deleteProduct(productBeans);
         logger.trace("{} End", ErrorCheckService.getMethodName());
