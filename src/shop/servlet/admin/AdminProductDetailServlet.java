@@ -30,7 +30,7 @@ public class AdminProductDetailServlet extends HttpServlet {
         if (from.equals("adminTop") || from.equals("search")) {
             //管理者トップから遷移したら
             index = Integer.parseInt(request.getParameter("index"));
-        } else if (from.equals("/productUpdateInput") || from.equals("/productDeleteCheck")) {
+        } else if (from.equals("productUpdateInput") || from.equals("productDeleteCheck")) {
             //商品情報変更入力画面から遷移したら
             index = (int) session.getAttribute("index");
         }
