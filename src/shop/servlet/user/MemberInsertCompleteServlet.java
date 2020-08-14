@@ -23,7 +23,7 @@ public class MemberInsertCompleteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         logger.trace("{} Start", ErrorCheckService.getMethodName());
 
-        HttpSession session = request.getSession();
+        HttpSession session     = request.getSession();
         MemberBeans memberBeans = (MemberBeans) session.getAttribute("memberBeans");
         logger.info("memberBeans={}", memberBeans);
 
@@ -36,6 +36,7 @@ public class MemberInsertCompleteServlet extends HttpServlet {
         }
 
         userService.insertMember(memberBeans);
+
         session.removeAttribute("memberBeans");
         logger.trace("{} End", ErrorCheckService.getMethodName());
         request.getRequestDispatcher("WEB-INF/jsp/user/member_insert_complete.jsp").forward(request, response);
