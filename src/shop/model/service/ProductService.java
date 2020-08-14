@@ -27,6 +27,7 @@ public class ProductService {
 
     //商品情報のis_soldをtrueにする
     public boolean deleteProduct(ProductBeans productBeans) {
+        productBeans.setSold(true);
         return productDao.updateProduct(productBeans);
     }
 
