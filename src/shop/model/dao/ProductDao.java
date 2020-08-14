@@ -119,8 +119,8 @@ public class ProductDao extends DaoBase {
             stmt.setInt(2, productBeans.getPrice());
             stmt.setBinaryStream(3, new ByteArrayInputStream(productBeans.getImage()));
             stmt.setString(4, productBeans.getProductExplanation());
-            stmt.setBoolean(5, productBeans.isSold());
-            stmt.setInt(6, productBeans.getGenreCode());
+            stmt.setInt(5, productBeans.getGenreCode());
+            stmt.setBoolean(6, productBeans.isSold());
             stmt.setInt(7, productBeans.getProductId());
             updateLine = stmt.executeUpdate();
             logger.info("updateLine={}", updateLine);
