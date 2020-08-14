@@ -23,24 +23,21 @@ public class MemberUpdateCompleteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         logger.trace("{} Start", ErrorCheckService.getMethodName());
 
-        HttpSession session     = request.getSession();
-        MemberBeans memberLoginInfo = (MemberBeans) session.getAttribute("memberBeans");
-        logger.info("memberBeans={}", memberLoginInfo);
+        HttpSession session         = request.getSession();
+        MemberBeans memberBeans = (MemberBeans) session.getAttribute("memberBeans");
+        logger.info("memberBeans={}", memberBeans);
 
-        //メールアドレスが変更された時
-        if (!memberLoginInfo.getMemberMail().equals(((MemberBeans) session.getAttribute("memberLoginInfo")).getMemberMail())) {
-            if (userService.checkMemberMailExists(memberLoginInfo.getMemberMail())) {
-                String errorMessage = "そのメールアドレスは既に登録済みです";
-                request.setAttribute("errorMessage", errorMessage);
-                logger.trace("{} End", ErrorCheckService.getMethodName());
-                request.getRequestDispatcher("WEB-INF/jsp/user/member_update_input.jsp").forward(request, response);
-                return;
-            }
+        if (userService.checkMemberMailExists(memberBeans.getMemberMail())) {
+            String errorMessage = "そのメールアドレスは既に登録済みです";
+            request.setAttribute("errorMessage", errorMessage);
+            logger.trace("{} End", ErrorCheckService.getMethodName());
+            request.getRequestDispatcher("WEB-INF/jsp/user/member_update_input.jsp").forward(request, response);
+            return;
         }
 
-        userService.updateMember(memberLoginInfo);
+        userService.updateMember(memberBeans);
 
-        session.setAttribute("memberLoginInfo", memberLoginInfo);
+        session.setAttribute("memberLoginInfo", memberBeans);
         session.removeAttribute("memberBeans");
         logger.trace("{} End", ErrorCheckService.getMethodName());
         request.getRequestDispatcher("WEB-INF/jsp/user/member_update_complete.jsp").forward(request, response);

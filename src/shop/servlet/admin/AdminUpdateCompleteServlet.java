@@ -23,24 +23,21 @@ public class AdminUpdateCompleteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         logger.trace("{} Start", ErrorCheckService.getMethodName());
 
-        HttpSession session        = request.getSession();
-        AdminBeans  adminLoginInfo = (AdminBeans) session.getAttribute("adminBeans");
-        logger.info("adminBeans={}", adminLoginInfo);
+        HttpSession session    = request.getSession();
+        AdminBeans  adminBeans = (AdminBeans) session.getAttribute("adminBeans");
+        logger.info("adminBeans={}", adminBeans);
 
-        //メールアドレスが変更された時
-        if (!adminLoginInfo.getAdminMail().equals(((AdminBeans) session.getAttribute("adminLoginInfo")).getAdminMail())) {
-            if (userService.checkAdminMailExists(adminLoginInfo.getAdminMail())) {
-                String errorMessage = "そのメールアドレスは既に登録済みです";
-                request.setAttribute("errorMessage", errorMessage);
-                logger.trace("{} End", ErrorCheckService.getMethodName());
-                request.getRequestDispatcher("WEB-INF/jsp/admin/admin_update_input.jsp").forward(request, response);
-                return;
-            }
+        if (userService.checkAdminMailExists(adminBeans.getAdminMail())) {
+            String errorMessage = "そのメールアドレスは既に登録済みです";
+            request.setAttribute("errorMessage", errorMessage);
+            logger.trace("{} End", ErrorCheckService.getMethodName());
+            request.getRequestDispatcher("WEB-INF/jsp/admin/admin_update_input.jsp").forward(request, response);
+            return;
         }
 
-        userService.updateAdmin(adminLoginInfo);
+        userService.updateAdmin(adminBeans);
 
-        session.setAttribute("adminLoginInfo", adminLoginInfo);
+        session.setAttribute("adminLoginInfo", adminBeans);
         session.removeAttribute("adminBeans");
         logger.trace("{} End", ErrorCheckService.getMethodName());
         request.getRequestDispatcher("WEB-INF/jsp/admin/admin_update_complete.jsp").forward(request, response);
