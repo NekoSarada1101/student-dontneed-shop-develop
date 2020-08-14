@@ -44,8 +44,8 @@
 
             <tr class="row">
                 <th class="col-3">画像</th>
-                <td id="square-image" class="col-9">
-                    <img src="getImage" alt="">
+                <td id="square-image" class="col-9 square-image">
+                    <img src="getImage" alt="商品画像">
                 </td>
             </tr>
 
@@ -85,6 +85,18 @@
 </div>
 
 <%@ include file="/WEB-INF/jsp/admin/admin_footer.jsp" %>
+
+<script>
+    document.addEventListener("DOMContentLoaded", imageResizeFunc);
+    window.addEventListener("resize", imageResizeFunc);
+
+    function imageResizeFunc() {
+        var width = document.getElementById('square-image').offsetWidth;
+        console.log(width)
+        width = String(width) + "px";
+        document.getElementById("square-image").style.height = width;
+    }
+</script>
 
 <%@include file="/WEB-INF/jsp/script.jsp" %>
 </body>
