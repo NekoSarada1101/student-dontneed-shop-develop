@@ -4,7 +4,7 @@
          pageEncoding="UTF-8" %>
 
 <%
-    String errorMessage = (String) session.getAttribute("errorMessage");
+    String errorMessage = (String) request.getAttribute("errorMessage");
     AdminBeans adminBeans = (AdminBeans) session.getAttribute("adminBeans");
 %>
 <!DOCTYPE html>
