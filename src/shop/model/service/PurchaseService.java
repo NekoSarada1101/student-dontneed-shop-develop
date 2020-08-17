@@ -42,4 +42,13 @@ public class PurchaseService {
     public List<Map<String, Object>> fetchSalesInfo(String adminMail) {
         return purchaseDao.fetchSalesInfo(adminMail);
     }
+
+    public int getTotal(List<Map<String, Object>> salesList) {
+        int total = 0;
+        for (Map<String, Object> salesMap : salesList) {
+            ProductBeans productBeans = (ProductBeans) salesMap.get("productBeans");
+            total += productBeans.getPrice();
+        }
+        return total;
+    }
 }

@@ -10,6 +10,7 @@
     PurchaseService purchaseService = new PurchaseService();
 
     List<Map<String, Object>> salesList = purchaseService.fetchSalesInfo(((AdminBeans) session.getAttribute("adminLoginInfo")).getAdminMail());
+    int total = purchaseService.getTotal(salesList);
 %>
 <!DOCTYPE html>
 <html>
@@ -28,7 +29,9 @@
     <div class="row">
         <form action="adminTop" method="get" class="col-11 col-md-8 mx-auto mb-3 row">
             <button type="submit" class="btn btn-outline-dark btn-block col-4 mr-auto">戻る</button>
+            <h3 class="col-12 p-0 mt-3">合計金額 <%=total%>円</h3>
         </form>
+
 
         <table class="table table-hover col-11 col-md-8 mx-auto">
             <thead>
