@@ -27,12 +27,14 @@ public class AdminUpdateCompleteServlet extends HttpServlet {
         AdminBeans  adminBeans = (AdminBeans) session.getAttribute("adminBeans");
         logger.info("adminBeans={}", adminBeans);
 
-        if (userService.checkAdminMailExists(adminBeans.getAdminMail())) {
-            String errorMessage = "そのメールアドレスは既に登録済みです";
-            request.setAttribute("errorMessage", errorMessage);
-            logger.trace("{} End", ErrorCheckService.getMethodName());
-            request.getRequestDispatcher("WEB-INF/jsp/admin/admin_update_input.jsp").forward(request, response);
-            return;
+        if (!adminBeans.getAdminMail().equals(((AdminBeans) session.getAttribute("adminLoginInfo")).getAdminMail())) {
+            if (userService.checkAdminMailExists(adminBeans.getAdminMail())) {
+                String errorMessage = "そのメールアドレスは既に登録済みです";
+                request.setAttribute("errorMessage", errorMessage);
+                logger.trace("{} End", ErrorCheckService.getMethodName());
+                request.getRequestDispatcher("WEB-INF/jsp/admin/admin_update_input.jsp").forward(request, response);
+                return;
+            }
         }
 
         userService.updateAdmin(adminBeans);
@@ -40,7 +42,7 @@ public class AdminUpdateCompleteServlet extends HttpServlet {
         session.setAttribute("adminLoginInfo", adminBeans);
         session.removeAttribute("adminBeans");
         logger.trace("{} End", ErrorCheckService.getMethodName());
-        request.getRequestDispatcher("WEB-INF/jsp/admin/admin_update_complete.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/jsp/admin/admin_detail.jsp").forward(request, response);
     }
 }
 

@@ -27,12 +27,14 @@ public class MemberUpdateCompleteServlet extends HttpServlet {
         MemberBeans memberBeans = (MemberBeans) session.getAttribute("memberBeans");
         logger.info("memberBeans={}", memberBeans);
 
-        if (userService.checkMemberMailExists(memberBeans.getMemberMail())) {
-            String errorMessage = "そのメールアドレスは既に登録済みです";
-            request.setAttribute("errorMessage", errorMessage);
-            logger.trace("{} End", ErrorCheckService.getMethodName());
-            request.getRequestDispatcher("WEB-INF/jsp/user/member_update_input.jsp").forward(request, response);
-            return;
+        if (!memberBeans.getMemberMail().equals(((MemberBeans) session.getAttribute("memberLoginInfo")).getMemberMail())) {
+            if (userService.checkMemberMailExists(memberBeans.getMemberMail())) {
+                String errorMessage = "そのメールアドレスは既に登録済みです";
+                request.setAttribute("errorMessage", errorMessage);
+                logger.trace("{} End", ErrorCheckService.getMethodName());
+                request.getRequestDispatcher("WEB-INF/jsp/user/member_update_input.jsp").forward(request, response);
+                return;
+            }
         }
 
         userService.updateMember(memberBeans);
@@ -40,7 +42,7 @@ public class MemberUpdateCompleteServlet extends HttpServlet {
         session.setAttribute("memberLoginInfo", memberBeans);
         session.removeAttribute("memberBeans");
         logger.trace("{} End", ErrorCheckService.getMethodName());
-        request.getRequestDispatcher("WEB-INF/jsp/user/member_update_complete.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/jsp/user/member_detail.jsp").forward(request, response);
     }
 }
 
