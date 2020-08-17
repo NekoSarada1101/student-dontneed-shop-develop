@@ -93,7 +93,7 @@
 
             <div class="form-group row">
                 <label for="expirationDate" class="col-12"><strong>有効期限</strong></label>
-                <input type="date" value="<%=memberBeans.getExpirationDate()%>" class="form-control col-6"
+                <input type="month" value="<%=memberBeans.getExpirationDate()%>" class="form-control col-6"
                        id="expirationDate"
                        name="expirationDate" required>
             </div>
