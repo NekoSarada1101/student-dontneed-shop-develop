@@ -230,9 +230,10 @@ public class PurchaseDao extends DaoBase {
                 buffer.append("(?, ?, ?),");
             }
             //末尾の , を削除
-            buffer.substring(0,buffer.lastIndexOf(","));
+            String placeHolder = (buffer.toString()).substring(0,buffer.lastIndexOf(","));
+            String sql = "INSERT INTO purchase_details (member_mail, product_id, purchase_date) VALUES " + placeHolder;
 
-            stmt = con.prepareStatement("INSERT INTO purchase_details (member_mail, product_id, purchase_date) VALUES " + buffer.toString());
+            stmt = con.prepareStatement(sql);
             for (PurchaseDetailBeans purchaseDetailBeans : purchaseDetailBeansList) {
                 int parameterIndex = 1;
                 stmt.setString(parameterIndex, purchaseDetailBeans.getMemberMail());
