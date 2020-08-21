@@ -50,7 +50,7 @@ public class ProductInsertCheckServlet extends HttpServlet {
         logger.info("price={}", price);
         logger.info("genreCode={}", genreCode);
 
-        if (!checkInputTextLength(productName, price, productExplanation)) {
+        if (!checkInputTextLength(productName, productExplanation)) {
             request.setAttribute("errorMessage", "不正な入力です");
             logger.trace("{} End", ErrorCheckService.getMethodName());
             request.getRequestDispatcher("WEB-INF/jsp/admin/product_insert_input.jsp").forward(request, response);
@@ -73,7 +73,7 @@ public class ProductInsertCheckServlet extends HttpServlet {
     }
 
 
-    public boolean checkInputTextLength(String productName, int price, String productExplanation) {
+    public boolean checkInputTextLength(String productName, String productExplanation) {
         if (!ErrorCheckService.checkLength(productName, /* maxLength= */30, /* minLength= */1)) {
             return false;
         } else if (!ErrorCheckService.checkLength(productExplanation, 400, 1)) {
