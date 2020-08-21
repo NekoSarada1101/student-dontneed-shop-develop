@@ -221,12 +221,12 @@ public class PurchaseDao extends DaoBase {
         try {
             this.connect();
             //SQL文生成
-            StringBuffer buffer = new StringBuffer();
+            StringBuilder stringBuilder = new StringBuilder();
             for (int i = 0; i < purchaseDetailBeansList.size(); i++) {
-                buffer.append("(?, ?, ?),");
+                stringBuilder.append("(?, ?, ?),");
             }
             //末尾の , を削除
-            String placeHolder = (buffer.toString()).substring(0,buffer.lastIndexOf(","));
+            String placeHolder = stringBuilder.substring(0,stringBuilder.lastIndexOf(","));
             String sql = "INSERT INTO purchase_details (member_mail, product_id, purchase_date) VALUES " + placeHolder;
 
             stmt = con.prepareStatement(sql);
