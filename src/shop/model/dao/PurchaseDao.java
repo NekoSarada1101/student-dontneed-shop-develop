@@ -230,8 +230,8 @@ public class PurchaseDao extends DaoBase {
             String sql = "INSERT INTO purchase_details (member_mail, product_id, purchase_date) VALUES " + placeHolder;
 
             stmt = con.prepareStatement(sql);
+            int parameterIndex = 1;
             for (PurchaseDetailBeans purchaseDetailBeans : purchaseDetailBeansList) {
-                int parameterIndex = 1;
                 stmt.setString(parameterIndex, purchaseDetailBeans.getMemberMail());
                 stmt.setInt(parameterIndex + 1, purchaseDetailBeans.getProductId());
                 stmt.setString(parameterIndex + 2, purchaseDetailBeans.getPurchaseDate());
