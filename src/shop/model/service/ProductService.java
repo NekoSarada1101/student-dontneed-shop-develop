@@ -13,7 +13,7 @@ public class ProductService {
 
     private ProductDao productDao = new ProductDao();
 
-    public List<ProductBeans> fetchSearchProductList(int genreCode, String sortColumn, String sortOrder, String searchWord) throws IOException {
+    public List<ProductBeans> fetchSearchProductList(int genreCode, String sortColumn, String sortOrder, String searchWord) {
         return productDao.fetchSearchProductList(genreCode, sortColumn, sortOrder, searchWord);
     }
 
