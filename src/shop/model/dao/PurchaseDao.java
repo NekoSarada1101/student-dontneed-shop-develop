@@ -136,11 +136,7 @@ public class PurchaseDao extends DaoBase {
             stmt = con.prepareStatement("SELECT * FROM cart WHERE exists(SELECT * FROM cart c WHERE c.product_id = ?)");
             stmt.setInt(1, productId);
             rs = stmt.executeQuery();
-            if (rs.next()) {
-                isExists = true;
-            } else {
-                isExists = false;
-            }
+            isExists = rs.next();
             logger.info("isExists={}", isExists);
 
         } catch (SQLException e) {

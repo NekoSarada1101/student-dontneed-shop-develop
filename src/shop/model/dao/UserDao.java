@@ -70,11 +70,7 @@ public class UserDao extends DaoBase {
             stmt = con.prepareStatement("SELECT * FROM member WHERE exists(SELECT * FROM member m WHERE m.member_mail = ?)");
             stmt.setString(1, memberMail);
             rs = stmt.executeQuery();
-            if (rs.next()) {
-                isExists = true;
-            } else {
-                isExists = false;
-            }
+            isExists = rs.next();
             logger.info("isExists={}", isExists);
 
         } catch (SQLException e) {
@@ -248,11 +244,7 @@ public class UserDao extends DaoBase {
             stmt = con.prepareStatement("SELECT * FROM admin WHERE exists(SELECT * FROM admin m WHERE m.admin_mail = ?)");
             stmt.setString(1, adminMail);
             rs = stmt.executeQuery();
-            if (rs.next()) {
-                isExists = true;
-            } else {
-                isExists = false;
-            }
+            isExists = rs.next();
             logger.info("isExists={}", isExists);
 
         } catch (SQLException e) {
