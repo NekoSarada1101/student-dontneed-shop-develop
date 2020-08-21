@@ -160,8 +160,8 @@ public class PurchaseDao extends DaoBase {
         logger.trace("{} Start", ErrorCheckService.getMethodName());
         PreparedStatement               stmt         = null;
         ResultSet                       rs           = null;
-        List<ProductBeans>              purchaseList = null;
-        List<ProductBeans>              deleteList   = null;
+        List<ProductBeans>              purchaseList;
+        List<ProductBeans>              deleteList;
         Map<String, List<ProductBeans>> purchaseMap  = null;
 
         try {

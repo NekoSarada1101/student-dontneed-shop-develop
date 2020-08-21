@@ -18,7 +18,7 @@ public class UserDao extends DaoBase {
         logger.trace("{} Start", ErrorCheckService.getMethodName());
         PreparedStatement stmt        = null;
         ResultSet         rs          = null;
-        MemberBeans       memberBeans = null;
+        MemberBeans       memberBeans;
 
         try {
             this.connect();
@@ -197,7 +197,7 @@ public class UserDao extends DaoBase {
         logger.trace("{} Start", ErrorCheckService.getMethodName());
         PreparedStatement stmt       = null;
         ResultSet         rs         = null;
-        AdminBeans        adminBeans = null;
+        AdminBeans        adminBeans;
 
         try {
             this.connect();
