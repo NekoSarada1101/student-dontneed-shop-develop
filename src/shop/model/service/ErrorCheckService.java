@@ -41,7 +41,7 @@ public class ErrorCheckService {
         str = str.replace("<", "&lt");
         str = str.replace(">", "&gt");
         str = str.replace("\"", "&quot");
-        str = str.replace("\'", "&#39");
+        str = str.replace("'", "&#39");
         str = str.replace(" ", "&nbsp");
         return str;
     }
