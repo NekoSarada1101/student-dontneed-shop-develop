@@ -20,7 +20,7 @@ import java.util.List;
 @WebFilter("/*")
 public class LoginFilter implements Filter {
 
-    private List<String> memberUrlPatterns = Arrays.asList(
+    private final List<String> MEMBER_URL_PATTERNS = Arrays.asList(
             "/memberTop",
             "/productSearchAndDisplay", "/genreSearch", "/productListPagination",
             "/memberProductDetail",
@@ -31,7 +31,7 @@ public class LoginFilter implements Filter {
             "/purchaseCheck", "/purchaseComplete", "/purchaseHistory"
     );
 
-    private List<String> adminUrlPatterns = Arrays.asList(
+    private final List<String> ADMIN_URL_PATTERNS = Arrays.asList(
             "/adminTop",
             "/adminProductSearchAndDisplay", "/adminProductListPagination",
             "/adminProductDetail",
@@ -44,7 +44,7 @@ public class LoginFilter implements Filter {
             "/salesCheck"
     );
 
-    private List<String> notFilterUrlPatterns = Arrays.asList(
+    private final List<String> NOT_FILTER_URL_PATTERNS = Arrays.asList(
             "/memberLogin", "/adminLogin",
             "/memberLogout", "/adminLogout",
             "/memberInsertInput", "/memberInsertCheck", "/memberInsertComplete",
@@ -77,7 +77,7 @@ public class LoginFilter implements Filter {
         String path = request.getRequestURI().substring(request.getContextPath().length());
         path = path.substring(path.lastIndexOf("/"));
 
-        if (memberUrlPatterns.contains(path)) {
+        if (MEMBER_URL_PATTERNS.contains(path)) {
             MemberBeans memberBeans = (MemberBeans) session.getAttribute("memberLoginInfo");
             if (memberBeans != null) {
                 // セッションがNULLでなければ、通常どおりの遷移
@@ -94,7 +94,7 @@ public class LoginFilter implements Filter {
             }
         }
 
-        if (adminUrlPatterns.contains(path)) {
+        if (ADMIN_URL_PATTERNS.contains(path)) {
             AdminBeans adminBeans = (AdminBeans) session.getAttribute("adminLoginInfo");
             if (adminBeans != null) {
                 // セッションがNULLでなければ、通常どおりの遷移
@@ -111,7 +111,7 @@ public class LoginFilter implements Filter {
             }
         }
 
-        if (notFilterUrlPatterns.contains(path) || path.contains("css") || path.contains("js") || path.contains("png")) {
+        if (NOT_FILTER_URL_PATTERNS.contains(path) || path.contains("css") || path.contains("js") || path.contains("png")) {
             chain.doFilter(req, res);
         } else {
             logger.fatal("フィルター対象のファイルではありません：{}", path);
